@@ -1,0 +1,14 @@
+.navbar__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    gap: 5%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 10vh;
+    width: 100vw;
+    background-color: aliceblue;
+    margin: 0;
+}
