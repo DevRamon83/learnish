@@ -1,5 +1,6 @@
 import Logo from "./Logo";
 import { classes } from "../../constants/layout/navbar";
+import { NavLink } from "react-router-dom";
 
 export default function Navbar () {
 
@@ -7,11 +8,10 @@ export default function Navbar () {
     return (
         <>
         
-        <ul className={container}>
-            <li className={logo}><Logo /></li>
-            <li className={btn}>home</li>
-            <li className={btn}>login</li>
-        </ul>
+        <nav className={container}>
+            <NavLink to="/" className={logo} end><Logo /></NavLink>
+            <NavLink to="/login" className={btn}>login</NavLink>
+        </nav>
         </>
     )
 }
