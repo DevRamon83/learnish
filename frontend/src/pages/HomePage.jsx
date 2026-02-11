@@ -1,13 +1,11 @@
-import { useSelector } from "react-redux";
-import { getSharedAsset } from "../utils/getSharedAsset";
+import { useLang } from "../hooks/useLang";
 
 export default function Home() {
-  const language = useSelector((state) => state.settings.language);
-  const strings = getSharedAsset("language", language);
+  const strings = useLang("pages.homepage");
 
   return (
     <>
-      <div>{strings?.pages.homepage.welcome}</div>
+      <div>{strings?.welcome}</div>
     </>
   );
 }

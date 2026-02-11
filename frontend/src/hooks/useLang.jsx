@@ -35,7 +35,11 @@ export const useLang = (path = "") => {
   const language = useSelector((state) => state.settings.language);
 
   return useMemo(() => {
-    const validPath = isValid(path);
-    return validPath ? getStrings(language, path) : {};
+    if (language) {
+      const validPath = isValid(path);
+      return validPath ? getStrings(language, path) : {};
+    }
+
+    return {};
   }, [language, path]);
 };
