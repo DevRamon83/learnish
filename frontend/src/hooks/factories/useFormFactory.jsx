@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { useStrings } from "../useStrings";
+import langs from "../../../../shared/languages";
+import { useLang } from "../useLang";
 
 // InputField.jsx consumes props calling "config" key
 const formatFormState = (schemas) => {
@@ -47,10 +48,15 @@ const factoryRunner = (factoryConfig) => {
 const buildFormSchema = (factoryConfig, strings) => {
   const { targetKeys, originalObjects, addThisKeys } = factoryConfig;
   const schemas = [];
+  const testClone = [];
 
   for (let i = 0; i < originalObjects.length; i++) {
-    schemas.push(originalObjects[i]);
+    schemas.push({ ...originalObjects[i] });
+    //  schemas.push(originalObjects[i]);
   }
+
+  console.log("schemas ", schemas);
+  console.log("testClone ", testClone);
 
   const configuration = {
     targetKeys,
@@ -65,31 +71,15 @@ const buildFormSchema = (factoryConfig, strings) => {
   return formConfigurator;
 };
 
-// Navigates the strings object to find the required segment
-// based on the provided keys array.
-const getNestedNamespace = (strings, srcArray) => {
-  let myStrings = { ...strings };
-
-  for (let i = 0; i < srcArray.length; i++) {
-    const src = srcArray[i];
-    const obj = myStrings[src];
-    myStrings = obj;
-  }
-  return myStrings;
-};
-
 export const useFormFactory = (factoryConfig) => {
-  const allStrings = useStrings();
   const { stringsAddress } = factoryConfig;
-  const [formConfig, setFormConfig] = useState(null);
+  const strings = useLang(stringsAddress);
 
-  useEffect(() => {
-    if (allStrings) {
-      const strings = getNestedNamespace(allStrings, stringsAddress);
-      const configObj = buildFormSchema(factoryConfig, strings);
-      setFormConfig({ ...configObj });
-    }
-  }, [allStrings]);
+  return useMemo(() => {
+    if (!strings || Object.keys(strings).length === 0) return null;
 
-  return formConfig;
+    const configObj = buildFormSchema(factoryConfig, strings);
+
+    return { ...configObj };
+  }, [strings, factoryConfig]);
 };
