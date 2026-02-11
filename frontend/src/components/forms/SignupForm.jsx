@@ -11,7 +11,7 @@ const factoryConfig = {
     signupConfig.confirmPassword,
   ],
   addThisKeys: ["label", "placeholder"],
-  stringsAddress: ["components", "auth"],
+  stringsAddress: "components.auth",
 };
 
 export default function SignupForm() {
