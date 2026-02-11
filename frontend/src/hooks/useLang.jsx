@@ -24,7 +24,7 @@ const getStrings = (language, path) => {
 
 const isValid = (path) => {
   if (!path) {
-    console.error("useLang: Path can't be an empty string");
+    console.error("[useLang] The path provided is empty or not a string.");
     return false;
   }
 
