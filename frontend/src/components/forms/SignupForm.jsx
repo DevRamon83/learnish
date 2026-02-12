@@ -1,30 +1,42 @@
 import { signupConfig } from "../../configs/inputs/auth";
 import { useI18nFormSchema } from "../../hooks/factories/useI18nFormSchema";
+import { useStateFactory } from "../../hooks/factories/useStateFactory";
 import InputField from "../inputs/InputField";
 
+const { username, email, password, confirmPassword } = signupConfig;
+
+const SSOT = [username.id, email.id, password.id, confirmPassword.id];
+
 const basicConfig = {
-  targetKeys: ["username", "email", "psw", "confirmPassword"],
-  originalObjects: [
-    signupConfig.username,
-    signupConfig.email,
-    signupConfig.psw,
-    signupConfig.confirmPassword,
-  ],
+  targetKeys: SSOT,
+  originalObjects: [username, email, password, confirmPassword],
   addThisKeys: ["label", "placeholder"],
   stringsAddress: "components.auth",
 };
 
+const stateConfig = {
+  params: SSOT,
+  refIndexes: [null],
+  stateIndexes: [0, 1, 2, 3],
+};
+
 export default function SignupForm() {
   const inputsData = useI18nFormSchema(basicConfig);
+  const [states, setter] = useStateFactory(stateConfig);
+
+  for (let i = 0; i < SSOT.length; i++) {
+    if (!inputsData) return;
+    inputsData[SSOT[i]].inputProps = { value: states[SSOT[i]] };
+    // missing ref handlers
+  }
 
   return (
     <>
       {inputsData && (
         <form>
-          <InputField dataField={inputsData.username} />
-          <InputField dataField={inputsData.email} />
-          <InputField dataField={inputsData.password} />
-          <InputField dataField={inputsData.passwordCheck} />
+          {SSOT.map((id) => (
+            <InputField key={id} dataField={inputsData[id]} />
+          ))}
         </form>
       )}
     </>
