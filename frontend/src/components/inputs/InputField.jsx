@@ -2,7 +2,7 @@ const InputField = ({ dataField }) => {
   const inputProps = dataField.states || {};
   const eventHandlers = dataField.handlers || {};
 
-  const { id, label, type, placeholder, name, autoComplete } = dataField.config;
+  const { id, label, type, placeholder, autoComplete } = dataField.config;
   const { inputRef, value } = inputProps;
   const { onChange, onBlur, onFocus, onKeyDown } = eventHandlers;
 
@@ -18,7 +18,7 @@ const InputField = ({ dataField }) => {
         type={type}
         id={id}
         placeholder={placeholder}
-        name={name}
+        name={id}
         value={value}
         onChange={funcOnChange}
         onBlur={funcOnBlur}
