@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-import langs from "../../../../shared/languages";
 import { useLang } from "../useLang";
 
 // InputField.jsx consumes props calling "config" key
@@ -48,15 +46,10 @@ const factoryRunner = (factoryConfig) => {
 const buildFormSchema = (factoryConfig, strings) => {
   const { targetKeys, originalObjects, addThisKeys } = factoryConfig;
   const schemas = [];
-  const testClone = [];
 
   for (let i = 0; i < originalObjects.length; i++) {
     schemas.push({ ...originalObjects[i] });
-    //  schemas.push(originalObjects[i]);
   }
-
-  console.log("schemas ", schemas);
-  console.log("testClone ", testClone);
 
   const configuration = {
     targetKeys,
@@ -71,7 +64,7 @@ const buildFormSchema = (factoryConfig, strings) => {
   return formConfigurator;
 };
 
-export const useFormFactory = (factoryConfig) => {
+export const useI18nFormSchema = (factoryConfig) => {
   const { stringsAddress } = factoryConfig;
   const strings = useLang(stringsAddress);
 
