@@ -1,8 +1,8 @@
 import { signupConfig } from "../../configs/inputs/auth";
+import { useI18nFormSchema } from "../../hooks/factories/useI18nFormSchema";
 import InputField from "../inputs/InputField";
-import { useFormFactory } from "../../hooks/factories/useFormFactory";
 
-const factoryConfig = {
+const basicConfig = {
   targetKeys: ["username", "email", "psw", "confirmPassword"],
   originalObjects: [
     signupConfig.username,
@@ -15,16 +15,16 @@ const factoryConfig = {
 };
 
 export default function SignupForm() {
-  const formConfig = useFormFactory(factoryConfig);
+  const inputsData = useI18nFormSchema(basicConfig);
 
   return (
     <>
-      {formConfig && (
+      {inputsData && (
         <form>
-          <InputField dataField={formConfig.username} />
-          <InputField dataField={formConfig.email} />
-          <InputField dataField={formConfig.password} />
-          <InputField dataField={formConfig.passwordCheck} />
+          <InputField dataField={inputsData.username} />
+          <InputField dataField={inputsData.email} />
+          <InputField dataField={inputsData.password} />
+          <InputField dataField={inputsData.passwordCheck} />
         </form>
       )}
     </>
