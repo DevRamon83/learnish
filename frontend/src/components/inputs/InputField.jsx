@@ -3,7 +3,7 @@ const InputField = ({ dataField }) => {
   const eventHandlers = dataField.handlers || {};
 
   const { id, label, type, placeholder, name, autoComplete } = dataField.config;
-  const { labelRef, inputRef, value } = inputProps;
+  const { inputRef, value } = inputProps;
   const { onChange, onBlur, onFocus, onKeyDown } = eventHandlers;
 
   const funcOnChange = onChange ? onChange : () => {};
@@ -13,9 +13,7 @@ const InputField = ({ dataField }) => {
 
   return (
     <>
-      <label ref={labelRef} htmlFor={id}>
-        {label}
-      </label>
+      <label htmlFor={id}>{label}</label>
       <input
         type={type}
         id={id}
