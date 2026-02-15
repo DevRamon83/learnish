@@ -1,3 +1,4 @@
+import bundle from "../../../../shared";
 import { signupConfig } from "../../configs/inputs/auth";
 import { useI18nFormSchema } from "../../hooks/factories/useI18nFormSchema";
 import { useStateFactory } from "../../hooks/factories/useStateFactory";
@@ -22,6 +23,9 @@ const stateConfig = {
 
 export default function SignupForm() {
   const inputsData = useI18nFormSchema(basicConfig);
+
+  const { cloneInterface } = bundle.utils;
+
   const [states, setter] = useStateFactory(stateConfig);
 
   for (let i = 0; i < SSOT.length; i++) {
