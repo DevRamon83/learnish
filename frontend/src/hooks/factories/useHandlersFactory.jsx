@@ -8,6 +8,8 @@ const customLogicHandler = (funcsMap, indexes, SSOT, inputsData, innerKey) => {
 };
 
 export const useHandlersFactory = (inputsData, SSOT, setter, customLogic) => {
+  if (!inputsData) return;
+
   const changeHandler = useCallback(
     (e) => {
       const { id, value } = e.target;
@@ -18,8 +20,6 @@ export const useHandlersFactory = (inputsData, SSOT, setter, customLogic) => {
     },
     [setter],
   );
-
-  if (!inputsData) return;
 
   for (let i = 0; i < SSOT.length; i++) {
     inputsData[SSOT[i]].eventHandlers = { onChange: changeHandler };
