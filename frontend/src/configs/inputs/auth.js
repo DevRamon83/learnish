@@ -1,3 +1,7 @@
+import { i18nAddresses } from "../../constants/i18nAddresses";
+
+export const inputFieldKeyToAdd = ["label", "placeholder"];
+
 export const signupConfig = {
   username: {
     id: "username",
@@ -19,4 +23,6 @@ export const signupConfig = {
     type: "password",
     autoComplete: "new-password",
   },
+  keyToAdd: inputFieldKeyToAdd,
+  address: i18nAddresses.auth,
 };
