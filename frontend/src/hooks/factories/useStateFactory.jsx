@@ -1,27 +1,20 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 
-const config = {
-  params: ["username", "password"], // parametri unici sia per trovare le chiavi delle lingue, sia per nominare ref e stati
-  address: "components.login", // per trovare i testi
-  refIndexes: [0], //
-  stateIndexes: [0, 1], //
-};
-
-const buildInitialState = (configObj) => {
+const buildInitialState = (customLogic) => {
+  if (!customLogic.controlledInputs) return {};
   const obj = {};
+  const { states, SSOT } = customLogic;
 
-  configObj.stateIndexes.forEach((value) => {
-    const key = configObj.params[value];
+  states.forEach((value) => {
+    const key = SSOT[value];
     obj[key] = "";
   });
 
   return obj;
 };
 
-export const useStateFactory = (configObj) => {
-  const stateIndexes = configObj.stateIndexes;
-  const [state, setState] = useState(() => buildInitialState(configObj));
-  const globalRef = useRef();
+export const useStateFactory = (customLogic) => {
+  const [state, setState] = useState(() => buildInitialState(customLogic));
 
   return [state, setState];
 };
