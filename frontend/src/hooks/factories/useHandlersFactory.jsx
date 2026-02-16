@@ -1,14 +1,14 @@
 import { useCallback } from "react";
 
-const customLogicHandler = (funcsMap, indexes, SSOT, inputsData, innerKey) => {
+const customLogicHandler = (funcsMap, indexes, SSOT, objConfig, innerKey) => {
   for (let i = 0; i < indexes.length; i++) {
     const targetId = SSOT[indexes[i]];
-    inputsData[targetId].eventHandlers[innerKey] = funcsMap[targetId];
+    objConfig[targetId].handlers[innerKey] = funcsMap[targetId];
   }
 };
 
-export const useHandlersFactory = (inputsData, SSOT, setter, customLogic) => {
-  if (!inputsData) return;
+export const useHandlersFactory = (objConfig, customLogic, setter) => {
+  const { SSOT, states } = customLogic;
 
   const changeHandler = useCallback(
     (e) => {
@@ -21,15 +21,16 @@ export const useHandlersFactory = (inputsData, SSOT, setter, customLogic) => {
     [setter],
   );
 
-  for (let i = 0; i < SSOT.length; i++) {
-    inputsData[SSOT[i]].eventHandlers = { onChange: changeHandler };
+  if (customLogic.controlledInputs) {
+    for (let i = 0; i < states.length; i++) {
+      const targetId = SSOT[states[i]];
+      objConfig[targetId].handlers = { onChange: changeHandler };
+    }
   }
-
-  if (!customLogic) return inputsData;
 
   if (customLogic.onBlurIndexes.length > 0) {
     const { onBlurFuncs, onBlurIndexes } = customLogic;
-    customLogicHandler(onBlurFuncs, onBlurIndexes, SSOT, inputsData, "onBlur");
+    customLogicHandler(onBlurFuncs, onBlurIndexes, SSOT, objConfig, "onBlur");
   }
 
   if (customLogic.onFocusIndexes.length > 0) {
@@ -38,7 +39,7 @@ export const useHandlersFactory = (inputsData, SSOT, setter, customLogic) => {
       onFocusFuncs,
       onFocusIndexes,
       SSOT,
-      inputsData,
+      objConfig,
       "onFocus",
     );
   }
@@ -49,10 +50,10 @@ export const useHandlersFactory = (inputsData, SSOT, setter, customLogic) => {
       onKeyDownFuncs,
       onKeyDownIndexes,
       SSOT,
-      inputsData,
+      objConfig,
       "onKeyDown",
     );
   }
 
-  return inputsData;
+  return objConfig;
 };
