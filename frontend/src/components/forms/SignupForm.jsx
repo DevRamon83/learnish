@@ -1,45 +1,44 @@
-import bundle from "../../../../shared";
 import { signupConfig } from "../../configs/inputs/auth";
-import { useI18nFormSchema } from "../../hooks/factories/useI18nFormSchema";
-import { useStateFactory } from "../../hooks/factories/useStateFactory";
+import { useFormFactory } from "../../hooks/factories/useFormFactory";
 import InputField from "../inputs/InputField";
 
-const { username, email, password, confirmPassword } = signupConfig;
+const { username, email, password, confirmPassword, keyToAdd, address } =
+  signupConfig;
 
 const SSOT = [username.id, email.id, password.id, confirmPassword.id];
 
 const basicConfig = {
   targetKeys: SSOT,
   originalObjects: [username, email, password, confirmPassword],
-  addThisKeys: ["label", "placeholder"],
-  stringsAddress: "components.auth",
-};
-
-const stateConfig = {
-  params: SSOT,
-  refIndexes: [null],
-  stateIndexes: [0, 1, 2, 3],
+  addThisKeys: keyToAdd,
+  stringsAddress: address,
 };
 
 export default function SignupForm() {
-  const inputsData = useI18nFormSchema(basicConfig);
+  const customLogic = {
+    SSOT,
+    basicConfig,
+    controlledInputs: true,
+    states: [0, 1, 2, 3],
+    onChangeLogicMap: {}, // qui devi modificare factory e guardia
+    useRef: true,
+    refs: [],
+    onBlurFuncs: {},
+    onBlurIndexes: [],
+    onFocusFuncs: {},
+    onFocusIndexes: [],
+    onKeyDownFuncs: {},
+    onKeyDownIndexes: [],
+  };
 
-  const { cloneInterface } = bundle.utils;
-
-  const [states, setter] = useStateFactory(stateConfig);
-
-  for (let i = 0; i < SSOT.length; i++) {
-    if (!inputsData) return;
-    inputsData[SSOT[i]].inputProps = { value: states[SSOT[i]] };
-    // missing ref handlers
-  }
+  const objConfig = useFormFactory(customLogic);
 
   return (
     <>
-      {inputsData && (
+      {objConfig && (
         <form>
           {SSOT.map((id) => (
-            <InputField key={id} dataField={inputsData[id]} />
+            <InputField key={id} dataField={objConfig[id]} />
           ))}
         </form>
       )}
