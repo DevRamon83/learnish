@@ -1,9 +1,15 @@
 import { useCallback } from "react";
 
-const customLogicHandler = (funcsMap, indexes, SSOT, objConfig, innerKey) => {
+const customLogicHandler = (
+  funcsMap,
+  indexes,
+  SSOT,
+  fieldsConfig,
+  innerKey,
+) => {
   for (let i = 0; i < indexes.length; i++) {
     const targetId = SSOT[indexes[i]];
-    objConfig[targetId].handlers[innerKey] = funcsMap[targetId];
+    fieldsConfig[targetId].handlers[innerKey] = funcsMap[targetId];
   }
 };
 
@@ -13,7 +19,7 @@ const executeChangeLogic = (id, customLogic, value) => {
   myFunc(value);
 };
 
-export const useHandlersFactory = (objConfig, customLogic, setter) => {
+export const useHandlersFactory = (fieldsConfig, customLogic, setter) => {
   const { SSOT, states } = customLogic;
 
   const changeHandler = useCallback(
@@ -32,13 +38,19 @@ export const useHandlersFactory = (objConfig, customLogic, setter) => {
   if (customLogic.controlledInputs) {
     for (let i = 0; i < states.length; i++) {
       const targetId = SSOT[states[i]];
-      objConfig[targetId].handlers = { onChange: changeHandler };
+      fieldsConfig[targetId].handlers = { onChange: changeHandler };
     }
   }
 
   if (customLogic.onBlurIndexes.length > 0) {
     const { onBlurFuncs, onBlurIndexes } = customLogic;
-    customLogicHandler(onBlurFuncs, onBlurIndexes, SSOT, objConfig, "onBlur");
+    customLogicHandler(
+      onBlurFuncs,
+      onBlurIndexes,
+      SSOT,
+      fieldsConfig,
+      "onBlur",
+    );
   }
 
   if (customLogic.onFocusIndexes.length > 0) {
@@ -47,7 +59,7 @@ export const useHandlersFactory = (objConfig, customLogic, setter) => {
       onFocusFuncs,
       onFocusIndexes,
       SSOT,
-      objConfig,
+      fieldsConfig,
       "onFocus",
     );
   }
@@ -58,10 +70,10 @@ export const useHandlersFactory = (objConfig, customLogic, setter) => {
       onKeyDownFuncs,
       onKeyDownIndexes,
       SSOT,
-      objConfig,
+      fieldsConfig,
       "onKeyDown",
     );
   }
 
-  return objConfig;
+  return fieldsConfig;
 };
