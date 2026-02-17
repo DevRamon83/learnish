@@ -1,7 +1,7 @@
 import { dev } from "../../constants/consoleDoc";
 import { error005a, errorHandler } from "../errorMsgCreators";
 import {
-  basicConfigChecker,
+  InputFieldsConfigChecker,
   controlledInputsChecker,
   indexChecker,
   SSOTchecker,
@@ -21,8 +21,8 @@ export const formFactoryGuard = (customLogic) => {
   const validSSOT = SSOTchecker(SSOT);
   if (!validSSOT) return;
 
-  const validBasicConfig = basicConfigChecker(customLogic);
-  if (!validBasicConfig) return;
+  const validInputFieldsConfig = InputFieldsConfigChecker(customLogic);
+  if (!validInputFieldsConfig) return;
 
   const validControlledInputs = controlledInputsChecker(customLogic);
   if (!validControlledInputs) return;
