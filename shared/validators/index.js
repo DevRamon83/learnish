@@ -6,6 +6,12 @@ import {
   tooShort,
   typeChecker,
 } from "./atomicValidators";
+import {
+  confirmPswlValidator,
+  emailValidator,
+  pswValidator,
+  usernameValidator,
+} from "./authValidators";
 
 const validators = {
   atomicsValidators: {
@@ -15,6 +21,12 @@ const validators = {
     tooLong: tooLong,
     isLeapYear: isLeapYear,
     typeChecker: typeChecker,
+  },
+  authValidators: {
+    username: usernameValidator,
+    email: emailValidator,
+    psw: pswValidator,
+    confirmPSw: confirmPswlValidator,
   },
 };
 
