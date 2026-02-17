@@ -4,6 +4,8 @@ const components = {
   auth: {
     labels: auth.labels,
     placeholders: auth.placeholders,
+    privacyLabel: auth.privacyLabel,
+    tosLabel: auth.tosLabel,
   },
 };
 

@@ -11,7 +11,7 @@ export const errorHandler = (caller, message) => {
 };
 
 const isTooDeep = (depth) => {
-  if (depth > 5) {
+  if (depth > 10) {
     errorHandler(caller, tooDepp);
     return true;
   }
