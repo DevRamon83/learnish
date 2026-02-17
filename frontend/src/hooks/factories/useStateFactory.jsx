@@ -1,20 +1,32 @@
 import { useState } from "react";
 
-const buildInitialState = (customLogic) => {
-  if (!customLogic.controlledInputs) return {};
+const buildInitialState = (customLogic, initial) => {
   const obj = {};
-  const { states, SSOT } = customLogic;
-
-  states.forEach((value) => {
+  const { SSOT } = customLogic;
+  SSOT.forEach((value) => {
     const key = SSOT[value];
-    obj[key] = "";
+    obj[key] = initial;
   });
 
   return obj;
 };
 
-export const useStateFactory = (customLogic) => {
-  const [state, setState] = useState(() => buildInitialState(customLogic));
+const buildDispatcher = (controlled, customLogic, initial) => {
+  if (!controlled) return {};
 
-  return [state, setState];
+  return buildInitialState(customLogic, initial);
+};
+
+export const useStateFactory = (customLogic) => {
+  const { controlledInputs, controlledInputGroup } = customLogic;
+
+  const [state, setState] = useState(() =>
+    buildDispatcher(controlledInputs, customLogic, ""),
+  );
+
+  const [igState, setIgState] = useState(() =>
+    buildDispatcher(controlledInputGroup, customLogic, false),
+  );
+
+  return { state, setState, igState, setIgState };
 };
