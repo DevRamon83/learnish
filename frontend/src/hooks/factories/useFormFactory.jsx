@@ -2,7 +2,6 @@ import { useMemo, useRef } from "react";
 import { useI18nFormSchema } from "./useI18nFormSchema";
 import { useStateFactory } from "./useStateFactory";
 import { useHandlersFactory } from "./useHandlersFactory";
-import bundle from "../../../../shared";
 import { formFactoryGuard } from "../../guards/factories/formFactoryGuard";
 
 const syncFormFields = (SSOT, finalObjConfig, inputsRef, state) => {
@@ -18,20 +17,20 @@ export const useFormFactory = (customLogic) => {
   formFactoryGuard(customLogic);
 
   const { SSOT } = customLogic;
-  const [state, setter] = useStateFactory(customLogic);
-  const { cloneInterface } = bundle.utils;
+  const { state, setState, igState, setIgState } = useStateFactory(customLogic);
   const inputsRef = useRef({});
-  const inputsData = useI18nFormSchema(customLogic.basicConfig);
-  useHandlersFactory(inputsData, customLogic, setter, state);
+  const { newFieldsConfig, newInputGroup } = useI18nFormSchema(customLogic);
+
+  useHandlersFactory(newFieldsConfig, customLogic, setState);
 
   const finalObjConfig = useMemo(() => {
-    const objConfigClone = cloneInterface(inputsData);
-    if (objConfigClone.error || !objConfigClone.yourClone) return;
-    const finalObjConfig = objConfigClone.yourClone;
-    syncFormFields(SSOT, finalObjConfig, inputsRef, state);
+    syncFormFields(SSOT, newFieldsConfig, inputsRef, state);
 
-    return objConfigClone.yourClone;
-  }, [inputsData, state]);
+    return {
+      fields: newFieldsConfig,
+      groups: newInputGroup,
+    };
+  }, [newFieldsConfig, state]);
 
   return finalObjConfig;
 };
