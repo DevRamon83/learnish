@@ -7,6 +7,12 @@ const customLogicHandler = (funcsMap, indexes, SSOT, objConfig, innerKey) => {
   }
 };
 
+const executeChangeLogic = (id, customLogic, value) => {
+  const { onChangeLogicMap } = customLogic;
+  const myFunc = onChangeLogicMap[id];
+  myFunc(value);
+};
+
 export const useHandlersFactory = (objConfig, customLogic, setter) => {
   const { SSOT, states } = customLogic;
 
@@ -17,6 +23,8 @@ export const useHandlersFactory = (objConfig, customLogic, setter) => {
         ...prev,
         [id]: value,
       }));
+
+      executeChangeLogic(id, customLogic, value);
     },
     [setter],
   );
