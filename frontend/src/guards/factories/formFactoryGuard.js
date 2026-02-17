@@ -1,26 +1,12 @@
 import { dev } from "../../constants/consoleDoc";
-import { error003a, error005a, errorHandler } from "../errorMsgCreators";
+import { error005a, errorHandler } from "../errorMsgCreators";
 import {
   basicConfigChecker,
   controlledInputsChecker,
-  handlerChecker,
   indexChecker,
   SSOTchecker,
 } from "./checkers/formFactoryCheckers";
-
-const dispatchHandlerChecker = (customLogic, caller, SSOT) => {
-  const indexName = caller + "Indexes";
-  const mapName = caller + "Funcs";
-  const indexes = customLogic[indexName];
-  const map = customLogic[mapName];
-
-  if (!indexes || indexes.length === 0) return true;
-
-  let isValid = true;
-  isValid = handlerChecker(SSOT, indexes, caller, map);
-  !isValid && errorHandler(error003a);
-  return isValid;
-};
+import { dispatchHandlerChecker } from "./dispatchers/formFactoryDispatch";
 
 export const formFactoryGuard = (customLogic) => {
   if (!dev) return;
@@ -42,10 +28,12 @@ export const formFactoryGuard = (customLogic) => {
   if (!validControlledInputs) return;
 
   let validStates = true;
+  let validMap = true;
   if (customLogic.controlledInputs) {
     validStates = indexChecker(customLogic.states, SSOT);
+    validMap = dispatchHandlerChecker(customLogic, "onChangeMap", SSOT);
   }
-  if (!validStates) return;
+  if (!validStates || !validMap) return;
 
   let validRefs = true;
   if (customLogic.useRef) {
