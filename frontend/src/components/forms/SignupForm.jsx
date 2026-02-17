@@ -1,14 +1,17 @@
 import bundle from "../../../../shared";
-import { signupConfig } from "../../configs/inputs/auth";
+import { signupInputField, signupInputGroup } from "../../configs/inputs/auth";
 import { useFormFactory } from "../../hooks/factories/useFormFactory";
 import InputField from "../inputs/InputField";
+import InputGroup from "../inputs/InputGroup";
 
 const { username, email, password, confirmPassword, keyToAdd, address } =
-  signupConfig;
+  signupInputField;
+
+const { privacy, ToS } = signupInputGroup;
 
 const SSOT = [username.id, email.id, password.id, confirmPassword.id];
 
-const basicConfig = {
+const inputFieldsConfig = {
   targetKeys: SSOT,
   originalObjects: [username, email, password, confirmPassword],
   addThisKeys: keyToAdd,
@@ -27,7 +30,7 @@ export default function SignupForm() {
 
   const customLogic = {
     SSOT,
-    basicConfig,
+    inputFieldsConfig,
     controlledInputs: true,
     states: [0, 1, 2, 3],
     onChangeLogicMap: map, // qui devi modificare factory e guardia
@@ -39,17 +42,24 @@ export default function SignupForm() {
     onFocusIndexes: [],
     onKeyDownFuncs: {},
     onKeyDownIndexes: [],
+    inputGroup: true,
+    controlledInputGroup: false,
+    groupConfig: {
+      privacy,
+      ToS,
+    },
   };
 
-  const objConfig = useFormFactory(customLogic);
+  const { fields, groups } = useFormFactory(customLogic);
 
   return (
     <>
-      {objConfig && (
+      {fields && (
         <form>
           {SSOT.map((id) => (
-            <InputField key={id} dataField={objConfig[id]} />
+            <InputField key={id} dataField={fields[id]} />
           ))}
+          <InputGroup dataField={groups.privacy} />
         </form>
       )}
     </>
