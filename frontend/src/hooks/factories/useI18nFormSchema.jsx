@@ -1,5 +1,8 @@
+import { useMemo } from "react";
 import { useLang } from "../useLang";
+import bundle from "../../../../shared";
 
+const cloneInterface = bundle.utils.cloneInterface;
 // InputField.jsx consumes props calling "config" key
 const formatFormState = (schemas) => {
   const objConfig = {};
@@ -27,8 +30,8 @@ const inputFactory = (configuration) => {
 };
 
 // Runs the factory for each object representing an input configuration
-const factoryRunner = (factoryConfig) => {
-  const { targetKeys, formSchema, addThisKeys, strings } = factoryConfig;
+const factoryRunner = (inputFieldsConfig) => {
+  const { targetKeys, formSchema, addThisKeys, strings } = inputFieldsConfig;
 
   for (let i = 0; i < formSchema.length; i++) {
     const configuration = {
@@ -43,8 +46,8 @@ const factoryRunner = (factoryConfig) => {
 
 // Uses a copy of the objects to avoid mutating the originals,
 // returns the entire obj config which we will consume in the component
-const buildFormSchema = (factoryConfig, strings) => {
-  const { targetKeys, originalObjects, addThisKeys } = factoryConfig;
+const buildFormSchema = (inputFieldsConfig, strings) => {
+  const { targetKeys, originalObjects, addThisKeys } = inputFieldsConfig;
   const schemas = [];
 
   for (let i = 0; i < originalObjects.length; i++) {
@@ -64,15 +67,57 @@ const buildFormSchema = (factoryConfig, strings) => {
   return formConfigurator;
 };
 
-export const useI18nFormSchema = (factoryConfig) => {
-  const { stringsAddress } = factoryConfig;
+const setTitleInConfigGroup = (obj, strings, key) => {
+  const title = obj.config.title;
+  const tag = key + "Title";
+  if (title) {
+    obj.config.title = strings[tag];
+  }
+  return obj;
+};
+
+const setLabelsInConfigGroup = (obj, strings) => {
+  const ids = obj.options.ids;
+  const labelsArray = [];
+
+  ids.forEach((id) => {
+    const key = id + "Label";
+    labelsArray.push(strings[key]);
+  });
+  obj.options.labels = labelsArray;
+};
+
+const inputGroupSetter = (groupConfig, strings) => {
+  for (let key in groupConfig) {
+    setTitleInConfigGroup(groupConfig[key], strings, key);
+    setLabelsInConfigGroup(groupConfig[key], strings);
+  }
+
+  return groupConfig;
+};
+
+export const useI18nFormSchema = (customLogic) => {
+  const { inputFieldsConfig, inputGroup } = customLogic;
+  const { stringsAddress } = inputFieldsConfig;
   const strings = useLang(stringsAddress);
 
   return useMemo(() => {
     if (!strings || Object.keys(strings).length === 0) return null;
 
-    const configObj = buildFormSchema(factoryConfig, strings);
+    const workOnConfig = buildFormSchema(inputFieldsConfig, strings);
+    const fieldClone = cloneInterface(workOnConfig);
+    if (fieldClone.error || !fieldClone.yourClone) return;
+    const newFieldsConfig = fieldClone.yourClone;
 
-    return { ...configObj };
-  }, [strings, factoryConfig]);
+    let newInputGroup = null;
+
+    if (inputGroup) {
+      const inputClone = cloneInterface(customLogic.groupConfig);
+      newInputGroup = inputClone.error
+        ? null
+        : inputGroupSetter(inputClone.yourClone, strings);
+    }
+
+    return { newFieldsConfig, newInputGroup };
+  }, [strings, inputFieldsConfig, inputGroup]);
 };
