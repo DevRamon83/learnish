@@ -2,7 +2,7 @@ import { i18nAddresses } from "../../constants/i18nAddresses";
 
 export const inputFieldKeyToAdd = ["label", "placeholder"];
 
-export const signupConfig = {
+export const signupInputField = {
   username: {
     id: "username",
     type: "text",
@@ -25,4 +25,27 @@ export const signupConfig = {
   },
   keyToAdd: inputFieldKeyToAdd,
   address: i18nAddresses.auth,
+};
+
+export const signupInputGroup = {
+  privacy: {
+    options: { ids: ["privacy"] },
+    config: {
+      type: "radio",
+      name: "checkbox",
+      classContainer: "",
+      classLabel: "",
+      title: false,
+    },
+  },
+  ToS: {
+    options: { ids: ["tos"] },
+    config: {
+      type: "radio",
+      name: "tos",
+      classContainer: "",
+      classLabel: "",
+      title: false,
+    },
+  },
 };
