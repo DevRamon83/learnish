@@ -33,7 +33,7 @@ export default function SignupForm() {
     inputFieldsConfig,
     controlledInputs: true,
     states: [0, 1, 2, 3],
-    onChangeLogicMap: map, // qui devi modificare factory e guardia
+    onChangeLogicMap: map,
     useRef: true,
     refs: [],
     onBlurFuncs: {},
