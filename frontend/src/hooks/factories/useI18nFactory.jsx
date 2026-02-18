@@ -4,7 +4,7 @@ import {
   inputGroupInterfaceI18n,
 } from "./helpers/i18nHelper";
 
-export const useI18nFormSchema = (customLogic, fields) => {
+export const useI18nFactory = (customLogic, fields) => {
   const { inputFieldsConfig, groupConfig } = customLogic;
   const { stringsAddress } = inputFieldsConfig;
   const strings = useLang(stringsAddress);
