@@ -23,17 +23,22 @@ export const customLogicHandlerInterface = (
   customLogicHandler(map, indexes, customLogic.fieldSSOT, fieldsConfig, caller);
 };
 
-export const executeChangeLogic = (id, customLogic, value) => {
-  const { onChangeLogicMap } = customLogic;
-  const myFunc = onChangeLogicMap[id];
+export const executeOnChangeLogic = (id, map, value) => {
+  if (!map || Object.keys(map).length === 0) return;
+  const myFunc = map[id];
   myFunc(value);
 };
 
-export const onChangeInterface = (customLogic, changeHandler, fieldsConfig) => {
-  const { fieldSSOT, states } = customLogic;
-  if (customLogic.controlledFields) {
+export const onChangeInterface = (
+  SSOT,
+  states,
+  controlled,
+  changeHandler,
+  fieldsConfig,
+) => {
+  if (controlled) {
     for (let i = 0; i < states.length; i++) {
-      const targetId = fieldSSOT[states[i]];
+      const targetId = SSOT[states[i]];
       fieldsConfig[targetId].handlers = { onChange: changeHandler };
     }
   }

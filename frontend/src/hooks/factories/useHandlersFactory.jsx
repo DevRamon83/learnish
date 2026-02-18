@@ -1,25 +1,71 @@
 import { useCallback } from "react";
 import {
   customLogicHandlerInterface,
-  executeChangeLogic,
+  executeOnChangeLogic,
   onChangeInterface,
 } from "./helpers/handlerFactoryHelper";
 
-export const useHandlersFactory = (fieldsConfig, customLogic, setter) => {
-  const changeHandler = useCallback(
+export const useHandlersFactory = (
+  fieldsConfig,
+  configGroups,
+  customLogic,
+  fieldSetter,
+  setGroupsState,
+) => {
+  const { onChangeFieldsMap, onChangeGroupsMap } = customLogic;
+  const changeFieldsHandler = useCallback(
     (e) => {
       const { id, value } = e.target;
-      setter((prev) => ({
+      fieldSetter((prev) => ({
         ...prev,
         [id]: value,
       }));
 
-      executeChangeLogic(id, customLogic, value);
+      executeOnChangeLogic(id, onChangeFieldsMap, value);
     },
-    [setter],
+    [fieldSetter],
   );
 
-  onChangeInterface(customLogic, changeHandler, fieldsConfig);
+  const changeGroupsHandler = useCallback(
+    (e) => {
+      const { id, value, type, name, checked } = e.target;
+      if (type === "radio") {
+        setGroupsState((prev) => ({
+          ...prev,
+          [name]: value,
+        }));
+      } else {
+        setGroupsState((prev) => ({
+          ...prev,
+          [name]: {
+            ...prev[name],
+            [id]: checked,
+          },
+        }));
+      }
+
+      executeOnChangeLogic(id, onChangeGroupsMap, value);
+    },
+    [setGroupsState],
+  );
+
+  const { fieldSSOT, fieldsState, controlledFields } = customLogic;
+  onChangeInterface(
+    fieldSSOT,
+    fieldsState,
+    controlledFields,
+    changeFieldsHandler,
+    fieldsConfig,
+  );
+
+  const { groupsSSOT, groupsStates, controlledGroups } = customLogic;
+  onChangeInterface(
+    groupsSSOT,
+    groupsStates,
+    controlledGroups,
+    changeGroupsHandler,
+    configGroups,
+  );
 
   customLogicHandlerInterface("onBlur", customLogic, fieldsConfig);
 

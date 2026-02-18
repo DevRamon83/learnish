@@ -30,7 +30,7 @@ export const formFactoryGuard = (customLogic) => {
   let validStates = true;
   let validMap = true;
   if (customLogic.controlledFields) {
-    validStates = indexChecker(customLogic.states, fieldSSOT);
+    validStates = indexChecker(customLogic.fieldsState, fieldSSOT);
     validMap = dispatchHandlerChecker(customLogic, "onChangeMap", fieldSSOT);
   }
   if (!validStates || !validMap) return;

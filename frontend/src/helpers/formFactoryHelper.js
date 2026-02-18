@@ -2,8 +2,8 @@ export const mapNIndexFinder = (caller, customLogic) => {
   let indexes;
   let map;
   if (caller === "onChangeMap") {
-    indexes = customLogic.states;
-    map = customLogic.onChangeLogicMap;
+    indexes = customLogic.fieldsState;
+    map = customLogic.onChangeFieldsMap;
   } else {
     const indexName = caller + "Indexes";
     const mapName = caller + "Funcs";

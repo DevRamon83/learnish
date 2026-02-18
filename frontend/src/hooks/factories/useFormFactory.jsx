@@ -7,12 +7,12 @@ import bundle from "../../../../shared";
 import { fieldsConfigHelper } from "./helpers/fieldsConfigHelper";
 const cloneInterface = bundle.utils.cloneInterface;
 
-const syncFormFields = (SSOT, finalObjConfig, inputsRef, state) => {
-  for (let i = 0; i < SSOT.length; i++) {
-    finalObjConfig[SSOT[i]].states = { value: state[SSOT[i]] };
-    const refName = SSOT[i] + "Ref";
-    const setRef = (el) => (inputsRef.current[refName] = el);
-    finalObjConfig[SSOT[i]].states.inputRef = setRef;
+const syncFormFields = (elements, clone, ref, state) => {
+  for (let i = 0; i < elements.length; i++) {
+    clone[elements[i]].states = { value: state[elements[i]] };
+    const refName = elements[i] + "Ref";
+    const setRef = (el) => (ref.current[refName] = el);
+    clone[elements[i]].states.inputRef = setRef;
   }
 };
 
@@ -28,13 +28,21 @@ const cloneHandler = (objToClone) => {
 export const useFormFactory = (customLogic) => {
   formFactoryGuard(customLogic);
 
-  const { SSOT } = customLogic;
-  const { state, setState, igState, setIgState } = useStateFactory(customLogic);
-  const inputsRef = useRef({});
+  const { fieldSSOT } = customLogic;
+  const { fieldsState, setState, groupsState, setGroupsState } =
+    useStateFactory(customLogic);
+  const fieldsRef = useRef({});
+  const groupsRef = useRef({});
   const fields = fieldsConfigHelper(customLogic);
   const { configFields, configGroups } = useI18nFactory(customLogic, fields);
 
-  useHandlersFactory(configFields, customLogic, setState);
+  useHandlersFactory(
+    configFields,
+    configGroups,
+    customLogic,
+    setState,
+    setGroupsState,
+  );
 
   // We use useMemo with cloned objects to ensure referential stability.
   // By returning a fresh clone, we force child components to re-render,
@@ -43,13 +51,19 @@ export const useFormFactory = (customLogic) => {
     const fieldsClone = cloneHandler(configFields);
     const groupsClone = cloneHandler(configGroups);
     if (!groupsClone || !fieldsClone) return null;
-    syncFormFields(SSOT, fieldsClone, inputsRef, state);
+    syncFormFields(fieldSSOT, fieldsClone, fieldsRef, fieldsState);
+    syncFormFields(
+      Object.keys(configGroups),
+      groupsClone,
+      groupsRef,
+      groupsState,
+    );
 
     return {
       fields: fieldsClone,
       groups: groupsClone,
     };
-  }, [configFields, configGroups, state]);
+  }, [configFields, configGroups, fieldsState, groupsState]);
 
   return finalObjConfig;
 };

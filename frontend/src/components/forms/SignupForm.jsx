@@ -9,10 +9,11 @@ const { username, email, password, confirmPassword, keyToAdd, address } =
 
 const { privacy, ToS } = signupInputGroup;
 
-const SSOT = [username.id, email.id, password.id, confirmPassword.id];
+const fieldSSOT = [username.id, email.id, password.id, confirmPassword.id];
+const groupsSSOT = ["privacy", "ToS"];
 
 const inputFieldsConfig = {
-  targetKeys: SSOT,
+  targetKeys: fieldSSOT,
   originalObjects: [username, email, password, confirmPassword],
   addThisKeys: keyToAdd,
   stringsAddress: address,
@@ -21,7 +22,7 @@ const inputFieldsConfig = {
 const validators = bundle.validators.authValidators;
 
 export default function SignupForm() {
-  const map = {
+  const fieldsMap = {
     [username.id]: validators.username,
     [email.id]: validators.email,
     [password.id]: validators.psw,
@@ -29,11 +30,11 @@ export default function SignupForm() {
   };
 
   const customLogic = {
-    SSOT,
+    fieldSSOT,
     inputFieldsConfig,
-    controlledInputs: true,
-    states: [0, 1, 2, 3],
-    onChangeLogicMap: map,
+    controlledFields: true,
+    fieldsState: [0, 1, 2, 3],
+    onChangeFieldsMap: fieldsMap,
     useRef: true,
     refs: [],
     onBlurFuncs: {},
@@ -42,8 +43,11 @@ export default function SignupForm() {
     onFocusIndexes: [],
     onKeyDownFuncs: {},
     onKeyDownIndexes: [],
+    groupsSSOT,
     inputGroup: true,
-    controlledInputGroup: false,
+    controlledGroups: true,
+    groupsStates: [0, 1],
+    onChangeGroupsMap: {},
     groupConfig: {
       privacy,
       ToS,
@@ -56,10 +60,11 @@ export default function SignupForm() {
     <>
       {fields && (
         <form>
-          {SSOT.map((id) => (
+          {fieldSSOT.map((id) => (
             <InputField key={id} dataField={fields[id]} />
           ))}
           <InputGroup dataField={groups.privacy} />
+          <InputGroup dataField={groups.ToS} />
         </form>
       )}
     </>

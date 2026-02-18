@@ -4,8 +4,8 @@ export const customLogicDoc = {
   controlledFields: "boolean",
   states: [],
   _states_help: "The state names must match the values in the fieldSSOT array.",
-  onChangeLogicMap: {},
-  _onChangeLogicMap_help:
+  onChangeFieldsMap: {},
+  _onChangeFieldsMap_help:
     "Maps each state key to its specific validation or transformation function. Each key must match an ID from the fieldSSOT array to link the logic to the correct input",
   useRef: "boolean",
   refs: [],

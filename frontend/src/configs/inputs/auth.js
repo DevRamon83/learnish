@@ -31,8 +31,7 @@ export const signupInputGroup = {
   privacy: {
     options: { ids: ["privacy"] },
     config: {
-      type: "radio",
-      name: "checkbox",
+      type: "checkbox",
       classContainer: "",
       classLabel: "",
       title: false,
@@ -42,7 +41,7 @@ export const signupInputGroup = {
     options: { ids: ["tos"] },
     config: {
       type: "radio",
-      name: "tos",
+      name: "ToS",
       classContainer: "",
       classLabel: "",
       title: false,

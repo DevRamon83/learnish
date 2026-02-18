@@ -1,32 +1,17 @@
 import { useState } from "react";
-
-const buildInitialState = (customLogic, initial) => {
-  const obj = {};
-  const { SSOT, states } = customLogic;
-  states.forEach((value) => {
-    const key = SSOT[value];
-    obj[key] = initial;
-  });
-
-  return obj;
-};
-
-const buildDispatcher = (controlled, customLogic, initial) => {
-  if (!controlled) return {};
-
-  return buildInitialState(customLogic, initial);
-};
+import { buildDispatcher } from "./helpers/stateConfigHelper";
 
 export const useStateFactory = (customLogic) => {
-  const { controlledInputs, controlledInputGroup } = customLogic;
+  const { controlledFields, controlledGroups } = customLogic;
+  const initial = "";
 
-  const [state, setState] = useState(() =>
-    buildDispatcher(controlledInputs, customLogic, ""),
+  const [fieldsState, setState] = useState(() =>
+    buildDispatcher(controlledFields, customLogic, "fields", initial),
   );
 
-  const [igState, setIgState] = useState(() =>
-    buildDispatcher(controlledInputGroup, customLogic, false),
+  const [groupsState, setGroupsState] = useState(() =>
+    buildDispatcher(controlledGroups, customLogic, "groups", initial),
   );
 
-  return { state, setState, igState, setIgState };
+  return { fieldsState, setState, groupsState, setGroupsState };
 };
