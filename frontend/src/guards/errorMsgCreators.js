@@ -21,7 +21,7 @@ export const error002a = (caller, key) => {
 export const error003a =
   "[Guard]: Your customLogic object is invalid. Check the documentation example below:";
 
-export const error004a = "[Guard]: SSOT is missing or not an array";
+export const error004a = "[Guard]: fieldSSOT is missing or not an array";
 
 export const error005a = "[Guard]: customLogic is missing";
 

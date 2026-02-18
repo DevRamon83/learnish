@@ -2,7 +2,7 @@ import { dev } from "../../constants/consoleDoc";
 import { error005a, errorHandler } from "../errorMsgCreators";
 import {
   InputFieldsConfigChecker,
-  controlledInputsChecker,
+  controlledChecker,
   indexChecker,
   SSOTchecker,
 } from "./checkers/formFactoryCheckers";
@@ -16,37 +16,41 @@ export const formFactoryGuard = (customLogic) => {
     return;
   }
 
-  const { SSOT } = customLogic;
+  const { fieldSSOT } = customLogic;
 
-  const validSSOT = SSOTchecker(SSOT);
-  if (!validSSOT) return;
+  const validFieldSSOT = SSOTchecker(fieldSSOT);
+  if (!validFieldSSOT) return;
 
   const validInputFieldsConfig = InputFieldsConfigChecker(customLogic);
   if (!validInputFieldsConfig) return;
 
-  const validControlledInputs = controlledInputsChecker(customLogic);
-  if (!validControlledInputs) return;
+  const validControlledFields = controlledChecker(customLogic);
+  if (!validControlledFields) return;
 
   let validStates = true;
   let validMap = true;
-  if (customLogic.controlledInputs) {
-    validStates = indexChecker(customLogic.states, SSOT);
-    validMap = dispatchHandlerChecker(customLogic, "onChangeMap", SSOT);
+  if (customLogic.controlledFields) {
+    validStates = indexChecker(customLogic.states, fieldSSOT);
+    validMap = dispatchHandlerChecker(customLogic, "onChangeMap", fieldSSOT);
   }
   if (!validStates || !validMap) return;
 
   let validRefs = true;
   if (customLogic.useRef) {
-    validRefs = indexChecker(customLogic.refs, SSOT);
+    validRefs = indexChecker(customLogic.refs, fieldSSOT);
   }
   if (!validRefs) return;
 
-  const validBlur = dispatchHandlerChecker(customLogic, "onBlur", SSOT);
+  const validBlur = dispatchHandlerChecker(customLogic, "onBlur", fieldSSOT);
   if (!validBlur) return;
 
-  const validFocus = dispatchHandlerChecker(customLogic, "onFocus", SSOT);
+  const validFocus = dispatchHandlerChecker(customLogic, "onFocus", fieldSSOT);
   if (!validFocus) return;
 
-  const validKeyDown = dispatchHandlerChecker(customLogic, "onKeyDown", SSOT);
+  const validKeyDown = dispatchHandlerChecker(
+    customLogic,
+    "onKeyDown",
+    fieldSSOT,
+  );
   if (!validKeyDown) return;
 };

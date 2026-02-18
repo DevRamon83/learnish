@@ -11,7 +11,7 @@ import {
 const caller = "factoryFormGuard";
 const checkedIn = "customLogic";
 
-export const indexChecker = (SSOT, indexes, callBy) => {
+export const indexChecker = (fieldSSOT, indexes, callBy) => {
   let isValid = true;
 
   indexes.forEach((targetIndex, position) => {
@@ -22,14 +22,14 @@ export const indexChecker = (SSOT, indexes, callBy) => {
     const text = error001a(callBy, position, targetIndex);
 
     // errorHandler returns true, so we need to revert it
-    isValid = targetIndex >= SSOT.length ? !errorHandler(text) : isValid;
+    isValid = targetIndex >= fieldSSOT.length ? !errorHandler(text) : isValid;
   });
 
   return isValid;
 };
 
-export const SSOTchecker = (SSOT) => {
-  if (!SSOT || !Array.isArray(SSOT)) {
+export const SSOTchecker = (fieldSSOT) => {
+  if (!fieldSSOT || !Array.isArray(fieldSSOT)) {
     errorHandler(error004a);
     return false;
   }
@@ -55,17 +55,17 @@ export const InputFieldsConfigChecker = (customLogic) => {
   return true;
 };
 
-export const controlledInputsChecker = (customLogic) => {
-  const { controlledInputs } = customLogic;
-  const checked = "controlledInputs";
+export const controlledChecker = (customLogic) => {
+  const { controlledFields } = customLogic;
+  const checked = "controlledFields";
 
-  if (controlledInputs === undefined || controlledInputs === null) {
+  if (controlledFields === undefined || controlledFields === null) {
     const text = missingError(caller, checked, checkedIn);
     errorHandler(text);
     return false;
   }
 
-  if (!typeChecker(controlledInputs, "boolean")) {
+  if (!typeChecker(controlledFields, "boolean")) {
     const text = invalidType(caller, checked, checkedIn);
     errorHandler(text);
     return false;
@@ -74,11 +74,11 @@ export const controlledInputsChecker = (customLogic) => {
   return true;
 };
 
-const keyChecker = (SSOT, indexes, callBy, map) => {
+const keyChecker = (fieldSSOT, indexes, callBy, map) => {
   let isValid = true;
 
   indexes.forEach((index) => {
-    const key = SSOT[index];
+    const key = fieldSSOT[index];
     const text = error002a(callBy, key);
 
     // errorHandler returns true, so we need to revert it
@@ -88,10 +88,10 @@ const keyChecker = (SSOT, indexes, callBy, map) => {
   return isValid;
 };
 
-export const handlerChecker = (SSOT, indexes, callBy, map) => {
+export const handlerChecker = (fieldSSOT, indexes, callBy, map) => {
   let isValid = true;
-  isValid = indexChecker(SSOT, indexes, callBy) ? isValid : false;
-  isValid = keyChecker(SSOT, indexes, callBy, map) ? isValid : false;
+  isValid = indexChecker(fieldSSOT, indexes, callBy) ? isValid : false;
+  isValid = keyChecker(fieldSSOT, indexes, callBy, map) ? isValid : false;
 
   return isValid;
 };
