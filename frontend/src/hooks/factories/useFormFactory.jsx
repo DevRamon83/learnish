@@ -1,5 +1,5 @@
 import { useMemo, useRef } from "react";
-import { useI18nFormSchema } from "./useI18nFormSchema";
+import { useI18nFactory } from "./useI18nFactory";
 import { useStateFactory } from "./useStateFactory";
 import { useHandlersFactory } from "./useHandlersFactory";
 import { formFactoryGuard } from "../../guards/factories/formFactoryGuard";
@@ -32,7 +32,7 @@ export const useFormFactory = (customLogic) => {
   const { state, setState, igState, setIgState } = useStateFactory(customLogic);
   const inputsRef = useRef({});
   const fields = fieldsConfigHelper(customLogic);
-  const { configFields, configGroups } = useI18nFormSchema(customLogic, fields);
+  const { configFields, configGroups } = useI18nFactory(customLogic, fields);
 
   useHandlersFactory(configFields, customLogic, setState);
 
