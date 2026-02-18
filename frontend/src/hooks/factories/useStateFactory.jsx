@@ -2,8 +2,8 @@ import { useState } from "react";
 
 const buildInitialState = (customLogic, initial) => {
   const obj = {};
-  const { SSOT } = customLogic;
-  SSOT.forEach((value) => {
+  const { SSOT, states } = customLogic;
+  states.forEach((value) => {
     const key = SSOT[value];
     obj[key] = initial;
   });

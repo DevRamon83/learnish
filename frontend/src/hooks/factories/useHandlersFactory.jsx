@@ -1,27 +1,11 @@
 import { useCallback } from "react";
-
-const customLogicHandler = (
-  funcsMap,
-  indexes,
-  SSOT,
-  fieldsConfig,
-  innerKey,
-) => {
-  for (let i = 0; i < indexes.length; i++) {
-    const targetId = SSOT[indexes[i]];
-    fieldsConfig[targetId].handlers[innerKey] = funcsMap[targetId];
-  }
-};
-
-const executeChangeLogic = (id, customLogic, value) => {
-  const { onChangeLogicMap } = customLogic;
-  const myFunc = onChangeLogicMap[id];
-  myFunc(value);
-};
+import {
+  customLogicHandlerInterface,
+  executeChangeLogic,
+  onChangeInterface,
+} from "./helpers/handlerFactoryHelper";
 
 export const useHandlersFactory = (fieldsConfig, customLogic, setter) => {
-  const { SSOT, states } = customLogic;
-
   const changeHandler = useCallback(
     (e) => {
       const { id, value } = e.target;
@@ -35,45 +19,13 @@ export const useHandlersFactory = (fieldsConfig, customLogic, setter) => {
     [setter],
   );
 
-  if (customLogic.controlledInputs) {
-    for (let i = 0; i < states.length; i++) {
-      const targetId = SSOT[states[i]];
-      fieldsConfig[targetId].handlers = { onChange: changeHandler };
-    }
-  }
+  onChangeInterface(customLogic, changeHandler, fieldsConfig);
 
-  if (customLogic.onBlurIndexes.length > 0) {
-    const { onBlurFuncs, onBlurIndexes } = customLogic;
-    customLogicHandler(
-      onBlurFuncs,
-      onBlurIndexes,
-      SSOT,
-      fieldsConfig,
-      "onBlur",
-    );
-  }
+  customLogicHandlerInterface("onBlur", customLogic, fieldsConfig);
 
-  if (customLogic.onFocusIndexes.length > 0) {
-    const { onFocusFuncs, onFocusIndexes } = customLogic;
-    customLogicHandler(
-      onFocusFuncs,
-      onFocusIndexes,
-      SSOT,
-      fieldsConfig,
-      "onFocus",
-    );
-  }
+  customLogicHandlerInterface("onFocus", customLogic, fieldsConfig);
 
-  if (customLogic.onKeyDownIndexes.length > 0) {
-    const { onKeyDownFuncs, onKeyDownIndexes } = customLogic;
-    customLogicHandler(
-      onKeyDownFuncs,
-      onKeyDownIndexes,
-      SSOT,
-      fieldsConfig,
-      "onKeyDown",
-    );
-  }
+  customLogicHandlerInterface("onKeyDown", customLogic, fieldsConfig);
 
   return fieldsConfig;
 };
