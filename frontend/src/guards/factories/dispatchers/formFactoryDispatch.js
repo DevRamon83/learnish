@@ -1,3 +1,4 @@
+import { mapNIndexFinder } from "../../../helpers/formFactoryHelper";
 import { error003a, errorHandler, missingError } from "../../errorMsgCreators";
 import { handlerChecker } from "../checkers/formFactoryCheckers";
 
@@ -11,21 +12,6 @@ const isMissing = (element, caller) => {
   }
 
   return { missing, text };
-};
-
-const mapNIndexFinder = (caller, customLogic) => {
-  let indexes;
-  let map;
-  if (caller === "onChangeMap") {
-    indexes = customLogic.states;
-    map = customLogic.onChangeLogicMap;
-  } else {
-    const indexName = caller + "Indexes";
-    const mapName = caller + "Funcs";
-    indexes = customLogic[indexName];
-    map = customLogic[mapName];
-  }
-  return { map, indexes };
 };
 
 const handlerFinder = (customLogic, caller) => {
