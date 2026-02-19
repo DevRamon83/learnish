@@ -2,10 +2,10 @@ import { useState } from "react";
 import { buildDispatcher } from "./helpers/stateConfigHelper";
 
 export const useStateFactory = (customLogic) => {
-  const { controlledFields, controlledGroups } = customLogic;
+  const { controlledFields, controlledGroups, controlledSelects } = customLogic;
   const initial = "";
 
-  const [fieldsState, setState] = useState(() =>
+  const [fieldsState, setFieldState] = useState(() =>
     buildDispatcher(controlledFields, customLogic, "fields", initial),
   );
 
@@ -13,5 +13,16 @@ export const useStateFactory = (customLogic) => {
     buildDispatcher(controlledGroups, customLogic, "groups", initial),
   );
 
-  return { fieldsState, setState, groupsState, setGroupsState };
+  const [selectsState, setSelects] = useState(() =>
+    buildDispatcher(controlledSelects, customLogic, "selects", initial),
+  );
+
+  return {
+    fieldsState,
+    setFieldState,
+    groupsState,
+    setGroupsState,
+    selectsState,
+    setSelects,
+  };
 };

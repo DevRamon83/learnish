@@ -49,3 +49,31 @@ export const inputGroupsInterfaceI18n = (groupsConfig, strings) => {
 
   return groupsConfig;
 };
+
+const labelTextHandler = (selectsConfig, key, strings) => {
+  selectsConfig[key].config = { id: selectsConfig[key].id };
+  if (selectsConfig[key].labelText) {
+    const string = strings[key].labelText;
+    selectsConfig[key].config.labelText = string;
+  }
+};
+
+const optionsLabelHandler = (selectsConfig, key, strings) => {
+  const { options } = selectsConfig[key];
+  const labelsArray = [];
+  for (let i = 0; i < options.length; i++) {
+    const string = strings[key].options[options[i]];
+    labelsArray.push(string);
+  }
+
+  selectsConfig[key].config.options = selectsConfig[key].options;
+  selectsConfig[key].config.labels = labelsArray;
+};
+export const selectsInterfaceI18n = (selectsConfig, strings) => {
+  const keys = Object.keys(selectsConfig);
+  for (let i = 0; i < keys.length; i++) {
+    labelTextHandler(selectsConfig, keys[i], strings);
+    optionsLabelHandler(selectsConfig, keys[i], strings);
+  }
+  return selectsConfig;
+};

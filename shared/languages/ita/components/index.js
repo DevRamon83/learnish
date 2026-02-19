@@ -6,6 +6,7 @@ const components = {
     placeholders: auth.placeholders,
     privacyLabel: auth.privacyLabel,
     tosLabel: auth.tosLabel,
+    accountType: auth.accountType,
   },
 };
 

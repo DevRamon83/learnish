@@ -3,45 +3,54 @@ import { useI18nFactory } from "./useI18nFactory";
 import { useStateFactory } from "./useStateFactory";
 import { useHandlersFactory } from "./useHandlersFactory";
 import { formFactoryGuard } from "../../guards/factories/formFactoryGuard";
-import bundle from "../../../../shared";
 import { fieldsConfigHelper } from "./helpers/fieldsConfigHelper";
-const cloneInterface = bundle.utils.cloneInterface;
-
-const syncFormFields = (elements, clone, ref, state) => {
-  for (let i = 0; i < elements.length; i++) {
-    clone[elements[i]].states = { value: state[elements[i]] };
-    const refName = elements[i] + "Ref";
-    const setRef = (el) => (ref.current[refName] = el);
-    clone[elements[i]].states.inputRef = setRef;
-  }
-};
-
-const cloneHandler = (objToClone) => {
-  const clone = cloneInterface(objToClone);
-  if (clone.error) {
-    return null;
-  } else {
-    return clone.yourClone;
-  }
-};
+import {
+  cloneHandler,
+  syncRefs,
+  syncStates,
+} from "./helpers/formFactoryHelper";
 
 export const useFormFactory = (customLogic) => {
   formFactoryGuard(customLogic);
 
-  const { fieldsSSOT } = customLogic;
-  const { fieldsState, setState, groupsState, setGroupsState } =
-    useStateFactory(customLogic);
+  const {
+    fieldsSSOT,
+    groupsSSOT,
+    selectsSSOT,
+    controlledFields,
+    controlledGroups,
+    controlledSelects,
+    refFields,
+    refGroups,
+    refSelects,
+  } = customLogic;
+
+  const {
+    fieldsState,
+    setFieldState,
+    groupsState,
+    setGroupsState,
+    selectsState,
+    setSelects,
+  } = useStateFactory(customLogic);
+
   const fieldsRef = useRef({});
   const groupsRef = useRef({});
+  const selectsRef = useRef({});
   const fields = fieldsConfigHelper(customLogic);
-  const { configFields, configGroups } = useI18nFactory(customLogic, fields);
+  const { configFields, configGroups, configSelects } = useI18nFactory(
+    customLogic,
+    fields,
+  );
 
   useHandlersFactory(
     configFields,
     configGroups,
+    configSelects,
     customLogic,
-    setState,
+    setFieldState,
     setGroupsState,
+    setSelects,
   );
 
   // We use useMemo with cloned objects to ensure referential stability.
@@ -50,20 +59,29 @@ export const useFormFactory = (customLogic) => {
   const finalObjConfig = useMemo(() => {
     const fieldsClone = cloneHandler(configFields);
     const groupsClone = cloneHandler(configGroups);
-    if (!groupsClone || !fieldsClone) return null;
-    syncFormFields(fieldsSSOT, fieldsClone, fieldsRef, fieldsState);
-    syncFormFields(
-      Object.keys(configGroups),
-      groupsClone,
-      groupsRef,
-      groupsState,
-    );
+    const selectsClone = cloneHandler(configSelects);
+    if (!groupsClone || !fieldsClone || !selectsClone) return null;
+
+    controlledFields && syncStates(fieldsSSOT, fieldsClone, fieldsState);
+    controlledGroups && syncStates(groupsSSOT, groupsClone, groupsState);
+    controlledSelects && syncStates(selectsSSOT, selectsClone, selectsState);
+    refFields && syncRefs(fieldsSSOT, fieldsClone, fieldsRef);
+    refGroups && syncRefs(groupsSSOT, groupsClone, groupsRef);
+    refSelects && syncRefs(selectsSSOT, selectsClone, selectsRef);
 
     return {
       fields: fieldsClone,
       groups: groupsClone,
+      selects: selectsClone,
     };
-  }, [configFields, configGroups, fieldsState, groupsState]);
+  }, [
+    configFields,
+    configGroups,
+    configSelects,
+    fieldsState,
+    groupsState,
+    selectsState,
+  ]);
 
   return finalObjConfig;
 };

@@ -6,29 +6,34 @@ import {
 } from "./helpers/handlerFactoryHelper";
 
 export const useHandlersFactory = (
-  fieldsConfig,
+  configFields,
   configGroups,
+  configSelects,
   customLogic,
-  fieldSetter,
+  setFieldState,
   setGroupsState,
+  setSelects,
 ) => {
-  const { onChangeFieldsMap, onChangeGroupsMap } = customLogic;
-  const changeFieldsHandler = useCallback(
-    (e) => {
-      const { id, value } = e.target;
-      fieldSetter((prev) => ({
-        ...prev,
-        [id]: value,
-      }));
+  const { onChangeFieldsMap, onChangeGroupsMap, onChangeSelectsMap } =
+    customLogic;
+  const commonOnChangeHandler = (setter, map) =>
+    useCallback(
+      (e) => {
+        const { id, value } = e.target;
+        setter((prev) => ({
+          ...prev,
+          [id]: value,
+        }));
 
-      executeOnChangeLogic(id, onChangeFieldsMap, value);
-    },
-    [fieldSetter],
-  );
+        executeOnChangeLogic(id, map, value);
+      },
+      [setter],
+    );
 
   const changeGroupsHandler = useCallback(
     (e) => {
       const { id, value, type, name, checked } = e.target;
+      const finalValue = type === "checkbox" ? checked : value;
       if (type === "radio") {
         setGroupsState((prev) => ({
           ...prev,
@@ -44,7 +49,7 @@ export const useHandlersFactory = (
         }));
       }
 
-      executeOnChangeLogic(id, onChangeGroupsMap, value);
+      executeOnChangeLogic(id, onChangeGroupsMap, finalValue);
     },
     [setGroupsState],
   );
@@ -54,8 +59,8 @@ export const useHandlersFactory = (
     fieldsSSOT,
     fieldsState,
     controlledFields,
-    changeFieldsHandler,
-    fieldsConfig,
+    commonOnChangeHandler(setFieldState, onChangeFieldsMap),
+    configFields,
   );
 
   const { groupsSSOT, groupsState, controlledGroups } = customLogic;
@@ -67,11 +72,20 @@ export const useHandlersFactory = (
     configGroups,
   );
 
-  customLogicHandlerInterface("onBlur", customLogic, fieldsConfig);
+  const { selectsSSOT, selectsState, controlledSelects } = customLogic;
+  onChangeInterface(
+    selectsSSOT,
+    selectsState,
+    controlledSelects,
+    commonOnChangeHandler(setSelects, onChangeSelectsMap),
+    configSelects,
+  );
 
-  customLogicHandlerInterface("onFocus", customLogic, fieldsConfig);
+  customLogicHandlerInterface("onBlur", customLogic, configFields);
 
-  customLogicHandlerInterface("onKeyDown", customLogic, fieldsConfig);
+  customLogicHandlerInterface("onFocus", customLogic, configFields);
 
-  return fieldsConfig;
+  customLogicHandlerInterface("onKeyDown", customLogic, configFields);
+
+  return configFields;
 };

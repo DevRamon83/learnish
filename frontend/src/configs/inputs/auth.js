@@ -48,3 +48,11 @@ export const signupInputGroups = {
     },
   },
 };
+
+export const signupInputSelects = {
+  accountType: {
+    options: ["teacher", "student"],
+    id: "accountType",
+    labelText: true,
+  },
+};

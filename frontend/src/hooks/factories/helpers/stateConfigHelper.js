@@ -1,4 +1,4 @@
-const inizializeField = (SSOT, indexes, initial) => {
+const commonInizializzation = (SSOT, indexes, initial) => {
   const obj = {};
   indexes.forEach((value) => {
     const key = SSOT[value];
@@ -25,7 +25,6 @@ const initializeGroups = (customLogic, initial) => {
       obj[key] = initial;
     } else {
       const states = groupsConfig[key].options.ids;
-      console.log("states ", groupsConfig[key].options.ids);
       obj[key] = { ...inizializeCheckbox(states, false) };
     }
   });
@@ -38,7 +37,10 @@ export const buildDispatcher = (controlled, customLogic, caller, initial) => {
 
   if (caller === "fields") {
     const { fieldsSSOT, fieldsState } = customLogic;
-    return inizializeField(fieldsSSOT, fieldsState, initial);
+    return commonInizializzation(fieldsSSOT, fieldsState, initial);
+  } else if (caller === "selects") {
+    const { selectsSSOT, selectsState } = customLogic;
+    return commonInizializzation(selectsSSOT, selectsState, initial);
   } else {
     return initializeGroups(customLogic, initial);
   }

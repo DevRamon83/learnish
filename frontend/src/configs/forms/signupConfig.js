@@ -1,5 +1,9 @@
 import bundle from "../../../../shared";
-import { signupInputFields, signupInputGroups } from "../inputs/auth";
+import {
+  signupInputFields,
+  signupInputGroups,
+  signupInputSelects,
+} from "../inputs/auth";
 
 const { username, email, password, confirmPassword, keyToAdd, address } =
   signupInputFields;
@@ -24,11 +28,12 @@ const fieldsMap = {
 
 export const fieldsLogic = {
   fieldsSSOT,
+  inputFields: true,
   inputFieldsConfig,
   controlledFields: true,
   fieldsState: [0, 1, 2, 3],
   onChangeFieldsMap: fieldsMap,
-  useRef: true,
+  refFields: true,
   refs: [],
   onBlurFuncs: {},
   onBlurIndexes: [],
@@ -44,11 +49,29 @@ const groupsSSOT = ["privacy", "tos"];
 export const groupsLogic = {
   groupsSSOT,
   inputGroups: true,
-  controlledGroups: true,
-  groupsState: [0, 1],
-  onChangeGroupsMap: {},
   groupsConfig: {
     privacy,
     tos,
   },
+  controlledGroups: true,
+  groupsState: [0, 1],
+  onChangeGroupsMap: {},
+  refGroups: false,
+  refs: [],
+};
+
+const { accountType } = signupInputSelects;
+const selectsSSOT = ["accountType"];
+
+export const selectsLogic = {
+  selectsSSOT,
+  inputSelects: true,
+  selectsConfig: {
+    accountType,
+  },
+  controlledSelects: false,
+  selectsState: [],
+  onChangeSelectsMap: {},
+  refSelects: false,
+  refs: [],
 };
