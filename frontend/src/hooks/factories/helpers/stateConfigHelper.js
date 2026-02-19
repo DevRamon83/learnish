@@ -18,14 +18,14 @@ const inizializeCheckbox = (state, initial) => {
 };
 
 const initializeGroups = (customLogic, initial) => {
-  const { groupConfig, groupsSSOT } = customLogic;
+  const { groupsConfig, groupsSSOT } = customLogic;
   const obj = {};
   groupsSSOT.forEach((key) => {
-    if (groupConfig[key].config.type === "radio") {
+    if (groupsConfig[key].config.type === "radio") {
       obj[key] = initial;
     } else {
-      const states = groupConfig[key].options.ids;
-      console.log("states ", groupConfig[key].options.ids);
+      const states = groupsConfig[key].options.ids;
+      console.log("states ", groupsConfig[key].options.ids);
       obj[key] = { ...inizializeCheckbox(states, false) };
     }
   });
@@ -37,8 +37,8 @@ export const buildDispatcher = (controlled, customLogic, caller, initial) => {
   if (!controlled) return {};
 
   if (caller === "fields") {
-    const { fieldSSOT, fieldsState } = customLogic;
-    return inizializeField(fieldSSOT, fieldsState, initial);
+    const { fieldsSSOT, fieldsState } = customLogic;
+    return inizializeField(fieldsSSOT, fieldsState, initial);
   } else {
     return initializeGroups(customLogic, initial);
   }

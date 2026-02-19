@@ -16,10 +16,10 @@ export const formFactoryGuard = (customLogic) => {
     return;
   }
 
-  const { fieldSSOT } = customLogic;
+  const { fieldsSSOT } = customLogic;
 
-  const validFieldSSOT = SSOTchecker(fieldSSOT);
-  if (!validFieldSSOT) return;
+  const validfieldsSSOT = SSOTchecker(fieldsSSOT);
+  if (!validfieldsSSOT) return;
 
   const validInputFieldsConfig = InputFieldsConfigChecker(customLogic);
   if (!validInputFieldsConfig) return;
@@ -30,27 +30,27 @@ export const formFactoryGuard = (customLogic) => {
   let validStates = true;
   let validMap = true;
   if (customLogic.controlledFields) {
-    validStates = indexChecker(customLogic.fieldsState, fieldSSOT);
-    validMap = dispatchHandlerChecker(customLogic, "onChangeMap", fieldSSOT);
+    validStates = indexChecker(customLogic.fieldsState, fieldsSSOT);
+    validMap = dispatchHandlerChecker(customLogic, "onChangeMap", fieldsSSOT);
   }
   if (!validStates || !validMap) return;
 
   let validRefs = true;
   if (customLogic.useRef) {
-    validRefs = indexChecker(customLogic.refs, fieldSSOT);
+    validRefs = indexChecker(customLogic.refs, fieldsSSOT);
   }
   if (!validRefs) return;
 
-  const validBlur = dispatchHandlerChecker(customLogic, "onBlur", fieldSSOT);
+  const validBlur = dispatchHandlerChecker(customLogic, "onBlur", fieldsSSOT);
   if (!validBlur) return;
 
-  const validFocus = dispatchHandlerChecker(customLogic, "onFocus", fieldSSOT);
+  const validFocus = dispatchHandlerChecker(customLogic, "onFocus", fieldsSSOT);
   if (!validFocus) return;
 
   const validKeyDown = dispatchHandlerChecker(
     customLogic,
     "onKeyDown",
-    fieldSSOT,
+    fieldsSSOT,
   );
   if (!validKeyDown) return;
 };

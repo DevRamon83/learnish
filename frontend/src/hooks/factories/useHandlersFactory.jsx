@@ -49,19 +49,19 @@ export const useHandlersFactory = (
     [setGroupsState],
   );
 
-  const { fieldSSOT, fieldsState, controlledFields } = customLogic;
+  const { fieldsSSOT, fieldsState, controlledFields } = customLogic;
   onChangeInterface(
-    fieldSSOT,
+    fieldsSSOT,
     fieldsState,
     controlledFields,
     changeFieldsHandler,
     fieldsConfig,
   );
 
-  const { groupsSSOT, groupsStates, controlledGroups } = customLogic;
+  const { groupsSSOT, groupsState, controlledGroups } = customLogic;
   onChangeInterface(
     groupsSSOT,
-    groupsStates,
+    groupsState,
     controlledGroups,
     changeGroupsHandler,
     configGroups,

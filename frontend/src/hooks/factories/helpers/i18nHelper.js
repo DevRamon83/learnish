@@ -41,11 +41,11 @@ const setLabelsInConfigGroup = (obj, strings) => {
   obj.options.labels = labelsArray;
 };
 
-export const inputGroupInterfaceI18n = (groupConfig, strings) => {
-  for (let key in groupConfig) {
-    setTitleInConfigGroup(groupConfig[key], strings, key);
-    setLabelsInConfigGroup(groupConfig[key], strings);
+export const inputGroupsInterfaceI18n = (groupsConfig, strings) => {
+  for (let key in groupsConfig) {
+    setTitleInConfigGroup(groupsConfig[key], strings, key);
+    setLabelsInConfigGroup(groupsConfig[key], strings);
   }
 
-  return groupConfig;
+  return groupsConfig;
 };

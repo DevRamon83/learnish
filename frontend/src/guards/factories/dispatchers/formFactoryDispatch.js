@@ -35,7 +35,7 @@ const handlerFinder = (customLogic, caller) => {
   return { indexes, map, missing };
 };
 
-export const dispatchHandlerChecker = (customLogic, caller, fieldSSOT) => {
+export const dispatchHandlerChecker = (customLogic, caller, fieldsSSOT) => {
   const { indexes, map, missing } = handlerFinder(customLogic, caller);
 
   // Only for onChangeMap caller missing values is invalid
@@ -43,7 +43,7 @@ export const dispatchHandlerChecker = (customLogic, caller, fieldSSOT) => {
   if (missing) return true;
 
   let isValid = true;
-  isValid = handlerChecker(fieldSSOT, indexes, caller, map);
+  isValid = handlerChecker(fieldsSSOT, indexes, caller, map);
   !isValid && errorHandler(error003a);
   return isValid;
 };

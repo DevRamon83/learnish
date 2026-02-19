@@ -28,7 +28,7 @@ const cloneHandler = (objToClone) => {
 export const useFormFactory = (customLogic) => {
   formFactoryGuard(customLogic);
 
-  const { fieldSSOT } = customLogic;
+  const { fieldsSSOT } = customLogic;
   const { fieldsState, setState, groupsState, setGroupsState } =
     useStateFactory(customLogic);
   const fieldsRef = useRef({});
@@ -51,7 +51,7 @@ export const useFormFactory = (customLogic) => {
     const fieldsClone = cloneHandler(configFields);
     const groupsClone = cloneHandler(configGroups);
     if (!groupsClone || !fieldsClone) return null;
-    syncFormFields(fieldSSOT, fieldsClone, fieldsRef, fieldsState);
+    syncFormFields(fieldsSSOT, fieldsClone, fieldsRef, fieldsState);
     syncFormFields(
       Object.keys(configGroups),
       groupsClone,

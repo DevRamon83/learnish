@@ -3,20 +3,21 @@ export const dev = true;
 export const customLogicDoc = {
   controlledFields: "boolean",
   states: [],
-  _states_help: "The state names must match the values in the fieldSSOT array.",
+  _states_help:
+    "The state names must match the values in the fieldsSSOT array.",
   onChangeFieldsMap: {},
   _onChangeFieldsMap_help:
-    "Maps each state key to its specific validation or transformation function. Each key must match an ID from the fieldSSOT array to link the logic to the correct input",
+    "Maps each state key to its specific validation or transformation function. Each key must match an ID from the fieldsSSOT array to link the logic to the correct input",
   useRef: "boolean",
   refs: [],
   _refs_help:
     "The refs array follows the same pattern as the states array; please refer to _states_help",
   onBlurFuncs: {},
   _onBlur_helpFunc:
-    "Maps functions to keys; each key must match a key in the fieldSSOT",
+    "Maps functions to keys; each key must match a key in the fieldsSSOT",
   onBlurIndexes: [],
   _onBlur_helpIndexes:
-    "Indexes used to extract unique keys from the fieldSSOT array for logic mapping",
+    "Indexes used to extract unique keys from the fieldsSSOT array for logic mapping",
   onFocusFuncs: {},
   onFocusIndexes: [],
   onKeyDownFuncs: {},

@@ -11,7 +11,7 @@ import {
 const caller = "factoryFormGuard";
 const checkedIn = "customLogic";
 
-export const indexChecker = (fieldSSOT, indexes, callBy) => {
+export const indexChecker = (fieldsSSOT, indexes, callBy) => {
   let isValid = true;
 
   indexes.forEach((targetIndex, position) => {
@@ -22,14 +22,14 @@ export const indexChecker = (fieldSSOT, indexes, callBy) => {
     const text = error001a(callBy, position, targetIndex);
 
     // errorHandler returns true, so we need to revert it
-    isValid = targetIndex >= fieldSSOT.length ? !errorHandler(text) : isValid;
+    isValid = targetIndex >= fieldsSSOT.length ? !errorHandler(text) : isValid;
   });
 
   return isValid;
 };
 
-export const SSOTchecker = (fieldSSOT) => {
-  if (!fieldSSOT || !Array.isArray(fieldSSOT)) {
+export const SSOTchecker = (fieldsSSOT) => {
+  if (!fieldsSSOT || !Array.isArray(fieldsSSOT)) {
     errorHandler(error004a);
     return false;
   }
@@ -74,11 +74,11 @@ export const controlledChecker = (customLogic) => {
   return true;
 };
 
-const keyChecker = (fieldSSOT, indexes, callBy, map) => {
+const keyChecker = (fieldsSSOT, indexes, callBy, map) => {
   let isValid = true;
 
   indexes.forEach((index) => {
-    const key = fieldSSOT[index];
+    const key = fieldsSSOT[index];
     const text = error002a(callBy, key);
 
     // errorHandler returns true, so we need to revert it
@@ -88,10 +88,10 @@ const keyChecker = (fieldSSOT, indexes, callBy, map) => {
   return isValid;
 };
 
-export const handlerChecker = (fieldSSOT, indexes, callBy, map) => {
+export const handlerChecker = (fieldsSSOT, indexes, callBy, map) => {
   let isValid = true;
-  isValid = indexChecker(fieldSSOT, indexes, callBy) ? isValid : false;
-  isValid = keyChecker(fieldSSOT, indexes, callBy, map) ? isValid : false;
+  isValid = indexChecker(fieldsSSOT, indexes, callBy) ? isValid : false;
+  isValid = keyChecker(fieldsSSOT, indexes, callBy, map) ? isValid : false;
 
   return isValid;
 };

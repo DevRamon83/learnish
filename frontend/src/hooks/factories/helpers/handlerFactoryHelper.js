@@ -3,12 +3,12 @@ import { mapNIndexFinder } from "../../../helpers/formFactoryHelper";
 const customLogicHandler = (
   funcsMap,
   indexes,
-  fieldSSOT,
+  fieldsSSOT,
   fieldsConfig,
   innerKey,
 ) => {
   for (let i = 0; i < indexes.length; i++) {
-    const targetId = fieldSSOT[indexes[i]];
+    const targetId = fieldsSSOT[indexes[i]];
     fieldsConfig[targetId].handlers[innerKey] = funcsMap[targetId];
   }
 };
@@ -20,7 +20,13 @@ export const customLogicHandlerInterface = (
 ) => {
   const { map, indexes } = mapNIndexFinder(caller, customLogic);
   if (indexes.length === 0) return;
-  customLogicHandler(map, indexes, customLogic.fieldSSOT, fieldsConfig, caller);
+  customLogicHandler(
+    map,
+    indexes,
+    customLogic.fieldsSSOT,
+    fieldsConfig,
+    caller,
+  );
 };
 
 export const executeOnChangeLogic = (id, map, value) => {
