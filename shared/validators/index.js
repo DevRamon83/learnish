@@ -1,6 +1,7 @@
 import {
   acceptOnly,
   atLeastOne,
+  isObjValid,
   isLeapYear,
   tooLong,
   tooShort,
@@ -15,12 +16,13 @@ import {
 
 const validators = {
   atomicsValidators: {
-    acceptOnly: acceptOnly,
-    atLeastOne: atLeastOne,
-    tooShort: tooShort,
-    tooLong: tooLong,
-    isLeapYear: isLeapYear,
-    typeChecker: typeChecker,
+    acceptOnly,
+    atLeastOne,
+    tooShort,
+    tooLong,
+    isLeapYear,
+    typeChecker,
+    isObjValid,
   },
   authValidators: {
     username: usernameValidator,

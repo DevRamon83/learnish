@@ -1,14 +1,18 @@
+import bundle from "../../../../../shared";
+import { signupInputTextareas } from "../../inputs/auth";
 import { eventsHandler } from "../helpers";
 
-const { test } = signupInputTextarea;
+const { test, keyToAdd } = signupInputTextareas;
 
 const textareasSSOT = [test.id];
 
-const inputTextareasConfig = {
+const textareasConfig = {
   targetKeys: textareasSSOT,
   originalObjects: [test],
   addThisKeys: keyToAdd,
 };
+
+const validators = bundle.validators.authValidators;
 
 const textareasMap = {
   [test.id]: validators.username,
@@ -20,7 +24,7 @@ const textareaEeventobj = {};
 export const textareaLogic = {
   textareasSSOT,
   inputTextareas: true,
-  inputTextareasConfig,
+  textareasConfig,
   controlledTextareas: true,
   textareasState: [0],
   onChangeTextareasMap: textareasMap,

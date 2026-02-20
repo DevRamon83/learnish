@@ -7,7 +7,7 @@ const { username, email, password, confirmPassword, keyToAdd } =
 
 const fieldsSSOT = [username.id, email.id, password.id, confirmPassword.id];
 
-const inputFieldsConfig = {
+const fieldsConfig = {
   targetKeys: fieldsSSOT,
   originalObjects: [username, email, password, confirmPassword],
   addThisKeys: keyToAdd,
@@ -28,7 +28,7 @@ const fieldEeventobj = {};
 export const fieldsLogic = {
   fieldsSSOT,
   inputFields: true,
-  inputFieldsConfig,
+  fieldsConfig,
   controlledFields: true,
   fieldsState: [0, 1, 2, 3],
   onChangeFieldsMap: fieldsMap,

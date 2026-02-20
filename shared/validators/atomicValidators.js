@@ -49,3 +49,8 @@ export const typeChecker = (datum, type) => {
 
   if (cleanType === yourType) return true;
 };
+
+export const isObjValid = (obj) => {
+  if (!obj) return false; // Tratta null/undefined come "vuoto"
+  return Object.keys(obj).length > 0;
+};

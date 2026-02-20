@@ -36,17 +36,17 @@ export const SSOTchecker = (fieldsSSOT) => {
   return true;
 };
 
-export const InputFieldsConfigChecker = (customLogic) => {
-  const checked = "inputFieldsConfig";
-  const { inputFieldsConfig } = customLogic;
+export const fieldsConfigChecker = (customLogic) => {
+  const checked = "fieldsConfig";
+  const { fieldsConfig } = customLogic;
 
-  if (!inputFieldsConfig) {
+  if (!fieldsConfig) {
     const text = missingError(caller, checked, checkedIn);
     errorHandler(text);
     return false;
   }
 
-  if (!typeChecker(inputFieldsConfig, "object")) {
+  if (!typeChecker(fieldsConfig, "object")) {
     const text = invalidType(caller, checked, "an object");
     errorHandler(text);
     return false;

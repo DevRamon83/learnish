@@ -1,26 +1,3 @@
-const populateField = (configuration) => {
-  const { addThisKeys, strings, targetKey, field } = configuration;
-
-  addThisKeys.forEach((key) => {
-    const stringKey = key + "s";
-    field.config[key] = strings[stringKey][targetKey];
-  });
-};
-
-export const fieldsInterfaceI18n = (fields, inputFieldsConfig, strings) => {
-  const { targetKeys, addThisKeys } = inputFieldsConfig;
-
-  for (let i = 0; i < targetKeys.length; i++) {
-    const configuration = {
-      targetKey: targetKeys[i],
-      strings,
-      addThisKeys,
-      field: fields[targetKeys[i]],
-    };
-    populateField(configuration);
-  }
-};
-
 const setTitleInConfigGroup = (obj, strings, key) => {
   const title = obj.config.title;
   const tag = key + "Title";

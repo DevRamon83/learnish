@@ -7,6 +7,8 @@ const components = {
     privacyLabel: auth.privacyLabel,
     tosLabel: auth.tosLabel,
     accountType: auth.accountType,
+    textareaLabels: auth.textareaLabels,
+    charLabels: auth.charLabels,
   },
 };
 

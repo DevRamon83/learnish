@@ -1,6 +1,7 @@
 import { i18nAddresses } from "../../constants/i18nAddresses";
 
 export const inputFieldKeyToAdd = ["label", "placeholder"];
+export const inputTextareaKeyToAdd = ["textareaLabel", "charLabel"];
 export const address = i18nAddresses.auth;
 
 export const signupInputFields = {
@@ -57,7 +58,7 @@ export const signupInputSelects = {
   },
 };
 
-export const signupInputTextarea = {
+export const signupInputTextareas = {
   test: {
     id: "test",
     charLabel: "boh",
@@ -65,6 +66,6 @@ export const signupInputTextarea = {
     cols: 5,
     maxChars: 500,
     textClass: "",
-    labels: ["label", "charLabel"],
   },
+  keyToAdd: inputTextareaKeyToAdd,
 };

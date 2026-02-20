@@ -41,7 +41,10 @@ export const buildDispatcher = (controlled, customLogic, caller, initial) => {
   } else if (caller === "selects") {
     const { selectsSSOT, selectsState } = customLogic;
     return commonInizializzation(selectsSSOT, selectsState, initial);
-  } else {
+  } else if (caller === "groups") {
     return initializeGroups(customLogic, initial);
+  } else if (caller === "textareas") {
+    const { textareasSSOT, textareasState } = customLogic;
+    return commonInizializzation(textareasSSOT, textareasState, initial);
   }
 };

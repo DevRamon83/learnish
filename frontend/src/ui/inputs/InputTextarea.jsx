@@ -1,6 +1,6 @@
-import CharacterCounter from "./CharacterCounter";
+import WordCounter from "./WordCounter";
 
-export default function Textarea({ dataField }) {
+export default function InputTextarea({ dataField }) {
   const inputProps = dataField.states || {};
   const eventHandlers = dataField.handlers || {};
 
@@ -35,11 +35,7 @@ export default function Textarea({ dataField }) {
       />
 
       {maxChars && (
-        <CharacterCounter
-          dataField={maxChars}
-          value={value}
-          label={charLabel}
-        />
+        <WordCounter maxChars={maxChars} value={value} label={charLabel} />
       )}
     </>
   );

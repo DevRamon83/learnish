@@ -5,17 +5,19 @@ import {
   onChangeInterface,
 } from "./helpers/handlerFactoryHelper";
 
-export const useHandlersFactory = (
-  configFields,
-  configGroups,
-  configSelects,
-  customLogic,
-  setFieldState,
-  setGroupsState,
-  setSelects,
-) => {
-  const { onChangeFieldsMap, onChangeGroupsMap, onChangeSelectsMap } =
-    customLogic;
+export const useHandlersFactory = (configs, customLogic, states) => {
+  const {
+    onChangeFieldsMap,
+    onChangeGroupsMap,
+    onChangeSelectsMap,
+    onChangeTextareasMap,
+  } = customLogic;
+
+  const { setFieldState, setGroupsState, setSelectsState, setTextareasState } =
+    states;
+
+  const { configFields, configGroups, configSelects, configTextareas } =
+    configs;
   const commonOnChangeHandler = (setter, map) =>
     useCallback(
       (e) => {
@@ -77,15 +79,27 @@ export const useHandlersFactory = (
     selectsSSOT,
     selectsState,
     controlledSelects,
-    commonOnChangeHandler(setSelects, onChangeSelectsMap),
+    commonOnChangeHandler(setSelectsState, onChangeSelectsMap),
     configSelects,
   );
 
+  const { textareasSSOT, textareasState, controlledTextareas } = customLogic;
+  onChangeInterface(
+    textareasSSOT,
+    textareasState,
+    controlledTextareas,
+    commonOnChangeHandler(setTextareasState, onChangeTextareasMap),
+    configTextareas,
+  );
+
   customLogicHandlerInterface("onBlur", customLogic, configFields);
+  customLogicHandlerInterface("onBlur", customLogic, configTextareas);
 
   customLogicHandlerInterface("onFocus", customLogic, configFields);
+  customLogicHandlerInterface("onFocus", customLogic, configTextareas);
 
   customLogicHandlerInterface("onKeyDown", customLogic, configFields);
+  customLogicHandlerInterface("onKeyDown", customLogic, configTextareas);
 
-  return configFields;
+  return { configFields, configGroups, configSelects, configTextareas };
 };
