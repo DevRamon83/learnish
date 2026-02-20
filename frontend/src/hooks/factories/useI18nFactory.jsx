@@ -7,7 +7,8 @@ import {
 
 export const useI18nFactory = (customLogic, fields) => {
   const { inputFieldsConfig, groupsConfig, selectsConfig } = customLogic;
-  const { stringsAddress } = inputFieldsConfig;
+  const { stringsAddress } = customLogic.commonsConfig;
+  console.log(stringsAddress);
   const strings = useLang(stringsAddress);
   if (!strings || Object.keys(strings).length === 0) return null;
 

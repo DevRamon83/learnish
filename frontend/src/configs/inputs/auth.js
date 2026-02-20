@@ -1,6 +1,7 @@
 import { i18nAddresses } from "../../constants/i18nAddresses";
 
 export const inputFieldKeyToAdd = ["label", "placeholder"];
+export const address = i18nAddresses.auth;
 
 export const signupInputFields = {
   username: {
@@ -24,7 +25,6 @@ export const signupInputFields = {
     autoComplete: "new-password",
   },
   keyToAdd: inputFieldKeyToAdd,
-  address: i18nAddresses.auth,
 };
 
 export const signupInputGroups = {
@@ -54,5 +54,17 @@ export const signupInputSelects = {
     options: ["teacher", "student"],
     id: "accountType",
     labelText: true,
+  },
+};
+
+export const signupInputTextarea = {
+  test: {
+    id: "test",
+    charLabel: "boh",
+    rows: 10,
+    cols: 5,
+    maxChars: 500,
+    textClass: "",
+    labels: ["label", "charLabel"],
   },
 };

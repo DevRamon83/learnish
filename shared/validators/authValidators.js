@@ -6,10 +6,10 @@ export const emailValidator = (value) => {
   console.log("email: ", value);
 };
 
-export const pswValidator = (value) => {
+export const passwordValidator = (value) => {
   console.log("psw: ", value);
 };
 
-export const confirmPswlValidator = (value) => {
+export const confirmPasswordValidator = (value) => {
   console.log("confirmPsw: ", value);
 };

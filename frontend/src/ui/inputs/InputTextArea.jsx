@@ -1,9 +1,11 @@
-export default function Textarea({ objConfig, inputProps, eventHandlers }) {
-  inputProps = inputProps || {};
-  eventHandlers = eventHandlers || {};
+import CharacterCounter from "./CharacterCounter";
 
-  const { id, label, name, rows, cols, maxChars, textClass, labelText } =
-    objConfig;
+export default function Textarea({ dataField }) {
+  const inputProps = dataField.states || {};
+  const eventHandlers = dataField.handlers || {};
+
+  const { id, charLabel, rows, cols, maxChars, textClass, label } =
+    dataField.config;
   const { inputRef, value } = inputProps;
   const { onChange, onBlur, onFocus, onKeyDown } = eventHandlers;
 
@@ -14,7 +16,7 @@ export default function Textarea({ objConfig, inputProps, eventHandlers }) {
 
   return (
     <>
-      {labelText && <label htmlFor={id}>{labelText}</label>}
+      {label && <label htmlFor={id}>{label}</label>}
 
       <textarea
         spellCheck="false"
@@ -23,7 +25,7 @@ export default function Textarea({ objConfig, inputProps, eventHandlers }) {
         id={id}
         rows={rows}
         cols={cols}
-        name={name}
+        name={id}
         value={value}
         onChange={funcOnChange}
         onBlur={funcOnBlur}
@@ -33,12 +35,11 @@ export default function Textarea({ objConfig, inputProps, eventHandlers }) {
       />
 
       {maxChars && (
-        <div className="">
-          <span>{label}</span> <br />
-          <span>
-            {value} / {maxChars}
-          </span>
-        </div>
+        <CharacterCounter
+          dataField={maxChars}
+          value={value}
+          label={charLabel}
+        />
       )}
     </>
   );

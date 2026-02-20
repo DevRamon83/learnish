@@ -7,9 +7,9 @@ import {
   typeChecker,
 } from "./atomicValidators";
 import {
-  confirmPswlValidator,
+  confirmPasswordValidator,
   emailValidator,
-  pswValidator,
+  passwordValidator,
   usernameValidator,
 } from "./authValidators";
 
@@ -25,8 +25,8 @@ const validators = {
   authValidators: {
     username: usernameValidator,
     email: emailValidator,
-    psw: pswValidator,
-    confirmPSw: confirmPswlValidator,
+    password: passwordValidator,
+    confirmPassword: confirmPasswordValidator,
   },
 };
 
