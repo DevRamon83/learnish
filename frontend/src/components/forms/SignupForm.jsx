@@ -4,15 +4,14 @@ import {
   selectsLogic,
 } from "../../configs/forms/signupConfig";
 import { useFormFactory } from "../../hooks/factories/useFormFactory";
-import InputField from "../inputs/InputField";
-import InputGroup from "../inputs/InputGroup";
-import SelectInput from "../inputs/SelectInput";
+import InputField from "../../ui/inputs/InputField";
+import InputGroup from "../../ui/inputs/InputGroup";
+import SelectInput from "../../ui/inputs/SelectInput";
 
 export default function SignupForm() {
   const customLogic = { ...fieldsLogic, ...groupsLogic, ...selectsLogic };
 
   const { fields, groups, selects } = useFormFactory(customLogic);
-  console.log(selects);
 
   return (
     <>
