@@ -1,11 +1,11 @@
 import { useCallback } from "react";
 import {
-  customLogicHandlerInterface,
+  customLogicDispatcher,
   executeOnChangeLogic,
   onChangeInterface,
 } from "./helpers/handlerFactoryHelper";
 
-export const useHandlersFactory = (configs, customLogic, states) => {
+export const useHandlersFactory = (configs, customLogic, states, SSOTS) => {
   const {
     onChangeFieldsMap,
     onChangeGroupsMap,
@@ -16,8 +16,6 @@ export const useHandlersFactory = (configs, customLogic, states) => {
   const { setFieldState, setGroupsState, setSelectsState, setTextareasState } =
     states;
 
-  const { configFields, configGroups, configSelects, configTextareas } =
-    configs;
   const commonOnChangeHandler = (setter, map) =>
     useCallback(
       (e) => {
@@ -32,74 +30,44 @@ export const useHandlersFactory = (configs, customLogic, states) => {
       [setter],
     );
 
-  const changeGroupsHandler = useCallback(
-    (e) => {
-      const { id, value, type, name, checked } = e.target;
-      const finalValue = type === "checkbox" ? checked : value;
-      if (type === "radio") {
-        setGroupsState((prev) => ({
-          ...prev,
-          [name]: value,
-        }));
-      } else {
-        setGroupsState((prev) => ({
-          ...prev,
-          [name]: {
-            ...prev[name],
-            [id]: checked,
-          },
-        }));
-      }
+  const changeGroupsHandler = (setter) =>
+    useCallback(
+      (e) => {
+        const { id, value, type, name, checked } = e.target;
+        const finalValue = type === "checkbox" ? checked : value;
+        if (type === "radio") {
+          setter((prev) => ({
+            ...prev,
+            [name]: value,
+          }));
+        } else {
+          setter((prev) => ({
+            ...prev,
+            [name]: {
+              ...prev[name],
+              [id]: checked,
+            },
+          }));
+        }
 
-      executeOnChangeLogic(id, onChangeGroupsMap, finalValue);
-    },
-    [setGroupsState],
-  );
+        executeOnChangeLogic(id, onChangeGroupsMap, finalValue);
+      },
+      [setter],
+    );
 
-  const { fieldsSSOT, fieldsState, controlledFields } = customLogic;
-  onChangeInterface(
-    fieldsSSOT,
-    fieldsState,
-    controlledFields,
-    commonOnChangeHandler(setFieldState, onChangeFieldsMap),
-    configFields,
-  );
+  const handlers = {
+    fields: commonOnChangeHandler(setFieldState, onChangeFieldsMap),
+    selects: commonOnChangeHandler(setSelectsState, onChangeSelectsMap),
+    textareas: commonOnChangeHandler(setTextareasState, onChangeTextareasMap),
+    groups: changeGroupsHandler(setGroupsState),
+  };
 
-  const { groupsSSOT, groupsState, controlledGroups } = customLogic;
-  onChangeInterface(
-    groupsSSOT,
-    groupsState,
-    controlledGroups,
-    changeGroupsHandler,
-    configGroups,
-  );
+  onChangeInterface(customLogic, SSOTS, configs, handlers);
 
-  const { selectsSSOT, selectsState, controlledSelects } = customLogic;
-  onChangeInterface(
-    selectsSSOT,
-    selectsState,
-    controlledSelects,
-    commonOnChangeHandler(setSelectsState, onChangeSelectsMap),
-    configSelects,
-  );
+  const { configFields, configGroups, configSelects, configTextareas } =
+    configs;
 
-  const { textareasSSOT, textareasState, controlledTextareas } = customLogic;
-  onChangeInterface(
-    textareasSSOT,
-    textareasState,
-    controlledTextareas,
-    commonOnChangeHandler(setTextareasState, onChangeTextareasMap),
-    configTextareas,
-  );
-
-  customLogicHandlerInterface("onBlur", customLogic, configFields);
-  customLogicHandlerInterface("onBlur", customLogic, configTextareas);
-
-  customLogicHandlerInterface("onFocus", customLogic, configFields);
-  customLogicHandlerInterface("onFocus", customLogic, configTextareas);
-
-  customLogicHandlerInterface("onKeyDown", customLogic, configFields);
-  customLogicHandlerInterface("onKeyDown", customLogic, configTextareas);
+  customLogicDispatcher(customLogic, configs);
 
   return { configFields, configGroups, configSelects, configTextareas };
 };

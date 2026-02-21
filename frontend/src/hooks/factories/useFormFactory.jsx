@@ -22,11 +22,10 @@ export const useFormFactory = (customLogic) => {
   const refs = { fieldsRef, groupsRef, selectsRef, textareasRef };
   const fields = configHelper(customLogic, "fieldsConfig");
   const textareas = configHelper(customLogic, "textareasConfig");
-  console.log("textareas ", textareas);
 
   const configs = useI18nFactory(customLogic, fields, textareas);
 
-  useHandlersFactory(configs, customLogic, states);
+  useHandlersFactory(configs, customLogic, states, SSOTS);
 
   // We use useMemo with cloned objects to ensure referential stability.
   // By returning a fresh clone, we force child components to re-render,
