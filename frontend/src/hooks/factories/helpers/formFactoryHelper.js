@@ -16,7 +16,7 @@ const syncRefs = (elements, clone, ref) => {
   }
 };
 
-export const syncronize = (customLogic, SSOTS, clones, states, refs) => {
+export const synchronize = (customLogic, SSOTS, clones, states, refs) => {
   for (let key in clones) {
     const controlledKey = "controlled" + bundle.utils.capitalize(key);
     const refControl = "ref" + bundle.utils.capitalize(key);

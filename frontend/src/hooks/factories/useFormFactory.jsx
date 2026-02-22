@@ -3,7 +3,7 @@ import { useI18nFactory } from "./useI18nFactory";
 import { useStateFactory } from "./useStateFactory";
 import { useHandlersFactory } from "./useHandlersFactory";
 import { formFactoryGuard } from "../../guards/factories/formFactoryGuard";
-import { clone, syncronize } from "./helpers/formFactoryHelper";
+import { clone, synchronize } from "./helpers/formFactoryHelper";
 import { configHelper } from "./helpers/commonsHelper";
 
 export const useFormFactory = (customLogic) => {
@@ -35,7 +35,7 @@ export const useFormFactory = (customLogic) => {
     const { fields, groups, selects, textareas } = clones;
 
     if (!groups || !fields || !selects || !textareas) return null;
-    syncronize(customLogic, SSOTS, clones, states, refs);
+    synchronize(customLogic, SSOTS, clones, states, refs);
 
     return { fields, groups, selects, textareas };
   }, [states]);

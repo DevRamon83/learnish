@@ -3,57 +3,41 @@ import { analyzeArray } from "./analyzeArray";
 
 const caller = ["CloneInterface"];
 const noElementMsgg = ": you must send an element to clone";
-const tooManyKeys = ": can't clone an obj with more than 100 keys";
-const tooDepp = ": your obj is too deep to be cloned";
 
 export const errorHandler = (caller, message) => {
   console.error(caller, message);
 };
 
-const isTooDeep = (depth) => {
-  if (depth > 10) {
-    errorHandler(caller, tooDepp);
-    return true;
-  }
-};
-
-function cloneArray(element, depth = 0) {
+function cloneArray(element) {
   let recurse = false;
   let error = false;
   let clonedArray = [];
   let elementToRecurse = null;
-  const actualDepth = depth + 1;
 
-  const stop = isTooDeep(actualDepth);
-  if (stop) return { error: true, clonedArray: null };
-
-  const recurseArray = (array) => {
-    const newArray = cloneArray(array, actualDepth);
+  // Push cloning result to the array
+  const processArray = (array) => {
+    const newArray = cloneArray(array);
     error = newArray.error ? newArray.error : error;
     clonedArray.push(newArray.clonedArray);
   };
 
-  const recurseOBj = (obj) => {
-    const newObj = cloneInterface(obj, actualDepth);
+  // Push cloning result to the array
+  const processObj = (obj) => {
+    const newObj = cloneInterface(obj);
     error = newObj.error ? newObj.error : error;
     clonedArray.push(newObj.yourClone);
   };
 
   for (let i = 0; i < element.length; i++) {
-    const status = analyzeArray(element[i], actualDepth);
+    const arrayType = analyzeArray(element[i]);
 
-    if (status.error) {
-      error = status.error;
-      break;
-    }
+    let recurse = true;
 
-    if (status.type === "array") {
-      recurse = true;
-      recurseArray(element[i]);
-    } else if (status.type === "object") {
-      recurse = true;
-      recurseOBj(element[i]);
-    } else if (status.type === "primitive") {
+    // Determine whether to recurse based on the arrayType
+    if (arrayType === "array") processArray(element[i]);
+    if (arrayType === "object") processObj(element[i]);
+
+    if (arrayType === "primitive") {
       recurse = false;
       clonedArray.push(element[i]);
     }
@@ -63,20 +47,13 @@ function cloneArray(element, depth = 0) {
 }
 
 // Receives an object or an array and clones it recursively
-export function cloneInterface(element, depth = 0) {
-  const limitKeys = 100;
+// Standard cloning methods aren't suitable here
+// as this function needs to handle function cloning.
+export function cloneInterface(element) {
   let clonedObj = {};
   let yourClonedArray = null;
 
   let error = false;
-  const actualDepth = depth + 1;
-
-  // Handles recursion specifically for objects
-  const recursiveObj = (newElement, newKey) => {
-    const res = cloneInterface(newElement, actualDepth);
-    error = res.error ? res.error : error;
-    clonedObj[newKey] = res.yourClone;
-  };
 
   // cloneInterface requires a valid element to proceed
   if (element === undefined) {
@@ -84,15 +61,19 @@ export function cloneInterface(element, depth = 0) {
     return { error };
   }
 
-  // If we are in a recursion, we check the depth limit
-  const stop = isTooDeep(actualDepth);
-
-  if (stop) return { error: true, yourClone: null };
+  // Handles recursion specifically for objects
+  const recursiveObj = (newElement, newKey) => {
+    const res = cloneInterface(newElement);
+    error = res.error ? res.error : error;
+    clonedObj[newKey] = res.yourClone;
+  };
 
   // If the element is an array, we use a specific function to handle it
   if (Array.isArray(element)) {
-    const res = cloneArray(element, actualDepth);
-    res.recurse ? cloneArray(element, actualDepth) : null;
+    const res = cloneArray(element);
+
+    // Execute recursive path only when necessary to handle nested objects/arrays
+    res.recurse && cloneArray(element);
     error = res.error ? true : error;
     yourClonedArray = res.clonedArray ? res.clonedArray : yourClonedArray;
   }
@@ -102,19 +83,15 @@ export function cloneInterface(element, depth = 0) {
   // If the array was successfully cloned, return it
   if (yourClonedArray) return { error, yourClonedArray };
 
-  // If the element is not an array, we treat it as an object
-
+  // Null objects are valid during the recursion process
   if (typeChecker(element, "null")) return { error: false, yourClone: null };
 
+  // If the element is not an array, we treat it as an object
   const keys = Object.keys(element);
-
-  if (keys.length > limitKeys) {
-    errorHandler(caller, tooManyKeys);
-  }
 
   for (let i = 0; i < keys.length; i++) {
     if (Array.isArray(element[keys[i]])) {
-      const res = cloneInterface(element[keys[i]], actualDepth);
+      const res = cloneInterface(element[keys[i]]);
       error = res.error ? res.error : error;
       clonedObj[keys[i]] = res.yourClonedArray;
       continue;
@@ -122,6 +99,7 @@ export function cloneInterface(element, depth = 0) {
 
     if (error) return { error };
 
+    // Flat objects are cloned, otherwise recurse
     const isAnObj = typeChecker(element[keys[i]], "object");
     if (isAnObj) {
       recursiveObj(element[keys[i]], keys[i]);
