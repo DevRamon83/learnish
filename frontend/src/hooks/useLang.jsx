@@ -19,7 +19,7 @@ const getStrings = (language, path) => {
   const fullBundle = bundle.langs[language];
   const pathArray = path.split(".");
   const strings = getNestedNamespace(fullBundle, pathArray);
-  return strings;
+  return { strings, lang: language };
 };
 
 const isValid = (path) => {
