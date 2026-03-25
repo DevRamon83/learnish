@@ -1,4 +1,4 @@
-import ita from "./ita";
+import ita from "./ita/index.js";
 
 const langs = { italian: ita };
 

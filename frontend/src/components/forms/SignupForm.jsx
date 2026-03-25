@@ -11,6 +11,7 @@ import { useRef } from "react";
 import { useLang } from "../../hooks/useLang";
 import { i18nAddresses } from "../../constants/i18nAddresses";
 import FormInput from "../../ui/FormInput";
+import fetchSignup from "../../api/handlers.js/fetchSignup";
 
 export default function SignupForm() {
   const formRef = useRef();
@@ -19,11 +20,17 @@ export default function SignupForm() {
   const objConfig = signupConfigBuilder(strings);
 
   const { fields, groups, selects } = useRamonForm(objConfig);
-  const submitHandler = () => {};
   const { username, email, confirmEmail, password, confirmPassword } = fields;
-  console.log("username ", username);
   const { privacy, tos } = groups;
   const { accountTypes } = selects;
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(formRef.current);
+    const data = Object.fromEntries(formData.entries());
+    if (!data) return;
+    const response = await fetchSignup(data);
+  };
 
   return (
     <>
@@ -36,6 +43,7 @@ export default function SignupForm() {
         <FormInput Element={SelectInput} data={accountTypes} lang={lang} />
         <FormInput Element={RadioInput} data={privacy} lang={lang} />
         <FormInput Element={RadioInput} data={tos} lang={lang} />
+        <button>Invia</button>
       </form>
     </>
   );

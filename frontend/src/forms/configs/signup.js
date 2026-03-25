@@ -1,3 +1,4 @@
+import bundle from "../../../../shared";
 import { usernameOnBlur, usernameOnChange } from "../funcs/signup";
 
 const username = {
@@ -42,11 +43,13 @@ const confirmPassword = {
   required: true,
 };
 
+const { constants } = bundle;
+
 const privacy = {
   name: "privacy",
   type: "radio",
   options: {
-    ids: ["privacyPolicy"],
+    ids: [constants.currentPrivacy],
     labels: ["ho letto e compreso la privacy policy"],
   },
   required: true,
@@ -56,7 +59,7 @@ const tos = {
   name: "tos",
   type: "radio",
   options: {
-    ids: ["tosPolicy"],
+    ids: [constants.currentTos],
     labels: ["ho letto e compreso le condizioni generali di contratto"],
   },
   required: true,
@@ -65,7 +68,7 @@ const tos = {
 const accountTypes = {
   id: "accountTypes",
   type: "select",
-  options: ["teatcher", "student"],
+  options: [...constants.accountTypes],
   labels: ["insegnante", "studente"],
   label: "Scegli il tippo di account",
   required: true,

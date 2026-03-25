@@ -1,5 +1,5 @@
-import components from "./components";
-import pages from "./pages";
+import components from "./components/index.js";
+import pages from "./pages/index.js";
 
 const ita = {
   pages,

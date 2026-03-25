@@ -1,11 +1,9 @@
-import langs from "./languages";
-import utils from "./utils";
-import validators from "./validators";
+import constants from "./constants/index.js";
+import langs from "./languages/index.js";
 
 const bundle = {
   langs,
-  utils,
-  validators,
+  constants,
 };
 
 export default bundle;
