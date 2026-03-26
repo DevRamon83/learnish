@@ -5,8 +5,7 @@ import {
 } from "ramon-vanilla";
 import bundle from "../../../shared/index.js";
 const authValidator = (caller, data) => {
-  const { username, email, confirmEmail, password } = data;
-
+  const { username, email, confirmEmail } = data;
   const validUser = usernameValidator(username);
   if (validUser.error) return validUser.errorArray;
 
@@ -20,18 +19,15 @@ const authValidator = (caller, data) => {
 
   if (!isLogin && email !== confirmEmail) return "email " + matchFail;
 
+  const { password, confirmPassword, privacy, tos } = data;
+
   const validPassword = passwordValidator(password);
 
   if (validPassword.error) return validPassword.errorArray;
 
-  const { confirmPassword, accountTypes, privacy, tos } = data;
-
   if (!isLogin && password !== confirmPassword) return "password " + matchFail;
 
   const { constants } = bundle;
-  const normalizeAccount = accountTypes.trim().toLowerCase();
-  if (!isLogin && !constants.accountTypes.includes(normalizeAccount))
-    return "invalid account";
 
   if (!isLogin && privacy !== constants.currentPrivacy)
     return "invalid privacy policy";

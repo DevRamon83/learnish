@@ -65,15 +65,6 @@ const tos = {
   required: true,
 };
 
-const accountTypes = {
-  id: "accountTypes",
-  type: "select",
-  options: [...constants.accountTypes],
-  labels: ["insegnante", "studente"],
-  label: "Scegli il tippo di account",
-  required: true,
-};
-
 export const signupConfigBuilder = (strings) => {
   username.label = strings.labels.username;
   email.label = strings.labels.email;
@@ -94,7 +85,6 @@ export const signupConfigBuilder = (strings) => {
     confirmPassword,
     privacy,
     tos,
-    accountTypes,
   ];
 
   return {

@@ -6,7 +6,6 @@ export const fetchData = async (
   options = {},
 ) => {
   const dataBody = myData !== undefined ? { ...myData } : {};
-  console.log("myData ", myData);
 
   try {
     const response = await fetch(apiUrl, {

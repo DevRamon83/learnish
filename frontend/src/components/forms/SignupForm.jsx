@@ -19,10 +19,9 @@ export default function SignupForm() {
   const { strings, lang } = useLang(i18nAddresses.auth);
   const objConfig = signupConfigBuilder(strings);
 
-  const { fields, groups, selects } = useRamonForm(objConfig);
+  const { fields, groups } = useRamonForm(objConfig);
   const { username, email, confirmEmail, password, confirmPassword } = fields;
   const { privacy, tos } = groups;
-  const { accountTypes } = selects;
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -30,6 +29,7 @@ export default function SignupForm() {
     const data = Object.fromEntries(formData.entries());
     if (!data) return;
     const response = await fetchSignup(data);
+    console.log("res ", response);
   };
 
   return (
@@ -40,7 +40,6 @@ export default function SignupForm() {
         <FormInput Element={EmailInput} data={confirmEmail} lang={lang} />
         <FormInput Element={PasswordInput} data={password} lang={lang} />
         <FormInput Element={PasswordInput} data={confirmPassword} lang={lang} />
-        <FormInput Element={SelectInput} data={accountTypes} lang={lang} />
         <FormInput Element={RadioInput} data={privacy} lang={lang} />
         <FormInput Element={RadioInput} data={tos} lang={lang} />
         <button>Invia</button>
