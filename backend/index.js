@@ -4,6 +4,8 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import mongoose from "mongoose";
 import authRoute from "./routes/authRoute.js";
+import userModel from "./models/user.js";
+import { setPopulator } from "./utils/atomicUtils.js";
 
 const app = express();
 
@@ -11,6 +13,14 @@ const env = process.env.NODE_ENV;
 const ORIGIN = env === "DEV" ? process.env.ORIGIN_DEV : process.env.ORIGIN_PROD;
 const MONGO_URI = process.env[`MONGO_URI_${env}`];
 const PORT = process.env.PORT || 4000;
+
+const tokensRevoked = new Set();
+const ipsBanned = new Set();
+
+const securityCache = {
+  tokensRevoked,
+  ipsBanned,
+};
 
 app.use(
   cors({
@@ -29,12 +39,20 @@ app.use((req, res, next) => {
 app.use(express.json());
 
 app.use(cookieParser());
+app.set("securityCache", securityCache);
 
 app.use("/api/auth", authRoute);
 
 mongoose
   .connect(MONGO_URI)
-  .then(() => {
+
+  .then(async () => {
+    const revokedUsers = await userModel.find(
+      { tokenRevoked: true },
+      "username",
+    );
+    setPopulator(revokedUsers, tokensRevoked, "username");
+
     app.listen(PORT, () => {
       env === "DEV" && console.log("server running on port ", PORT);
     });

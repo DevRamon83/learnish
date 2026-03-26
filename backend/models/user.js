@@ -18,6 +18,7 @@ const UserSchema = new Schema(
     privacyAccepted: { type: Date, required: true, default: Date.now },
     tos: { type: String, required: true },
     tosAccepted: { type: Date, required: true, default: Date.now },
+    isRevoked: { type: Boolean, required: true, default: false },
   },
   {
     timestamps: true,

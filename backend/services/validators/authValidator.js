@@ -9,7 +9,7 @@ const authValidator = (caller, data) => {
   const validUser = usernameValidator(username);
   if (validUser.error) return validUser.errorArray;
 
-  const isLogin = caller === "login";
+  const isLogin = caller === "/login";
 
   const validEmail = !isLogin && emailValidator(email);
 

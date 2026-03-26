@@ -1,46 +1,41 @@
-import {
-  EmailInput,
-  PasswordInput,
-  RadioInput,
-  TextInput,
-  useRamonForm,
-} from "ramon-form-sdude";
+import { PasswordInput, TextInput, useRamonForm } from "ramon-form-sdude";
 import { signupConfigBuilder } from "../../forms/configs/signup";
 import { useRef } from "react";
 import { useLang } from "../../hooks/useLang";
 import { i18nAddresses } from "../../constants/i18nAddresses";
 import FormInput from "../../ui/FormInput";
-import fetchSignup from "../../api/handlers.js/fetchSignup";
-import { useState } from "react";
+import fetchLogin from "../../api/handlers.js/fetchLogin";
 import { useEffect } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setAuth, setUser } from "../../redux/slices/authSlice";
 
-export default function SignupForm() {
+export default function LoginForm() {
   const formRef = useRef();
   const [userData, setUserData] = useState(null);
-  const [errorRes, setErrorRes] = useState(null);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const { strings, lang } = useLang(i18nAddresses.auth);
   const objConfig = signupConfigBuilder(strings);
 
-  const { fields, groups } = useRamonForm(objConfig);
-  const { username, email, confirmEmail, password, confirmPassword } = fields;
-  const { privacy, tos } = groups;
+  const { fields } = useRamonForm(objConfig);
+  const { username, password } = fields;
 
   const submitHandler = async (e) => {
     e.preventDefault();
     const formData = new FormData(formRef.current);
     const data = Object.fromEntries(formData.entries());
     if (!data) return;
-    const response = await fetchSignup(data);
+    const response = await fetchLogin(data);
     if (!response.error) {
-      setErrorRes(response.errorMessage);
-    } else {
       setUserData(response);
-      setErrorRes(null);
     }
   };
 
   useEffect(() => {
+    userData && navigate(`/dashboard/${userData.id}`);
     userData && dispatch(setUser(userData));
     userData && dispatch(setAuth(true));
   }, [userData]);
@@ -49,15 +44,9 @@ export default function SignupForm() {
     <>
       <form ref={formRef} onSubmit={submitHandler}>
         <FormInput Element={TextInput} data={username} lang={lang} />
-        <FormInput Element={EmailInput} data={email} lang={lang} />
-        <FormInput Element={EmailInput} data={confirmEmail} lang={lang} />
         <FormInput Element={PasswordInput} data={password} lang={lang} />
-        <FormInput Element={PasswordInput} data={confirmPassword} lang={lang} />
-        <FormInput Element={RadioInput} data={privacy} lang={lang} />
-        <FormInput Element={RadioInput} data={tos} lang={lang} />
         <button>Invia</button>
       </form>
-      {errorRes && <div>{errorRes}</div>}
     </>
   );
 }

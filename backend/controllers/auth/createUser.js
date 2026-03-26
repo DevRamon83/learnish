@@ -1,5 +1,7 @@
 import handleErrorResponse from "../../helpers/handleErrorResponse.js";
 import isUnique from "../../helpers/isUnique.js";
+import createTokenConfigs from "../../helpers/token/createTokenConfigs.js";
+import setTokenAndCookie from "../../helpers/token/setTokenAndCookie.js";
 import userModel from "../../models/user.js";
 import argon2 from "argon2";
 
@@ -12,8 +14,8 @@ const createUser = async (req, res) => {
 
     if (areUnique.error) {
       const errorMsg = areUnique.conflict.join(" - ") + " are duplicated";
-      const log = false;
-      return handleErrorResponse(res, errorMsg, 409, log);
+      const log = true;
+      return handleErrorResponse(res, req, errorMsg, 409, log);
     }
 
     const password = data.password;
@@ -27,13 +29,21 @@ const createUser = async (req, res) => {
       tos: data.tos,
     };
 
-    await userModel.create(userObj);
-    const response = { error: false, msg: "userCreated" };
+    const user = await userModel.create(userObj);
+    const configData = { username: user.username, id: user._id };
+    const { accessConfig, refreshConfig } = createTokenConfigs(configData);
+
+    await setTokenAndCookie(res, accessConfig);
+
+    await setTokenAndCookie(res, refreshConfig);
+
+    const response = { error: false, username: user.username, id: user._id };
+
     return res.status(200).json(response);
   } catch (err) {
     console.error("Error in createUser:", err);
     const log = false;
-    return handleErrorResponse(res, err.message, 500, log);
+    return handleErrorResponse(res, req, err.message, 500, log);
   }
 };
 

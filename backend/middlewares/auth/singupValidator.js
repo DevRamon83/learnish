@@ -3,17 +3,19 @@ import authValidator from "../../services/validators/authValidator.js";
 
 const singupValidator = (req, res, next) => {
   const data = req.body;
+  const log = true;
+  const ipBann = true;
+  const errorMsg = "error_noData_signup";
 
   if (!data) {
-    const log = true;
-    return handleErrorResponse(res, "error_noData_signup", 400, log);
+    return handleErrorResponse(res, req, errorMsg, 400, log, ipBann);
   }
 
-  const invalidData = authValidator("signup", data);
+  const invalidData = authValidator(req.path, data);
 
   if (invalidData) {
     const log = true;
-    return handleErrorResponse(res, invalidData, 400, log);
+    return handleErrorResponse(res, req, invalidData, 400, log, ipBann);
   }
 
   next();
