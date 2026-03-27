@@ -23,13 +23,9 @@ const checker = (obj, errors) => {
 };
 
 const compare = (value1, value2) => {
-  let error = false;
-  let errorArray = [];
-  if (value1 !== value2) {
-    error = true;
-    errorArray.push("match failed");
-  }
-  return { error, errorArray };
+  const dontMatch = value1 !== value2;
+
+  return { error: dontMatch, errorArray: dontMatch ? ["match failed"] : [] };
 };
 
 const giveMeValidator = (key) => {
