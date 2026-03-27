@@ -1,4 +1,6 @@
-import { acceptOnly, usernameValidator } from "ramon-vanilla";
+import bundle from "../../../../shared/index";
+const { usernameValidator, acceptOnly } = bundle;
+
 export const usernameOnBlur = (string, id) => {
   return usernameValidator(string);
 };
