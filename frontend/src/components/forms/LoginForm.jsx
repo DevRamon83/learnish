@@ -1,15 +1,15 @@
 import { PasswordInput, TextInput, useRamonForm } from "ramon-form-sdude";
 import { signupConfigBuilder } from "../../forms/configs/signup";
-import { useRef } from "react";
 import { useLang } from "../../hooks/useLang";
 import { i18nAddresses } from "../../constants/i18nAddresses";
 import FormInput from "../../ui/FormInput";
 import fetchLogin from "../../api/handlers.js/fetchLogin";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setAuth, setUser } from "../../redux/slices/authSlice";
+import bundle from "shared";
+const { authValidator } = bundle.validators;
 
 export default function LoginForm() {
   const formRef = useRef();
@@ -27,7 +27,12 @@ export default function LoginForm() {
     e.preventDefault();
     const formData = new FormData(formRef.current);
     const data = Object.fromEntries(formData.entries());
-    // validation must be implemented
+    const isValidData = authValidator("/signup", data);
+
+    if (!data || isValidData.error) {
+      // error handler logic
+      return;
+    }
     dispatch(setAuth("pending"));
     if (!data) return;
     const response = await fetchLogin(data);

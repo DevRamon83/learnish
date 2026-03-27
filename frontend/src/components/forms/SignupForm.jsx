@@ -6,13 +6,13 @@ import {
   useRamonForm,
 } from "ramon-form-sdude";
 import { signupConfigBuilder } from "../../forms/configs/signup";
-import { useRef } from "react";
 import { useLang } from "../../hooks/useLang";
 import { i18nAddresses } from "../../constants/i18nAddresses";
 import FormInput from "../../ui/FormInput";
 import fetchSignup from "../../api/handlers.js/fetchSignup";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
+import bundle from "shared";
+const { authValidator } = bundle.validators;
 
 export default function SignupForm() {
   const formRef = useRef();
@@ -30,7 +30,13 @@ export default function SignupForm() {
     e.preventDefault();
     const formData = new FormData(formRef.current);
     const data = Object.fromEntries(formData.entries());
-    if (!data) return;
+    const isValidData = authValidator("/signup", data);
+
+    if (!data || isValidData.error) {
+      // error handler logic
+      return;
+    }
+
     const response = await fetchSignup(data);
     dispatch(setAuth("pending"));
     if (!response.error) {
