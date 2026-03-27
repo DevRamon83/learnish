@@ -1,5 +1,5 @@
+import authValidator from "../../../shared/validators/authValidator.js";
 import handleErrorResponse from "../../helpers/handleErrorResponse.js";
-import authValidator from "../../services/validators/authValidator.js";
 
 const singupValidator = (req, res, next) => {
   const data = req.body;
