@@ -1,6 +1,5 @@
-import bundle from "../../../../shared/index";
+import bundle from "shared";
 const { usernameValidator, acceptOnly } = bundle;
-
 export const usernameOnBlur = (string, id) => {
   return usernameValidator(string);
 };
