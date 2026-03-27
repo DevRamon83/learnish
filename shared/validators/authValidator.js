@@ -5,34 +5,90 @@ import {
 } from "ramon-vanilla";
 import { currentPrivacy, currentTos } from "../constants/atomicConstants.js";
 
-const authValidator = (caller, data) => {
-  const { username, email, confirmEmail } = data;
-  const validUser = usernameValidator(username);
-  if (validUser.error) return validUser.errorArray;
+const errorTracker = (obj, key, error) => {
+  obj[key] = error;
+};
 
-  const isLogin = caller === "/login";
+const checker = (obj, errors) => {
+  const { func, value1, value2, key, backend } = obj;
+  let exit = false;
+  let error = false;
+  const test = func(value1, value2);
+  if (test.error) {
+    exit = backend;
+    error = test.errorArray;
+  }
+  if (!exit && error) errorTracker(errors, key, test.errorArray);
+  return { exit, error };
+};
 
-  const validEmail = !isLogin && emailValidator(email);
+const compare = (value1, value2) => {
+  let error = false;
+  let errorArray = [];
+  if (value1 !== value2) {
+    error = true;
+    errorArray.push("match failed");
+  }
+  return { error, errorArray };
+};
 
-  if (validEmail.error) return validEmail.errorArray;
+const giveMeValidator = (key) => {
+  switch (key) {
+    case "username":
+      return usernameValidator;
+    case "email":
+      return emailValidator;
+    case "password":
+      return passwordValidator;
+    default:
+      return compare;
+  }
+};
 
-  const matchFail = "match failed";
+const giveMeValue2 = (data, key) => {
+  switch (key) {
+    case "confirmEmail":
+      return data.email;
+    case "confirmPassword":
+      return data.password;
+    case "privacy":
+      return currentPrivacy;
+    case "tos":
+      return currentTos;
+    default:
+      return null;
+  }
+};
 
-  if (!isLogin && email !== confirmEmail) return "email " + matchFail;
+const authValidator = (path, data, caller) => {
+  const errors = {};
+  let error = false;
+  const dataKeys = Object.keys(data);
 
-  const { password, confirmPassword, privacy, tos } = data;
+  const objChecker = {
+    func: null,
+    value1: null,
+    key: null,
+    backend: caller === "backend",
+    value2: null,
+  };
+  const isLogin = path === "/login";
+  const loginArray = ["username", "password"];
 
-  const validPassword = passwordValidator(password);
+  for (let i = 0; i < dataKeys.length; i++) {
+    const key = dataKeys[i];
+    if (isLogin && !loginArray.includes(key)) continue;
+    objChecker.func = giveMeValidator(key);
+    objChecker.value1 = data[key];
+    objChecker.value2 = giveMeValue2(data, key);
+    objChecker.key = key;
+    const checkDatum = checker(objChecker, errors);
+    error = error ? error : checkDatum.error;
+    if (checkDatum.exit) break;
+  }
 
-  if (validPassword.error) return validPassword.errorArray;
-
-  if (!isLogin && password !== confirmPassword) return "password " + matchFail;
-
-  if (!isLogin && privacy !== currentPrivacy) return "invalid privacy policy";
-
-  if (!isLogin && tos !== currentTos) return "invalid tos";
-
-  return false;
+  const elementToReturn = objChecker.backend ? error : errors;
+  return { error, errors: elementToReturn };
 };
 
 export default authValidator;
