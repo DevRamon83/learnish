@@ -27,7 +27,6 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/user" element={<PrivateRoutes />}>
           <Route path="/user/dashboard/:id" element={<Dashboard />} />
-          {/* Altre rotte future: /user/profile, /user/settings */}
         </Route>
       </Routes>
     </>
