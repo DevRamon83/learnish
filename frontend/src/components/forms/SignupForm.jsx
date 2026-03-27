@@ -32,6 +32,7 @@ export default function SignupForm() {
     const data = Object.fromEntries(formData.entries());
     if (!data) return;
     const response = await fetchSignup(data);
+    dispatch(setAuth("pending"));
     if (!response.error) {
       setErrorRes(response.errorMessage);
     } else {
@@ -42,7 +43,7 @@ export default function SignupForm() {
 
   useEffect(() => {
     userData && dispatch(setUser(userData));
-    userData && dispatch(setAuth(true));
+    userData && dispatch(setAuth("authenticated"));
   }, [userData]);
 
   return (

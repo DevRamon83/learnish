@@ -1,29 +1,25 @@
-import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import fetchAuth from "../api/handlers.js/fetchAuth";
 import { setAuth, setUser } from "../redux/slices/authSlice";
 
-export const useAuth = (dashboard) => {
-  const [data, setData] = useState(null);
-  const [isAuth, setIsAuth] = useState(false);
+export const useAuth = () => {
+  const authRedux = useSelector((state) => state.auth.authState);
   const dispatch = useDispatch();
 
   const fetch = async () => {
     const response = await fetchAuth();
     if (response.error) {
-      setData(null);
+      dispatch(setAuth("unauthenticated"));
     } else {
-      setData(response);
-      setIsAuth(true);
+      dispatch(setUser(response));
+      dispatch(setAuth("authenticated"));
     }
   };
 
   useEffect(() => {
-    if (!dashboard) fetch();
+    fetch();
   }, []);
 
-  useEffect(() => {
-    dispatch(setUser(data));
-    dispatch(setAuth(isAuth));
-  }, [isAuth]);
+  return authRedux;
 };

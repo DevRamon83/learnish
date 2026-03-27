@@ -27,6 +27,8 @@ export default function LoginForm() {
     e.preventDefault();
     const formData = new FormData(formRef.current);
     const data = Object.fromEntries(formData.entries());
+    // validation must be implemented
+    dispatch(setAuth("pending"));
     if (!data) return;
     const response = await fetchLogin(data);
     if (!response.error) {
@@ -35,9 +37,9 @@ export default function LoginForm() {
   };
 
   useEffect(() => {
-    userData && navigate(`/dashboard/${userData.id}`);
+    userData && navigate(`/user/dashboard/${userData.id}`);
     userData && dispatch(setUser(userData));
-    userData && dispatch(setAuth(true));
+    userData && dispatch(setAuth("authenticated"));
   }, [userData]);
 
   return (
