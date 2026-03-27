@@ -3,7 +3,7 @@ import {
   passwordValidator,
   usernameValidator,
 } from "ramon-vanilla";
-import constants from "../constants";
+import { currentPrivacy, currentTos } from "../constants/atomicConstants.js";
 
 const authValidator = (caller, data) => {
   const { username, email, confirmEmail } = data;
@@ -28,10 +28,9 @@ const authValidator = (caller, data) => {
 
   if (!isLogin && password !== confirmPassword) return "password " + matchFail;
 
-  if (!isLogin && privacy !== constants.currentPrivacy)
-    return "invalid privacy policy";
+  if (!isLogin && privacy !== currentPrivacy) return "invalid privacy policy";
 
-  if (!isLogin && tos !== constants.currentTos) return "invalid tos";
+  if (!isLogin && tos !== currentTos) return "invalid tos";
 
   return false;
 };
