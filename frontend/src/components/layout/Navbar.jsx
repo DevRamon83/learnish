@@ -4,13 +4,23 @@ import { NavLink } from "react-router-dom";
 import { usePersonalSettings } from "../../hooks/usePersonalSettings";
 import { useDashboardLink } from "../../hooks/useDashboardLink";
 import { useAuth } from "../../hooks/useAuth";
+import fetchLogout from "../../api/handlers.js/fetchLogout";
 
 export default function Navbar() {
   const { container, btn, logo } = classes;
 
-  const dashboard = useDashboardLink();
+  const { dashboardLink, setDashboardLink } = useDashboardLink();
   usePersonalSettings();
-  useAuth(dashboard);
+  useAuth(dashboardLink);
+
+  const logoutHandler = async () => {
+    const response = await fetchLogout();
+    if (response.error) {
+      console.error(response.errorMsg);
+    } else {
+      setDashboardLink(null);
+    }
+  };
 
   return (
     <>
@@ -24,10 +34,15 @@ export default function Navbar() {
         <NavLink to="/signup" className={btn}>
           signup
         </NavLink>
-        {dashboard && (
-          <NavLink to={dashboard} className={btn}>
-            dashboard
-          </NavLink>
+        {dashboardLink && (
+          <>
+            <NavLink to={dashboardLink} className={btn}>
+              dashboardLink
+            </NavLink>
+            <NavLink onClick={logoutHandler} to="/" className={btn}>
+              logout
+            </NavLink>
+          </>
         )}
       </nav>
     </>

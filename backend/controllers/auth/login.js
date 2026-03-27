@@ -18,8 +18,13 @@ const login = async (req, res) => {
 
     if (!match) {
       const log = false;
-      return handleErrorResponse(res, req, "invalidPsw", 500, log);
+      return handleErrorResponse(res, req, "invalidPsw", 401, log);
     }
+
+    const { tokensRevoked } = req.context;
+    tokensRevoked.delete(user.username);
+    user.isRevoked = false;
+    await user.save();
 
     const configData = { username: user.username, id: user._id };
     const { accessConfig, refreshConfig } = createTokenConfigs(configData);

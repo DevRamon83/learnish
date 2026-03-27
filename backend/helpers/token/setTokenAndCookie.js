@@ -1,3 +1,4 @@
+import { cookieSettings } from "../../constants/atomics.js";
 import createToken from "./createToken.js";
 
 const setTokenAndCookie = async (res, dataConfig) => {
@@ -5,17 +6,11 @@ const setTokenAndCookie = async (res, dataConfig) => {
 
   const token = createToken(username, id, expiresIn);
 
-  const cookieConfig = {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "prod",
-    sameSite: "Strict",
-  };
-
   if (dataConfig.maxAge !== null) {
-    cookieConfig.maxAge = dataConfig.maxAge;
+    cookieSettings.maxAge = dataConfig.maxAge;
   }
 
-  res.cookie(dataConfig.tokenName, token, cookieConfig);
+  res.cookie(dataConfig.tokenName, token, cookieSettings);
 };
 
 export default setTokenAndCookie;

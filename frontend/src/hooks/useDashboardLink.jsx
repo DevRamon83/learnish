@@ -10,5 +10,5 @@ export const useDashboardLink = () => {
     user && setDashboardLink(link);
   }, [user]);
 
-  return dashboardLink;
+  return { dashboardLink, setDashboardLink };
 };
