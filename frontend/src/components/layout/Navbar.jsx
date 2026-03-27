@@ -37,7 +37,7 @@ export default function Navbar() {
         {dashboardLink && (
           <>
             <NavLink to={dashboardLink} className={btn}>
-              dashboardLink
+              dashboard
             </NavLink>
             <NavLink onClick={logoutHandler} to="/" className={btn}>
               logout
