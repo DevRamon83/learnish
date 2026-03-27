@@ -17,6 +17,8 @@ const PORT = process.env.PORT || 4000;
 const tokensRevoked = new Set();
 const ipsBanned = new Set();
 
+// Low-latency security cache. Using native Sets instead of an external Redis
+// instance to avoid network overhead and stay within zero-budget constraints.
 const securityCache = {
   tokensRevoked,
   ipsBanned,
