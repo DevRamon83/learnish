@@ -3,8 +3,10 @@ const defineErrorMsg = (errorObj) => {
   return errorObj.errorMsg;
 };
 
-export const onChangeErrorGenerator = (input) => {
+const authErrorHandler = (input) => {
   if (input.onChange?.error) return defineErrorMsg(input.onChange);
 
   return null;
 };
+
+export default authErrorHandler;

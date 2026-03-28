@@ -1,5 +1,12 @@
 import bundle from "shared";
-import { usernameOnBlur, usernameOnChange } from "../funcs/signup";
+import {
+  emailMatch,
+  emailOnBlur,
+  pswMatch,
+  pswOnBlur,
+  usernameOnBlur,
+  usernameOnChange,
+} from "../funcs/auth";
 
 const username = {
   id: "username",
@@ -7,7 +14,7 @@ const username = {
   placeholder: null,
   label: null,
   required: true,
-  onChange: null,
+  onChange: usernameOnChange,
   onBlur: null,
 };
 
@@ -17,6 +24,7 @@ const email = {
   placeholder: null,
   label: null,
   required: true,
+  onBlur: emailOnBlur,
 };
 
 const confirmEmail = {
@@ -25,6 +33,7 @@ const confirmEmail = {
   placeholder: null,
   label: null,
   required: true,
+  onBlur: emailMatch,
 };
 
 const password = {
@@ -33,6 +42,7 @@ const password = {
   placeholder: null,
   label: null,
   required: true,
+  onBlur: pswOnBlur,
 };
 
 const confirmPassword = {
@@ -41,6 +51,7 @@ const confirmPassword = {
   placeholder: null,
   label: null,
   required: true,
+  onBlur: pswMatch,
 };
 
 const { constants } = bundle;
@@ -65,38 +76,30 @@ const tos = {
   required: true,
 };
 
-const authConfigBuilder = (strings, process) => {
-  username.label = strings.labels.username;
-  email.label = strings.labels.email;
-  confirmEmail.label = strings.labels.confirmEmail;
-  password.label = strings.labels.password;
-  confirmPassword.label = strings.labels.confirmPassword;
-  username.placeholder = strings.placeholders.username;
-  email.placeholder = strings.placeholders.email;
-  confirmEmail.placeholder = strings.placeholders.confirmEmail;
-  password.placeholder = strings.placeholders.password;
-  confirmPassword.placeholder = strings.placeholders.confirmPassword;
+const loginElements = [username, password];
+const signupElements = [email, confirmEmail, confirmPassword];
 
+const syncLang = (array, strings) => {
+  array.forEach((element) => {
+    const id = element.id;
+    element.label = strings.labels[id];
+    element.placeholder = strings.placeholders[id];
+  });
+};
+
+const authConfigBuilder = (strings, process) => {
+  syncLang(loginElements, strings);
   let array = [];
 
   if (process === "signup") {
-    username.onChange = usernameOnChange;
+    syncLang(signupElements, strings);
     username.onBlur = usernameOnBlur;
-    array = [
-      username,
-      email,
-      confirmEmail,
-      password,
-      confirmPassword,
-      privacy,
-      tos,
-    ];
+    array = [...loginElements, ...signupElements, privacy, tos];
   }
 
   if (process === "login") {
-    username.onChange = null;
     username.onBlur = null;
-    array = [username, password];
+    array = [...loginElements];
   }
 
   return {

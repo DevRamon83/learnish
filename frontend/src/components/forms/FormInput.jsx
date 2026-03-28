@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { onChangeErrorGenerator } from "./signupErrorHandler";
+import authErrorHandler from "./authErrorHandler";
 
 export default function FormInput({ Element, data, lang }) {
-  let error = onChangeErrorGenerator(data.returns);
+  let error = authErrorHandler(data.returns);
   const [onBlurError, setOnBlurError] = useState(null);
 
   if (data.state.value === "") {
@@ -18,6 +18,8 @@ export default function FormInput({ Element, data, lang }) {
         const onBlur = resolvedValue.error ? resolvedValue.errorMsg : null;
         setOnBlurError(onBlur);
       });
+    } else if (result && result.error) {
+      setOnBlurError(result.errorMsg);
     }
   }, [data.returns?.onBlur]);
 
