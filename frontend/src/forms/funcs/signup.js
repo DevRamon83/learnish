@@ -1,6 +1,11 @@
 import bundle from "shared";
+import fetchUnique from "../../api/handlers.js/fetchUnique";
 const { usernameValidator, acceptOnly } = bundle;
-export const usernameOnBlur = (string, id) => {
+
+export const usernameOnBlur = async (string, id) => {
+  const data = { key: id, value: string };
+  const isUnique = await fetchUnique(data);
+  if (isUnique.error) return { error: true, errorMsg: "notUnique" };
   return usernameValidator(string);
 };
 

@@ -1,4 +1,4 @@
-import bundle from "../../../../shared";
+import bundle from "shared";
 import { usernameOnBlur, usernameOnChange } from "../funcs/signup";
 
 const username = {
@@ -6,9 +6,9 @@ const username = {
   type: "text",
   placeholder: null,
   label: null,
-  required: false,
-  onChange: usernameOnChange,
-  onBlur: false,
+  required: true,
+  onChange: null,
+  onBlur: null,
 };
 
 const email = {
@@ -65,7 +65,7 @@ const tos = {
   required: true,
 };
 
-export const signupConfigBuilder = (strings) => {
+const authConfigBuilder = (strings, process) => {
   username.label = strings.labels.username;
   email.label = strings.labels.email;
   confirmEmail.label = strings.labels.confirmEmail;
@@ -77,19 +77,33 @@ export const signupConfigBuilder = (strings) => {
   password.placeholder = strings.placeholders.password;
   confirmPassword.placeholder = strings.placeholders.confirmPassword;
 
-  const signup = [
-    username,
-    email,
-    confirmEmail,
-    password,
-    confirmPassword,
-    privacy,
-    tos,
-  ];
+  let array = [];
+
+  if (process === "signup") {
+    username.onChange = usernameOnChange;
+    username.onBlur = usernameOnBlur;
+    array = [
+      username,
+      email,
+      confirmEmail,
+      password,
+      confirmPassword,
+      privacy,
+      tos,
+    ];
+  }
+
+  if (process === "login") {
+    username.onChange = null;
+    username.onBlur = null;
+    array = [username, password];
+  }
 
   return {
-    configArray: signup,
+    configArray: array,
     isAsync: false,
     i18n: true,
   };
 };
+
+export default authConfigBuilder;

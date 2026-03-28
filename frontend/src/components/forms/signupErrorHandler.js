@@ -3,11 +3,8 @@ const defineErrorMsg = (errorObj) => {
   return errorObj.errorMsg;
 };
 
-export const errorGenerator = (input) => {
+export const onChangeErrorGenerator = (input) => {
   if (input.onChange?.error) return defineErrorMsg(input.onChange);
-  if (input.onBlur?.error) return defineErrorMsg(input.onBlur);
-  if (input.onFocus?.error) return defineErrorMsg(input.onFocus);
-  if (input.onKeyDown?.error) return defineErrorMsg(input.onKeyDown);
 
   return null;
 };

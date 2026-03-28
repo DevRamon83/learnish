@@ -1,12 +1,37 @@
-import { errorGenerator } from "../components/forms/signupErrorHandler";
+import { useEffect, useState } from "react";
+import { onChangeErrorGenerator } from "./signupErrorHandler";
 
 export default function FormInput({ Element, data, lang }) {
-  const error = errorGenerator(data.returns);
+  let error = onChangeErrorGenerator(data.returns);
+  const [onBlurError, setOnBlurError] = useState(null);
+
+  if (data.state.value === "") {
+    error = null;
+  }
+
+  useEffect(() => {
+    if (error) return;
+    const result = data.returns.onBlur;
+
+    if (result instanceof Promise) {
+      result.then((resolvedValue) => {
+        const onBlur = resolvedValue.error ? resolvedValue.errorMsg : null;
+        setOnBlurError(onBlur);
+      });
+    }
+  }, [data.returns?.onBlur]);
+
+  useEffect(() => {
+    if (onBlurError) {
+      setOnBlurError(null);
+    }
+  }, [data.returns?.onChange]);
 
   return (
     <div style={{ display: "flex" }}>
       {<Element dataField={data} i18n={lang} />}
       {error && <div>{error}</div>}
+      {onBlurError && <div>{onBlurError}</div>}
     </div>
   );
 }

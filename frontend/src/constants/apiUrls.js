@@ -6,5 +6,6 @@ export const API_URLS = {
     logout: "/logout",
     signup: "/signup",
     check: "/check",
+    isUnique: "/unique",
   },
 };
