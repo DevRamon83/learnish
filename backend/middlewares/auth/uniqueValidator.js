@@ -1,4 +1,4 @@
-import handleErrorResponse from "../../helpers/handleErrorResponse";
+import handleErrorResponse from "../../helpers/handleErrorResponse.js";
 
 const uniqueValidator = (req, res, next) => {
   const { key } = req.body;
