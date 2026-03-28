@@ -14,7 +14,7 @@ const singupValidator = (req, res, next) => {
 
   const invalidData = authValidator(req.path, data);
 
-  if (invalidData) {
+  if (invalidData.error) {
     const log = true;
     return handleErrorResponse(res, req, invalidData, 400, log, ipBann);
   }
