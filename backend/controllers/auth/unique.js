@@ -1,4 +1,3 @@
-import handleErrorResponse from "../../helpers/handleErrorResponse.js";
 import userModel from "../../models/user.js";
 
 const unique = async (req, res) => {
@@ -11,8 +10,8 @@ const unique = async (req, res) => {
       .lean();
     const error = user ? true : false;
     return res.status(200).json({ error });
-  } catch (error) {
-    console.error(error);
+  } catch (err) {
+    console.error(err);
   }
 };
 
