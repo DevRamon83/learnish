@@ -19,6 +19,7 @@ const UserSchema = new Schema(
     tos: { type: String, required: true },
     tosAccepted: { type: Date, required: true, default: Date.now },
     isRevoked: { type: Boolean, required: true, default: false },
+    isBanned: { type: Boolean, required: true, default: false },
   },
   {
     timestamps: true,
