@@ -5,7 +5,7 @@ const dataStandard = (req, res, next) => {
     tokens: {},
     user: {},
     tokensRevoked: cache.tokensRevoked,
-    ipsBanned: cache.ipsBanned,
+    usersBanned: cache.usersBanned,
   };
 
   next();
