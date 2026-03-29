@@ -15,13 +15,13 @@ const MONGO_URI = process.env[`MONGO_URI_${env}`];
 const PORT = process.env.PORT || 4000;
 
 const tokensRevoked = new Set();
-const ipsBanned = new Set();
+const usersBanned = new Set();
 
 // Low-latency security cache. Using native Sets instead of an external Redis
 // instance to avoid network overhead and stay within zero-budget constraints.
 const securityCache = {
   tokensRevoked,
-  ipsBanned,
+  usersBanned,
 };
 
 app.use(
@@ -49,11 +49,11 @@ mongoose
   .connect(MONGO_URI)
 
   .then(async () => {
-    const revokedUsers = await userModel.find(
-      { tokenRevoked: true },
-      "username",
+    const unauthorizedUsers = await userModel.find(
+      { $or: [{ isRevoked: true }, { isBanned: true }] },
+      "username isRevoked isBanned",
     );
-    setPopulator(revokedUsers, tokensRevoked, "username");
+    setPopulator(unauthorizedUsers, tokensRevoked, usersBanned);
 
     app.listen(PORT, () => {
       env === "DEV" && console.log("server running on port ", PORT);
