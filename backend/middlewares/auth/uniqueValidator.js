@@ -6,8 +6,8 @@ const uniqueValidator = (req, res, next) => {
 
   if (!allowed.includes(key)) {
     const log = true;
-    const ipBan = true;
-    return handleErrorResponse(res, req, "invalidCheck", 400, log, ipBan);
+    const userBann = true;
+    return handleErrorResponse(res, req, "invalidCheck", 400, log, userBann);
   }
 
   next();
