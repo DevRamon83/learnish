@@ -1,18 +1,21 @@
 import handleErrorResponse from "../../helpers/handleErrorResponse.js";
+import authContextPopulator from "../../helpers/middleware/authContextPopulator.js";
 import tokenChecker from "../../helpers/middleware/tokenChecker.js";
+import tokenRevoker from "../../services/tokenRevoker.js";
 
-const rtErrorHandler = (data) => {
+const rtErrorHandler = (data, tokensRevoked, username) => {
   const { res, req, errorType, log, userBann } = data;
   if (errorType === "invalidToken") {
-    handleErrorResponse(res, req, errorType, 403, true, true);
+    handleErrorResponse(res, req, errorType, 403, log, userBann);
   } else {
-    handleErrorResponse(res, req, errorType, 401, log, userBann);
+    tokenRevoker(tokensRevoked, username);
+    handleErrorResponse(res, req, errorType, 401, false, userBann);
   }
 };
 
 const tokensValidator = async (req, res, next) => {
-  let log = true;
-  let userBann = true;
+  const log = true;
+  const userBann = false;
   let rotateToken = false;
 
   const accessToken = await tokenChecker(req, "accessToken");
@@ -23,25 +26,19 @@ const tokensValidator = async (req, res, next) => {
   }
 
   const tokensRevoked = req.context.tokensRevoked;
-  const usersBanned = req.context.usersBanned;
-
   const payload = accessToken.payload;
-  if (!payload.username) {
+  const { username, id } = payload;
+
+  const validPayload = authContextPopulator(req, username, id);
+
+  if (validPayload.error) {
+    const errorType = validPayload.errorType;
     return handleErrorResponse(res, req, errorType, 404, log, userBann);
   }
 
-  const username = payload.username;
-
-  if (usersBanned.has(username)) {
-    const errorType = "userBanned";
-    return handleErrorResponse(res, req, errorType, 403, log, userBann);
-  }
-
   if (tokensRevoked.has(username)) {
-    log = false;
-    userBann = false;
     const errorType = "mustLogged";
-    return handleErrorResponse(res, req, errorType, 401, log, userBann);
+    return handleErrorResponse(res, req, errorType, 401, false, userBann);
   }
 
   if (accessToken.error) {
@@ -57,7 +54,7 @@ const tokensValidator = async (req, res, next) => {
   if (refreshToken && refreshToken.error) {
     const errorType = refreshToken.errorType;
     const data = { res, req, errorType, log, userBann };
-    return rtErrorHandler(data);
+    return rtErrorHandler(data, tokensRevoked, username);
   }
 
   req.context.tokens.rotate = rotateToken;

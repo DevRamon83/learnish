@@ -1,22 +1,27 @@
 import handleErrorResponse from "../../helpers/handleErrorResponse.js";
 import bundle from "shared/index.js";
+import authContextPopulator from "../../helpers/middleware/authContextPopulator.js";
 const { authValidator } = bundle.validators;
 
 const singupValidator = (req, res, next) => {
   const data = req.body;
   const log = true;
-  const userBann = true;
+  const userBann = false;
   const errorMsg = "error_noData_signup";
 
   if (!data) {
     return handleErrorResponse(res, req, errorMsg, 400, log, userBann);
   }
 
-  const invalidData = authValidator(req.path, data);
+  const validData = authValidator(req.path, data);
 
-  if (invalidData.error) {
-    const log = true;
-    return handleErrorResponse(res, req, invalidData, 400, log, userBann);
+  if (validData.error) {
+    const msg = validData.errors;
+    return handleErrorResponse(res, req, msg, 400, log, userBann);
+  }
+
+  if (req.path === "/login") {
+    authContextPopulator(req, data.username, "signup");
   }
 
   next();
