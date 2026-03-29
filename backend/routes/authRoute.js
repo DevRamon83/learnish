@@ -8,12 +8,13 @@ import tokensValidator from "../middlewares/auth/tokensValidator.js";
 import logout from "../controllers/auth/logout.js";
 import unique from "../controllers/auth/unique.js";
 import uniqueValidator from "../middlewares/auth/uniqueValidator.js";
+import bannedCheck from "../middlewares/auth/bannedCheck.js";
 
 const authRoute = express.Router();
 
 authRoute.post("/signup", dataStandard, singupValidator, createUser);
-authRoute.post("/login", dataStandard, singupValidator, login);
-authRoute.post("/check", dataStandard, tokensValidator, check);
+authRoute.post("/login", dataStandard, singupValidator, bannedCheck, login);
+authRoute.post("/check", dataStandard, tokensValidator, bannedCheck, check);
 authRoute.post("/logout", dataStandard, tokensValidator, logout);
 authRoute.post("/unique", dataStandard, uniqueValidator, unique);
 
