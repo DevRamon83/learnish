@@ -25,7 +25,7 @@ const UserSchema = new Schema(
     timestamps: true,
   },
 );
-
+UserSchema.index({ isRevoked: 1, isBanned: 1 });
 const userModel = mongoose.model("user", UserSchema);
 
 export default userModel;
