@@ -1,2 +1,2 @@
-export const dashboardTab = ["esercizi", "profilo", "opzioni"];
+export const dashboardTab = ["profilo", "esercizi", "opzioni"];
 export const exercisesTab = ["sommario", "correzione", "domande"];
