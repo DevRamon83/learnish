@@ -1,0 +1,40 @@
+#root > nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  gap: 5%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 10vh;
+  width: 100vw;
+  background-color: aliceblue;
+  margin: 0;
+}
+
+footer {
+  width: 100vw;
+  background-color: #303030;
+  color: white;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+}
+
+aside {
+  width: 20%;
+  height: 80vh;
+  position: relative;
+  bottom: 0;
+  left: 0;
+  margin-right: 2%;
+}
+
+main {
+  width: 100vw;
+  position: absolute;
+  top: 10vh;
+  left: 0;
+  display: flex;
+}

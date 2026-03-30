@@ -1,3 +1,7 @@
+@forward "./layout/layout";
 @forward "./layout/reset";
 @forward "./layout/navbar";
-@forward "./layout/auth";
+@forward "./components/auth";
+@forward "./components/dashboard";
+@forward "./layout/btn";
+@forward "./layout/footer";

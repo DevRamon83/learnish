@@ -1,0 +1,11 @@
+.btn__dash {
+  border-bottom: 1px solid black;
+  cursor: pointer;
+}
+
+.btn__dash-active {
+  @extend .btn__dash;
+  background-color: black;
+  color: white;
+  font-weight: bold;
+}
