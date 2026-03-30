@@ -22,10 +22,26 @@ const UserSchema = new Schema(
     isBanned: { type: Boolean, required: true, default: false },
   },
   {
+    discriminatorKey: "userType",
     timestamps: true,
   },
 );
+
 UserSchema.index({ isRevoked: 1, isBanned: 1 });
 const userModel = mongoose.model("user", UserSchema);
 
-export default userModel;
+const Student = userModel.discriminator(
+  "student",
+  new Schema({
+    shareErrors: { type: Boolean, required: true, default: true },
+  }),
+);
+
+const Teacher = userModel.discriminator(
+  "teacher",
+  new Schema({
+    freeTrial: { type: Boolean, required: true, default: true },
+  }),
+);
+
+export { userModel, Student, Teacher };

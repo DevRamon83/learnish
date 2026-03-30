@@ -4,7 +4,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import mongoose from "mongoose";
 import authRoute from "./routes/authRoute.js";
-import userModel from "./models/user.js";
+import { userModel } from "./models/user.js";
 import { setPopulator } from "./utils/atomicUtils.js";
 
 const app = express();

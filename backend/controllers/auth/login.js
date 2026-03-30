@@ -1,4 +1,4 @@
-import userModel from "../../models/user.js";
+import { userModel } from "../../models/user.js";
 import argon2 from "argon2";
 import createTokenConfigs from "../../helpers/token/createTokenConfigs.js";
 import setTokenAndCookie from "../../helpers/token/setTokenAndCookie.js";

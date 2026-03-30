@@ -1,6 +1,6 @@
 import { cookieSettings } from "../../constants/atomics.js";
 import handleErrorResponse from "../../helpers/handleErrorResponse.js";
-import userModel from "../../models/user.js";
+import { userModel } from "../../models/user.js";
 
 const logout = async (req, res) => {
   try {

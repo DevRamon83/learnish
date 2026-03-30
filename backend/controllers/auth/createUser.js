@@ -1,8 +1,9 @@
+import defineModel from "../../helpers/controller/defineModel.js";
 import handleErrorResponse from "../../helpers/handleErrorResponse.js";
 import isUnique from "../../helpers/isUnique.js";
 import createTokenConfigs from "../../helpers/token/createTokenConfigs.js";
 import setTokenAndCookie from "../../helpers/token/setTokenAndCookie.js";
-import userModel from "../../models/user.js";
+import { userModel } from "../../models/user.js";
 import argon2 from "argon2";
 
 const createUser = async (req, res) => {
@@ -29,7 +30,9 @@ const createUser = async (req, res) => {
       tos: data.tos,
     };
 
-    const user = await userModel.create(userObj);
+    const model = defineModel(data);
+
+    const user = await model.create(userObj);
     const configData = { username: user.username, id: user._id };
     const { accessConfig, refreshConfig } = createTokenConfigs(configData);
 
