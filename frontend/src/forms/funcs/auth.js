@@ -21,7 +21,7 @@ export const pswOnBlur = (string, id) => {
     const errorMsg = isValid.errorArray[0];
     return { error: true, errorMsg };
   }
-  return null;
+  return { error: false };
 };
 
 export const emailOnBlur = (string, id) => {
@@ -30,7 +30,7 @@ export const emailOnBlur = (string, id) => {
     const errorMsg = isValid.errorArray[0];
     return { error: true, errorMsg };
   }
-  return null;
+  return { error: false };
 };
 
 export const usernameOnChange = (string, id) => {
