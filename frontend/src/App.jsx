@@ -1,5 +1,3 @@
-import "./App.css";
-import "./styles/Main.scss";
 import Navbar from "./components/layout/Navbar";
 import { Navigate, Outlet, Route, Routes } from "react-router-dom";
 import Home from "./pages/HomePage";
@@ -7,6 +5,7 @@ import Login from "./pages/LoginPage";
 import Signup from "./pages/SignupPage";
 import Dashboard from "./pages/Dashboard";
 import { useAuth } from "./hooks/useAuth";
+import Footer from "./components/layout/Footer";
 
 function App() {
   const PrivateRoutes = () => {
@@ -29,6 +28,7 @@ function App() {
           <Route path="/user/dashboard/:id" element={<Dashboard />} />
         </Route>
       </Routes>
+      <Footer />
     </>
   );
 }
