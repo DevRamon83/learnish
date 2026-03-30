@@ -10,6 +10,7 @@ export default function FormInput({ Element, data, lang }) {
   }
 
   useEffect(() => {
+    setOnBlurError(null);
     if (error) return;
     const result = data.returns.onBlur;
 
