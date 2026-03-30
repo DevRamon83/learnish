@@ -1,20 +1,29 @@
 import handleErrorResponse from "../../helpers/handleErrorResponse.js";
-import authContextPopulator from "../../helpers/middleware/authContextPopulator.js";
+import analyzePayload from "../../helpers/middleware/analyzePayload.js";
 import tokenChecker from "../../helpers/middleware/tokenChecker.js";
 import tokenRevoker from "../../services/tokenRevoker.js";
 
-const rtErrorHandler = (data, tokensRevoked, username) => {
-  const { res, req, errorType, log, userBann } = data;
+const rtErrorHandler = (data, tokensRevoked) => {
+  const { res, req, errorType, log, userBann, refreshToken } = data;
+  let username = null;
+
+  if (refreshToken.payload.username) {
+    username = refreshToken.payload.username;
+  }
+
   if (errorType === "invalidToken") {
     handleErrorResponse(res, req, errorType, 403, log, userBann);
-  } else {
-    tokenRevoker(tokensRevoked, username);
-    handleErrorResponse(res, req, errorType, 401, false, userBann);
   }
+
+  if (username) {
+    tokenRevoker(tokensRevoked, username);
+  }
+
+  handleErrorResponse(res, req, errorType, 401, false, userBann);
 };
 
 const tokensValidator = async (req, res, next) => {
-  const log = true;
+  let log = true;
   const userBann = false;
   let rotateToken = false;
 
@@ -26,21 +35,17 @@ const tokensValidator = async (req, res, next) => {
   }
 
   const tokensRevoked = req.context.tokensRevoked;
-  const payload = accessToken.payload;
-  const { username, id } = payload;
 
-  const validPayload = authContextPopulator(req, username, id);
+  const accesPayload = analyzePayload(req, accessToken, "at", tokensRevoked);
 
-  if (validPayload.error) {
-    const errorType = validPayload.errorType;
-    return handleErrorResponse(res, req, errorType, 404, log, userBann);
+  if (accesPayload.exit) {
+    const errorType = accesPayload.errorType;
+    const status = accesPayload.status;
+    log = status === 401 ? false : log;
+    return handleErrorResponse(res, req, errorType, status, log, userBann);
   }
 
-  if (tokensRevoked.has(username)) {
-    const errorType = "mustLogged";
-    return handleErrorResponse(res, req, errorType, 401, false, userBann);
-  }
-
+  // If accessToken is not invalid, then it is expired
   if (accessToken.error) {
     rotateToken = true;
   }
@@ -53,9 +58,16 @@ const tokensValidator = async (req, res, next) => {
 
   if (refreshToken && refreshToken.error) {
     const errorType = refreshToken.errorType;
-    const data = { res, req, errorType, log, userBann };
-    return rtErrorHandler(data, tokensRevoked, username);
+    const data = { res, req, errorType, log, userBann, refreshToken };
+    rtErrorHandler(data, tokensRevoked);
+    return;
   }
+
+  // Errors already handled; populate user context if accessToken has expired
+  // No need to handle the analyzePayload return
+  refreshToken && analyzePayload(req, refreshToken, "rt", tokensRevoked);
+
+  const payload = accessToken.payload || refreshToken.payload;
 
   req.context.tokens.rotate = rotateToken;
   req.context.tokens.payload = payload;
