@@ -2,7 +2,7 @@ import handleErrorResponse from "../../helpers/handleErrorResponse.js";
 
 const bannedCheck = (req, res, next) => {
   const usersBanned = req.context.usersBanned;
-  const username = req.context.authContext.username;
+  const username = req.context.auth.username;
   const log = true;
   const userBann = false;
 
