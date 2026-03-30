@@ -1,11 +1,11 @@
 import { useLang } from "../hooks/useLang";
 
 export default function Home() {
-  const strings = useLang("pages.homepage");
+  const { strings } = useLang("pages.homepage");
 
   return (
-    <>
-      <main>{strings?.welcome}</main>
-    </>
+    <main>
+      <p>{strings.welcome}</p>
+    </main>
   );
 }
