@@ -1,5 +1,4 @@
-import { exercisesTab } from "../../constants/dashboard";
-import { classes } from "../../constants/layout/dashboard";
+import { classes, exercisesTab } from "../../constants/layout/dashboard";
 
 export default function ExercisesMenu({ exercise, setExercise }) {
   return (

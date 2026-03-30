@@ -1,5 +1,4 @@
-import { dashboardTab } from "../../constants/dashboard";
-import { classes } from "../../constants/layout/dashboard";
+import { classes, dashboardTab } from "../../constants/layout/dashboard";
 
 export default function TabMenu({ tabMenu, setTabMenu }) {
   return (
