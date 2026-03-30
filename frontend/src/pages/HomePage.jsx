@@ -5,7 +5,7 @@ export default function Home() {
 
   return (
     <>
-      <div>{strings?.welcome}</div>
+      <main>{strings?.welcome}</main>
     </>
   );
 }
