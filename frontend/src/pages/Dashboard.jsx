@@ -12,7 +12,7 @@ export default function Dashboard() {
           <TabMenu tabMenu={tabMenu} setTabMenu={setTabMenu} />
         </nav>
       </aside>
-      {tabMenu === "esercizi" && <Exercises />}
+      <div className="dashboard">{tabMenu === "esercizi" && <Exercises />}</div>
     </main>
   );
 }

@@ -10,7 +10,7 @@ import { useDispatch } from "react-redux";
 import { setAuth, setUser } from "../../redux/slices/authSlice";
 import bundle from "shared";
 import finalizeAuth from "../../utils/finalizeAuth";
-import ErrorOnSubmit from "./ErrorOnSubmit";
+import ErrorOnSubmit from "../ErrorOnSubmit";
 const { authValidator } = bundle.validators;
 
 export default function LoginForm() {

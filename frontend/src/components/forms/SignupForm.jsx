@@ -13,10 +13,10 @@ import fetchSignup from "../../api/handlers.js/fetchSignup";
 import { useState, useRef } from "react";
 import bundle from "shared";
 import finalizeAuth from "../../utils/finalizeAuth";
-import ErrorOnSubmit from "./ErrorOnSubmit";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setAuth, setUser } from "../../redux/slices/authSlice";
+import ErrorOnSubmit from "../ErrorOnSubmit";
 const { authValidator } = bundle.validators;
 
 export default function SignupForm() {
