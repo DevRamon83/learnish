@@ -6,6 +6,7 @@ import mongoose from "mongoose";
 import authRoute from "./routes/authRoute.js";
 import { userModel } from "./models/user.js";
 import { setPopulator } from "./utils/atomicUtils.js";
+import dashboardRoute from "./routes/dashboardRoute.js";
 
 const app = express();
 
@@ -44,6 +45,7 @@ app.use(cookieParser());
 app.set("securityCache", securityCache);
 
 app.use("/api/auth", authRoute);
+app.use("/api/dashboard", dashboardRoute);
 
 mongoose
   .connect(MONGO_URI)
