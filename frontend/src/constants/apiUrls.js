@@ -8,4 +8,9 @@ export const API_URLS = {
     check: "/check",
     isUnique: "/unique",
   },
+  dashboard: {
+    base: "/dashboard",
+    summaries: "/summariesList",
+    summary: "/newSummary",
+  },
 };
