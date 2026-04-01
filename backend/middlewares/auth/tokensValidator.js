@@ -5,18 +5,9 @@ import tokenRevoker from "../../services/tokenRevoker.js";
 
 const rtErrorHandler = (data, tokensRevoked) => {
   const { res, req, errorType, log, userBann, refreshToken } = data;
-  let username = null;
-
-  if (refreshToken.payload.username) {
-    username = refreshToken.payload.username;
-  }
 
   if (errorType === "invalidToken") {
     handleErrorResponse(res, req, errorType, 403, log, userBann);
-  }
-
-  if (username) {
-    tokenRevoker(tokensRevoked, username);
   }
 
   handleErrorResponse(res, req, errorType, 401, false, userBann);
