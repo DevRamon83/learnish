@@ -1,10 +1,42 @@
 import { validateYoutubeUrl } from "ramon-vanilla";
+import { langsArray } from "../constants/atomicConstants.js";
 
-const summaryValidator = (url) => {
-  const idVideo = validateYoutubeUrl(url);
-  if (idVideo.error) return { error: true, errorMsg: "invalid url" };
+const summaryValidator = (obj) => {
+  let validYoutube = true;
+  let hasHTML = false;
+  const { youtube, summary, lang, caller } = obj;
+  if (!youtube) return { error: true, errorMsg: "missing youtube url" };
 
-  return { error: false, idVideo: idVideo.videoID };
+  if (caller === "frontend") {
+    validYoutube = validateYoutubeUrl(youtube);
+    const doc = new DOMParser().parseFromString(summary, "text/html");
+    hasHTML = doc.body.children.length > 0;
+  } else if (typeof youtube !== "string" || youtube.length !== 11) {
+    validYoutube = false;
+  }
+
+  if (hasHTML) return { error: true, errorMsg: "invalid summary" };
+
+  if (validYoutube.error) return { error: true, errorMsg: "invalid url" };
+
+  if (!summary) return { error: true, errorMsg: "missing summary" };
+
+  if (!lang) return { error: true, errorMsg: "missing lang" };
+
+  if (!langsArray.includes(lang))
+    return { error: true, errorMsg: "invalid lang" };
+
+  if (typeof summary !== "string" || summary.trim() === "") {
+    return { error: true, errorMsg: "invalid summary" };
+  }
+
+  if (summary.split(" ").length > 500 || summary.length > 5000) {
+    return { error: true, errorMsg: "oversize summary" };
+  }
+
+  const idVideo = validYoutube.videoID || null;
+
+  return { error: false, idVideo };
 };
 
 export default summaryValidator;
