@@ -47,8 +47,8 @@ const newSummary = async (req, res) => {
       owner: id,
     };
 
-    await summaryModel.create(data);
-    return res.status(200).json({ error: false });
+    const mySummary = await summaryModel.create(data);
+    return res.status(200).json({ error: false, summaryId: mySummary._id });
   } catch (err) {
     console.error("Error in login:", err);
     return handleErrorResponse(res, req, err.message, 500, log);
