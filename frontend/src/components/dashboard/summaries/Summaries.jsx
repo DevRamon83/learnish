@@ -1,11 +1,12 @@
 import { useState } from "react";
 import fetchSummaries from "../../../api/handlers.js/fetchSummaries";
 import { useEffect } from "react";
-import NewSummary from "./NewSummary";
+import SummaryCard from "../../../ui/SummaryCard";
 
 export default function Summaries() {
   const [summaries, setSummaries] = useState(null);
   const [panel, setPanel] = useState(null);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -16,6 +17,7 @@ export default function Summaries() {
         // handle error
         return;
       }
+      console.log("data ", data);
       setSummaries(data);
     };
 
@@ -35,7 +37,12 @@ export default function Summaries() {
             <p>Nessun sommario</p>
           ) : (
             summaries.map((summary) => (
-              <div key={summary.id}>{summary.title}</div>
+              <SummaryCard
+                key={summary._id}
+                summary={summary}
+                open={open}
+                setter={setOpen}
+              />
             ))
           )}
         </>
