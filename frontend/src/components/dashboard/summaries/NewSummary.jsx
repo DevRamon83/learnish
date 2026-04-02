@@ -23,26 +23,36 @@ export default function NewSummary({ panel, setPanel }) {
       setError("there is no data");
       return { error: true };
     }
-    const isValidUrl = summaryValidator(data.youtube);
-    if (isValidUrl.error) {
+    const { youtube, summary } = data;
+    const objValidator = { youtube, summary, lang, caller: "frontend" };
+
+    const validData = summaryValidator(objValidator);
+    if (validData.error) {
       setError("invalid url");
-      return { error: true };
+      return { error: true, errorMsg: validData.errorMsg };
     }
 
-    return { error: false, idVideo: isValidUrl.idVideo, summary: data.summary };
+    return { error: false, idVideo: validData.idVideo, summary: data.summary };
   };
 
   const submitHandler = async (e) => {
     e.preventDefault();
     const formData = new FormData(formRef.current);
     const data = Object.fromEntries(formData.entries());
+
     const isValidData = validate(data);
-    if (isValidData.error) return;
+
+    if (isValidData.error) {
+      // error handler
+      return;
+    }
     const dataObj = {
       idVideo: isValidData.idVideo,
       summary: isValidData.summary,
+      lang,
     };
     const newSummary = await fetchNewSummaries(dataObj);
+    console.log("fetch ", newSummary);
   };
   return (
     <>
