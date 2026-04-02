@@ -5,8 +5,9 @@ const summariesList = async (req, res) => {
   const log = false;
   try {
     const userId = req.context.auth.id;
-    if (userId) {
-      // logga
+    if (!userId) {
+      const errorMsg = "missing username in summaries list";
+      return handleErrorResponse(res, req, errorMsg, 422, true);
     }
 
     const userSummaries = await summaryModel.find({ owner: userId }).lean();
