@@ -28,7 +28,7 @@ const UserSchema = new Schema(
 );
 
 UserSchema.index({ isRevoked: 1, isBanned: 1 });
-const userModel = mongoose.model("user", UserSchema);
+const userModel = mongoose.model("User", UserSchema);
 
 const Student = userModel.discriminator(
   "student",

@@ -13,6 +13,6 @@ const LogSchema = new Schema(
   { timestamps: true },
 );
 
-const logModel = mongoose.model("log", LogSchema);
+const logModel = mongoose.model("Log", LogSchema);
 
 export default logModel;
