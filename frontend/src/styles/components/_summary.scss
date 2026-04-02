@@ -60,3 +60,52 @@
   border-radius: 5px;
   border: 1px solid #000;
 }
+
+.summary__card {
+  background-color: aliceblue;
+  border: 1px solid black;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 25%;
+}
+
+.summary__card-img {
+  width: 100%;
+}
+
+.summary__read {
+  border: 1px solid #000;
+  border-bottom: 0;
+  border-right: 0;
+  border-radius: 5px 0 0 0;
+  width: fit-content;
+  padding: 0 5%;
+  height: 3vh;
+  float: right;
+  text-align: right;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  margin: 0;
+  cursor: pointer;
+}
+
+.summary__date {
+  margin-right: 25px;
+}
+
+.summary__title {
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 1vh 0 0 0;
+}
+
+.summary__channel {
+  font-weight: bold;
+  opacity: 0.7;
+  text-align: center;
+  padding: 0 0 1vh 0;
+  color: #303030;
+}
