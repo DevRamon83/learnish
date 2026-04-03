@@ -23,6 +23,7 @@ const SummarySchema = new Schema(
     },
     errorCodes: { type: [String] },
     shared: { type: Boolean, required: true },
+    misalignment: { type: Boolean, required: true, default: false },
     owner: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "user",
