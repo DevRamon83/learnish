@@ -1,4 +1,4 @@
-import logModel from "../models/log.js";
+import logModel from "../models/logs/log.js";
 
 const logWriter = async (data) => {
   try {
