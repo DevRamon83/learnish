@@ -1,4 +1,4 @@
-import summaryModel from "../models/summaries";
+import summaryModel from "../models/summaries.js";
 
 const misalignmentHandler = async (id) => {
   try {

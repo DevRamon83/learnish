@@ -1,8 +1,7 @@
 import handleErrorResponse from "../../helpers/handleErrorResponse.js";
 import getVideoMetadata from "../../services/getVideoMetadata.js";
 import summaryModel from "../../models/summaries.js";
-import doCorrections from "../../helpers/ai/doCorrections.js";
-
+import doCorrections from "../../services/doCorrections.js";
 const newSummary = async (req, res) => {
   const log = false;
   let mySummary = null;

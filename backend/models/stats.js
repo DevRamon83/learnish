@@ -22,4 +22,6 @@ const StatsSchema = new Schema(
 
 StatsSchema.index({ userId: 1, year: 1, month: 1 }, { unique: true });
 
-export const Stats = mongoose.model("Stat", StatsSchema);
+const statsModel = mongoose.model("Stat", StatsSchema);
+
+export default statsModel;
