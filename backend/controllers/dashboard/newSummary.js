@@ -1,19 +1,13 @@
 import handleErrorResponse from "../../helpers/handleErrorResponse.js";
 import getVideoMetadata from "../../services/getVideoMetadata.js";
 import getAiCorrection from "../../services/getAiCorrection.js";
-import { userModel } from "../../models/user.js";
 import summaryModel from "../../models/summaries.js";
 
 const newSummary = async (req, res) => {
   const log = false;
 
   try {
-    const { id } = req.context.auth;
-
-    const user = await userModel
-      .findOne({ _id: id })
-      .select("shareErrors")
-      .lean();
+    const { id, shared } = req.context.auth;
 
     const { summary, idVideo, lang } = req.body;
 
@@ -43,7 +37,7 @@ const newSummary = async (req, res) => {
       aiText: resp.data.text,
       mistakes,
       errorCodes: errors,
-      shared: user.shareErrors,
+      shared,
       owner: id,
     };
 
