@@ -3,6 +3,7 @@ import fetchSummaries from "../../../api/handlers.js/fetchSummaries";
 import { useEffect } from "react";
 import SummaryCard from "../../../ui/SummaryCard";
 import FetchObserver from "../../../api/FetchObserver";
+import NewSummary from "./NewSummary";
 
 export default function Summaries() {
   const [summaries, setSummaries] = useState(null);
