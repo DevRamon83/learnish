@@ -1,15 +1,18 @@
 import handleErrorResponse from "../../helpers/handleErrorResponse.js";
 import getVideoMetadata from "../../services/getVideoMetadata.js";
-import getAiCorrection from "../../services/getAiCorrection.js";
 import summaryModel from "../../models/summaries.js";
+import doCorrections from "../../helpers/ai/doCorrections.js";
 
 const newSummary = async (req, res) => {
   const log = false;
+  let mySummary = null;
+  let userLang = null;
 
   try {
     const { id, shared } = req.context.auth;
 
     const { summary, idVideo, lang } = req.body;
+    userLang = lang;
 
     const video = await getVideoMetadata(idVideo);
 
@@ -18,35 +21,28 @@ const newSummary = async (req, res) => {
       return handleErrorResponse(res, req, errorMsg, 409, log);
     }
 
-    const resp = await getAiCorrection(summary, lang);
-    if (resp.error) {
-      const errorMsg = video.errorMsg;
-      return handleErrorResponse(res, req, errorMsg, 409, log);
-    }
-
-    const mistakes = resp.data.mistakes;
-
-    const errors = mistakes.flatMap((obj) => obj.errorCode.split("-"));
-
     const data = {
       title: video.title,
       channel: video.channel,
       thumbnail: video.thumbnail,
       videoID: idVideo,
       summary,
-      aiText: resp.data.text,
-      mistakes,
-      errorCodes: errors,
+      isDraft: true,
       shared,
       owner: id,
     };
 
-    const mySummary = await summaryModel.create(data);
-    return res.status(200).json({ error: false, summaryId: mySummary._id });
+    mySummary = await summaryModel.create(data);
+
+    // Respond immediately to the user to bypass AI analysis latency
+    res.status(200).json({ error: false, summaryId: mySummary._id });
   } catch (err) {
     console.error("Error in login:", err);
     return handleErrorResponse(res, req, err.message, 500, log);
   }
+
+  // Process summary analysis asynchronously without affecting response time
+  doCorrections(mySummary, lang);
 };
 
 export default newSummary;
