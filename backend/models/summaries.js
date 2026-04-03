@@ -9,7 +9,8 @@ const SummarySchema = new Schema(
     thumbnail: { type: String, required: true },
     videoID: { type: String, required: true },
     summary: { type: String, required: true },
-    aiText: { type: String, required: true },
+    isDraft: { type: Boolean, required: true },
+    aiText: { type: String },
     mistakes: {
       type: [
         {
@@ -35,7 +36,7 @@ const SummarySchema = new Schema(
 
 SummarySchema.index({ owner: 1, createdAt: -1 });
 SummarySchema.index(
-  { errorCode: 1 },
+  { errorCodes: 1 },
   { partialFilterExpression: { shared: true } },
 );
 
