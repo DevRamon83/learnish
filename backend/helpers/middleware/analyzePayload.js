@@ -7,9 +7,9 @@ const analyzePayload = (req, token, tokenType, tokensRevoked) => {
     return { exit: false };
   }
 
-  const { username, id } = payload;
+  const { username, id, shared } = payload;
 
-  const validPayload = authContextPopulator(req, username, id);
+  const validPayload = authContextPopulator(req, username, id, shared);
 
   if (validPayload.error) {
     return { exit: true, errorType: validPayload.errorType, status: 404 };

@@ -21,7 +21,7 @@ const singupValidator = (req, res, next) => {
   }
 
   if (req.path === "/login") {
-    authContextPopulator(req, data.username, "signup");
+    authContextPopulator(req, data.username, "login");
   }
 
   next();

@@ -2,9 +2,9 @@ import { cookieSettings } from "../../constants/atomics.js";
 import createToken from "./createToken.js";
 
 const setTokenAndCookie = async (res, dataConfig) => {
-  const { username, id, expiresIn } = dataConfig;
+  const { username, id, shared, expiresIn } = dataConfig;
 
-  const token = createToken(username, id, expiresIn);
+  const token = createToken(username, id, shared, expiresIn);
 
   if (dataConfig.maxAge !== null) {
     cookieSettings.maxAge = dataConfig.maxAge;

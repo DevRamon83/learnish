@@ -26,7 +26,11 @@ const login = async (req, res) => {
     user.isRevoked = false;
     await user.save();
 
-    const configData = { username: user.username, id: user._id };
+    const configData = {
+      username: user.username,
+      id: user._id,
+      shared: user.shareErrors,
+    };
     const { accessConfig, refreshConfig } = createTokenConfigs(configData);
 
     await setTokenAndCookie(res, accessConfig);

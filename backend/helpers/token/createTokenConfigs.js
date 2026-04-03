@@ -1,8 +1,9 @@
 const createTokenConfigs = (configData) => {
-  const { username, id } = configData;
+  const { username, id, shared } = configData;
   const accessConfig = {
     id,
     username,
+    shared,
     expiresIn: "5m",
     maxAge: null,
     tokenName: process.env.ACCESS_TOKEN,
@@ -11,6 +12,7 @@ const createTokenConfigs = (configData) => {
   const refreshConfig = {
     id,
     username,
+    shared,
     expiresIn: "35m",
     maxAge: null,
     tokenName: process.env.REFRESH_TOKEN,
