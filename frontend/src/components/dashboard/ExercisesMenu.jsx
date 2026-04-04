@@ -1,6 +1,6 @@
-import { classes, exercisesTab } from "../../constants/layout/dashboard";
+import { classes } from "../../constants/layout/dashboard";
 
-export default function ExercisesMenu({ exercise, setExercise }) {
+export default function ExercisesMenu({ exercise, setExercise, exercisesTab }) {
   return (
     <div>
       {exercisesTab.map((tab) => (
