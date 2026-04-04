@@ -1,6 +1,6 @@
-import { classes, dashboardTab } from "../../constants/layout/dashboard";
+import { classes } from "../../constants/layout/dashboard";
 
-export default function TabMenu({ tabMenu, setTabMenu }) {
+export default function TabMenu({ tabMenu, setTabMenu, dashboardTab }) {
   return (
     <div>
       {dashboardTab.map((tab) => (
