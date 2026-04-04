@@ -1,8 +1,9 @@
-export default function Logo () {
+import learnish from "../../assets/learnish.svg";
 
-    return (
-        <>
-        <div>Learnish</div>
-        </>
-    )
+export default function Logo() {
+  return (
+    <div className="navbar__logo">
+      <img className="navbar__logo-img" src={learnish} />
+    </div>
+  );
 }

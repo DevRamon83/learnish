@@ -1,0 +1,15 @@
+.navbar__logo {
+  height: 14vh;
+  width: 14vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  background-color: white;
+  border: 1px solid #000;
+  overflow: hidden;
+}
+
+.navbar__logo-img {
+  height: 12vh;
+}

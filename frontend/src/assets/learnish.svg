@@ -13,6 +13,23 @@
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
+  <style id="style-animation">
+  @keyframes charRotation {
+    0%, 100% { transform: rotate(180deg); }
+    50% { transform: rotate(0deg); }
+  }
+
+  #diphthong {
+    
+    transform-box: fill-box;
+    transform-origin: 50% 58%;    
+    transform: rotate(180deg);
+    animation: charRotation 4s ease-in-out infinite;
+    visibility: visible !important;
+    display: inline !important;
+  }
+</style>
+
   <sodipodi:namedview
      id="namedview1"
      pagecolor="#ffffff"
@@ -79,16 +96,15 @@
          id="tspan1">l</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:49.3889px;font-family:'Liberation Mono';-inkscape-font-specification:'Liberation Mono';writing-mode:lr-tb;direction:ltr;fill:#ff0000;stroke-width:0.264583"
-       x="-41.671913"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:47.625px;font-family:'URW Gothic';-inkscape-font-specification:'URW Gothic';writing-mode:lr-tb;direction:ltr;fill:#ff0000;stroke-width:0.264583"
+       x="11.101961"
        y="70.908363"
-       id="text2"
-       transform="scale(-1,1)"><tspan
+       id="diphthong"><tspan
          sodipodi:role="line"
          id="tspan2"
-         x="-41.671913"
+         x="11.101961"
          y="70.908363"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:49.3889px;font-family:'Liberation Mono';-inkscape-font-specification:'Liberation Mono';fill:#ff0000;stroke-width:0.264583">e</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:47.625px;font-family:'URW Gothic';-inkscape-font-specification:'URW Gothic';fill:#ff0000;stroke-width:0.264583">e</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(-0.26458333,0,0,0.26458333,92.745352,-2.1166665)"
