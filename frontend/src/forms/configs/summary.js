@@ -1,8 +1,8 @@
 const youtube = {
   id: "youtube",
   type: "url",
-  placeholder: "youtube link",
-  label: "il link a youtube",
+  placeholder: null,
+  label: null,
   required: true,
 };
 
@@ -12,14 +12,18 @@ const summary = {
   placeholder: null,
   rows: 10,
   cols: 50,
-  label: "scrivi il tuo sommario",
+  label: null,
   required: true,
   maxWords: 500,
   onChange: true,
-  counterLabel: "massimo parole",
+  counterLabel: null,
 };
 
-const summaryConfigBuilder = () => {
+const summaryConfigBuilder = (strings) => {
+  youtube.placeholder = strings.newSummaryForm.youtube.placeholder;
+  youtube.label = strings.newSummaryForm.youtube.label;
+  summary.label = strings.newSummaryForm.summary.label;
+  summary.counterLabel = strings.newSummaryForm.summary.counterLabel;
   const array = [youtube, summary];
   return {
     configArray: array,
