@@ -41,7 +41,7 @@ const newSummary = async (req, res) => {
   }
 
   // Process summary analysis asynchronously without affecting response time
-  doCorrections(mySummary, lang);
+  doCorrections(mySummary, userLang);
 };
 
 export default newSummary;
