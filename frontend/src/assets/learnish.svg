@@ -24,7 +24,7 @@
     transform-box: fill-box;
     transform-origin: 50% 58%;    
     transform: rotate(180deg);
-    animation: charRotation 4s ease-in-out infinite;
+    animation: charRotation 4s ease-out infinite;
     visibility: visible !important;
     display: inline !important;
   }
