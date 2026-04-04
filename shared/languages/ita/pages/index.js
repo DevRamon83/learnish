@@ -1,10 +1,7 @@
 import homepage from "./homepage.json" with { type: "json" };
 
 const pages = {
-  homepage: {
-    welcome: homepage.welcome,
-    intro: homepage.introduction,
-  },
+  homepage,
 };
 
 export default pages;

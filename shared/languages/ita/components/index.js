@@ -1,15 +1,11 @@
 import auth from "./auth.json" with { type: "json" };
+import summary from "./summary.json" with { type: "json" };
+import dashboard from "./dashboard.json" with { type: "json" };
 
 const components = {
-  auth: {
-    labels: auth.labels,
-    placeholders: auth.placeholders,
-    privacyLabel: auth.privacyLabel,
-    tosLabel: auth.tosLabel,
-    accountType: auth.accountType,
-    textareaLabels: auth.textareaLabels,
-    charLabels: auth.charLabels,
-  },
+  auth,
+  summary,
+  dashboard,
 };
 
 export default components;

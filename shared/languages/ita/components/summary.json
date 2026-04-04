@@ -1,0 +1,16 @@
+{
+  "newSummary": "crea un nuovo sommario",
+  "sendSummary": "correggi",
+  "yourSummaries": "i tuoi sommari",
+  "newSummaryBtn": "nuovo sommario",
+  "newSummaryForm": {
+    "youtube": {
+      "placeholder": "youtube link",
+      "label": "il link a youtube"
+    },
+    "summary": {
+      "label": "scrivi il tuo sommario",
+      "counterLabel": "massimo parole"
+    }
+  }
+}
