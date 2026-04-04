@@ -4,6 +4,8 @@ import { useEffect } from "react";
 import SummaryCard from "../../../ui/SummaryCard";
 import FetchObserver from "../../../api/FetchObserver";
 import NewSummary from "./NewSummary";
+import { useLang } from "../../../hooks/useLang";
+import { i18nAddresses } from "../../../constants/i18nAddresses";
 
 export default function Summaries() {
   const [summaries, setSummaries] = useState(null);
@@ -11,6 +13,7 @@ export default function Summaries() {
   const [open, setOpen] = useState(false);
   const [fetchStatus, setFetchStatus] = useState(null);
   const [retry, setRetry] = useState(0);
+  const { strings, lang } = useLang(i18nAddresses.summary);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -41,8 +44,10 @@ export default function Summaries() {
     <>
       {!panel && (
         <>
-          <h1>i tuoi sommari</h1>
-          <button onClick={() => setPanel(true)}>Nuovo sommario</button>
+          <h1>{strings.yourSummaries}</h1>
+          <button onClick={() => setPanel(true)}>
+            {strings.newSummaryBtn}
+          </button>
 
           <FetchObserver
             fetchStatus={fetchStatus}
@@ -62,7 +67,14 @@ export default function Summaries() {
         </>
       )}
 
-      {panel && <NewSummary panel={panel} setPanel={setPanel} />}
+      {panel && (
+        <NewSummary
+          panel={panel}
+          setPanel={setPanel}
+          strings={strings}
+          lang={lang}
+        />
+      )}
     </>
   );
 }
