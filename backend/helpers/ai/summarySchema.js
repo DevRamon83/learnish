@@ -29,7 +29,17 @@ const summarySchema = (lang) => {
             errorCode: {
               type: "string",
               description:
-                "Error codes separated by '-': spell, tens, agree, prep, word, order, sing, art, pron",
+                "Error codes representing the type of linguistic mistake, separated by '-': " +
+                "spell (spelling/orthography), " +
+                "tens (verb tense/aspect), " +
+                "agree (subject-verb or gender-number agreement), " +
+                "prep (preposition usage), " +
+                "word (inappropriate lexical choice/vocabulary), " +
+                "order (word order/syntax), " +
+                "sing (singular/plural noun errors), " +
+                "art (article usage), " +
+                "pron (pronoun usage). " +
+                "Use ONLY these codes; do not invent new ones.",
             },
           },
           required: ["error", "correction", "explain", "errorCode"],
