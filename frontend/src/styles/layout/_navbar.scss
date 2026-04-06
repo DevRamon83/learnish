@@ -1,15 +1,69 @@
+@use "../breakpoints";
+
 .navbar__logo {
-  height: 14vh;
-  width: 14vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 15px;
   background-color: white;
-  border: 1px solid #000;
-  overflow: hidden;
+  padding: 0 2%;
 }
 
 .navbar__logo-img {
-  height: 12vh;
+  height: 10vh;
+}
+
+.navbar__container {
+  display: none;
+
+  @include breakpoints.medium {
+  }
+}
+
+.navbar__container-active {
+  position: fixed;
+  top: 10vh;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #303030;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1vh;
+  flex-direction: column;
+}
+
+.navbar__container-active > .navbar__btn {
+  color: white;
+}
+
+.navbar__hamburger {
+  cursor: pointer;
+  width: 35px;
+  height: 35px;
+  margin-right: 5%;
+}
+
+.navbar__hamburgerBar {
+  height: 4px;
+  background-color: #000;
+  transition: all 0.3s ease;
+  transform-origin: center;
+  margin: 6px 0;
+}
+
+.navbar__hamburger-active .navbar__hamburgerBar:nth-child(1) {
+  transform: rotate(45deg);
+  transform-origin: left center;
+  width: 29px;
+}
+
+.navbar__hamburger-active .navbar__hamburgerBar:nth-child(2) {
+  opacity: 0;
+}
+
+.navbar__hamburger-active .navbar__hamburgerBar:nth-child(3) {
+  transform: rotate(-45deg);
+  transform-origin: left center;
+  width: 29px;
 }
