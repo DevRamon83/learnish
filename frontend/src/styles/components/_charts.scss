@@ -1,0 +1,75 @@
+.chart__stackedBar-border {
+  border: 1px solid #000;
+}
+
+#chart__stackedBar-spell {
+  fill: #ef4444;
+}
+
+#chart__stackedBar-tens {
+  fill: #3b82f6;
+}
+
+#chart__stackedBar-agree {
+  fill: #10b981;
+}
+
+#chart__stackedBar-prep {
+  fill: #f59e0b;
+}
+
+#chart__stackedBar-word {
+  fill: #8b5cf6;
+}
+
+#chart__stackedBar-order {
+  fill: #ec4899;
+}
+
+#chart__stackedBar-sing {
+  fill: #06b6d4;
+}
+
+#chart__stackedBar-art {
+  fill: #84cc16;
+}
+
+#chart__stackedBar-pron {
+  fill: #6366f1;
+}
+
+#chart__line-container {
+  width: 500px;
+}
+
+#chart__line-wrapper {
+  border-bottom: 1px solid #000;
+  border-left: 1px solid #000;
+}
+
+/* 1. Definiamo lo stato iniziale statico */
+#reveal-wrapper {
+  /* Di base la barra è "tagliata" al 100% (invisibile) */
+  clip-path: inset(0 100% 0 0);
+
+  /* Facciamo partire l'animazione */
+  animation: revealBar 2.5s cubic-bezier(0.8, 0.4, 0.2, 1) forwards;
+  animation-delay: 0.8s;
+}
+
+/* 2. L'animazione muove il taglio da 100% a 0% */
+@keyframes revealBar {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.chart__labels-x {
+  display: flex;
+  justify-content: space-between;
+  width: 110%;
+  margin-left: -5%;
+}
