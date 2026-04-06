@@ -1,16 +1,17 @@
 #root > nav {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   list-style: none;
   gap: 5%;
   position: fixed;
   left: 0;
   top: 0;
-  height: 16vh;
+  height: 10vh;
   width: 100vw;
   background-color: aliceblue;
   margin: 0;
+  z-index: 20;
 }
 
 footer {
