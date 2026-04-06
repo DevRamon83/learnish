@@ -8,13 +8,20 @@ import { useDispatch } from "react-redux";
 import { setAuth, setUser } from "../../redux/slices/authSlice";
 import PrivatNavbar from "../../ui/PrivatNavbar";
 import PubblicNavbar from "../../ui/PubblicNavbar";
+import Hamburger from "../../ui/Hamburger";
+import { useState } from "react";
 
 export default function Navbar() {
-  const { container, btn, logo } = classes;
+  const { navbarContainer, navbarContainerActive, btn, logo } = classes;
+  const [isOpen, setIsOpen] = useState(false);
   const user = useSelector((state) => state.auth.user);
   const dashboardLink = "/user/dashboard/" + user?.id;
   const dispatch = useDispatch();
   usePersonalSettings();
+
+  const hamburgerHandler = () => {
+    setIsOpen((prev) => !prev);
+  };
 
   const logoutHandler = async () => {
     const response = await fetchLogout();
@@ -29,17 +36,27 @@ export default function Navbar() {
   return (
     <>
       <nav>
-        <NavLink to="/" className={logo} end>
-          <Logo />
-        </NavLink>
-        {!user && <PubblicNavbar btn={btn} />}
-        {user && (
-          <PrivatNavbar
-            dashboardLink={dashboardLink}
-            btn={btn}
-            logoutHandler={logoutHandler}
-          />
-        )}
+        <div className="navbar__logo">
+          <NavLink to="/" className={logo} end>
+            <Logo />
+          </NavLink>
+        </div>
+        <div className={isOpen ? navbarContainerActive : navbarContainer}>
+          {user ? (
+            <PrivatNavbar
+              dashboardLink={dashboardLink}
+              btn={btn}
+              logoutHandler={logoutHandler}
+            />
+          ) : (
+            <PubblicNavbar btn={btn} />
+          )}
+        </div>
+        <Hamburger
+          hamburgerHandler={hamburgerHandler}
+          isOpen={isOpen}
+          classes={classes}
+        />
       </nav>
     </>
   );
