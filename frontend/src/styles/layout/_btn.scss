@@ -21,3 +21,123 @@
   border: 1px solid #000;
   font-weight: bold;
 }
+
+.btn__simple {
+  color: white;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 0.8em;
+  padding: 3% 1vh;
+  border-radius: 5px;
+  width: fit-content;
+}
+
+.btn__simple-legal {
+  @extend .btn__simple;
+  border-radius: 5px 5px 0 0;
+  background-color: white;
+  color: #303030;
+}
+
+.btn__double {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #000;
+  background-color: white;
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 1vh;
+  cursor: pointer;
+}
+
+.btn__double-text {
+  text-transform: uppercase;
+  font-size: 0.8em;
+  white-space: nowrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #000;
+}
+
+.btn__double-imgContainers {
+  padding: 1vh 4%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25px;
+  height: 25px;
+}
+
+.btn__double-imgContainerLeft {
+  @extend .btn__double-imgContainers;
+  border-right: 1px solid #000;
+  margin-right: 20px;
+}
+
+.btn__double-imgContainerRight {
+  @extend .btn__double-imgContainers;
+  border-left: 1px solid #000;
+  margin-left: 20px;
+}
+
+.btn__icontBtn-container {
+  height: 25vh;
+  width: 150px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid #303030;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: aliceblue;
+  width: auto;
+  margin-right: 3%;
+}
+
+.btn__iconBtn-text {
+  width: fit-content;
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  color: #303030;
+  font-weight: bold;
+  font-size: 0.9em;
+  white-space: nowrap;
+}
+
+.btn__icontBtn-img {
+  width: 40%;
+  padding: 1vh 0;
+}
+
+.navbar__iconBtn-container {
+  padding: 1vh 0;
+  height: 75%;
+  width: 100%;
+  border-bottom: 1px solid #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.navbar__iconBtn-mission {
+  @extend .navbar__iconBtn-container;
+  background-color: white;
+}
+
+.navbar__iconBtn-team {
+  @extend .navbar__iconBtn-container;
+  background-color: white;
+}
+
+.navbar__iconBtn-about {
+  @extend .navbar__iconBtn-container;
+  background-color: #9adcc7;
+}
