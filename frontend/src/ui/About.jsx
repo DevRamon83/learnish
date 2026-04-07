@@ -1,9 +1,33 @@
-export default function About() {
+import { NavLink } from "react-router-dom";
+import IconBtn from "./buttons/IconBtn";
+import { classes } from "../constants/layout/navbar";
+
+export default function About({ strings }) {
   return (
-    <div>
-      <div>Chi siamo</div>
-      <div>Mission</div>
-      <div>Dicono di noi</div>
-    </div>
+    <>
+      <NavLink to="/team" className={classes.aboutLinks}>
+        <IconBtn
+          classStyle={classes.iconTeam}
+          iconSrc="/team.svg"
+          text={strings.team}
+        />
+      </NavLink>
+
+      <NavLink to="/about" className={classes.aboutLinks}>
+        <IconBtn
+          classStyle={classes.iconAbout}
+          iconSrc="/about.svg"
+          text={strings.about}
+        />
+      </NavLink>
+
+      <NavLink to="/mission" className={classes.aboutLinks}>
+        <IconBtn
+          classStyle={classes.iconMission}
+          iconSrc="/mission.svg"
+          text={strings.mission}
+        />
+      </NavLink>
+    </>
   );
 }
