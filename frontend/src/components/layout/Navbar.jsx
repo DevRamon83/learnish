@@ -10,11 +10,16 @@ import PrivatNavbar from "../../ui/PrivatNavbar";
 import PubblicNavbar from "../../ui/PubblicNavbar";
 import Hamburger from "../../ui/Hamburger";
 import { useState } from "react";
+import { useLang } from "../../hooks/useLang";
+import CommonNavbar from "../../ui/CommonNavbar";
+import { i18nAddresses } from "../../constants/i18nAddresses";
 
 export default function Navbar() {
   const { navbarContainer, navbarContainerActive, btn, logo } = classes;
   const [isOpen, setIsOpen] = useState(false);
   const user = useSelector((state) => state.auth.user);
+  const { strings, lang } = useLang(i18nAddresses.navbar);
+
   const dashboardLink = "/user/dashboard/" + user?.id;
   const dispatch = useDispatch();
   usePersonalSettings();
@@ -51,6 +56,7 @@ export default function Navbar() {
           ) : (
             <PubblicNavbar btn={btn} />
           )}
+          <CommonNavbar strings={strings} />
         </div>
         <Hamburger
           hamburgerHandler={hamburgerHandler}
