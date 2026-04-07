@@ -1,8 +1,15 @@
-export default function Info() {
+import { NavLink } from "react-router-dom";
+import ArrowBtn from "./buttons/ArrowBtn";
+
+export default function Info({ strings }) {
   return (
-    <div>
-      <div>Prezzi</div>
-      <div>FAQ</div>
-    </div>
+    <>
+      <NavLink to="/price">
+        <ArrowBtn iconSrc={"/price.svg"} text={strings.price} />
+      </NavLink>
+      <NavLink to="/faq">
+        <ArrowBtn iconSrc={"/faq.svg"} text={strings.faq} />
+      </NavLink>
+    </>
   );
 }
