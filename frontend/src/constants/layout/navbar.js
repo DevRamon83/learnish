@@ -7,4 +7,13 @@ export const classes = {
   hamburger: "navbar__hamburger",
   hamburgerBar: "navbar__hamburgerBar",
   hamburgerBarActive: "navbar__hamburger-active",
+  legalBtn: "navbar__legal-btn",
+  commonContainer: "navbar__common",
+  about: "navbar__about",
+  aboutLinks: "navbar__aboutLinks",
+  info: "navbar__info",
+  legal: "navbar__legal",
+  iconTeam: "navbar__iconBtn-team",
+  iconAbout: "navbar__iconBtn-about",
+  iconMission: "navbar__iconBtn-mission",
 };
