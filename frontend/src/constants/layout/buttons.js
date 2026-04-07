@@ -1,6 +1,6 @@
 export const classes = {
   double: {
-    container: "btn__double-imgContainerLeft",
+    container: "btn__double",
     leftImgContainer: "btn__double-imgContainerLeft",
     leftImg: "btn__double-imgLeft",
     rightImgContainer: "btn__double-imgContainerRight",
