@@ -1,11 +1,77 @@
+@use "../variables/colors";
 @use "../breakpoints";
 
+.navbar__nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  gap: 5%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 60px;
+  width: 100vw;
+  background-color: white;
+  transition: background-color 0.4s ease-in-out;
+  margin: 0;
+  z-index: 20;
+  border-bottom: 1px solid colors.$primaryColor;
+  font-size: 16px;
+}
+
+.navbar__nav-open {
+  @extend .navbar__nav;
+  background-color: colors.$primaryColor;
+}
+
 .navbar__logo {
+  position: relative;
+  background-color: white;
+  padding: 0 2%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: white;
-  padding: 0 2%;
+  margin-left: 5vh;
+  height: 52px;
+  width: 52px;
+}
+
+.navbar__logo-open {
+  @extend .navbar__logo;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border-radius: 0px;
+  animation: enlargeLogo 0.5s ease-out forwards;
+}
+
+.navbar__logo-close {
+  @extend .navbar__logo-open;
+  border-radius: 10px;
+  animation: enlargeLogoClose 0.5s ease-out forwards;
+}
+
+@keyframes enlargeLogo {
+  0% {
+    width: 52px;
+    border-radius: 0px;
+  }
+  100% {
+    width: 185px;
+    border-radius: 10px;
+  }
+}
+
+@keyframes enlargeLogoClose {
+  0% {
+    width: 185px;
+    border-radius: 10px;
+  }
+  100% {
+    width: 52px;
+    border-radius: 0px;
+  }
 }
 
 .navbar__logo-img {
@@ -14,17 +80,14 @@
 
 .navbar__container {
   display: none;
-
-  @include breakpoints.medium {
-  }
 }
 
 .navbar__container-active {
   position: fixed;
-  top: 10vh;
+  top: 60px;
   right: -100%;
   bottom: 0;
-  background-color: #303030;
+  background-color: colors.$primaryColor;
   display: flex;
   justify-content: flex-start;
   align-items: flex-end;
@@ -35,6 +98,10 @@
   border-top: 1px solid #000;
   padding-bottom: 6vh;
   animation: navbarOpen 0.5s forwards;
+
+  @include breakpoints.medium {
+    width: 40%;
+  }
 }
 
 @keyframes navbarOpen {
@@ -89,6 +156,10 @@
   border-radius: 15px 0 0 15px;
 }
 
+.navbar__tab:hover {
+  background-color: aliceblue;
+}
+
 .navbar__tab-img {
   height: 100%;
   border-right: 1px solid #000;
@@ -108,16 +179,17 @@
 
 .navbar__hamburgerBar {
   height: 4px;
-  background-color: #000;
   transition: all 0.3s ease;
   transform-origin: center;
   margin: 6px 0;
+  background-color: colors.$primaryColor;
 }
 
 .navbar__hamburger-active .navbar__hamburgerBar:nth-child(1) {
   transform: rotate(45deg);
   transform-origin: left center;
   width: 29px;
+  background-color: white;
 }
 
 .navbar__hamburger-active .navbar__hamburgerBar:nth-child(2) {
@@ -128,4 +200,5 @@
   transform: rotate(-45deg);
   transform-origin: left center;
   width: 29px;
+  background-color: white;
 }

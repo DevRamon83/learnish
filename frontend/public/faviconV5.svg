@@ -13,6 +13,16 @@
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
+   <style>
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(180deg); }
+    }
+    #text2 {
+      transform-origin: center;
+      animation: rotate 4s ease-out infinite alternate;
+    }
+  </style>
   <sodipodi:namedview
      id="namedview1"
      pagecolor="#ffffff"

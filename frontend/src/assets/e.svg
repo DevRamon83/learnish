@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="300"
+   height="300"
+   viewBox="0 0 79.374998 79.375"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.3 (fcd0343856, 2026-01-01)"
+   sodipodi:docname="e.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="0.62805135"
+     inkscape:cx="396.4644"
+     inkscape:cy="561.25984"
+     inkscape:window-width="1280"
+     inkscape:window-height="955"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1">
+    <rect
+       x="16"
+       y="22"
+       width="414"
+       height="594"
+       id="rect1" />
+    <rect
+       x="88"
+       y="30"
+       width="292"
+       height="540"
+       id="rect13" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:47.625px;font-family:'URW Gothic';-inkscape-font-specification:'URW Gothic';writing-mode:lr-tb;direction:ltr;display:inline;visibility:visible;fill:#ff0000;stroke-width:0.264583"
+       x="24.193443"
+       y="52.070374"
+       id="diphthong"><tspan
+         sodipodi:role="line"
+         id="tspan2"
+         x="24.193443"
+         y="52.070374"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:47.625px;font-family:'URW Gothic';-inkscape-font-specification:'URW Gothic';fill:#ff0000;stroke-width:0.264583">e</tspan></text>
+  </g>
+</svg>

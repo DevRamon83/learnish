@@ -15,9 +15,10 @@ import CommonNavbar from "../../ui/CommonNavbar";
 import { i18nAddresses } from "../../constants/i18nAddresses";
 
 export default function Navbar() {
-  const { navbarContainer, logo } = classes;
+  const { navbarContainer, logo, nav, navOpen } = classes;
   const [isOpen, setIsOpen] = useState(false);
   const [navbarState, setNavbarState] = useState(navbarContainer);
+  const [logoState, setLogoState] = useState("");
   const user = useSelector((state) => state.auth.user);
   const { strings, lang } = useLang(i18nAddresses.navbar);
 
@@ -26,10 +27,12 @@ export default function Navbar() {
   usePersonalSettings();
 
   const hamburgerHandler = () => {
-    if (!isOpen) {
-      setNavbarState(classes.navbarContainerActive);
-    } else {
+    if (isOpen) {
       setNavbarState(classes.navbarContainerClose);
+      setLogoState("-close");
+    } else {
+      setNavbarState(classes.navbarContainerActive);
+      setLogoState("-open");
     }
     setIsOpen((prev) => !prev);
   };
@@ -46,12 +49,10 @@ export default function Navbar() {
 
   return (
     <>
-      <nav>
-        <div className="navbar__logo">
-          <NavLink to="/" className={logo} end>
-            <Logo />
-          </NavLink>
-        </div>
+      <nav className={isOpen ? navOpen : nav}>
+        <NavLink to="/" end>
+          <Logo logoState={logoState} />
+        </NavLink>
         <div className={navbarState}>
           {user ? (
             <PrivatNavbar

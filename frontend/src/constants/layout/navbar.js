@@ -8,4 +8,6 @@ export const classes = {
   hamburger: "navbar__hamburger",
   hamburgerBar: "navbar__hamburgerBar",
   hamburgerBarActive: "navbar__hamburger-active",
+  nav: "navbar__nav",
+  navOpen: "navbar__nav-open",
 };

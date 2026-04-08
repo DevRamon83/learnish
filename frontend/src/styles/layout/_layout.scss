@@ -1,18 +1,4 @@
-#root > nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  list-style: none;
-  gap: 5%;
-  position: fixed;
-  left: 0;
-  top: 0;
-  height: 10vh;
-  width: 100vw;
-  background-color: aliceblue;
-  margin: 0;
-  z-index: 20;
-}
+@use "../variables/colors";
 
 footer {
   width: 100vw;
