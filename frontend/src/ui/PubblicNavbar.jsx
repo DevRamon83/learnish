@@ -1,14 +1,10 @@
-import { NavLink } from "react-router-dom";
+import NavbarBtn from "./buttons/NavbarBtn";
 
-export default function PubblicNavbar({ btn }) {
+export default function PubblicNavbar({ strings }) {
   return (
     <>
-      <NavLink to="/login" className={btn}>
-        login
-      </NavLink>
-      <NavLink to="/signup" className={btn}>
-        signup
-      </NavLink>
+      <NavbarBtn link={"/login"} img={"/login.svg"} text={strings.login} />
+      <NavbarBtn link={"/signup"} img={"/signup.svg"} text={strings.signup} />
     </>
   );
 }

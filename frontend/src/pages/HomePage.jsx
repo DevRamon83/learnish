@@ -1,3 +1,5 @@
+import LineChart from "../components/charts/LineChart";
+import StackedBar from "../components/charts/StackedBar";
 import { useLang } from "../hooks/useLang";
 
 export default function Home() {
@@ -5,7 +7,13 @@ export default function Home() {
 
   return (
     <main>
-      <p>{strings.welcome}</p>
+      <div>
+        <p>{strings.welcome}</p>
+        <StackedBar />
+      </div>
     </main>
   );
 }
+//<LineChart />
+
+// <StackedBar />
