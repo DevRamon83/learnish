@@ -9,7 +9,7 @@ import logout from "../controllers/auth/logout.js";
 import unique from "../controllers/auth/unique.js";
 import uniqueValidator from "../middlewares/auth/uniqueValidator.js";
 import bannedCheck from "../middlewares/auth/bannedCheck.js";
-import verifyUser from "../controllers/auth/verify.js";
+import verifyUser from "../controllers/auth/verifyUser.js";
 
 const authRoute = express.Router();
 
