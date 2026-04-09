@@ -9,6 +9,7 @@ import logout from "../controllers/auth/logout.js";
 import unique from "../controllers/auth/unique.js";
 import uniqueValidator from "../middlewares/auth/uniqueValidator.js";
 import bannedCheck from "../middlewares/auth/bannedCheck.js";
+import verifyUser from "../controllers/auth/verify.js";
 
 const authRoute = express.Router();
 
@@ -17,5 +18,6 @@ authRoute.post("/login", dataStandard, singupValidator, bannedCheck, login);
 authRoute.post("/check", dataStandard, tokensValidator, bannedCheck, check);
 authRoute.post("/logout", dataStandard, tokensValidator, logout);
 authRoute.post("/unique", dataStandard, uniqueValidator, unique);
+authRoute.get("/verify/:token", verifyUser);
 
 export default authRoute;
