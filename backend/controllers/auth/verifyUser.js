@@ -8,15 +8,19 @@ const verifyUser = async (req, res) => {
   try {
     const { token } = req.params;
     if (!token) {
-      console.error("missing token");
-      return handleErrorResponse(res, req, err.message, 400, log);
+      const error = "missing token";
+      return handleErrorResponse(res, req, error, 400, log);
     }
 
     const user = await userModel.findOne({ confirmationToken: token });
     if (!user) {
-      console.error("user not found");
-      return handleErrorResponse(res, req, err.message, 404, log);
+      const error = "cannot find the user with the current token";
+      return handleErrorResponse(res, req, error, 404, log);
     }
+
+    user.isVerified = true;
+    user.confirmationToken = undefined;
+    await user.save();
 
     const configData = { username: user.username, id: user._id };
     const { accessConfig, refreshConfig } = createTokenConfigs(configData);
@@ -29,7 +33,7 @@ const verifyUser = async (req, res) => {
 
     res.status(200).json(response);
   } catch (err) {
-    console.error("Error in login:", err);
+    console.error("Error in user verification:", err);
     return handleErrorResponse(res, req, err.message, 500, log);
   }
 };
