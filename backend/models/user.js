@@ -13,7 +13,7 @@ const UserSchema = new Schema(
       default: "student",
     },
     isVerified: { type: Boolean, required: true, default: false },
-    confirmationToken: { type: String, required: true },
+    confirmationToken: { type: String },
     isPremium: { type: Boolean, required: true, default: false },
     discount: { type: String, required: true, default: "free" },
     privacy: { type: String, required: true },
