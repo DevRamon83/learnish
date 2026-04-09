@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import TabMenu from "../components/dashboard/TabMenu";
+import DashboardMenu from "../components/dashboard/DashboardMenu";
 import Exercises from "../components/dashboard/Exercises";
 import { useLang } from "../hooks/useLang";
 import { i18nAddresses } from "../constants/i18nAddresses";
@@ -11,7 +11,7 @@ export default function Dashboard() {
   const { strings, lang } = useLang(i18nAddresses.dashboard);
   const dispatch = useDispatch();
   const exercisesTab = strings.exercisesTab;
-  const [tabMenu, setTabMenu] = useState("study");
+  const [current, setCurrent] = useState("study");
 
   const logoutHandler = async () => {
     const response = await fetchLogout();
@@ -24,16 +24,16 @@ export default function Dashboard() {
   };
 
   useEffect(() => {
-    if (tabMenu === "logout") {
+    if (current === "logout") {
       logoutHandler();
     }
-  }, [tabMenu]);
+  }, [current]);
 
   return (
     <main>
-      <TabMenu setTabMenu={setTabMenu} tabMenu={tabMenu} />
+      <DashboardMenu setCurrent={setCurrent} current={current} />
       <div className="dashboard">
-        {tabMenu === "esercizi" && <Exercises exercisesTab={exercisesTab} />}
+        {current === "esercizi" && <Exercises exercisesTab={exercisesTab} />}
       </div>
     </main>
   );
