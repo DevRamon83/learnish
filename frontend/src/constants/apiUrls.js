@@ -7,6 +7,7 @@ export const API_URLS = {
     signup: "/signup",
     check: "/check",
     isUnique: "/unique",
+    verify: "/verify/",
   },
   dashboard: {
     base: "/dashboard",
