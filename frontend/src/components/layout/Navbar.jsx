@@ -6,13 +6,11 @@ import fetchLogout from "../../api/handlers.js/fetchLogout";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { setAuth, setUser } from "../../redux/slices/authSlice";
-import PrivatNavbar from "../../ui/PrivatNavbar";
-import PubblicNavbar from "../../ui/PubblicNavbar";
 import Hamburger from "../../ui/Hamburger";
 import { useState } from "react";
 import { useLang } from "../../hooks/useLang";
-import CommonNavbar from "../../ui/CommonNavbar";
 import { i18nAddresses } from "../../constants/i18nAddresses";
+import ConditionalNavbar from "../../ui/ConditionalNavbar";
 
 export default function Navbar() {
   const { navbarContainer, nav, navOpen } = classes;
@@ -20,9 +18,9 @@ export default function Navbar() {
   const [navbarState, setNavbarState] = useState(navbarContainer);
   const [logoState, setLogoState] = useState("");
   const user = useSelector((state) => state.auth.user);
+
   const { strings, lang } = useLang(i18nAddresses.navbar);
 
-  const dashboardLink = "/user/dashboard/" + user?.id;
   const dispatch = useDispatch();
   usePersonalSettings();
 
@@ -53,17 +51,13 @@ export default function Navbar() {
         <NavLink to="/" end>
           <Logo logoState={logoState} />
         </NavLink>
-        <div className={navbarState}>
-          {user ? (
-            <PrivatNavbar
-              dashboardLink={dashboardLink}
-              logoutHandler={logoutHandler}
-            />
-          ) : (
-            <PubblicNavbar strings={strings} toggleNavbar={toggleNavbar} />
-          )}
-          <CommonNavbar strings={strings} toggleNavbar={toggleNavbar} />
-        </div>
+        <ConditionalNavbar
+          navbarState={navbarState}
+          user={user}
+          toggleNavbar={toggleNavbar}
+          logoutHandler={logoutHandler}
+          strings={strings}
+        />
         <Hamburger
           toggleNavbar={toggleNavbar}
           isOpen={isOpen}
