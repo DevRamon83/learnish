@@ -1,12 +1,12 @@
-import el from "../../assets/el.svg";
-import er from "../../assets/er.svg";
-import en from "../../assets/en.svg";
-import e from "../../assets/e.svg";
-import squareOpen from "../../assets/squareOpen.svg";
-import squareClose from "../../assets/squareClose.svg";
-import i from "../../assets/i.svg";
-import es from "../../assets/es.svg";
-import aitch from "../../assets/aitch.svg";
+import el from "../../assets/logo/el.svg";
+import er from "../../assets/logo/er.svg";
+import en from "../../assets/logo/en.svg";
+import e from "../../assets/logo/e.svg";
+import squareOpen from "../../assets/logo/squareOpen.svg";
+import squareClose from "../../assets/logo/squareClose.svg";
+import i from "../../assets/logo/i.svg";
+import es from "../../assets/logo/es.svg";
+import aitch from "../../assets/logo/aitch.svg";
 
 export default function Logo({ logoState }) {
   return (
