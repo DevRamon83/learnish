@@ -3,7 +3,7 @@ import DashboardMenu from "../components/dashboard/DashboardMenu";
 import Exercises from "../components/dashboard/Exercises";
 import { useLang } from "../hooks/useLang";
 import { i18nAddresses } from "../constants/i18nAddresses";
-import fetchLogout from "../api/handlers.js/fetchLogout";
+import fetchLogout from "../api/handlers/fetchLogout";
 import { useDispatch } from "react-redux";
 import { setAuth, setUser } from "../redux/slices/authSlice";
 

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRef } from "react";
 import summaryConfigBuilder from "../../../forms/configs/summary";
 import ErrorOnSubmit from "../../ErrorOnSubmit";
-import fetchNewSummaries from "../../../api/handlers.js/fetchNewSummary";
+import fetchNewSummaries from "../../../api/handlers/fetchNewSummary";
 import bundle from "shared";
 const { summaryValidator } = bundle.validators;
 

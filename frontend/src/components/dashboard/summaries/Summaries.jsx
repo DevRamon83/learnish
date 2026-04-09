@@ -1,5 +1,5 @@
 import { useState } from "react";
-import fetchSummaries from "../../../api/handlers.js/fetchSummaries";
+import fetchSummaries from "../../../api/handlers/fetchSummaries";
 import { useEffect } from "react";
 import SummaryCard from "../../../ui/SummaryCard";
 import FetchObserver from "../../../api/FetchObserver";

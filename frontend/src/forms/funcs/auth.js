@@ -1,5 +1,5 @@
 import bundle from "shared";
-import fetchUnique from "../../api/handlers.js/fetchUnique";
+import fetchUnique from "../../api/handlers/fetchUnique";
 const {
   usernameValidator,
   acceptOnly,

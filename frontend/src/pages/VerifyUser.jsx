@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import fetchConfirmationToken from "../api/handlers.js/fetchConfirmationToken";
+import fetchConfirmationToken from "../api/handlers/fetchConfirmationToken";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import finalizeAuth from "../utils/finalizeAuth";

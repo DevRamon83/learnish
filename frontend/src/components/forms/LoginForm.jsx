@@ -3,7 +3,7 @@ import authConfigBuilder from "../../forms/configs/auth";
 import { useLang } from "../../hooks/useLang";
 import { i18nAddresses } from "../../constants/i18nAddresses";
 import FormInput from "./FormInput";
-import fetchLogin from "../../api/handlers.js/fetchLogin";
+import fetchLogin from "../../api/handlers/fetchLogin";
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";

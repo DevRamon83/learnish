@@ -2,7 +2,7 @@ import Logo from "./Logo";
 import { classes } from "../../constants/layout/navbar";
 import { NavLink } from "react-router-dom";
 import { usePersonalSettings } from "../../hooks/usePersonalSettings";
-import fetchLogout from "../../api/handlers.js/fetchLogout";
+import fetchLogout from "../../api/handlers/fetchLogout";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { setAuth, setUser } from "../../redux/slices/authSlice";

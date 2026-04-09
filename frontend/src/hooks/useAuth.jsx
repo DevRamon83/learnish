@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import fetchAuth from "../api/handlers.js/fetchAuth";
+import fetchAuth from "../api/handlers/fetchAuth";
 import { setAuth, setUser } from "../redux/slices/authSlice";
 
 export const useAuth = () => {

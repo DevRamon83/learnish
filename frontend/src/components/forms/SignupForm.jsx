@@ -9,7 +9,7 @@ import authConfigBuilder from "../../forms/configs/auth";
 import { useLang } from "../../hooks/useLang";
 import { i18nAddresses } from "../../constants/i18nAddresses";
 import FormInput from "./FormInput";
-import fetchSignup from "../../api/handlers.js/fetchSignup";
+import fetchSignup from "../../api/handlers/fetchSignup";
 import { useState, useRef } from "react";
 import bundle from "shared";
 import finalizeAuth from "../../utils/finalizeAuth";
