@@ -8,5 +8,7 @@
   "tos": "condizioni d'uso",
   "login": "accedi",
   "signup": "registrati",
-  "contact": "contatti"
+  "contact": "contatti",
+  "dashboard": "area riservata",
+  "logout": "esci"
 }
