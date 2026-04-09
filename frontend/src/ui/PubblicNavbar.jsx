@@ -1,10 +1,20 @@
 import NavbarBtn from "./buttons/NavbarBtn";
 
-export default function PubblicNavbar({ strings }) {
+export default function PubblicNavbar({ strings, toggleNavbar }) {
   return (
     <>
-      <NavbarBtn link={"/login"} img={"/login.svg"} text={strings.login} />
-      <NavbarBtn link={"/signup"} img={"/signup.svg"} text={strings.signup} />
+      <NavbarBtn
+        toggleNavbar={toggleNavbar}
+        link={"/login"}
+        img={"/login.svg"}
+        text={strings.login}
+      />
+      <NavbarBtn
+        toggleNavbar={toggleNavbar}
+        link={"/signup"}
+        img={"/signup.svg"}
+        text={strings.signup}
+      />
     </>
   );
 }

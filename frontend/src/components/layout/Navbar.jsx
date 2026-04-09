@@ -15,7 +15,7 @@ import CommonNavbar from "../../ui/CommonNavbar";
 import { i18nAddresses } from "../../constants/i18nAddresses";
 
 export default function Navbar() {
-  const { navbarContainer, logo, nav, navOpen } = classes;
+  const { navbarContainer, nav, navOpen } = classes;
   const [isOpen, setIsOpen] = useState(false);
   const [navbarState, setNavbarState] = useState(navbarContainer);
   const [logoState, setLogoState] = useState("");
@@ -26,7 +26,7 @@ export default function Navbar() {
   const dispatch = useDispatch();
   usePersonalSettings();
 
-  const hamburgerHandler = () => {
+  const toggleNavbar = () => {
     if (isOpen) {
       setNavbarState(classes.navbarContainerClose);
       setLogoState("-close");
@@ -60,12 +60,12 @@ export default function Navbar() {
               logoutHandler={logoutHandler}
             />
           ) : (
-            <PubblicNavbar strings={strings} />
+            <PubblicNavbar strings={strings} toggleNavbar={toggleNavbar} />
           )}
-          <CommonNavbar strings={strings} />
+          <CommonNavbar strings={strings} toggleNavbar={toggleNavbar} />
         </div>
         <Hamburger
-          hamburgerHandler={hamburgerHandler}
+          toggleNavbar={toggleNavbar}
           isOpen={isOpen}
           classes={classes}
         />

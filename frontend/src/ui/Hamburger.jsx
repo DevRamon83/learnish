@@ -1,9 +1,9 @@
-export default function Hamburger({ hamburgerHandler, isOpen, classes }) {
+export default function Hamburger({ toggleNavbar, isOpen, classes }) {
   const { hamburgerBar, hamburgerBarActive, hamburger } = classes;
   return (
     <div
       className={`${hamburger} ${isOpen ? hamburgerBarActive : ""}`}
-      onClick={hamburgerHandler}
+      onClick={toggleNavbar}
     >
       <div className={hamburgerBar}></div>
       <div className={hamburgerBar}></div>
