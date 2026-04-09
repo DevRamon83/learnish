@@ -12,6 +12,7 @@ const UserSchema = new Schema(
       required: true,
       default: "student",
     },
+    isVerified: { type: Boolean, required: true, default: false },
     isPremium: { type: Boolean, required: true, default: false },
     discount: { type: String, required: true, default: "free" },
     privacy: { type: String, required: true },
