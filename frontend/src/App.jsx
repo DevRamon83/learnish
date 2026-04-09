@@ -6,6 +6,7 @@ import Signup from "./pages/SignupPage";
 import Dashboard from "./pages/Dashboard";
 import { useAuth } from "./hooks/useAuth";
 import Footer from "./components/layout/Footer";
+import VerifyUser from "./pages/VerifyUser";
 
 function App() {
   const PrivateRoutes = () => {
@@ -24,6 +25,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/verify/:token" element={<VerifyUser />} />
         <Route path="/user" element={<PrivateRoutes />}>
           <Route path="/user/dashboard/:id" element={<Dashboard />} />
         </Route>
