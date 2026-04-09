@@ -18,6 +18,7 @@
   z-index: 20;
   border-bottom: 1px solid colors.$primaryColor;
   font-size: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
 .navbar__nav-open {
@@ -87,7 +88,7 @@
   top: 60px;
   right: -100%;
   bottom: 0;
-  background-color: colors.$primaryColor;
+  background-color: ghostwhite;
   display: flex;
   justify-content: flex-start;
   align-items: flex-end;
@@ -98,6 +99,8 @@
   border-top: 1px solid #000;
   padding-bottom: 6vh;
   animation: navbarOpen 0.5s forwards;
+  border-left: 1px solid colors.$primaryColor;
+  box-shadow: 10px 0 25px rgba(0, 0, 0, 0.2);
 
   @include breakpoints.medium {
     width: 40%;
@@ -115,10 +118,10 @@
 
 .navbar__container-close {
   position: fixed;
-  top: 10vh;
+  top: 60px;
   right: 0;
   bottom: 0;
-  background-color: #303030;
+  background-color: white;
   display: flex;
   justify-content: flex-start;
   align-items: flex-end;
@@ -129,6 +132,10 @@
   border-top: 1px solid #000;
   padding-bottom: 6vh;
   animation: navbarClose 0.5s forwards;
+
+  @include breakpoints.medium {
+    width: 40%;
+  }
 }
 
 @keyframes navbarClose {
@@ -145,24 +152,32 @@
 }
 
 .navbar__tab {
-  width: 85%;
-  background-color: white;
+  width: 80%;
+  background-color: colors.$primaryColor;
+  border: 1px solid colors.$primaryColor;
   text-transform: uppercase;
   font-weight: bold;
-  color: #000;
+  color: white;
   margin-top: 5vh;
   display: flex;
   align-items: center;
-  border-radius: 15px 0 0 15px;
+  border-radius: 10px 0 0 10px;
+  overflow: hidden;
+  flex-shrink: 0;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 .navbar__tab:hover {
-  background-color: aliceblue;
+  background-color: white;
+  color: colors.$primaryColor;
 }
 
 .navbar__tab-img {
   height: 100%;
-  border-right: 1px solid #000;
+  border-right: 1px solid colors.$primaryColor;
+  background-color: white;
   padding: 1vh 2vh;
   margin-right: 2vh;
 }
@@ -170,6 +185,7 @@
 .navbar__tab-img > img {
   height: 100%;
 }
+
 .navbar__hamburger {
   cursor: pointer;
   width: 35px;
