@@ -1,11 +1,26 @@
+@use "../breakpoints";
+
 .dashboard {
   width: 100%;
 }
 
-.dashboard__container {
-  width: 90%;
-  margin-left: 5%;
+.dashboard__menu {
+  width: 100%;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-evenly;
   align-items: center;
+  position: fixed;
+  bottom: 0;
+  z-index: 10;
+  background-color: aliceblue;
+  height: 10vh;
+
+  @include breakpoints.medium {
+    left: 0;
+    bottom: 40vh;
+    background-color: transparent;
+    flex-direction: column;
+    width: 10%;
+    height: 50vh;
+  }
 }

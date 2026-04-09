@@ -1,143 +1,42 @@
+@use "../breakpoints";
+
 .btn__dash {
-  border-bottom: 1px solid #000;
-  cursor: pointer;
-}
-
-.btn__dash-active {
-  @extend .btn__dash;
-  background-color: #000;
-  color: white;
-  font-weight: bold;
-}
-
-.btn__arrow {
-  color: red;
+  border: 1px solid #000;
+  height: 1em;
+  width: 1em;
+  padding: 1em;
+  background-color: white;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 18px;
-  width: 18px;
-  border: 1px solid #000;
-  font-weight: bold;
-}
-
-.btn__simple {
-  color: white;
-  text-transform: uppercase;
-  font-weight: bold;
-  font-size: 0.8em;
-  padding: 3% 1vh;
-  border-radius: 5px;
-  width: fit-content;
-}
-
-.btn__simple-legal {
-  @extend .btn__simple;
-  border-radius: 5px 5px 0 0;
-  background-color: white;
-  color: #303030;
-}
-
-.btn__double {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border: 1px solid #000;
-  background-color: white;
-  border-radius: 3px;
-  overflow: hidden;
-  margin-bottom: 1vh;
   cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: background-color 0.3s ease;
+  @include breakpoints.medium {
+    height: 1.5em;
+    width: 1.5em;
+    padding: 1.5em;
+  }
 }
 
-.btn__double-text {
-  text-transform: uppercase;
-  font-size: 0.8em;
-  white-space: nowrap;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #000;
+.btn__dash:hover {
+  background-color: lightcyan;
 }
 
-.btn__double-imgContainers {
-  padding: 1vh 4%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 25px;
-  height: 25px;
+.btn__dash > img {
+  width: 1em;
+
+  @include breakpoints.medium {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 1.3em;
+    width: 1.3em;
+  }
 }
 
-.btn__double-imgContainerLeft {
-  @extend .btn__double-imgContainers;
-  border-right: 1px solid #000;
-  margin-right: 20px;
-}
-
-.btn__double-imgContainerRight {
-  @extend .btn__double-imgContainers;
-  border-left: 1px solid #000;
-  margin-left: 20px;
-}
-
-.btn__icontBtn-container {
-  height: 25vh;
-  width: 150px;
-  overflow: hidden;
-  cursor: pointer;
-  border: 1px solid #303030;
-  border-radius: 15px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  background-color: aliceblue;
-  width: auto;
-  margin-right: 3%;
-}
-
-.btn__iconBtn-text {
-  width: fit-content;
-  height: 10vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-transform: uppercase;
-  color: #303030;
-  font-weight: bold;
-  font-size: 0.9em;
-  white-space: nowrap;
-}
-
-.btn__icontBtn-img {
-  width: 40%;
-  padding: 1vh 0;
-}
-
-.navbar__iconBtn-container {
-  padding: 1vh 0;
-  height: 75%;
-  width: 100%;
-  border-bottom: 1px solid #000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-}
-
-.navbar__iconBtn-mission {
-  @extend .navbar__iconBtn-container;
-  background-color: white;
-}
-
-.navbar__iconBtn-team {
-  @extend .navbar__iconBtn-container;
-  background-color: white;
-}
-
-.navbar__iconBtn-about {
-  @extend .navbar__iconBtn-container;
-  background-color: #9adcc7;
+.btn__dash-active {
+  @extend .btn__dash;
+  background-color: lightcyan;
 }
