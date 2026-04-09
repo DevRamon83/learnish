@@ -1,7 +1,7 @@
-export default function IconBtn({ iconClass, img, handler }) {
+export default function IconBtn({ iconClass, img, handler, value }) {
   return (
-    <>
-      <img className={iconClass} src={img} onClick={handler} />
-    </>
+    <div onClick={() => handler(value)} className={iconClass}>
+      <img src={img} />
+    </div>
   );
 }
