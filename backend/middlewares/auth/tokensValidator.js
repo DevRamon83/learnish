@@ -1,10 +1,9 @@
 import handleErrorResponse from "../../helpers/handleErrorResponse.js";
 import analyzePayload from "../../helpers/middleware/analyzePayload.js";
 import tokenChecker from "../../helpers/middleware/tokenChecker.js";
-import tokenRevoker from "../../services/tokenRevoker.js";
 
-const rtErrorHandler = (data, tokensRevoked) => {
-  const { res, req, errorType, log, userBann, refreshToken } = data;
+const rtErrorHandler = (data) => {
+  const { res, req, errorType, log, userBann } = data;
 
   if (errorType === "invalidToken") {
     handleErrorResponse(res, req, errorType, 403, log, userBann);
@@ -50,7 +49,7 @@ const tokensValidator = async (req, res, next) => {
   if (refreshToken && refreshToken.error) {
     const errorType = refreshToken.errorType;
     const data = { res, req, errorType, log, userBann, refreshToken };
-    rtErrorHandler(data, tokensRevoked);
+    rtErrorHandler(data);
     return;
   }
 
