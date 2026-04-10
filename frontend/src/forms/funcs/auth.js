@@ -24,7 +24,11 @@ export const pswOnBlur = (string, id) => {
   return { error: false };
 };
 
-export const emailOnBlur = (string, id) => {
+export const emailOnBlur = async (string, id) => {
+  const data = { key: id, value: string };
+  const isUnique = await fetchUnique(data);
+  if (isUnique.error) return { error: true, errorMsg: "notUnique" };
+
   const isValid = emailValidator(string);
   if (isValid.error) {
     const errorMsg = isValid.errorArray[0];
