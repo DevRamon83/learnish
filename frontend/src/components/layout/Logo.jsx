@@ -8,9 +8,13 @@ import i from "../../assets/logo/i.svg";
 import es from "../../assets/logo/es.svg";
 import aitch from "../../assets/logo/aitch.svg";
 
-export default function Logo({ logoState }) {
+export default function Logo({ logoState, isOpen, toggleNavbar }) {
+  const handler = () => {
+    if (isOpen) toggleNavbar();
+  };
+
   return (
-    <div className={"navbar__logo" + logoState}>
+    <div onClick={handler} className={"navbar__logo" + logoState}>
       <img id={"logo__el" + logoState} src={el} />
       <img id={"logo__er" + logoState} src={er} />
       <img id={"logo__en" + logoState} src={en} />

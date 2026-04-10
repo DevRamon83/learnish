@@ -49,7 +49,11 @@ export default function Navbar() {
     <>
       <nav className={isOpen ? navOpen : nav}>
         <NavLink to="/" end>
-          <Logo logoState={logoState} />
+          <Logo
+            toggleNavbar={toggleNavbar}
+            isOpen={isOpen}
+            logoState={logoState}
+          />
         </NavLink>
         <ConditionalNavbar
           navbarState={navbarState}
