@@ -1,40 +1,54 @@
 import { useEffect, useState } from "react";
-import authErrorHandler from "./authErrorHandler";
+import {
+  idDefiner,
+  INITIAL_UI_STATE,
+  getErrorMsg,
+  promiseHandler,
+  uiDefiner,
+} from "./utils";
+import InputContainer from "../../ui/forms/InputContainer";
 
 export default function FormInput({ Element, data, lang }) {
-  let error = authErrorHandler(data.returns);
-  const [onBlurError, setOnBlurError] = useState(null);
+  const [uiStates, setUiStates] = useState(INITIAL_UI_STATE);
 
-  if (data.state.value === "") {
-    error = null;
-  }
+  const { formContainer, inputContainer } = idDefiner(data);
+  const configObj = { formContainer, uiStates, inputContainer, Element };
+
+  const resetUi = () => setUiStates(INITIAL_UI_STATE);
+  const setter = (error, iconSrc, inputClass) => {
+    setUiStates({ error, inputClass, iconSrc });
+  };
 
   useEffect(() => {
-    setOnBlurError(null);
-    if (error) return;
+    resetUi();
+
     const result = data.returns.onBlur;
 
     if (result instanceof Promise) {
-      result.then((resolvedValue) => {
-        const onBlur = resolvedValue.error ? resolvedValue.errorMsg : null;
-        setOnBlurError(onBlur);
-      });
-    } else if (result && result.error) {
-      setOnBlurError(result.errorMsg);
+      promiseHandler(result, setter);
+      return;
     }
+
+    if (!result) return;
+
+    const defineText = result.error ? result.errorMsg : null;
+    const { inputClass, iconSrc } = uiDefiner(result.error);
+    setter(defineText, iconSrc, inputClass);
   }, [data.returns?.onBlur]);
 
   useEffect(() => {
-    if (onBlurError) {
-      setOnBlurError(null);
+    resetUi();
+
+    if (data.returns.onChange?.error) {
+      const errorMsg = getErrorMsg(data.returns.onChange);
+      setter(errorMsg, "/invalid.svg", "form__input-error");
     }
   }, [data.returns?.onChange]);
 
   return (
-    <div style={{ display: "flex" }}>
-      {<Element dataField={data} i18n={lang} />}
-      {error && <div>{error}</div>}
-      {onBlurError && <div>{onBlurError}</div>}
-    </div>
+    <>
+      <div className="form__errorContainer">{uiStates.error}</div>
+      <InputContainer data={data} lang={lang} configObj={configObj} />
+    </>
   );
 }
