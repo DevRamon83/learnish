@@ -22,6 +22,7 @@ const { authValidator } = bundle.validators;
 export default function SignupForm() {
   const formRef = useRef();
   const [error, setError] = useState(null);
+
   const standardError = "registration failed. check your data";
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -47,7 +48,11 @@ export default function SignupForm() {
     const formData = new FormData(formRef.current);
     const data = Object.fromEntries(formData.entries());
     const isValidData = validate(data);
-    if (!isValidData) return;
+    if (!isValidData) {
+      setError(standardError);
+      return;
+    }
+
     setError(null);
     dispatch(setAuth("pending"));
 
@@ -59,18 +64,16 @@ export default function SignupForm() {
   };
 
   return (
-    <>
-      <form ref={formRef} onSubmit={submitHandler}>
-        <FormInput Element={TextInput} data={username} lang={lang} />
-        <FormInput Element={EmailInput} data={email} lang={lang} />
-        <FormInput Element={EmailInput} data={confirmEmail} lang={lang} />
-        <FormInput Element={PasswordInput} data={password} lang={lang} />
-        <FormInput Element={PasswordInput} data={confirmPassword} lang={lang} />
-        <FormInput Element={RadioInput} data={privacy} lang={lang} />
-        <FormInput Element={RadioInput} data={tos} lang={lang} />
-        <ErrorOnSubmit error={error} />
-        <button>Invia</button>
-      </form>
-    </>
+    <form className="form__signup" ref={formRef} onSubmit={submitHandler}>
+      <FormInput Element={TextInput} data={username} lang={lang} />
+      <FormInput Element={EmailInput} data={email} lang={lang} />
+      <FormInput Element={EmailInput} data={confirmEmail} lang={lang} />
+      <FormInput Element={PasswordInput} data={password} lang={lang} />
+      <FormInput Element={PasswordInput} data={confirmPassword} lang={lang} />
+      <FormInput Element={RadioInput} data={privacy} lang={lang} />
+      <FormInput Element={RadioInput} data={tos} lang={lang} />
+      <ErrorOnSubmit error={error} />
+      <button>Invia</button>
+    </form>
   );
 }
