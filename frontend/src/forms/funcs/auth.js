@@ -42,15 +42,15 @@ export const usernameOnChange = (string, id) => {
   const validChar = acceptOnly(string, allowedCharacters);
   return validChar
     ? { error: false }
-    : { error: true, errorMsg: "carattere invalido" };
+    : { error: true, errorMsg: "invalidChar" };
 };
 
 export const emailMatch = () => {
   const match = matcher("email", "confirmEmail");
-  return { error: !match, errorMsg: "don't match" };
+  return { error: !match, errorMsg: "unconfirm" };
 };
 
 export const pswMatch = () => {
   const match = matcher("password", "confirmPassword");
-  return { error: !match, errorMsg: "don't match" };
+  return { error: !match, errorMsg: "unconfirm" };
 };
