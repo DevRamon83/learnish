@@ -1,0 +1,17 @@
+{
+  "username_invalidChar": "carattere non valido",
+  "username_notUnique": "username già registrato",
+  "username_short": "minimo 5 caratteri",
+  "username_long": "massimo 55 caratter",
+  "email_missing@": "inserisci una mail valida",
+  "email_invalid_structure": "inserisci una mail valida",
+  "email_invalidChars": "inserisci una mail valida",
+  "confirmEmail_unconfirm": "le mail inserite non combaciano",
+  "password_short": "minimo 11 caratteri",
+  "password_long": "massimo 65 caratter",
+  "confirmPassword_unconfirm": "le password inserite non combaciano",
+  "password_upperCaseMissing": "almeno una lettera maiuscola",
+  "password_lowerCaseMissing": "almeno una lettera minuscola",
+  "password_numMissing": "almeno un numero",
+  "password_specialCharMissing": "almeno un carattere speciale (es. ?, !, etc)"
+}
