@@ -67,16 +67,18 @@ export default function SignupForm() {
   };
 
   return (
-    <form className={classes.signup} ref={formRef} onSubmit={submitHandler}>
-      <FormInput Element={TextInput} data={username} lang={lang} />
-      <FormInput Element={EmailInput} data={email} lang={lang} />
-      <FormInput Element={EmailInput} data={confirmEmail} lang={lang} />
-      <FormInput Element={PasswordInput} data={password} lang={lang} />
-      <FormInput Element={PasswordInput} data={confirmPassword} lang={lang} />
-      <FormInput Element={RadioInput} data={privacy} lang={lang} />
-      <FormInput Element={RadioInput} data={tos} lang={lang} />
-      <ErrorOnSubmit error={error} />
-      <button className={classes.btn.send}>Invia</button>
-    </form>
+    <>
+      <form className={classes.signup} ref={formRef} onSubmit={submitHandler}>
+        <FormInput Element={TextInput} data={username} lang={lang} />
+        <FormInput Element={EmailInput} data={email} lang={lang} />
+        <FormInput Element={EmailInput} data={confirmEmail} lang={lang} />
+        <FormInput Element={PasswordInput} data={password} lang={lang} />
+        <FormInput Element={PasswordInput} data={confirmPassword} lang={lang} />
+        <FormInput Element={RadioInput} data={privacy} lang={lang} />
+        <FormInput Element={RadioInput} data={tos} lang={lang} />
+        <ErrorOnSubmit error={error} />
+        <button className={classes.btn.send}>{strings.signup}</button>
+      </form>
+    </>
   );
 }

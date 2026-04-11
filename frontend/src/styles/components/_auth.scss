@@ -1,4 +1,5 @@
 @use "../variables/colors";
+@use "../breakpoints";
 
 form {
   display: flex;
@@ -29,6 +30,7 @@ form {
   height: 40px;
   position: relative;
   background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
 .form__signup-icon {
@@ -56,6 +58,10 @@ form {
   text-transform: uppercase;
   font-size: 0.85em;
   font-weight: bold;
+
+  @include breakpoints.medium {
+    background: linear-gradient(to bottom, #f0f4f8 50%, #fff 50%);
+  }
 }
 
 .form__inputContainer > input {
@@ -67,10 +73,19 @@ form {
 
 #form__input-tos {
   height: 15vh;
+
+  @include breakpoints.medium {
+    height: 80px;
+    padding-right: 10%;
+  }
 }
 
 #form__input-privacy {
   height: 12vh;
+
+  @include breakpoints.medium {
+    height: 40px;
+  }
 }
 
 #form__inputContainer-tos > div {
@@ -103,6 +118,16 @@ form {
   align-items: center;
   flex-direction: column;
   width: 100%;
+
+  @include breakpoints.medium {
+    padding-top: 3vh;
+    background-color: #f0f4f8;
+    border-radius: 20px;
+    width: 40%;
+    border: 1px solid colors.$primaryColor;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    padding-bottom: 2vh;
+  }
 }
 
 .form__errorContainer {
@@ -120,9 +145,15 @@ form {
   color: white;
   font-weight: bold;
   text-transform: uppercase;
-  width: 15%;
+  width: 50%;
   cursor: pointer;
   border-radius: 5px;
   border-color: white;
   height: 6vh;
+  margin: 2vh 0;
+
+  @include breakpoints.medium {
+    width: 25%;
+    height: 4vh;
+  }
 }
