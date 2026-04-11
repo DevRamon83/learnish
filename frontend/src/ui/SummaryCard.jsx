@@ -1,14 +1,15 @@
 import Summary from "../components/dashboard/summaries/Summary";
+import { classes } from "../constants/layout/dashboard";
 import ReadSummary from "./ReadSummary";
 
 export default function SummaryCard({ summary, setter, open }) {
   return (
     <>
-      <div className="summary__card">
-        <img className="summary__card-img" src={summary.thumbnail} />
+      <div className={classes.summary.card}>
+        <img className={classes.summary.cardImg} src={summary.thumbnail} />
         <div>
-          <div className="summary__title">{summary.title}</div>
-          <div className="summary__channel">{summary.channel}</div>
+          <div className={classes.summary.title}>{summary.title}</div>
+          <div className={classes.summary.channel}>{summary.channel}</div>
           <div>errori: {summary.errorCodes.length}</div>
 
           <ReadSummary date={summary.createdAt} setter={setter} />

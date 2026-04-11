@@ -1,3 +1,5 @@
+import { classes } from "../constants/layout/dashboard";
+
 export default function ReadSummary({ setter, date }) {
   const wrote = new Date(date).toLocaleDateString(undefined, {
     day: "numeric",
@@ -5,9 +7,9 @@ export default function ReadSummary({ setter, date }) {
     year: "numeric",
   });
   return (
-    <p className="summary__read" onClick={() => setter(true)}>
-      <span className="summary__date">{wrote}</span>
-      <span className="btn__arrow">⊳</span>
+    <p className={classes.summary.read} onClick={() => setter(true)}>
+      <span className={classes.summary.date}>{wrote}</span>
+      <span className={classes.summary.arrow}>⊳</span>
     </p>
   );
 }

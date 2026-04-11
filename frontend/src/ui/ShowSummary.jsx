@@ -1,3 +1,4 @@
+import { classes } from "../constants/layout/dashboard";
 import SummaryError from "./SummaryError";
 
 export default function ShowSummary({
@@ -10,7 +11,7 @@ export default function ShowSummary({
   return (
     <>
       {parse.length !== 0 && !isInvalid && (
-        <p className="summary">
+        <p className={classes.container}>
           {parse.map((node) =>
             node.type === "span" ? (
               <span key={node.id}>{node.text}</span>
