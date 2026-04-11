@@ -1,7 +1,6 @@
 export const classes = {
   container: "navbar__container",
   btn: "navbar__btn",
-  logo: "navbar__btn-logo",
   navbarContainer: "navbar__container",
   navbarContainerActive: "navbar__container-active",
   navbarContainerClose: "navbar__container-close",
@@ -10,4 +9,6 @@ export const classes = {
   hamburgerBarActive: "navbar__hamburger-active",
   nav: "navbar__nav",
   navOpen: "navbar__nav-open",
+  tab: "navbar__tab",
+  tabImg: "navbar__tab-img",
 };
