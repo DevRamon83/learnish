@@ -17,6 +17,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setAuth, setUser } from "../../redux/slices/authSlice";
 import ErrorOnSubmit from "../ErrorOnSubmit";
+import { classes } from "../../constants/components/forms";
 const { authValidator } = bundle.validators;
 
 export default function SignupForm() {
@@ -58,13 +59,15 @@ export default function SignupForm() {
 
     const response = await fetchSignup(data);
 
+    // email to confirm link
+
     const config = { dispatch, navigate, setAuth, setUser, standardError };
 
     finalizeAuth(response, config, setError);
   };
 
   return (
-    <form className="form__signup" ref={formRef} onSubmit={submitHandler}>
+    <form className={classes.signup} ref={formRef} onSubmit={submitHandler}>
       <FormInput Element={TextInput} data={username} lang={lang} />
       <FormInput Element={EmailInput} data={email} lang={lang} />
       <FormInput Element={EmailInput} data={confirmEmail} lang={lang} />

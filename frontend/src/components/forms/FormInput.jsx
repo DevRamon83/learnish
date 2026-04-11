@@ -7,6 +7,7 @@ import {
   uiDefiner,
 } from "./utils";
 import InputContainer from "../../ui/forms/InputContainer";
+import { classes } from "../../constants/components/forms";
 
 export default function FormInput({ Element, data, lang }) {
   const [uiStates, setUiStates] = useState(INITIAL_UI_STATE);
@@ -41,14 +42,19 @@ export default function FormInput({ Element, data, lang }) {
 
     if (data.returns.onChange?.error) {
       const errorMsg = getErrorMsg(data.returns.onChange);
-      setter(errorMsg, "/invalid.svg", "form__input-error");
+      setter(errorMsg, "/invalid.svg", classes.inputs.error);
     }
   }, [data.returns?.onChange]);
 
   return (
     <>
-      <div className="form__errorContainer">{uiStates.error}</div>
-      <InputContainer data={data} lang={lang} configObj={configObj} />
+      <div className={classes.errorContainer}>{uiStates.error}</div>
+      <InputContainer
+        classes={classes}
+        data={data}
+        lang={lang}
+        configObj={configObj}
+      />
     </>
   );
 }
