@@ -7,6 +7,7 @@ import squareClose from "../../assets/logo/squareClose.svg";
 import i from "../../assets/logo/i.svg";
 import es from "../../assets/logo/es.svg";
 import aitch from "../../assets/logo/aitch.svg";
+import { ids, classes } from "../../constants/layout/logo";
 
 export default function Logo({ logoState, isOpen, toggleNavbar }) {
   const handler = () => {
@@ -14,17 +15,17 @@ export default function Logo({ logoState, isOpen, toggleNavbar }) {
   };
 
   return (
-    <div onClick={handler} className={"navbar__logo" + logoState}>
-      <img id={"logo__el" + logoState} src={el} />
-      <img id={"logo__er" + logoState} src={er} />
-      <img id={"logo__en" + logoState} src={en} />
-      <img id={"logo__e" + logoState} src={e} />
-      <img id={"logo__a" + logoState} src={e} />
-      <img id={"logo__squareOpen" + logoState} src={squareOpen} />
-      <img id={"logo__squareClose" + logoState} src={squareClose} />
-      <img id={"logo__i" + logoState} src={i} />
-      <img id={"logo__es" + logoState} src={es} />
-      <img id={"logo__aitch" + logoState} src={aitch} />
+    <div onClick={handler} className={classes.logo + logoState}>
+      <img id={ids.el + logoState} src={el} />
+      <img id={ids.er + logoState} src={er} />
+      <img id={ids.en + logoState} src={en} />
+      <img id={ids.e + logoState} src={e} />
+      <img id={ids.a + logoState} src={e} />
+      <img id={ids.squareOpen + logoState} src={squareOpen} />
+      <img id={ids.squareClose + logoState} src={squareClose} />
+      <img id={ids.i + logoState} src={i} />
+      <img id={ids.es + logoState} src={es} />
+      <img id={ids.aitch + logoState} src={aitch} />
     </div>
   );
 }
