@@ -76,7 +76,7 @@ export default function SignupForm() {
       <FormInput Element={RadioInput} data={privacy} lang={lang} />
       <FormInput Element={RadioInput} data={tos} lang={lang} />
       <ErrorOnSubmit error={error} />
-      <button>Invia</button>
+      <button className={classes.btn.send}>Invia</button>
     </form>
   );
 }

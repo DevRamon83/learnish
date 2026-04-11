@@ -114,3 +114,15 @@ form {
   z-index: 20;
   top: 50px;
 }
+
+.form__sendBtn {
+  background-color: colors.$primaryColor;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  width: 15%;
+  cursor: pointer;
+  border-radius: 5px;
+  border-color: white;
+  height: 6vh;
+}
