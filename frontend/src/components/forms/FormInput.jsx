@@ -8,16 +8,19 @@ import {
 } from "./utils";
 import InputContainer from "../../ui/forms/InputContainer";
 import { classes } from "../../constants/components/forms";
+import { useLang } from "../../hooks/useLang";
+import { i18nAddresses } from "../../constants/i18nAddresses";
 
 export default function FormInput({ Element, data, lang }) {
   const [uiStates, setUiStates] = useState(INITIAL_UI_STATE);
-
+  const { strings } = useLang(i18nAddresses.errors);
   const { formContainer, inputContainer } = idDefiner(data);
   const configObj = { formContainer, uiStates, inputContainer, Element };
 
   const resetUi = () => setUiStates(INITIAL_UI_STATE);
   const setter = (error, iconSrc, inputClass) => {
-    setUiStates({ error, inputClass, iconSrc });
+    const errorMsg = data.config.id + "_" + error;
+    setUiStates({ error: strings[errorMsg], inputClass, iconSrc });
   };
 
   useEffect(() => {
