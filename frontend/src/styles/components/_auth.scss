@@ -130,6 +130,10 @@ form {
   }
 }
 
+.form__login {
+  @extend .form__signup;
+}
+
 .form__errorContainer {
   height: 3vh;
   color: red;

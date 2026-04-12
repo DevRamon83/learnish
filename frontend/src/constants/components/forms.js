@@ -6,8 +6,10 @@ export const classes = {
   },
   btn: {
     send: "form__sendBtn",
+    login: "form__sendBtn",
   },
 
   signup: "form__signup",
+  login: "form__login",
   errorContainer: "form__errorContainer",
 };

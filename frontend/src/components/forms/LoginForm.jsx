@@ -11,6 +11,7 @@ import { setAuth, setUser } from "../../redux/slices/authSlice";
 import bundle from "shared";
 import finalizeAuth from "../../utils/finalizeAuth";
 import ErrorOnSubmit from "../ErrorOnSubmit";
+import { classes } from "../../constants/components/forms";
 const { authValidator } = bundle.validators;
 
 export default function LoginForm() {
@@ -53,11 +54,11 @@ export default function LoginForm() {
 
   return (
     <>
-      <form ref={formRef} onSubmit={submitHandler}>
+      <form className={classes.login} ref={formRef} onSubmit={submitHandler}>
         <FormInput Element={TextInput} data={username} lang={lang} />
         <FormInput Element={PasswordInput} data={password} lang={lang} />
         <ErrorOnSubmit error={error} />
-        <button>Invia</button>
+        <button className={classes.btn.login}>{strings.login}</button>
       </form>
     </>
   );
