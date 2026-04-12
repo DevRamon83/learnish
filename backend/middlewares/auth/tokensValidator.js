@@ -7,6 +7,7 @@ const rtErrorHandler = (data) => {
 
   if (errorType === "invalidToken") {
     handleErrorResponse(res, req, errorType, 403, log, userBann);
+    return;
   }
 
   handleErrorResponse(res, req, errorType, 401, false, userBann);
@@ -61,6 +62,7 @@ const tokensValidator = async (req, res, next) => {
 
   req.context.tokens.rotate = rotateToken;
   req.context.tokens.payload = payload;
+
   next();
 };
 
