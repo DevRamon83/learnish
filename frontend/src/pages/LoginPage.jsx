@@ -1,9 +1,9 @@
 import LoginForm from "../components/forms/LoginForm";
+import { classes } from "../constants/pages";
 
 export default function Login() {
   return (
-    <main>
-      <h1>Login</h1>
+    <main className={classes.mainLogin}>
       <LoginForm />
     </main>
   );

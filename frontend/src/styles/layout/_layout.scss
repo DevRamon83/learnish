@@ -34,3 +34,7 @@ main {
   gap: 3vh;
   padding: 0 0 20vh 0;
 }
+
+.main__login {
+  @extend .main__signup;
+}
