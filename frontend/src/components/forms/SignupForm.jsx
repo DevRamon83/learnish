@@ -12,10 +12,6 @@ import FormInput from "./FormInput";
 import fetchSignup from "../../api/handlers/fetchSignup";
 import { useState, useRef } from "react";
 import bundle from "shared";
-import finalizeAuth from "../../utils/finalizeAuth";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { setAuth, setUser } from "../../redux/slices/authSlice";
 import ErrorOnSubmit from "../ErrorOnSubmit";
 import { classes } from "../../constants/components/forms";
 const { authValidator } = bundle.validators;
@@ -23,10 +19,9 @@ const { authValidator } = bundle.validators;
 export default function SignupForm() {
   const formRef = useRef();
   const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(false);
 
   const standardError = "registration failed. check your data";
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   const { strings, lang } = useLang(i18nAddresses.auth);
   const objConfig = authConfigBuilder(strings, "signup");
@@ -55,30 +50,38 @@ export default function SignupForm() {
     }
 
     setError(null);
-    dispatch(setAuth("pending"));
 
     const response = await fetchSignup(data);
 
-    // email to confirm link
+    if (response.error) {
+      return;
+    }
 
-    const config = { dispatch, navigate, setAuth, setUser, standardError };
-
-    finalizeAuth(response, config, setError);
+    setSuccess(true);
+    console.log(response);
   };
 
   return (
     <>
-      <form className={classes.signup} ref={formRef} onSubmit={submitHandler}>
-        <FormInput Element={TextInput} data={username} lang={lang} />
-        <FormInput Element={EmailInput} data={email} lang={lang} />
-        <FormInput Element={EmailInput} data={confirmEmail} lang={lang} />
-        <FormInput Element={PasswordInput} data={password} lang={lang} />
-        <FormInput Element={PasswordInput} data={confirmPassword} lang={lang} />
-        <FormInput Element={RadioInput} data={privacy} lang={lang} />
-        <FormInput Element={RadioInput} data={tos} lang={lang} />
-        <ErrorOnSubmit error={error} />
-        <button className={classes.btn.send}>{strings.signup}</button>
-      </form>
+      {success ? (
+        <div>{strings.confirmMsg}</div>
+      ) : (
+        <form className={classes.signup} ref={formRef} onSubmit={submitHandler}>
+          <FormInput Element={TextInput} data={username} lang={lang} />
+          <FormInput Element={EmailInput} data={email} lang={lang} />
+          <FormInput Element={EmailInput} data={confirmEmail} lang={lang} />
+          <FormInput Element={PasswordInput} data={password} lang={lang} />
+          <FormInput
+            Element={PasswordInput}
+            data={confirmPassword}
+            lang={lang}
+          />
+          <FormInput Element={RadioInput} data={privacy} lang={lang} />
+          <FormInput Element={RadioInput} data={tos} lang={lang} />
+          <ErrorOnSubmit error={error} />
+          <button className={classes.btn.send}>{strings.signup}</button>
+        </form>
+      )}
     </>
   );
 }
