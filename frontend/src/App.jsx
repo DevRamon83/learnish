@@ -7,6 +7,14 @@ import Dashboard from "./pages/Dashboard";
 import { useAuth } from "./hooks/useAuth";
 import Footer from "./components/layout/Footer";
 import VerifyUser from "./pages/VerifyUser";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import Faq from "./pages/Faq";
+import Mission from "./pages/Mission";
+import Price from "./pages/Price";
+import Privacy from "./pages/Privacy";
+import Team from "./pages/Team";
+import Tos from "./pages/Tos";
 
 function App() {
   const PrivateRoutes = () => {
@@ -26,6 +34,15 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/verify/:token" element={<VerifyUser />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/faq" element={<Faq />} />
+        <Route path="/mission" element={<Mission />} />
+        <Route path="/price" element={<Price />} />
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/team" element={<Team />} />
+        <Route path="/tos" element={<Tos />} />
+
         <Route path="/user" element={<PrivateRoutes />}>
           <Route path="/user/dashboard/:id" element={<Dashboard />} />
         </Route>
