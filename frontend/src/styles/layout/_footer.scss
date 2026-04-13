@@ -1,1 +1,147 @@
+@use "../breakpoints";
 
+.footer_right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+
+  @include breakpoints.medium {
+    width: 70%;
+    border-left: 3px solid #f7f8fa;
+  }
+}
+
+.footer_left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+
+  @include breakpoints.medium {
+    width: 30%;
+  }
+}
+
+.footer_bottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  border-top: 2px solid #f7f8fa;
+  height: 6vh;
+  margin: 0;
+
+  @include breakpoints.medium {
+    height: 3vh;
+  }
+}
+
+.footer__section {
+  width: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.footer__social {
+  @extend .footer__section;
+}
+
+.footer__system {
+  @extend .footer__section;
+  font-weight: bold;
+}
+
+.footer__btn-system {
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.footer__info {
+  @extend .footer__section;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 78%;
+  margin-top: 5vh;
+  gap: 6vh;
+
+  @include breakpoints.medium {
+    gap: 2vh;
+  }
+}
+
+.footer__info-text {
+  border-left: 1px solid #303030;
+  padding: 5px;
+}
+
+.footer__btn {
+  border-radius: 5px;
+  border: 1px solid #000;
+  padding: 5px 10px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #000;
+}
+
+.footer__textBtn {
+  @extend .footer__btn;
+}
+
+.footer__btn-social {
+  @extend .footer__btn;
+}
+
+.footer__btn-info {
+  @extend .footer__btn;
+  padding: 0 10px;
+  width: 100%;
+  justify-content: flex-start;
+}
+
+.footer__btn-img {
+  padding: 0 10px 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer__legal {
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 0.8em;
+}
+
+.footer_right > h5 {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @include breakpoints.medium {
+    width: 50%;
+  }
+}
+
+.footer__tos {
+  @extend .footer__legal;
+  border-right: 2px solid white;
+  padding-right: 10px;
+}
+
+.footer__privacy {
+  @extend .footer__legal;
+  padding-left: 10px;
+}
