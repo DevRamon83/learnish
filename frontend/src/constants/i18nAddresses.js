@@ -4,4 +4,5 @@ export const i18nAddresses = {
   dashboard: "components.dashboard",
   navbar: "components.navbar",
   errors: "components.errors",
+  faq: "components.faq",
 };
