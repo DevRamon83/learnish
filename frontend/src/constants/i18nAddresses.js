@@ -5,4 +5,5 @@ export const i18nAddresses = {
   navbar: "components.navbar",
   errors: "components.errors",
   faq: "components.faq",
+  team: "components.team",
 };

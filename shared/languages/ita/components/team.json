@@ -1,0 +1,51 @@
+{
+  "people": [
+    {
+      "name": "Sofia Rossi",
+      "img": "/team/team1.png",
+      "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia sunt earum error nesciunt perspiciatis velit. Non, voluptas, incidunt ut, aliquam tempora ratione impedit amet aut neque perferendis fugiat veniam reprehenderit ipsam? Officiis quas doloribus perspiciatis odio tenetur id, quis amet consequatur commodi itaque voluptatem a veniam consequuntur vel officia. Sequi."
+    },
+    {
+      "name": "Franceso Russo",
+      "img": "/team/team2.png",
+      "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia sunt earum error nesciunt perspiciatis velit. Non, voluptas, incidunt ut, aliquam tempora ratione impedit amet aut neque perferendis fugiat veniam reprehenderit ipsam? Officiis quas doloribus perspiciatis odio tenetur id, quis amet consequatur commodi itaque voluptatem a veniam consequuntur vel officia. Sequi."
+    },
+    {
+      "name": "Maria Ferrari",
+      "img": "/team/team3.png",
+      "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia sunt earum error nesciunt perspiciatis velit. Non, voluptas, incidunt ut, aliquam tempora ratione impedit amet aut neque perferendis fugiat veniam reprehenderit ipsam? Officiis quas doloribus perspiciatis odio tenetur id, quis amet consequatur commodi itaque voluptatem a veniam consequuntur vel officia. Sequi."
+    },
+    {
+      "name": "Giovanni Esposito",
+      "img": "/team/team4.png",
+      "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia sunt earum error nesciunt perspiciatis velit. Non, voluptas, incidunt ut, aliquam tempora ratione impedit amet aut neque perferendis fugiat veniam reprehenderit ipsam? Officiis quas doloribus perspiciatis odio tenetur id, quis amet consequatur commodi itaque voluptatem a veniam consequuntur vel officia. Sequi."
+    },
+    {
+      "name": "Gabriele Bianchi",
+      "img": "/team/team5.png",
+      "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia sunt earum error nesciunt perspiciatis velit. Non, voluptas, incidunt ut, aliquam tempora ratione impedit amet aut neque perferendis fugiat veniam reprehenderit ipsam? Officiis quas doloribus perspiciatis odio tenetur id, quis amet consequatur commodi itaque voluptatem a veniam consequuntur vel officia. Sequi."
+    },
+    {
+      "name": "Beatrice Colombo",
+      "img": "/team/team6.png",
+      "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia sunt earum error nesciunt perspiciatis velit. Non, voluptas, incidunt ut, aliquam tempora ratione impedit amet aut neque perferendis fugiat veniam reprehenderit ipsam? Officiis quas doloribus perspiciatis odio tenetur id, quis amet consequatur commodi itaque voluptatem a veniam consequuntur vel officia. Sequi."
+    },
+    {
+      "name": "Franco Bruno",
+      "img": "/team/team7.png",
+      "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia sunt earum error nesciunt perspiciatis velit. Non, voluptas, incidunt ut, aliquam tempora ratione impedit amet aut neque perferendis fugiat veniam reprehenderit ipsam? Officiis quas doloribus perspiciatis odio tenetur id, quis amet consequatur commodi itaque voluptatem a veniam consequuntur vel officia. Sequi."
+    },
+    {
+      "name": "Alessandra Ricci",
+      "img": "/team/team8.png",
+      "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia sunt earum error nesciunt perspiciatis velit. Non, voluptas, incidunt ut, aliquam tempora ratione impedit amet aut neque perferendis fugiat veniam reprehenderit ipsam? Officiis quas doloribus perspiciatis odio tenetur id, quis amet consequatur commodi itaque voluptatem a veniam consequuntur vel officia. Sequi."
+    },
+    {
+      "name": "Paolo Costa",
+      "img": "/team/team9.png",
+      "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia sunt earum error nesciunt perspiciatis velit. Non, voluptas, incidunt ut, aliquam tempora ratione impedit amet aut neque perferendis fugiat veniam reprehenderit ipsam? Officiis quas doloribus perspiciatis odio tenetur id, quis amet consequatur commodi itaque voluptatem a veniam consequuntur vel officia. Sequi."
+    }
+  ],
+  "back": "indietro",
+  "forward": "avanti"
+}

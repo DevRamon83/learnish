@@ -1,0 +1,109 @@
+@use "../breakpoints";
+
+.team__main {
+  margin-bottom: 3vh;
+  display: block;
+}
+
+.team__carousell-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  @include breakpoints.medium {
+    flex-direction: row;
+  }
+}
+
+.team__carousell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+  height: 190px;
+  overflow: hidden;
+  position: relative;
+  border-radius: 0px;
+
+  @include breakpoints.small {
+    height: 300px;
+  }
+
+  @include breakpoints.medium {
+    border-radius: 40px;
+    width: 50%;
+    height: 400px;
+  }
+}
+
+.team__img {
+  position: absolute;
+  left: 0;
+  width: 100%;
+}
+
+.team__carousellDirection {
+  position: absolute;
+  bottom: 0;
+  z-index: 10;
+  width: 49.5%;
+  height: 5vh;
+  background-color: #303030;
+  opacity: 0.75;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.team__carousell-back {
+  @extend .team__carousellDirection;
+  left: 0;
+}
+
+.team__carousell-forward {
+  @extend .team__carousellDirection;
+  right: 0;
+}
+
+.team__info {
+  width: 100%;
+  padding: 20px;
+  text-align: left;
+
+  @include breakpoints.medium {
+    width: 40%;
+    margin-left: 3%;
+    border-left: 1px solid #000;
+  }
+}
+
+.team__name-mobile {
+  width: 100%;
+  text-transform: uppercase;
+  text-align: center;
+  margin-top: 0;
+
+  @include breakpoints.medium {
+    display: none;
+  }
+}
+
+.team__name-desktop {
+  display: none;
+  @include breakpoints.medium {
+    display: block;
+    width: 100%;
+    text-transform: uppercase;
+  }
+}
+
+.team__description {
+  line-height: 1.5em;
+}
