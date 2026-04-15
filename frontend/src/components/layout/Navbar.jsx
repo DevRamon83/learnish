@@ -19,7 +19,7 @@ export default function Navbar() {
   const [logoState, setLogoState] = useState("");
   const user = useSelector((state) => state.auth.user);
 
-  const { strings, lang } = useLang(i18nAddresses.navbar);
+  const { strings, lang } = useLang(i18nAddresses.layout);
 
   const dispatch = useDispatch();
   usePersonalSettings();

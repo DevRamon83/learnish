@@ -6,7 +6,7 @@ import FooterSystem from "../../ui/FooterSystem";
 import SocialSection from "../../ui/SocialSection";
 
 export default function Footer() {
-  const { strings, lang } = useLang(i18nAddresses.navbar);
+  const { strings, lang } = useLang(i18nAddresses.layout);
 
   return (
     <footer>
@@ -20,7 +20,7 @@ export default function Footer() {
         <FooterLegal strings={strings} />
       </div>
       <h6 className="footer_bottom">
-        {`Copyright © 2001-${new Date().getFullYear()} learnish - Tutti i diritti riservati`}
+        {`Copyright © 2001-${new Date().getFullYear()} learnish - ${strings.copy}`}
       </h6>
     </footer>
   );
