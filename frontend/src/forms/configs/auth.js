@@ -7,6 +7,7 @@ import {
   usernameOnBlur,
   usernameOnChange,
 } from "../funcs/auth";
+import { syncLang } from "../syncLang";
 
 const username = {
   id: "username",
@@ -78,14 +79,6 @@ const tos = {
 
 const loginElements = [username, password];
 const signupElements = [email, confirmEmail, confirmPassword];
-
-const syncLang = (array, strings) => {
-  array.forEach((element) => {
-    const id = element.id;
-    element.label = strings.labels[id];
-    element.placeholder = strings.placeholders[id];
-  });
-};
 
 const authConfigBuilder = (strings, process) => {
   syncLang(loginElements, strings);
