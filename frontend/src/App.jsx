@@ -15,6 +15,7 @@ import Price from "./pages/Price";
 import Privacy from "./pages/Privacy";
 import Team from "./pages/Team";
 import Tos from "./pages/Tos";
+import Metadata from "./components/Metadata";
 
 function App() {
   const PrivateRoutes = () => {
@@ -29,6 +30,7 @@ function App() {
   return (
     <>
       <Navbar />
+      <Metadata />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />

@@ -6,4 +6,5 @@ export const i18nAddresses = {
   errors: "components.errors",
   faq: "components.faq",
   team: "components.team",
+  metadata: "components.metadata",
 };
