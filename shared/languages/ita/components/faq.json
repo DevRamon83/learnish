@@ -1,56 +1,84 @@
 {
-  "questions": {
-    "students": [
-      "Quali informazioni condivido accettando lo sconto del 50?",
-      "Come faccio a disdire?",
-      "Che succede al mio account se il mio insegnante disdice?",
-      "Posso cancellare completamente il mio account?",
-      "Come funziona il rinnovo?",
-      "Quanto dura l'abbonamento?",
-      "Posso pagare mensilmente?",
-      "Quanto sono affidabili le correzioni dell'ia?",
-      "Rilasciate delle certificazioni?",
-      "Come faccio l'upgrade a un account premium?",
-      "Posso tornare a un account gratuito?"
-    ],
-    "teachers": [
-      "Come funziona la prova gratuita?",
-      "Cosa succede al termine della prova gratuita?",
-      "Come aggiungo un nuovo studente?",
-      "Come pubblico il mio corso?",
-      "Posso usare dei video per il mio corso?"
-    ],
-    "commons": [
-      "Quali metodi di pagamento accettate?",
-      "Ho un problema, come contatto l'assistenza?",
-      "Quali sono i tempi di risposta dell'assistenza?"
-    ]
-  },
-  "answers": {
-    "students": [
-      "Accettando lo sconto del 50% non condividerai alcuna informazione personale, ma permetterai a tutti gli altri studenti di usare i tuoi errori per esercitarsi, senza che questo permetta loro di ricollegare quegli errori al tuo account",
-      "Il tuo account subisce un downgrade automatico alla scadenza dell'abbonamento, non devi fare alcuna disdetta, passerai automaticamente alla versione gratuita.",
-      "Se il tuo insegnante disdice il suo abbonamento il tuo account subirà automaticamente un downgrade alla versione gratuita.",
-      "Puoi cancellare completamente il tuo account solo se non hai accettato lo sconto del 50%; qualora tu avessi accettato lo sconto puoi cancellare le tue informazioni personali, ma non i sommari creati, che continueranno a essere usati per permettere agli altri studenti di esercitarsi.",
-      "Se desideri rinnovare devi premunirti di effettuare il pagamento prima della scadenza; sarà nostra premura inviarti un alert con un mese d'anticipo sulla scadenza. In ogni caso, anche se dimenticassi di fare il pagamento, potrai sempre fare un nuovo upgrade dall'account gratuito.",
-      "La durata dell'abbonamento è annuale",
-      "Non è attualmente possibile pagare mensilmente, stiamo lavorando per offrirti questa opportunità in futuro.",
-      "Le correzioni dell'ia sono normalmente affidabili, ma è possibile che l'ia ti segnali come errore la scelta di parole o strutture sintattiche che magari sono solo non particolarmente adeguate, ma non necessariamente sbagliate.",
-      "No, non rilasciamo alcuna certificazione.",
-      "Puoi richiedere l'upgrade da un account gratuito semplicemente accedendo alla tua area riservata",
-      "Assolutamente si, quando il tuo abbonamento scadrà tornerai automaticamente alla versione gratuita"
-    ],
-    "teachers": [
-      "La prova gratuita ha una durata di tre mesi, al termine della quale decidere se abbonarti oppure no; qualora decidessi di non abbonarti gli account degli studenti che hai attivato durante la prova verranno resi automaticamente gratuiti, quindi i tuoi studenti non perderanno il lavoro fatto.",
-      "Al termine della prova gratuita hai 15 giorni di tempo per effettuare il pagamento, al termine dei quali il tuo account verrà rimosso automaticamente",
-      "Per aggiungere un nuovo studente ti basta accedere alla tua area riservata, e cliccare su aggiungi",
-      "Per pubblicare il tuo corso ti basta accedere alla tua area riserva e cliccare sul tasto per creare un nuovo corso",
-      "Assolutamente si, quando aggiungi una nuova lezione puoi scegliere se si tratta di una lezione testuale o se caricare passare l'url di un video da youtube"
-    ],
-    "commons": [
-      "Non accettiamo pagamenti in questo momento, il sito è ancora una beta; per questo motivo puoi attivare solo un account gratuito.",
-      "Puoi contattare l'assistenza accedendo alla tua area riservata",
-      "Normalmente rispondiamo a tutti in 24h, tuttavia in giornate con molte richieste potremmo non riuscire a rispettare questo limite"
-    ]
-  }
+  "students": [
+    {
+      "question": "Quali informazioni condivido accettando lo sconto del 50?",
+      "answer": "Accettando lo sconto del 50% non condividerai alcuna informazione personale, ma permetterai a tutti gli altri studenti di usare i tuoi errori per esercitarsi, senza che questo permetta loro di ricollegare quegli errori al tuo account"
+    },
+    {
+      "question": "Come faccio a disdire?",
+      "answer": "Il tuo account subisce un downgrade automatico alla scadenza dell'abbonamento, non devi fare alcuna disdetta, passerai automaticamente alla versione gratuita."
+    },
+    {
+      "question": "Che succede al mio account se il mio insegnante disdice?",
+      "answer": "Se il tuo insegnante disdice il suo abbonamento il tuo account subirà automaticamente un downgrade alla versione gratuita."
+    },
+    {
+      "question": "Posso cancellare completamente il mio account?",
+      "answer": "Puoi cancellare completamente il tuo account solo se non hai accettato lo sconto del 50%; qualora tu avessi accettato lo sconto puoi cancellare le tue informazioni personali, ma non i sommari creati, che continueranno a essere usati per permettere agli altri studenti di esercitarsi."
+    },
+    {
+      "question": "Come funziona il rinnovo?",
+      "answer": "Se desideri rinnovare devi premunirti di effettuare il pagamento prima della scadenza; sarà nostra premura inviarti un alert con un mese d'anticipo sulla scadenza. In ogni caso, anche se dimenticassi di fare il pagamento, potrai sempre fare un nuovo upgrade dall'account gratuito."
+    },
+    {
+      "question": "Quanto dura l'abbonamento?",
+      "answer": "La durata dell'abbonamento è annuale"
+    },
+    {
+      "question": "Posso pagare mensilmente?",
+      "answer": "Non è attualmente possibile pagare mensilmente, stiamo lavorando per offrirti questa opportunità in futuro."
+    },
+    {
+      "question": "Quanto sono affidabili le correzioni dell'ia?",
+      "answer": "Le correzioni dell'ia sono normalmente affidabili, ma è possibile che l'ia ti segnali come errore la scelta di parole o strutture sintattiche che magari sono solo non particolarmente adeguate, ma non necessariamente sbagliate."
+    },
+    {
+      "question": "Rilasciate delle certificazioni?",
+      "answer": "No, non rilasciamo alcuna certificazione."
+    },
+    {
+      "question": "Come faccio l'upgrade a un account premium?",
+      "answer": "Puoi richiedere l'upgrade da un account gratuito semplicemente accedendo alla tua area riservata"
+    },
+    {
+      "question": "Posso tornare a un account gratuito?",
+      "answer": "Assolutamente si, quando il tuo abbonamento scadrà tornerai automaticamente alla versione gratuita"
+    }
+  ],
+  "teachers": [
+    {
+      "question": "Come funziona la prova gratuita?",
+      "answer": "La prova gratuita ha una durata di tre mesi, al termine della quale decidere se abbonarti oppure no; qualora decidessi di non abbonarti gli account degli studenti che hai attivato durante la prova verranno resi automaticamente gratuiti, quindi i tuoi studenti non perderanno il lavoro fatto."
+    },
+    {
+      "question": "Cosa succede al termine della prova gratuita?",
+      "answer": "Al termine della prova gratuita hai 15 giorni di tempo per effettuare il pagamento, al termine dei quali il tuo account verrà rimosso automaticamente"
+    },
+    {
+      "question": "Come aggiungo un nuovo studente?",
+      "answer": "Per aggiungere un nuovo studente ti basta accedere alla tua area riservata, e cliccare su aggiungi"
+    },
+    {
+      "question": "Come pubblico il mio corso?",
+      "answer": "Per pubblicare il tuo corso ti basta accedere alla tua area riserva e cliccare sul tasto per creare un nuovo corso"
+    },
+    {
+      "question": "Posso usare dei video per il mio corso?",
+      "answer": "Assolutamente si, quando aggiungi una nuova lezione puoi scegliere se si tratta di una lezione testuale o se caricare passare l'url di un video da youtube"
+    }
+  ],
+  "commons": [
+    {
+      "question": "Quali metodi di pagamento accettate?",
+      "answer": "Non accettiamo pagamenti in questo momento, il sito è ancora una beta; per questo motivo puoi attivare solo un account gratuito."
+    },
+    {
+      "question": "Ho un problema, come contatto l'assistenza?",
+      "answer": "Puoi contattare l'assistenza accedendo alla tua area riservata"
+    },
+    {
+      "question": "Quali sono i tempi di risposta dell'assistenza?",
+      "answer": "Normalmente rispondiamo a tutti in 24h, tuttavia in giornate con molte richieste potremmo non riuscire a rispettare questo limite"
+    }
+  ]
 }
