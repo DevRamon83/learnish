@@ -1,6 +1,6 @@
 import authValidator from "./authValidator.js";
 import summaryValidator from "./summaryValidator.js";
-import messageValidator from "./messageValidators.js";
+import messageValidator from "./messageValidator.js";
 
 const validators = { authValidator, summaryValidator, messageValidator };
 
