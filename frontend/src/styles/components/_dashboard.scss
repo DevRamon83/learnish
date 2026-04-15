@@ -1,7 +1,13 @@
 @use "../breakpoints";
 
+.dashboard__main {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+}
+
 .dashboard {
   width: 100%;
+  grid-column: 2;
 }
 
 .dashboard__menu {

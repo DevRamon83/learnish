@@ -30,10 +30,10 @@ export default function Dashboard() {
   }, [current]);
 
   return (
-    <main>
+    <main className="dashboard__main">
       <DashboardMenu setCurrent={setCurrent} current={current} />
       <div className="dashboard">
-        {current === "esercizi" && <Exercises exercisesTab={exercisesTab} />}
+        {current === "study" && <Exercises exercisesTab={exercisesTab} />}
       </div>
     </main>
   );
