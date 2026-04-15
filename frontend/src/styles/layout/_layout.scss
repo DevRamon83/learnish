@@ -45,3 +45,17 @@ main {
 .main__login {
   @extend .main__signup;
 }
+
+.ramon__counterContainer {
+  width: 100%;
+  display: flex;
+  gap: 3px;
+  border-top: 1px solid darkgray;
+  color: gray;
+  text-transform: uppercase;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 12px;
+  font-weight: bold;
+  padding-top: 3px;
+}

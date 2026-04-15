@@ -7,4 +7,5 @@ export const i18nAddresses = {
   faq: "components.faq",
   team: "components.team",
   metadata: "components.metadata",
+  contact: "components.contact",
 };

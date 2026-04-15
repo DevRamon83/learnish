@@ -14,4 +14,8 @@ export const API_URLS = {
     summaries: "/summariesList",
     summary: "/newSummary",
   },
+  messages: {
+    base: "/messages",
+    new: "/new",
+  },
 };

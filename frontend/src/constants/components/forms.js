@@ -7,8 +7,13 @@ export const classes = {
   btn: {
     send: "form__sendBtn",
     login: "form__sendBtn",
+    message: "form__sendBtn-contact",
   },
-
+  contact: {
+    form: "contact__form",
+    formHide: "contact__form-hide",
+    success: "contact__success",
+  },
   signup: "form__signup",
   login: "form__login",
   errorContainer: "form__errorContainer",
