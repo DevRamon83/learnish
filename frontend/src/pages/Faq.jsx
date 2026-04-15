@@ -6,11 +6,11 @@ import Questions from "../components/faq/Questions";
 
 export default function Faq() {
   const { strings, lang } = useLang(i18nAddresses.faq);
-  const { questions } = strings;
+  const { students, teachers, commons } = strings;
   const [account, setAccount] = useState("students");
   const [answer, setAnswer] = useState(null);
-  const teachers = [...questions.teachers, ...questions.commons];
-  const students = [...questions.students, ...questions.commons];
+  const teachersStrings = [...teachers, ...commons];
+  const studentsStrings = [...students, ...commons];
 
   return (
     <main className="faq">
@@ -21,11 +21,10 @@ export default function Faq() {
           account={account}
         />
         <Questions
-          questions={account === "students" ? students : teachers}
+          strings={account === "students" ? studentsStrings : teachersStrings}
           account={account}
           answer={answer}
           setAnswer={setAnswer}
-          strings={strings}
         />
       </div>
     </main>

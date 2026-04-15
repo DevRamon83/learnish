@@ -1,27 +1,18 @@
 import QuestionBtn from "../../ui/buttons/QuestionBtn";
 
-export default function Questions({
-  questions,
-  account,
-  answer,
-  setAnswer,
-  strings,
-}) {
-  const accountAnswers = strings.answers[account];
-  const commons = strings.answers.commons;
-  const answers = [...accountAnswers, ...commons];
+export default function Questions({ strings, account, answer, setAnswer }) {
   return (
     <>
-      {questions.map((question, index) => (
+      {strings.map((qAndAobj, index) => (
         <div className="faq__question" key={`${account}-${index}`}>
           <QuestionBtn
             setAnswer={setAnswer}
             answer={answer}
             index={index}
-            question={question}
+            question={qAndAobj.question}
           />
           {index === answer && (
-            <div className="faq__answer">{answers[index]}</div>
+            <div className="faq__answer">{qAndAobj.answer}</div>
           )}
         </div>
       ))}
