@@ -1,11 +1,12 @@
 import { useState } from "react";
 import fetchSummaries from "../../../api/handlers/fetchSummaries";
 import { useEffect } from "react";
-import SummaryCard from "../../../ui/SummaryCard";
+import SummaryCard from "./SummaryCard";
 import FetchObserver from "../../../api/FetchObserver";
 import NewSummary from "./NewSummary";
 import { useLang } from "../../../hooks/useLang";
 import { i18nAddresses } from "../../../constants/i18nAddresses";
+import { useHideOverflow } from "../../../hooks/useHideOverflow";
 
 export default function Summaries() {
   const [summaries, setSummaries] = useState(null);
@@ -14,7 +15,7 @@ export default function Summaries() {
   const [fetchStatus, setFetchStatus] = useState(null);
   const [retry, setRetry] = useState(0);
   const { strings, lang } = useLang(i18nAddresses.summary);
-
+  useHideOverflow(open);
   useEffect(() => {
     const controller = new AbortController();
 
@@ -55,15 +56,17 @@ export default function Summaries() {
             setRetry={setRetry}
           />
 
-          {summaries &&
-            summaries.map((summary) => (
-              <SummaryCard
-                key={summary._id}
-                summary={summary}
-                open={open}
-                setter={setOpen}
-              />
-            ))}
+          <div className="dashboard__summaries">
+            {summaries &&
+              summaries.map((summary) => (
+                <SummaryCard
+                  key={summary._id}
+                  summary={summary}
+                  open={open}
+                  setter={setOpen}
+                />
+              ))}
+          </div>
         </>
       )}
 

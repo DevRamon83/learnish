@@ -19,7 +19,6 @@ export default function Summary({ data, setter }) {
   return (
     <div className="summary__panel">
       <div className="summary__container">
-        <div onClick={() => setter(false)}>Chiudi</div>
         <h1>{data.title}</h1>
         <ShowSummary
           parse={parse}
@@ -31,6 +30,7 @@ export default function Summary({ data, setter }) {
         <div>
           {mistake && <p className="summary__explain">{mistake.explain}</p>}
         </div>
+        <div onClick={() => setter(false)}>Chiudi</div>
       </div>
     </div>
   );
