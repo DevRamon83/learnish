@@ -2,12 +2,19 @@
 
 .dashboard__main {
   display: grid;
-  grid-template-columns: 1fr 4fr;
+  grid-template-columns: 1fr;
+
+  @include breakpoints.medium {
+    grid-template-columns: 1fr 9fr;
+  }
 }
 
 .dashboard {
   width: 100%;
-  grid-column: 2;
+
+  @include breakpoints.medium {
+    grid-column: 2;
+  }
 }
 
 .dashboard__menu {
@@ -18,12 +25,12 @@
   position: fixed;
   bottom: 0;
   z-index: 10;
-  background-color: aliceblue;
+  background-color: #303030;
   height: 10vh;
 
   @include breakpoints.medium {
     left: 0;
-    bottom: 40vh;
+    bottom: 30vh;
     background-color: transparent;
     flex-direction: column;
     width: 10%;

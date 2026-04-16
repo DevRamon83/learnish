@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import DashboardMenu from "../components/dashboard/DashboardMenu";
-import Exercises from "../components/dashboard/Exercises";
+import Study from "../components/dashboard/Study";
 import { useLang } from "../hooks/useLang";
 import { i18nAddresses } from "../constants/i18nAddresses";
 import fetchLogout from "../api/handlers/fetchLogout";
@@ -10,7 +10,6 @@ import { setAuth, setUser } from "../redux/slices/authSlice";
 export default function Dashboard() {
   const { strings, lang } = useLang(i18nAddresses.dashboard);
   const dispatch = useDispatch();
-  const exercisesTab = strings.exercisesTab;
   const [current, setCurrent] = useState("study");
 
   const logoutHandler = async () => {
@@ -32,9 +31,7 @@ export default function Dashboard() {
   return (
     <main className="dashboard__main">
       <DashboardMenu setCurrent={setCurrent} current={current} />
-      <div className="dashboard">
-        {current === "study" && <Exercises exercisesTab={exercisesTab} />}
-      </div>
+      <div className="dashboard">{current === "study" && <Study />}</div>
     </main>
   );
 }
