@@ -1,6 +1,6 @@
 export default function SocialLink({ social }) {
   const link = "https://" + social + ".com";
-  const src = social + ".svg";
+  const src = "/" + social + ".svg";
   return (
     <a
       className="footer__btn-social"
