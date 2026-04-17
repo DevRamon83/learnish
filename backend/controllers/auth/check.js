@@ -20,7 +20,7 @@ const check = async (req, res) => {
 
     return res.status(200).json(response);
   } catch (err) {
-    console.error("Error in login:", err);
+    console.error("Error in check:", err);
     const log = false;
     return handleErrorResponse(res, req, err.message, 500, log);
   }
