@@ -1,28 +1,39 @@
 import "dotenv/config";
-import { GoogleGenAI } from "@google/genai";
+import Groq from "groq-sdk";
 import generateSummaryPrompt from "../helpers/ai/generateSummaryPrompt.js";
 import summarySchema from "../helpers/ai/summarySchema.js";
 
 const getAiCorrection = async (summary, lang) => {
-  const prompt = generateSummaryPrompt(summary, lang);
-  const schema = summarySchema(lang);
+  const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
+  const prompt = generateSummaryPrompt(lang);
+
+  const schemaStr = JSON.stringify(summarySchema(lang));
+
   try {
-    const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
-    const response = await ai.models.generateContent({
-      model: "gemini-2.5-flash",
-      contents: prompt,
-      config: {
-        responseMimeType: "application/json",
-        responseJsonSchema: schema,
-      },
+    const response = await groq.chat.completions.create({
+      model: "llama-3.3-70b-versatile",
+      messages: [
+        {
+          role: "system",
+          content: `${prompt}. 
+                    Respond ONLY in JSON format, following this pattern: ${schemaStr}`,
+        },
+        {
+          role: "user",
+          content: summary,
+        },
+      ],
+      response_format: { type: "json_object" },
+      temperature: 0.2,
     });
 
-    const aiResp = response.text;
+    const aiResp = response.choices[0].message.content;
     const json = JSON.parse(aiResp);
+
     return { error: false, data: json };
   } catch (err) {
-    console.error("ERRORE SDK 2026:", err);
-    return { error: true, errorMsg: err };
+    console.error("ERRORE SDK GROQ:", err);
+    return { error: true, errorMsg: err.message || err };
   }
 };
 
