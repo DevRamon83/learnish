@@ -13,6 +13,7 @@ export const API_URLS = {
     base: "/dashboard",
     summaries: "/summariesList",
     summary: "/newSummary",
+    correction: "/aiCorrection",
   },
   messages: {
     base: "/messages",
