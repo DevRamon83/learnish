@@ -13,7 +13,7 @@ const summariesList = async (req, res) => {
     const userSummaries = await summaryModel.find({ owner: userId }).lean();
     return res.status(200).json(userSummaries);
   } catch (err) {
-    console.error("Error in login:", err);
+    console.error("Error in summaryList:", err);
     return handleErrorResponse(res, req, err.message, 500, log);
   }
 };
