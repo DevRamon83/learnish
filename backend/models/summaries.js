@@ -21,6 +21,13 @@ const SummarySchema = new Schema(
         },
       ],
     },
+    score: {
+      overall: { type: Number },
+      cohesion: { type: Number },
+      vocabulary: { type: Number },
+      grammar: { type: Number },
+    },
+    feedback: { type: String },
     errorCodes: { type: [String] },
     shared: { type: Boolean, required: true },
     misalignment: { type: Boolean, required: true, default: false },
