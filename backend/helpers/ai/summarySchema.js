@@ -5,7 +5,7 @@ const summarySchema = (lang) => {
       text: {
         type: "string",
         description:
-          "Original text with errors wrapped in <del></del> tags. No nested or adjacent tags.",
+          "Original text with errors must be wrapped in <del></del> tags (It is absolutely important that you do not skip this step). No nested or adjacent tags.",
       },
       mistakes: {
         type: "array",
@@ -24,7 +24,7 @@ const summarySchema = (lang) => {
             },
             explain: {
               type: "string",
-              description: `Brief explanation in ${lang} (max 30 words)`,
+              description: `Exhaustive pedagogical feedback in ${lang} (max 100 words)`,
             },
             errorCode: {
               type: "string",
@@ -44,6 +44,42 @@ const summarySchema = (lang) => {
           },
           required: ["error", "correction", "explain", "errorCode"],
         },
+      },
+      score: {
+        type: "object",
+        properties: {
+          overall: {
+            type: "number",
+            description:
+              "The average score from 1 to 9. Use one decimal place (e.g., 6.5).",
+          },
+          breakdown: {
+            type: "object",
+            properties: {
+              cohesion: {
+                type: "number",
+                description:
+                  "Score from 1 to 9, only integer. Evaluates the logical flow and use of transitions.",
+              },
+              vocabulary: {
+                type: "number",
+                description:
+                  "Score from 1 to 9, only integer. Measures range and precision of lexical choices.",
+              },
+              grammar: {
+                type: "number",
+                description:
+                  "Score from 1 to 9, only integer. Evaluates sentence structure and grammatical accuracy.",
+              },
+            },
+            required: ["cohesion", "vocabulary", "grammar"],
+          },
+          feedback: {
+            type: "string",
+            description: `A brief motivational feedback (max 50 words) in ${lang}.`,
+          },
+        },
+        required: ["overall", "breakdown", "feedback"],
       },
       missingCode: {
         type: "array",
