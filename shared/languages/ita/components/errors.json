@@ -14,5 +14,15 @@
   "password_upperCaseMissing": "almeno una lettera maiuscola",
   "password_lowerCaseMissing": "almeno una lettera minuscola",
   "password_numMissing": "almeno un numero",
-  "password_specialCharMissing": "almeno un carattere speciale (es. ?, !, etc)"
+  "password_specialCharMissing": "almeno un carattere speciale (es. ?, !, etc)",
+  "spell": "Errori ortografici",
+  "pron": "Errori nei pronomi",
+  "prep": "Errori nelle preposizioni",
+  "word": "Errori nel lessico",
+  "agree": "Errori di concordanza",
+  "tens": "Errori relativi ai verbi",
+  "order": "Errori nella sintassi",
+  "sing": "Singolare/Plurale",
+  "art": "Errori negli articoli",
+  "totalError": "Errori totali"
 }
