@@ -12,5 +12,12 @@
       "label": "scrivi il tuo sommario",
       "counterLabel": "massimo parole"
     }
+  },
+  "score": {
+    "rating": "valutazione dell'intelligenza artificiale",
+    "overall": "generale",
+    "grammar": "grammatica",
+    "vocabulary": "vocabolario",
+    "cohesion": "articolazione"
   }
 }
