@@ -7,17 +7,15 @@ const getVideoMetadata = async (videoId) => {
     if (!resp.ok) return { error: resp.status, errorMsg: resp.statusText };
 
     const data = await resp.json();
-    const { title, author_name, thumbnail_url } = data;
+    const { title, author_name } = data;
 
     if (!title) return { error: true, errorMsg: "missing title" };
     if (!author_name) return { error: true, errorMsg: "missing author" };
-    if (!thumbnail_url) return { error: true, errorMsg: "missing thumbnail" };
 
     return {
       error: false,
       title,
       channel: author_name,
-      thumbnail: thumbnail_url,
     };
   } catch (err) {
     return { error: true, errorMsg: err.message };
