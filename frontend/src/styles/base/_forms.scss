@@ -1,0 +1,62 @@
+@use "../breakpoints";
+@use "../variables/colors";
+@use "../base/buttons";
+
+.base__form {
+  width: 100%;
+  margin-bottom: 3vh;
+  padding-bottom: 3vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @include breakpoints.medium {
+    background-color: #f0f4f8;
+    width: 50%;
+    margin-bottom: 6vh;
+    border: 1px solid colors.$primaryColor;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border-radius: 20px;
+  }
+}
+
+.base__form-input {
+  height: fit-content;
+  width: fit-content;
+  padding: 5px;
+}
+
+.base__form-inputContainer {
+  width: 100%;
+  margin: 0;
+}
+
+.base__form-textarea {
+  border: 0;
+  outline: none;
+  max-width: 210px;
+  padding: 15px;
+
+  @include breakpoints.medium {
+    max-width: 450px;
+    padding: 15px 25px;
+  }
+}
+
+.base__form-textarea-label {
+  margin-top: -5px;
+}
+
+.form__sendBtn {
+  @extend .base__btn-standard;
+  width: 65%;
+  cursor: pointer;
+  border-radius: 5px;
+  border-color: white;
+  height: 6vh;
+  margin: 2vh 0;
+
+  @include breakpoints.medium {
+    height: 4vh;
+    width: 40%;
+  }
+}

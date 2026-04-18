@@ -1,5 +1,6 @@
 @use "../variables/colors";
 @use "../breakpoints";
+@use "../base/buttons";
 
 .faq {
   margin-top: 100px;
@@ -37,15 +38,13 @@
 
 .faq__tabBtn {
   @extend .faq__tab;
-  background-color: colors.$primaryColor;
+  @extend .base__btn-standard;
   color: white;
   width: 50%;
   border-right: 1px solid #000;
   display: flex;
   justify-content: center;
   align-items: center;
-  text-transform: uppercase;
-  cursor: pointer;
 }
 
 .faq__tabBtn-active {

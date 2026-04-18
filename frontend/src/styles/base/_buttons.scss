@@ -1,0 +1,9 @@
+@use "../variables/colors";
+
+.base__btn-standard {
+  background-color: colors.$primaryColor;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+}

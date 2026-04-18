@@ -1,5 +1,6 @@
 @use "../variables/colors";
 @use "../breakpoints";
+@use "../base/buttons";
 
 form {
   display: flex;
@@ -145,10 +146,7 @@ form {
 }
 
 .form__sendBtn {
-  background-color: colors.$primaryColor;
-  color: white;
-  font-weight: bold;
-  text-transform: uppercase;
+  @extend .base__btn-standard;
   width: 50%;
   cursor: pointer;
   border-radius: 5px;
