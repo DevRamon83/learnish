@@ -5,6 +5,7 @@ export const classes = {
   summary: {
     correction: "summary__correction",
     error: "summary__error",
+    errorSpan: "summary__error-span",
     card: "summary__card",
     title: "summary__title",
     channel: "summary__channel",
@@ -13,5 +14,7 @@ export const classes = {
     status: "summary__status",
     arrow: "btn__arrow",
     info: "summary__card-info",
+    form: "summary__form",
+    btnSend: "summary__btnSend",
   },
 };
