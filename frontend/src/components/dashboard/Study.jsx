@@ -8,7 +8,6 @@ export default function Study() {
   return (
     <>
       <StudyMenu activeTab={activeTab} setActiveTab={setActiveTab} />
-      <div className={classes.dashPanel}></div>
       {activeTab === 1 && <Summaries />}
     </>
   );
