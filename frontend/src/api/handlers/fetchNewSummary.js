@@ -1,7 +1,7 @@
 import { API_URLS } from "../../constants/apiUrls";
 import { fetchData } from "../fetchData";
 
-const fetchNewSummaries = async (data, signal) => {
+const fetchNewSummary = async (data, signal) => {
   const { base, dashboard } = API_URLS;
   const apiUrl = base + dashboard.base + dashboard.summary;
 
@@ -14,4 +14,4 @@ const fetchNewSummaries = async (data, signal) => {
   return response;
 };
 
-export default fetchNewSummaries;
+export default fetchNewSummary;
