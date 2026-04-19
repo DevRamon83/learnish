@@ -6,7 +6,7 @@ export default function SummaryError({ node, data, tooltipHandler, toggle }) {
   return (
     <span
       className={
-        toggle === node.delCounter ? summary.correction : summary.error
+        toggle === node.delCounter ? summary.correction : summary.errorSpan
       }
       onClick={() => tooltipHandler(node.delCounter)}
     >
