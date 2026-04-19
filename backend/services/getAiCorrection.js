@@ -24,7 +24,7 @@ const getAiCorrection = async (summary, lang) => {
         },
       ],
       response_format: { type: "json_object" },
-      temperature: 0.2,
+      temperature: 0,
     });
 
     const aiResp = response.choices[0].message.content;
