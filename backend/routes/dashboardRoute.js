@@ -4,6 +4,7 @@ import newSummary from "../controllers/dashboard/newSummary.js";
 import summariesList from "../controllers/dashboard/summariesList.js";
 import validateSummary from "../middlewares/dashboard/validateSummary.js";
 import aiCorrection from "../controllers/dashboard/aiCorrection.js";
+import stats from "../controllers/dashboard/stats.js";
 
 const dashboardRoute = express.Router();
 
@@ -16,6 +17,7 @@ dashboardRoute.post(
 );
 
 dashboardRoute.post("/aiCorrection", ...protectedRouth, aiCorrection);
+dashboardRoute.post("/newStat", ...protectedRouth, stats);
 
 dashboardRoute.get("/summariesList", ...protectedRouth, summariesList);
 
