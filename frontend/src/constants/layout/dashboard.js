@@ -3,6 +3,7 @@ export const classes = {
   dashBtn: "btn__dash",
   dashPanel: "dashboard__panel",
   summary: {
+    base: "summary__",
     correction: "summary__correction",
     error: "summary__error",
     errorSpan: "summary__error-span",
@@ -16,5 +17,28 @@ export const classes = {
     info: "summary__card-info",
     form: "summary__form",
     btnSend: "summary__btnSend",
+    processUpload: "summary__process-upload",
+    score: "summary__detalis-score",
+    closeBtn: "summary__closeBtn",
+    formTitle: "summary__form-title",
+    newPanel: "summary__new-panel",
+    readPanel: "summary__read-panel",
+    iconContainer: "summary__iconsContainer",
+    iconAlert: "summary__iconAlert",
+    alertImg: "summary__iconAlert-img",
+    list: "dashboard__summaries",
+    score: {
+      bad: "summary__iconScore-bad",
+      medium: "summary__iconScore-medium",
+      good: "summary__iconScore-good",
+    },
   },
 };
+
+export const newSummaryInitialState = {
+  draft: null,
+  correction: null,
+  stats: null,
+};
+
+export const bars = ["draft", "correction", "stats"];
