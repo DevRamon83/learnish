@@ -10,9 +10,9 @@ import {
   newSummaryInitialState,
 } from "../../../constants/layout/dashboard";
 import { useHideOverflow } from "../../../hooks/useHideOverflow";
-import SummaryUpload from "../../../ui/SummaryUpload";
+import SummaryUpload from "../../../ui/summary/SummaryUpload";
 import useUploadSummary from "../../../hooks/useUploadSummary";
-import NewSummaryTitle from "../../../ui/NewSummaryTitle";
+import NewSummaryTitle from "../../../ui/summary/NewSummaryTitle";
 const { summaryValidator } = bundle.validators;
 
 export default function NewSummary({ panel, setPanel, strings, lang }) {

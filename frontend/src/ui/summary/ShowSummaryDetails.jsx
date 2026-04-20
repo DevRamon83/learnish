@@ -1,6 +1,6 @@
-import { i18nAddresses } from "../constants/i18nAddresses";
-import { classes } from "../constants/layout/dashboard";
-import { useLang } from "../hooks/useLang";
+import { i18nAddresses } from "../../constants/i18nAddresses";
+import { classes } from "../../constants/layout/dashboard";
+import { useLang } from "../../hooks/useLang";
 
 export default function ShowSummaryDetails({ data }) {
   const { score } = data;

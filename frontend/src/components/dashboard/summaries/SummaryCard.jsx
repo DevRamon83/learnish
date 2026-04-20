@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import Summary from "./Summary";
-import { classes } from "../../../constants/layout/dashboard";
 import {
   getSummaryDate,
   getSummaryTitle,
 } from "../../../helpers/getSummaryInfo";
 import ReadSummary from "./ReadSummary";
-import SummaryErrorTab from "../../../ui/SummaryErrorTab";
-import SummaryCardErrors from "../../../ui/SummaryCardErrors";
+import SummaryErrorTab from "../../../ui/summary/SummaryErrorTab";
+import SummaryCardErrors from "../../../ui/summary/SummaryCardErrors";
 
 export default function SummaryCard({ summary, setter, open, classes }) {
   const [mySummary, setMySummary] = useState(summary);

@@ -1,4 +1,4 @@
-import { bars, classes } from "../constants/layout/dashboard";
+import { bars, classes } from "../../constants/layout/dashboard";
 import SummaryProcess from "./SummaryProcess";
 
 export default function SummaryUpload({ states, setters, strings }) {

@@ -1,4 +1,4 @@
-import { classes } from "../constants/layout/dashboard";
+import { classes } from "../../constants/layout/dashboard";
 
 export default function SummaryError({ node, data, tooltipHandler, toggle }) {
   const { summary } = classes;

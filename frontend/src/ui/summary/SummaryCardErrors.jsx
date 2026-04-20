@@ -1,5 +1,5 @@
-import { i18nAddresses } from "../constants/i18nAddresses";
-import { useLang } from "../hooks/useLang";
+import { i18nAddresses } from "../../constants/i18nAddresses";
+import { useLang } from "../../hooks/useLang";
 
 export default function SummaryCardErrors({
   errorCount,

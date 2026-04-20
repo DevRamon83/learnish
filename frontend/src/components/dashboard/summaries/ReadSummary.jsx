@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import SummaryAction from "../../../ui/SummaryAction";
+import SummaryAction from "../../../ui/summary/SummaryAction";
 import { useLang } from "../../../hooks/useLang";
 import { i18nAddresses } from "../../../constants/i18nAddresses";
 import fetchCorrection from "../../../api/handlers/fetchCorrection";
-import SummaryYoutubeBtn from "../../../ui/SummaryYoutubeBtn";
-import SummaryOpenBtn from "../../../ui/SummaryOpenBtn";
+import SummaryYoutubeBtn from "../../../ui/summary/SummaryYoutubeBtn";
+import SummaryOpenBtn from "../../../ui/summary/SummaryOpenBtn";
 
 export default function ReadSummary({
   setter,

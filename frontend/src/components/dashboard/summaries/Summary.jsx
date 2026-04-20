@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useParseSummary } from "../../../hooks/useParseSummary";
-import ShowSummary from "../../../ui/ShowSummary";
+import ShowSummary from "../../../ui/summary/ShowSummary";
 
 export default function Summary({ data, setter }) {
   const { parse, isInvalid } = useParseSummary(data.aiText);

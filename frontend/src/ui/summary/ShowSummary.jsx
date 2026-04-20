@@ -1,4 +1,4 @@
-import { classes } from "../constants/layout/dashboard";
+import { classes } from "../../constants/layout/dashboard";
 import ShowSummaryDetails from "./ShowSummaryDetails";
 import SummaryError from "./SummaryError";
 
