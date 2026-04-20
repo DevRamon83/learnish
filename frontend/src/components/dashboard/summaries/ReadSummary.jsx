@@ -68,6 +68,7 @@ export default function ReadSummary({
         closeAlert={setStatus}
         status={status}
         classes={classes}
+        strings={strings}
       />
       {!alert && (
         <>
