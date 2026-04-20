@@ -16,6 +16,60 @@
 
 .summary__form {
   @extend .base__form;
+  position: absolute;
+  padding: 50px 0;
+  top: 0;
+  width: 100%;
+
+  @include breakpoints.medium {
+    width: 70%;
+    padding: 0;
+    top: 100px;
+  }
+}
+
+.summary__form-title {
+  text-transform: uppercase;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  height: 4em;
+  margin-bottom: -25px;
+}
+
+.summary__form-title > h2 {
+  margin-left: 25px;
+  font-size: 1em;
+
+  @include breakpoints.medium {
+    font-size: 1.5em;
+  }
+}
+
+.summary__closeBtn {
+  background-color: white;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #000;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-right: 25px;
+
+  @include breakpoints.medium {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.summary__closeBtn > img {
+  width: 20px;
+  @include breakpoints.medium {
+    width: 30px;
+  }
 }
 
 #form__input-summary {
@@ -32,6 +86,10 @@
 
 #summary {
   @extend .base__form-textarea;
+
+  @include breakpoints.medium {
+    max-width: 650px;
+  }
 }
 
 .summary__btnSend {
@@ -321,6 +379,16 @@
   right: -100%;
   width: 100%;
   animation: showNewSummary 0.5s forwards;
+  overflow-y: scroll;
+  padding: 25vh 0;
+
+  @include breakpoints.medium {
+    padding: 0;
+  }
+}
+
+.summary__form > h2 {
+  margin-bottom: 0;
 }
 
 @keyframes showNewSummary {
@@ -364,5 +432,85 @@
   }
   100% {
     right: 0%;
+  }
+}
+
+.process {
+  height: 1em;
+  width: 5px;
+  border: 1px solid #000;
+}
+
+.summary__process-upload {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+
+  @include breakpoints.medium {
+    flex-direction: row;
+  }
+}
+
+.summary__process-space {
+  background-color: white;
+  border: 1px solid #000;
+  padding: 15px 10px;
+  margin: 15px 0;
+  width: 250px;
+  border-radius: 5px;
+}
+
+.summary__process-container {
+  display: flex;
+}
+
+.summary__process-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-transform: uppercase;
+  font-size: 0.8em;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.summary__draft {
+  @extend .process;
+  background-color: dodgerblue;
+}
+
+.summary__draft-process {
+  @extend .summary__draft;
+  animation: processing 0.5s forwards;
+}
+
+.summary__correction {
+  @extend .process;
+  background-color: gold;
+}
+
+.summary__correction-process {
+  @extend .summary__correction;
+  animation: processing 2s forwards;
+}
+
+.summary__stats {
+  @extend .process;
+  background-color: yellowgreen;
+}
+
+.summary__stats-process {
+  @extend .summary__stats;
+  animation: processing 0.5s forwards;
+}
+
+@keyframes processing {
+  0% {
+    width: 5px;
+  }
+  100% {
+    width: 250px;
   }
 }
