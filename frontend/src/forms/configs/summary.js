@@ -11,7 +11,7 @@ const summary = {
   type: "textarea",
   placeholder: null,
   rows: 10,
-  cols: 50,
+  cols: 100,
   label: null,
   required: true,
   maxWords: 500,
