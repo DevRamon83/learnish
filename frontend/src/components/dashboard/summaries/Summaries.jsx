@@ -35,6 +35,7 @@ export default function Summaries() {
               summary={summary}
               open={open}
               setter={setOpen}
+              classes={classes}
             />
           ))}
       </div>
