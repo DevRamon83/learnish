@@ -27,6 +27,13 @@ export const classes = {
     iconAlert: "summary__iconAlert",
     alertImg: "summary__iconAlert-img",
     list: "dashboard__summaries",
+    textContainer: "summary__text-container",
+    action: "summary__action",
+    actionIconContainer: "summary__action-iconsContainer",
+    errorTab: "summary__error-tab",
+    errorBase: "summary__error-",
+    errorOpen: "summary__error-open",
+    errorClose: "summary__error-close",
     score: {
       bad: "summary__iconScore-bad",
       medium: "summary__iconScore-medium",
