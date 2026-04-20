@@ -1,12 +1,14 @@
 {
+  "summary": "sommario",
   "newSummary": "crea un nuovo sommario",
   "sendSummary": "correggi",
   "yourSummaries": "i tuoi sommari",
   "newSummaryBtn": "nuovo sommario",
+  "retry": "riprova",
   "newSummaryForm": {
     "youtube": {
       "placeholder": "youtube link",
-      "label": "il link a youtube"
+      "label": "link a youtube"
     },
     "summary": {
       "label": "scrivi il tuo sommario",
@@ -19,5 +21,17 @@
     "grammar": "grammatica",
     "vocabulary": "vocabolario",
     "cohesion": "articolazione"
+  },
+  "process": {
+    "draft": "Creazione del sommario",
+    "correction": "Correzione del sommario",
+    "stats": "Generazione delle statistiche"
+  },
+  "actions": {
+    "actionCorrection": "Azione richiesta: correggi il sommario",
+    "correction": "correggi",
+    "close": "chiudi",
+    "actionStats": "Azione richiesta: genera statistiche",
+    "stats": "avvia"
   }
 }
