@@ -67,6 +67,7 @@ export default function ReadSummary({
         actionHandler={actionHandler}
         closeAlert={setStatus}
         status={status}
+        classes={classes}
       />
       {!alert && (
         <>
