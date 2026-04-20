@@ -4,17 +4,29 @@ import { useState } from "react";
 import { useRef } from "react";
 import summaryConfigBuilder from "../../../forms/configs/summary";
 import ErrorOnSubmit from "../../ErrorOnSubmit";
-import fetchNewSummaries from "../../../api/handlers/fetchNewSummary";
 import bundle from "shared";
+import {
+  classes,
+  newSummaryInitialState,
+} from "../../../constants/layout/dashboard";
+import { useHideOverflow } from "../../../hooks/useHideOverflow";
+import SummaryUpload from "../../../ui/SummaryUpload";
+import useUploadSummary from "../../../hooks/useUploadSummary";
+import NewSummaryTitle from "../../../ui/NewSummaryTitle";
 const { summaryValidator } = bundle.validators;
 
 export default function NewSummary({ panel, setPanel, strings, lang }) {
   const [error, setError] = useState(null);
+  const [data, setData] = useState(null);
   const formRef = useRef();
+  useHideOverflow(panel);
 
   const objConfig = summaryConfigBuilder(strings);
-  const { fields, textareas } = useRamonForm(objConfig);
+  const { fields, textareas, resets } = useRamonForm(objConfig);
   const { summary } = textareas;
+
+  const { states, setters } = useUploadSummary(data, lang);
+  const { setUploadStep, setUploadStatus } = setters;
 
   const validate = (data) => {
     if (!data) {
@@ -44,27 +56,54 @@ export default function NewSummary({ panel, setPanel, strings, lang }) {
       // error handler
       return;
     }
+
+    setUploadStep((prev) => ({ ...prev, draft: true }));
     const dataObj = {
       idVideo: isValidData.idVideo,
       summary: isValidData.summary,
       lang,
     };
-    const newSummary = await fetchNewSummaries(dataObj);
-    console.log("fetch ", newSummary);
+    setData(dataObj);
   };
+
+  const closeHandler = () => {
+    resets.resetAll();
+    setUploadStep(newSummaryInitialState);
+    setUploadStatus(newSummaryInitialState);
+    setData(false);
+    setPanel(false);
+  };
+
   return (
     <>
       {panel && (
-        <>
-          <button onClick={() => setPanel(false)}>chiudi</button>
-          <p>{strings.newSummary}</p>
-          <form ref={formRef} onSubmit={submitHandler}>
+        <div className={classes.summary.newPanel}>
+          <form
+            className={classes.summary.form}
+            ref={formRef}
+            onSubmit={submitHandler}
+          >
+            <NewSummaryTitle
+              strings={strings}
+              classes={classes}
+              closeHandler={closeHandler}
+            />
             <FormInput Element={UrlInput} data={fields.youtube} lang={lang} />
             <FormInput Element={TextareaInput} data={summary} lang={lang} />
             <ErrorOnSubmit error={error} />
-            <button>{strings.sendSummary}</button>
+            {states.status.draft ? (
+              <SummaryUpload
+                strings={strings}
+                states={states}
+                setters={setters}
+              />
+            ) : (
+              <button className={classes.summary.btnSend}>
+                {strings.sendSummary}
+              </button>
+            )}
           </form>
-        </>
+        </div>
       )}
     </>
   );
