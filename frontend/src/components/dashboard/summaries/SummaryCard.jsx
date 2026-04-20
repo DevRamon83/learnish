@@ -3,49 +3,56 @@ import Summary from "./Summary";
 import { classes } from "../../../constants/layout/dashboard";
 import {
   getSummaryDate,
-  getSummaryStatus,
   getSummaryTitle,
 } from "../../../helpers/getSummaryInfo";
-import ReadSummary from "../../../ui/ReadSummary";
+import ReadSummary from "./ReadSummary";
 import SummaryErrorTab from "../../../ui/SummaryErrorTab";
 import SummaryCardErrors from "../../../ui/SummaryCardErrors";
 
 export default function SummaryCard({ summary, setter, open }) {
-  const title = getSummaryTitle(summary.title);
-  const status = getSummaryStatus(summary);
-  const date = getSummaryDate(summary.createdAt);
-  const [currentError, setCurrentError] = useState(summary.errorCodes[0]);
-  const [currentCount, setCurrentCount] = useState(null);
+  const [mySummary, setMySummary] = useState(summary);
+  const title = getSummaryTitle(mySummary.title);
+  const date = getSummaryDate(mySummary.createdAt);
+  const [currentError, setCurrentError] = useState(mySummary.errorCodes[0]);
+  const [errorCount, setErrorCount] = useState(null);
 
   useEffect(() => {
-    const howManyError = summary.errorCodes.filter(
+    const howManyError = mySummary.errorCodes.filter(
       (err) => err === currentError,
     ).length;
-    setCurrentCount(howManyError);
-  }, [currentError]);
+    setErrorCount(howManyError);
+  }, [mySummary, currentError]);
 
   return (
     <>
       <div className={classes.summary.card}>
         <SummaryErrorTab
           setCurrentError={setCurrentError}
-          errorCodes={summary.errorCodes}
-          id={summary._id}
+          currentError={currentError}
+          errorCodes={mySummary.errorCodes}
+          id={mySummary._id}
         />
+
+        <div className={classes.summary.title}>{title}</div>
+        <div className={classes.summary.channel}>{mySummary.channel}</div>
         <div className={classes.summary.info}>
-          <div className={classes.summary.title}>{title}</div>
-          <div className={classes.summary.channel}>{summary.channel}</div>
           <SummaryCardErrors
-            currentCount={currentCount}
+            errorCount={errorCount}
             currentError={currentError}
-            summary={summary}
+            summary={mySummary}
           />
           <div>{date}</div>
-
-          <ReadSummary status={status} setter={setter} />
-
-          {open && <Summary data={summary} setter={setter} />}
+          {open === mySummary._id && (
+            <Summary data={mySummary} setter={setter} />
+          )}
         </div>
+        <ReadSummary
+          setMySummary={setMySummary}
+          setCurrentError={setCurrentError}
+          summary={mySummary}
+          setter={setter}
+          classes={classes}
+        />
       </div>
     </>
   );
