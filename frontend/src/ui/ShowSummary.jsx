@@ -10,9 +10,9 @@ export default function ShowSummary({
   tooltipHandler,
 }) {
   return (
-    <div className="summary__read-panel">
+    <div className={classes.summary.readPanel}>
       {parse.length !== 0 && !isInvalid && (
-        <div className="summary__text-container">
+        <div className={classes.summary.textContainer}>
           <p className={classes.container}>
             {parse.map((node) =>
               node.type === "span" ? (
