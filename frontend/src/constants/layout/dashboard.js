@@ -42,10 +42,16 @@ export const classes = {
   },
 };
 
-export const newSummaryInitialState = {
+export const newSummaryInitialStep = {
   draft: null,
   correction: null,
   stats: null,
+};
+
+export const newSummaryInitialStatus = {
+  draft: "pending",
+  correction: "pending",
+  stats: "pending",
 };
 
 export const bars = ["draft", "correction", "stats"];
