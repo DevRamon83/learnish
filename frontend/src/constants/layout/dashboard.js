@@ -49,9 +49,9 @@ export const newSummaryInitialStep = {
 };
 
 export const newSummaryInitialStatus = {
-  draft: "pending",
-  correction: "pending",
-  stats: "pending",
+  draft: null,
+  correction: null,
+  stats: null,
 };
 
 export const bars = ["draft", "correction", "stats"];
