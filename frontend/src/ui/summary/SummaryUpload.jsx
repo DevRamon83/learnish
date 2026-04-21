@@ -3,29 +3,22 @@ import SummaryProcess from "./SummaryProcess";
 
 export default function SummaryUpload({ states, setters, strings }) {
   const { step, status } = states;
-  const { setUploadStatus, setRetry } = setters;
-
-  const retryHandler = () => {
-    setUploadStatus(null);
-    setRetry((prev) => prev + 1);
-  };
 
   return (
     <div className={classes.summary.processUpload}>
-      {bars.map((key) => (
-        <div key={`${key}process`}>
+      {bars.map((value) => (
+        <div key={`${value}process`}>
           <SummaryProcess
-            step={step[key]}
-            status={status[key]}
-            label={`${strings.process[key]}`}
-            bar={`${classes.summary.base}${key}`}
+            step={step[value]}
+            status={status[value]}
+            label={`${strings.process[value]}`}
+            bar={`${classes.summary.base}${value}`}
+            setters={setters}
+            strings={strings}
+            value={value}
           />
         </div>
       ))}
-
-      {status === "failed" && (
-        <button onClick={retryHandler}>{strings.retry}</button>
-      )}
     </div>
   );
 }
