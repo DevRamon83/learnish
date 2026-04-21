@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import fetchSummaries from "../../../api/handlers/fetchSummaries";
 import SummaryCard from "./SummaryCard";
 import FetchObserver from "../../../api/FetchObserver";
@@ -14,7 +14,7 @@ export default function Summaries() {
   const [open, setOpen] = useState(false);
   const { strings, lang } = useLang(i18nAddresses.summary);
   useHideOverflow(open);
-  const { fetchStatus, setRetry, data } = useFetchData(fetchSummaries);
+  const { fetchStatus, setRetry, data, setData } = useFetchData(fetchSummaries);
 
   return (
     <>
@@ -45,6 +45,7 @@ export default function Summaries() {
         setPanel={setPanel}
         strings={strings}
         lang={lang}
+        setData={setData}
       />
     </>
   );
