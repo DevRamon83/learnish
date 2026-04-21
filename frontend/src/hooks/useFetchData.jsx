@@ -30,7 +30,7 @@ const useFetchData = (fetchHandler) => {
     return () => controller.abort();
   }, [retry]);
 
-  return { fetchStatus, setFetchStatus, retry, setRetry, data };
+  return { fetchStatus, setFetchStatus, retry, setRetry, data, setData };
 };
 
 export default useFetchData;
