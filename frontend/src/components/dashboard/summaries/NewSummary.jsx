@@ -7,7 +7,8 @@ import ErrorOnSubmit from "../../ErrorOnSubmit";
 import bundle from "shared";
 import {
   classes,
-  newSummaryInitialState,
+  newSummaryInitialStatus,
+  newSummaryInitialStep,
 } from "../../../constants/layout/dashboard";
 import { useHideOverflow } from "../../../hooks/useHideOverflow";
 import SummaryUpload from "../../../ui/summary/SummaryUpload";
@@ -15,9 +16,15 @@ import useUploadSummary from "../../../hooks/useUploadSummary";
 import NewSummaryTitle from "../../../ui/summary/NewSummaryTitle";
 const { summaryValidator } = bundle.validators;
 
-export default function NewSummary({ panel, setPanel, strings, lang }) {
+export default function NewSummary({
+  panel,
+  setPanel,
+  strings,
+  lang,
+  setData,
+}) {
   const [error, setError] = useState(null);
-  const [data, setData] = useState(null);
+  const [newSummary, setNewSummary] = useState(null);
   const formRef = useRef();
   useHideOverflow(panel);
 
@@ -25,8 +32,8 @@ export default function NewSummary({ panel, setPanel, strings, lang }) {
   const { fields, textareas, resets } = useRamonForm(objConfig);
   const { summary } = textareas;
 
-  const { states, setters } = useUploadSummary(data, lang);
-  const { setUploadStep, setUploadStatus } = setters;
+  const { states, setters } = useUploadSummary(newSummary, lang);
+  const { setUploadStep, setUploadStatus, setSummaryData } = setters;
 
   const validate = (data) => {
     if (!data) {
@@ -63,15 +70,20 @@ export default function NewSummary({ panel, setPanel, strings, lang }) {
       summary: isValidData.summary,
       lang,
     };
-    setData(dataObj);
+    setNewSummary(dataObj);
   };
 
   const closeHandler = () => {
+    if (states.summary) {
+      const uploadedSummary = states.summary.summary;
+      setData((prev) => [uploadedSummary, ...prev]);
+    }
     resets.resetAll();
-    setUploadStep(newSummaryInitialState);
-    setUploadStatus(newSummaryInitialState);
-    setData(false);
+    setUploadStep(newSummaryInitialStep);
+    setUploadStatus(newSummaryInitialStatus);
+    setNewSummary(false);
     setPanel(false);
+    setSummaryData(null);
   };
 
   return (
