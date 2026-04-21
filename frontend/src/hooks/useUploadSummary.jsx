@@ -3,17 +3,19 @@ import { useEffect } from "react";
 import fetchNewSummary from "../api/handlers/fetchNewSummary";
 import fetchCorrection from "../api/handlers/fetchCorrection";
 import fetchStats from "../api/handlers/fetchStats";
-import { newSummaryInitialState } from "../constants/layout/dashboard";
+import {
+  newSummaryInitialStatus,
+  newSummaryInitialStep,
+} from "../constants/layout/dashboard";
 
 const respHandler = (resp, setters, caller) => {
-  const { setUploadStep, setUploadStatus } = setters;
+  const { setUploadStep, setUploadStatus, setSummaryData } = setters;
   if (resp.error) {
-    setUploadStep((prev) => ({ ...prev, [caller]: null }));
     setUploadStatus((prev) => ({ ...prev, [caller]: "failed" }));
   } else {
     setUploadStep((prev) => ({ ...prev, [caller]: true }));
     setUploadStatus((prev) => ({ ...prev, [caller]: "success" }));
-    caller !== "stats" && setSummaryData(resp);
+    setSummaryData(resp);
   }
 };
 
@@ -35,8 +37,8 @@ const fetchDraft = async (controller, setters, dataObj) => {
 
 const useUploadSummary = (dataObj, lang) => {
   const [retry, setRetry] = useState(0);
-  const [uploadStep, setUploadStep] = useState(newSummaryInitialState);
-  const [uploadStatus, setUploadStatus] = useState(newSummaryInitialState);
+  const [uploadStep, setUploadStep] = useState(newSummaryInitialStep);
+  const [uploadStatus, setUploadStatus] = useState(newSummaryInitialStatus);
   const [summaryData, setSummaryData] = useState(null);
   const setters = { setUploadStep, setUploadStatus, setRetry, setSummaryData };
   const states = {
@@ -51,17 +53,18 @@ const useUploadSummary = (dataObj, lang) => {
     const processSummary = async () => {
       if (!dataObj) return;
       if (uploadStep.draft && !uploadStatus.draft) {
-        setUploadStatus((prev) => ({ ...prev, draft: "pending" }));
         await fetchDraft(controller, setters, dataObj);
       }
 
+      if (uploadStatus.draft === "failed") return;
+
       if (!uploadStep.correction && uploadStatus.draft === "success") {
-        setUploadStatus((prev) => ({ ...prev, correction: "pending" }));
         await fetchAiCorrection(controller, setters, lang, summaryData);
       }
 
+      if (uploadStatus.correction === "failed") return;
+
       if (!uploadStep.stats && uploadStatus.correction === "success") {
-        setUploadStatus((prev) => ({ ...prev, stats: "pending" }));
         await runStats(controller, setters, summaryData);
       }
     };
