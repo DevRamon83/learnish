@@ -1,23 +1,18 @@
 import { i18nAddresses } from "../../constants/i18nAddresses";
-import { classes } from "../../constants/layout/dashboard";
+import { classes } from "../../constants/components/dashboard";
 import { useLang } from "../../hooks/useLang";
+import SummaryScore from "./SummaryScore";
 
-export default function ShowSummaryDetails({ data }) {
-  const { score } = data;
-  const scoreKeys = Object.keys(score).reverse();
+export default function ShowSummaryDetails({ data, stats }) {
   const { strings, lang } = useLang(i18nAddresses.summary);
 
   return (
-    <div className={classes.summary.score}>
-      {strings.score.rating}:
-      {scoreKeys.map((key) => (
-        <div key={key}>
-          <div>
-            {strings.score[key]}: {data.score[key]}
-          </div>
-        </div>
-      ))}
-      <p>{data.feedback}</p>
+    <div className={classes.summary.detailsContainer}>
+      <SummaryScore strings={strings} stats={stats} data={data} />
+      <div className="summary__feedback">
+        <h4>{strings.score.rating}:</h4>
+        <p>{data.feedback}</p>
+      </div>
     </div>
   );
 }
