@@ -1,16 +1,15 @@
 import { useEffect, useState } from "react";
 import DashboardMenu from "../components/dashboard/DashboardMenu";
 import Study from "../components/dashboard/Study";
-import { useLang } from "../hooks/useLang";
-import { i18nAddresses } from "../constants/i18nAddresses";
 import fetchLogout from "../api/handlers/fetchLogout";
 import { useDispatch } from "react-redux";
 import { setAuth, setUser } from "../redux/slices/authSlice";
+import useRetriveStats from "../hooks/useRetriveStats";
 
 export default function Dashboard() {
-  const { strings, lang } = useLang(i18nAddresses.dashboard);
   const dispatch = useDispatch();
   const [current, setCurrent] = useState("study");
+  useRetriveStats();
 
   const logoutHandler = async () => {
     const response = await fetchLogout();
