@@ -9,7 +9,7 @@ import {
   classes,
   newSummaryInitialStatus,
   newSummaryInitialStep,
-} from "../../../constants/layout/dashboard";
+} from "../../../constants/components/dashboard";
 import { useHideOverflow } from "../../../hooks/useHideOverflow";
 import SummaryUpload from "../../../ui/summary/SummaryUpload";
 import useUploadSummary from "../../../hooks/useUploadSummary";
