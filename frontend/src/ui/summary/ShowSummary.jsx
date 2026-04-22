@@ -1,4 +1,5 @@
-import { classes } from "../../constants/layout/dashboard";
+import { useSelector } from "react-redux";
+import { classes } from "../../constants/components/dashboard";
 import ShowSummaryDetails from "./ShowSummaryDetails";
 import SummaryError from "./SummaryError";
 
@@ -9,6 +10,8 @@ export default function ShowSummary({
   toggle,
   tooltipHandler,
 }) {
+  const stats = useSelector((state) => state.stats);
+
   return (
     <div className={classes.summary.readPanel}>
       {parse.length !== 0 && !isInvalid && (
@@ -30,7 +33,7 @@ export default function ShowSummary({
           </p>
         </div>
       )}
-      <ShowSummaryDetails data={data} />
+      <ShowSummaryDetails data={data} stats={stats} />
     </div>
   );
 }
