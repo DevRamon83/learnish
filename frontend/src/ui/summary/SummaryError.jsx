@@ -1,4 +1,4 @@
-import { classes } from "../../constants/layout/dashboard";
+import { classes } from "../../constants/components/dashboard";
 
 export default function SummaryError({ node, data, tooltipHandler, toggle }) {
   const { summary } = classes;
@@ -6,7 +6,7 @@ export default function SummaryError({ node, data, tooltipHandler, toggle }) {
   return (
     <span
       className={
-        toggle === node.delCounter ? summary.correction : summary.errorSpan
+        toggle === node.delCounter ? summary.correctionSpan : summary.errorSpan
       }
       onClick={() => tooltipHandler(node.delCounter)}
     >
