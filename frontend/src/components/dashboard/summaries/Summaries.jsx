@@ -7,7 +7,7 @@ import { useLang } from "../../../hooks/useLang";
 import { i18nAddresses } from "../../../constants/i18nAddresses";
 import { useHideOverflow } from "../../../hooks/useHideOverflow";
 import useFetchData from "../../../hooks/useFetchData";
-import { classes } from "../../../constants/layout/dashboard";
+import { classes } from "../../../constants/components/dashboard";
 
 export default function Summaries() {
   const [panel, setPanel] = useState(null);
