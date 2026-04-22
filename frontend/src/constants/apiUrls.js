@@ -15,6 +15,7 @@ export const API_URLS = {
     summary: "/newSummary",
     correction: "/aiCorrection",
     stats: "/newStat",
+    allStats: "/getStats",
   },
   messages: {
     base: "/messages",
