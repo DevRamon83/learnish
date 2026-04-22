@@ -6,7 +6,7 @@ import fetchStats from "../api/handlers/fetchStats";
 import {
   newSummaryInitialStatus,
   newSummaryInitialStep,
-} from "../constants/layout/dashboard";
+} from "../constants/components/dashboard";
 
 const respHandler = (resp, setters, caller) => {
   const { setUploadStep, setUploadStatus, setSummaryData } = setters;
