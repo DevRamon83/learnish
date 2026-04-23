@@ -4,10 +4,16 @@ const Schema = mongoose.Schema;
 
 const atomicStats = new Schema({
   day: { type: Number, required: true },
-  mongoIDsommary: { type: Schema.Types.ObjectId, required: true },
+  mongoIDsummary: { type: Schema.Types.ObjectId, required: true },
   words: { type: Number, required: true },
   mistakes: { type: Number, required: true },
   errorTypes: { type: [String], required: true },
+  score: {
+    overall: { type: Number, required: true },
+    cohesion: { type: Number, required: true },
+    vocabulary: { type: Number, required: true },
+    grammar: { type: Number, required: true },
+  },
 });
 
 const StatsSchema = new Schema(
