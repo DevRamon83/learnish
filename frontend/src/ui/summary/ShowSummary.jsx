@@ -33,7 +33,6 @@ export default function ShowSummary({
           </p>
         </div>
       )}
-      <ShowSummaryDetails data={data} stats={stats} />
     </div>
   );
 }
