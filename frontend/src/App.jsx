@@ -18,8 +18,8 @@ import Tos from "./pages/Tos";
 import Metadata from "./components/Metadata";
 
 function App() {
+  const authState = useAuth();
   const PrivateRoutes = () => {
-    const authState = useAuth();
     if (authState === "pending") return <p>Caricamento...</p>;
     if (authState === "unauthenticated")
       return <Navigate to="/login" replace />;
