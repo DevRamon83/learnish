@@ -8,6 +8,7 @@ import {
   emailValidator,
 } from "ramon-vanilla";
 import validators from "./validators/index.js";
+import helpers from "./helpers/index.js";
 
 const bundle = {
   langs,
@@ -18,6 +19,7 @@ const bundle = {
   validators,
   passwordValidator,
   emailValidator,
+  helpers,
 };
 
 export default bundle;
