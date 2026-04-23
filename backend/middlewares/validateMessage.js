@@ -4,13 +4,13 @@ const { messageValidator } = bundle.validators;
 
 const validateMessage = (req, res, next) => {
   const log = true;
-  const userBann = false;
+  const userBan = false;
   const data = req.body;
   const message = messageValidator(data);
 
   if (message.error) {
     const error = message.errorMsg;
-    return handleErrorResponse(res, req, error, 400, log, userBann);
+    return handleErrorResponse(res, req, error, 400, log, userBan);
   }
 
   next();
