@@ -1,11 +1,11 @@
 import express from "express";
-import protectedRoutes from "../middlewares/protectedRoutes.js";
 import newSummary from "../controllers/dashboard/newSummary.js";
 import summariesList from "../controllers/dashboard/summariesList.js";
 import validateSummary from "../middlewares/dashboard/validateSummary.js";
 import aiCorrection from "../controllers/dashboard/aiCorrection.js";
 import newStats from "../controllers/dashboard/newStats.js";
 import getStats from "../controllers/dashboard/getStats.js";
+import protectedRoutes from "../middlewares/protectedRoutes.js";
 
 const dashboardRoute = express.Router();
 
