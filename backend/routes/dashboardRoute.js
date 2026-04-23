@@ -1,10 +1,11 @@
 import express from "express";
-import protectedRouth from "../middlewares/protectedRouth.js";
+import protectedRoutes from "../middlewares/protectedRoutes.js";
 import newSummary from "../controllers/dashboard/newSummary.js";
 import summariesList from "../controllers/dashboard/summariesList.js";
 import validateSummary from "../middlewares/dashboard/validateSummary.js";
 import aiCorrection from "../controllers/dashboard/aiCorrection.js";
-import stats from "../controllers/dashboard/stats.js";
+import newStats from "../controllers/dashboard/newStats.js";
+import getStats from "../controllers/dashboard/getStats.js";
 
 const dashboardRoute = express.Router();
 
@@ -12,13 +13,14 @@ const dashboardRoute = express.Router();
 dashboardRoute.post(
   "/newSummary",
   validateSummary,
-  ...protectedRouth,
+  ...protectedRoutes,
   newSummary,
 );
 
-dashboardRoute.post("/aiCorrection", ...protectedRouth, aiCorrection);
-dashboardRoute.post("/newStat", ...protectedRouth, stats);
+dashboardRoute.post("/aiCorrection", ...protectedRoutes, aiCorrection);
+dashboardRoute.post("/newStat", ...protectedRoutes, newStats);
+dashboardRoute.get("/getStats", ...protectedRoutes, getStats);
 
-dashboardRoute.get("/summariesList", ...protectedRouth, summariesList);
+dashboardRoute.get("/summariesList", ...protectedRoutes, summariesList);
 
 export default dashboardRoute;
