@@ -47,10 +47,10 @@ export const usernameOnChange = (string, id) => {
 
 export const emailMatch = () => {
   const match = matcher("email", "confirmEmail");
-  return { error: !match, errorMsg: "unconfirm" };
+  return { error: !match, errorMsg: "unconfirmed" };
 };
 
 export const pswMatch = () => {
   const match = matcher("password", "confirmPassword");
-  return { error: !match, errorMsg: "unconfirm" };
+  return { error: !match, errorMsg: "unconfirmed" };
 };
