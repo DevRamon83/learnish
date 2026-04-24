@@ -10,7 +10,10 @@ const summariesList = async (req, res) => {
       return handleErrorResponse(res, req, errorMsg, 422, true);
     }
 
-    const userSummaries = await summaryModel.find({ owner: userId }).lean();
+    const userSummaries = await summaryModel
+      .find({ owner: userId })
+      .sort({ createdAt: -1 })
+      .lean();
     return res.status(200).json(userSummaries);
   } catch (err) {
     console.error("Error in summaryList:", err);
