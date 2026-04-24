@@ -12,6 +12,12 @@
   z-index: 10;
   background-color: ghostwhite;
   animation: openPanel 0.5s forwards;
+  overflow-y: scroll;
+  padding-bottom: 100px;
+
+  @include breakpoints.medium {
+    flex-direction: row;
+  }
 }
 
 .summary__form {
@@ -72,6 +78,29 @@
   }
 }
 
+.summary__closePanel {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background-color: #303030;
+  color: white;
+  border-top: 1px solid black;
+  padding: 10px 25px;
+  z-index: 10;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  animation: showContent 0.2s forwards;
+  animation-delay: 0.3s;
+  cursor: pointer;
+
+  @include breakpoints.medium {
+    background-color: crimson;
+  }
+}
+
 #form__input-summary {
   @extend .base__form-input;
 }
@@ -110,6 +139,11 @@
   animation: showContent 0.2s forwards;
   animation-delay: 0.3s;
   padding: 1vh 0 1vh 3%;
+  width: 90%;
+
+  @include breakpoints.medium {
+    width: 50%;
+  }
 }
 
 @keyframes showContent {
@@ -135,10 +169,9 @@
   cursor: pointer;
 }
 
-.summary__correction {
-  color: limegreen;
+.summary__correction-span {
+  color: green;
   cursor: pointer;
-  text-transform: uppercase;
   font-weight: bold;
   text-decoration: underline;
 }
@@ -146,10 +179,35 @@
 .summary__explain {
   background-color: cornsilk;
   height: auto;
-  width: fit-content;
+  width: inherit;
   padding: 1vh 3%;
-  border-radius: 5px;
+  border-radius: 0 5px 5px 0;
   border: 1px solid #000;
+  border-left: 0;
+  position: absolute;
+  left: -100%;
+}
+
+.summary__explain-open {
+  @extend .summary__explain;
+  animation: showExplain 0.5s forwards;
+  position: relative;
+  bottom: auto;
+  margin-left: -5%;
+
+  @include breakpoints.medium {
+    position: fixed;
+    margin-left: 0;
+  }
+}
+
+@keyframes showExplain {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 0;
+  }
 }
 
 .summary__card {
@@ -407,32 +465,9 @@
 }
 
 .summary__text-container {
-  width: 55%;
   text-transform: none;
   font-size: 1.3em;
   line-height: 1.5em;
-}
-
-.summary__detalis-score {
-  background-color: white;
-  position: absolute;
-  width: 35%;
-  right: -100%;
-  padding: 15px;
-  border: 1px solid #000;
-  border-right: 0;
-  border-radius: 10px 0 0 10px;
-  animation: showDetails 0.5s forwards;
-  animation-delay: 0.25s;
-}
-
-@keyframes showDetails {
-  0% {
-    right: -100%;
-  }
-  100% {
-    right: 0%;
-  }
 }
 
 .process {
@@ -513,4 +548,126 @@
   100% {
     width: 250px;
   }
+}
+
+.summary__score-container {
+  display: block;
+  position: relative;
+  background-color: white;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+  width: 100%;
+  border-radius: 0;
+  animation: showDetails 0.5s forwards;
+  animation-delay: 0.25s;
+  max-height: fit-content;
+  overflow-y: none;
+  top: auto;
+  right: auto;
+
+  @include breakpoints.medium {
+    display: flex;
+    position: absolute;
+    right: -100%;
+    top: 100px;
+    width: 40%;
+    border: 1px solid #000;
+    border-right: 0;
+    border-radius: 10px 0 0 10px;
+    overflow-y: scroll;
+    max-height: 180px;
+  }
+}
+
+.summary__errors-container {
+  @extend .summary__score-container;
+  padding-bottom: 25px;
+  top: 25px;
+
+  @include breakpoints.medium {
+    top: 310px;
+  }
+}
+
+@keyframes showDetails {
+  0% {
+    right: -100%;
+  }
+  100% {
+    right: 0%;
+  }
+}
+
+.summary__feedback {
+  width: 100%;
+  padding: 0 5%;
+
+  @include breakpoints.medium {
+    width: 61%;
+  }
+}
+
+.summary__feedback > h4 {
+  display: none;
+
+  @include breakpoints.medium {
+    display: block;
+  }
+}
+
+.summary__score {
+  width: 75%;
+
+  @include breakpoints.medium {
+    width: 35%;
+  }
+}
+
+.summary__errors {
+  width: 75%;
+}
+
+.summary__detail-scoreContainer {
+  display: flex;
+  flex-direction: row;
+  background-color: ghostwhite;
+  margin: 15px 0;
+  height: 25px;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #000;
+  border-radius: 0 5px 5px 0;
+  overflow: hidden;
+  padding-left: 25px;
+  border-left: 0;
+}
+
+.summary__detail-errorsContainer {
+  @extend .summary__detail-scoreContainer;
+}
+
+.summary__errors > h4 {
+  margin-left: 25px;
+}
+
+.summary__details-score {
+  height: 28px;
+  width: 20px;
+  border-left: 1px solid #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.summary__details-up {
+  background-color: greenyellow;
+}
+
+.summary__details-down {
+  background-color: red;
+  color: white;
+}
+
+.summary__details-equal {
+  background-color: yellow;
 }

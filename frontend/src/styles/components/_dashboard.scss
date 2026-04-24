@@ -13,10 +13,10 @@
 
 .dashboard {
   width: 100%;
-  margin-top: 55px;
 
   @include breakpoints.medium {
     grid-column: 2;
+    margin-top: 55px;
   }
 }
 
