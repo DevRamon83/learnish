@@ -5,6 +5,7 @@ export const classes = {
   summary: {
     base: "summary__",
     correction: "summary__correction",
+    correctionSpan: "summary__correction-span",
     error: "summary__error",
     errorSpan: "summary__error-span",
     card: "summary__card",
@@ -18,7 +19,7 @@ export const classes = {
     form: "summary__form",
     btnSend: "summary__btnSend",
     processUpload: "summary__process-upload",
-    score: "summary__detalis-score",
+    score: "summary__details-score",
     closeBtn: "summary__closeBtn",
     formTitle: "summary__form-title",
     newPanel: "summary__new-panel",
@@ -34,6 +35,8 @@ export const classes = {
     errorBase: "summary__error-",
     errorOpen: "summary__error-open",
     errorClose: "summary__error-close",
+    scoreContainer: "summary__score-container",
+    errorsContainer: "summary__errors-container",
     score: {
       bad: "summary__iconScore-bad",
       medium: "summary__iconScore-medium",
@@ -53,5 +56,7 @@ export const newSummaryInitialStatus = {
   correction: null,
   stats: null,
 };
+
+export const statsSymbols = { up: "🢁", down: "🢃", equal: "≈" };
 
 export const bars = ["draft", "correction", "stats"];
