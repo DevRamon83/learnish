@@ -76,7 +76,7 @@ const summarySchema = (lang) => {
           },
           feedback: {
             type: "string",
-            description: `A brief motivational feedback (max 50 words) in ${lang}.`,
+            description: `A personalized analysis of the user's text as a whole in ${lang} (max 50 words). Mention at least one specific strength or weakness found in the text. Avoid generic praise.`,
           },
         },
         required: ["overall", "breakdown", "feedback"],
