@@ -8,7 +8,7 @@ const SummarySchema = new Schema(
     channel: { type: String, required: true },
     videoID: { type: String, required: true },
     summary: { type: String, required: true },
-    isDraft: { type: Boolean, required: true },
+    isDraft: { type: Boolean, required: true, default: true },
     aiText: { type: String },
     mistakes: {
       type: [
@@ -29,7 +29,7 @@ const SummarySchema = new Schema(
     feedback: { type: String },
     errorCodes: { type: [String] },
     shared: { type: Boolean, required: true },
-    misalignment: { type: Boolean, required: true, default: false },
+    misalignment: { type: Boolean, required: true, default: true },
     owner: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "user",
