@@ -13,7 +13,7 @@ const createTokenConfigs = (configData) => {
     id,
     username,
     shared,
-    expiresIn: "35m",
+    expiresIn: "255m",
     maxAge: null,
     tokenName: process.env.REFRESH_TOKEN,
   };
