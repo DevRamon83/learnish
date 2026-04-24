@@ -35,9 +35,10 @@ export default function Summary({ data, setter }) {
           tooltipHandler={tooltipHandler}
         />
         <ExplainMistake mistake={mistake} classMistake={classMistake} />
-        <div onClick={() => setter(false)}>Chiudi</div>
       </div>
-
+      <div className="summary__closePanel" onClick={() => setter(false)}>
+        Chiudi
+      </div>
       <ShowSummaryDetails data={data} stats={stats} />
     </div>
   );
