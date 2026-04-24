@@ -1,4 +1,4 @@
-import { classes } from "../../constants/layout/dashboard";
+import { classes } from "../../constants/components/dashboard";
 import IconBtn from "../../ui/buttons/IconBtn";
 
 export default function DashboardMenu({ setCurrent, current }) {
