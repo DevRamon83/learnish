@@ -11,10 +11,34 @@ const vocabularySchema = new Schema({
     us: { type: String, required: true },
     uk: { type: String, required: true },
   },
-  examples: { type: [String], required: true },
-  img: { type: String },
-  audio: { type: String },
+  phrase: {
+    example: { type: String, default: false },
+    audioUs: { type: Boolean, default: false },
+    audioEn: { type: Boolean, default: false },
+  },
+  translations: {
+    word: {
+      type: Map,
+      of: String,
+      default: {},
+    },
+    phrase: {
+      type: Map,
+      of: String,
+      default: {},
+    },
+  },
+  img: { type: Boolean, default: false },
+  pronunciation: {
+    audioUs: { type: Boolean, default: false },
+    audioEn: { type: Boolean, default: false },
+  },
   definition: { type: String },
+  relations: {
+    type: Map,
+    of: [Schema.Types.ObjectId],
+    default: {},
+  },
 });
 
 vocabularySchema.index({ level: 1, type: 1 });
