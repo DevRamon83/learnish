@@ -1,7 +1,6 @@
-import "dotenv/config";
 import Groq from "groq-sdk";
-import generateSummaryPrompt from "../helpers/ai/generateSummaryPrompt.js";
-import summarySchema from "../helpers/ai/summarySchema.js";
+import summarySchema from "../ai/schema/summarySchema.js";
+import generateSummaryPrompt from "../ai/prompt/generateSummaryPrompt.js";
 
 const getAiCorrection = async (summary, lang) => {
   const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
