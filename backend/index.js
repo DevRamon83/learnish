@@ -8,7 +8,9 @@ import { userModel } from "./models/user.js";
 import { setPopulator } from "./utils/atomicUtils.js";
 import dashboardRoute from "./routes/dashboardRoute.js";
 import messagesRoute from "./routes/messagesRoute.js";
-import generateFlashcard from "./helpers/ai/generateFlashcard.js";
+
+import wordsList from "./wordsList.json" with { type: "json" };
+import vocabularyPipeline from "./pipelines/vocabularyPipeline.js";
 
 const app = express();
 
@@ -59,7 +61,7 @@ mongoose
       "username isRevoked isBanned",
     );
     setPopulator(unauthorizedUsers, tokensRevoked, usersBanned);
-    generateFlashcard("home");
+    vocabularyPipeline(wordsList);
     app.listen(PORT, () => {
       env === "DEV" && console.log("server running on port ", PORT);
     });
