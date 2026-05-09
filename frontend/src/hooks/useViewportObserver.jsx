@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 export default function useViewportObserver() {
-  const [chartWidth, setChartWhidt] = useState(0);
+  const [chartWidth, setChartWidth] = useState(0);
   const [viewport, setViewport] = useState(window.innerWidth);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -26,10 +26,10 @@ export default function useViewportObserver() {
   useEffect(() => {
     if (viewport <= 600) {
       const percent = (viewport / 100) * 80;
-      setChartWhidt(percent);
+      setChartWidth(percent);
       setIsMobile(true);
     } else {
-      setChartWhidt(600);
+      setChartWidth(600);
       setIsMobile(false);
     }
   }, [viewport]);
