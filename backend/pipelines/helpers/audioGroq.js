@@ -10,10 +10,10 @@ const updateSchema = async (dataUpdate) => {
   newWord.metadata[naming].fileName = fileName;
   newWord.metadata[naming][lang] = true;
   try {
-    newWord.save();
+    await newWord.save();
     return { error: false };
   } catch (err) {
-    console.error("flashcard update schema failed");
+    console.error("audio update schema failed");
     return { error: true };
   }
 };
@@ -31,14 +31,18 @@ const audioGroq = async (newWord, process) => {
   const naming = process === "vocabulary" ? "word" : "phrase";
 
   const text = audioDefiner(process, newWord);
-  const response = await groq.audio.speech.create({
-    model: model,
-    voice: voice,
-    input: text,
-    response_format: responseFormat,
-  });
+  let response = null;
 
-  if (response.status !== 200) {
+  // groq sdk throws an error if api call fails,
+  // so we cannot analyze the response manually as we do usually
+  try {
+    response = await groq.audio.speech.create({
+      model: model,
+      voice: voice,
+      input: text,
+      response_format: responseFormat,
+    });
+  } catch (err) {
     return {
       error: true,
       type: "failed",
@@ -52,8 +56,7 @@ const audioGroq = async (newWord, process) => {
   const bucket = "audio";
   const metaData = { bucket, type: "audio/wav" };
   // groq missing a voice for uk accent
-  const lang = "Us";
-  const folder = getFolder(process, lang);
+  const folder = getFolder(process, "Us");
   const uploadData = { buffer, fileName, metaData, folder };
 
   const upload = await uploadFile(uploadData);
@@ -67,7 +70,7 @@ const audioGroq = async (newWord, process) => {
     };
   }
 
-  const dataUpdate = { newWord, fileName, bucket, folder, naming, lang };
+  const dataUpdate = { newWord, fileName, bucket, folder, naming, lang: "us" };
   const update = await updateSchema(dataUpdate);
   return { error: false };
 };
