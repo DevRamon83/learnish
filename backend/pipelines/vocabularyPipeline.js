@@ -74,7 +74,7 @@ const vocabularyPipeline = async (wordList, process) => {
    if (rateLimit === 49) return;
 */
   console.log("go");
-  const lastRecord = await vocabularyModel.findOne().sort({ _id: -1 });
+  const lastRecord = await vocabularyModel.findOne().sort({ index: -1 });
   const currentIndex = lastRecord?.index + 1 || 0;
   const wordObj = wordList[currentIndex];
 
