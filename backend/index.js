@@ -61,7 +61,7 @@ mongoose
       "username isRevoked isBanned",
     );
     setPopulator(unauthorizedUsers, tokensRevoked, usersBanned);
-    vocabularyPipeline(wordsList);
+    vocabularyPipeline(wordsList, "wordsData");
     app.listen(PORT, () => {
       env === "DEV" && console.log("server running on port ", PORT);
     });
