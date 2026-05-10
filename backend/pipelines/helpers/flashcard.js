@@ -50,14 +50,12 @@ const getFlashcard = async (newWord, wordObj) => {
 
   const update = await updateSchema(newWord, fileName);
   if (update.error) {
-    if (creation.error) {
-      return {
-        error: true,
-        service: "internal",
-        type: "failed",
-        errorMsg: "Schema update for flashcard failed",
-      };
-    }
+    return {
+      error: true,
+      service: "internal",
+      type: "failed",
+      errorMsg: "Schema update for flashcard failed",
+    };
   }
 
   return { error: false };
