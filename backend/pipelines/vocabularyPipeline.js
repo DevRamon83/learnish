@@ -19,14 +19,14 @@ const writeLog = async (data) => {
   }
 };
 
-const attempt = async (func, data, dataError, jump) => {
-  if (jump) return { error: true };
+const attempt = async (func, data, dataError) => {
+  if (dataError.skip) return { error: true };
   const res = await func(...data);
   if (res.error) {
     dataError.errorMsg = res.errorMsg;
     dataError.type = res.type;
     dataError.service = res.service;
-    jump = true;
+    dataError.skip = true;
     await writeLog(dataError);
     return { error: true };
   }
@@ -34,45 +34,71 @@ const attempt = async (func, data, dataError, jump) => {
   return { error: false, res };
 };
 
-const vocabularyPipeline = async (wordList) => {
+const dailyRecordCounter = async () => {
+  const today = new Date().setHours(0, 0, 0, 0);
+  const count = await vocabularyModel.countDocuments({
+    createdAt: { $gte: today },
+  });
+
+  return count;
+};
+
+const dispatcher = async (process, wordObj, dataError) => {
+  if (process === "wordsData") {
+    const mongoObj = await attempt(saveNewWord, [wordObj], dataError);
+    const newWord = mongoObj.res?.newWord;
+    const myWord = await attempt(getWordData, [newWord], dataError);
+  }
+
+  if (process === "flashcard") {
+    // need a check on flashcard schema flag
+    // Cannot access newWord, it is out of scope
+    // await attempt(getFlashcard, [newWord, wordObj], dataError);
+  }
+
+  if (process === "audio") {
+    // Cannot access newWord, it is out of scope
+    /*
+    const audioData = [newWord, "vocabulary"];
+    const wordAudio = await attempt(audioGroq, audioData, dataError);
+
+    audioData[1] = "examplePhrase";
+    const exampleAudio = await attempt(audioGroq, audioData, dataError);
+    */
+  }
+};
+
+const vocabularyPipeline = async (wordList, process) => {
+  /* don't need of a rateLimit in this phase
+   const rateLimit = await dailyRecordCounter();
+   if (rateLimit === 49) return;
+*/
+  console.log("go");
   const lastRecord = await vocabularyModel.findOne().sort({ _id: -1 });
   const currentIndex = lastRecord?.index + 1 || 0;
   const wordObj = wordList[currentIndex];
 
   const word = await vocabularyModel.findOne({ word: wordObj.word });
-  let jump = false;
-
   const dataError = {
     word: wordObj.word,
     process: "internal",
     type: "failed",
     errorMsg: null,
+    skip: false,
   };
 
   if (word && word.type === wordObj.type) {
     dataError.errorMsg = "word already exist";
     dataError.type = "duplicate";
-    jump = true;
+    dataError.skip = true;
     await writeLog(dataError);
   }
 
-  const mongoObj = await attempt(saveNewWord, [wordObj], dataError, jump);
-  const newWord = mongoObj.res?.newWord;
-  const myWord = await attempt(getWordData, [newWord], dataError, jump);
-
-  if (myWord.res?.parse.flashcard) {
-    await attempt(getFlashcard, [newWord, wordObj], dataError, jump);
-  }
-
-  const audioData = [newWord, "vocabulary"];
-  const wordAudio = await attempt(audioGroq, audioData, dataError, jump);
-
-  audioData[1] = "examplePhrase";
-  const exampleAudio = await attempt(audioGroq, audioData, dataError, jump);
+  await dispatcher(process, wordObj, dataError);
 
   setTimeout(() => {
-    vocabularyPipeline(wordList);
-  }, 600000);
+    vocabularyPipeline(wordList, process);
+  }, 70000);
 };
 
 export default vocabularyPipeline;
