@@ -16,9 +16,11 @@ import Privacy from "./pages/Privacy";
 import Team from "./pages/Team";
 import Tos from "./pages/Tos";
 import Metadata from "./components/Metadata";
+import useScrollToTop from "./hooks/useScrollToTop";
 
 function App() {
   const authState = useAuth();
+  useScrollToTop();
   const PrivateRoutes = () => {
     if (authState === "pending") return <p>Caricamento...</p>;
     if (authState === "unauthenticated")
