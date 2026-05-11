@@ -1,0 +1,484 @@
+@use "./variables/colors";
+@use "./breakpoints";
+
+.home__callToSignup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid #000;
+  width: 100%;
+  overflow: hidden;
+  position: fixed;
+  bottom: -20vh;
+  font-size: 1.2em;
+  background-color: white;
+  animation: showCall 0.5s forwards;
+  animation-delay: 0.5s;
+  z-index: 10;
+  padding: 10px 0;
+
+  @include breakpoints.medium {
+    padding: unset;
+    background-color: lavender;
+  }
+}
+
+@keyframes showCall {
+  0% {
+    bottom: -20vh;
+  }
+  100% {
+    bottom: 0;
+  }
+}
+
+.home__callToSignup-hide {
+  @extend .home__callToSignup;
+  bottom: 0;
+  animation: hideCall 0.5s forwards;
+  animation-delay: 0s;
+}
+
+@keyframes hideCall {
+  0% {
+    bottom: 0;
+  }
+  100% {
+    bottom: -20vh;
+  }
+}
+
+.home__startText {
+  display: none;
+
+  @include breakpoints.medium {
+    display: block;
+    padding: 0px 15px 15px 15px;
+    margin-bottom: 0;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 0.8em;
+    font-weight: bold;
+  }
+}
+
+.home__startBtn {
+  background-color: crimson;
+  color: white;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 5px 10px;
+  text-align: center;
+  border: 1px solid #000;
+  border-radius: 5px;
+  margin-left: 15px;
+  margin-right: 10px;
+
+  @include breakpoints.medium {
+    margin-left: 25px;
+    margin-right: 0;
+  }
+}
+
+.home__main {
+  margin-top: 60px;
+  display: block;
+}
+
+.home__hero {
+  display: none;
+
+  @include breakpoints.medium {
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid #000;
+    animation: showHero 1.5s forwards;
+    opacity: 0;
+    display: block;
+  }
+}
+
+.home__hero-mobile {
+  height: 500px;
+  overflow: hidden;
+  animation: showHero 1.5s forwards;
+  opacity: 0;
+  @include breakpoints.medium {
+    display: none;
+  }
+}
+
+@keyframes showHero {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.home__hero-img {
+  width: 100vw;
+  height: auto;
+  display: block;
+}
+
+.home__hero-text {
+  position: absolute;
+  bottom: 20vh;
+  right: 0;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #ffffff;
+  text-transform: uppercase;
+  font-size: 0.8em;
+  line-height: 1.5em;
+  width: 230px;
+  padding: 20px;
+  font-weight: bold;
+
+  @include breakpoints.medium {
+    font-size: 2.5em;
+    line-height: 1.5em;
+    width: 600px;
+    padding: 20px;
+    font-weight: normal;
+    bottom: 0;
+  }
+}
+
+.home__cardContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 50px;
+  flex-wrap: wrap;
+  width: 100%;
+  height: fit-content;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 5%;
+
+  @include breakpoints.medium {
+    flex-direction: row;
+    height: 150px;
+  }
+}
+
+.home__cardTitle {
+  width: 90%;
+  margin: 4% 5% 4% -100%;
+  text-decoration: underline;
+  animation: showCardTitle 0.5s forwards;
+}
+
+@keyframes showCardTitle {
+  0% {
+    margin: 4% 5% 4% -100%;
+  }
+  100% {
+    margin: 4% 5%;
+  }
+}
+
+.home__cardBlock {
+  width: 0;
+  height: 0;
+  border: 1px solid #000;
+  border-radius: 50%;
+  display: flex;
+  overflow: hidden;
+  animation: showCard 1.5s forwards;
+}
+
+@keyframes showCard {
+  0% {
+    width: 0;
+    height: 0;
+  }
+  100% {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+.home__cardBlock-open {
+  width: 150px;
+  height: fit-content;
+  border: 0;
+  border-radius: 75px 5px 5px 5px;
+  display: flex;
+  overflow: hidden;
+  animation: openCard 0.5s forwards;
+  position: unset;
+  top: 0;
+  z-index: 0;
+
+  @include breakpoints.medium {
+    height: 150px;
+    position: absolute;
+    z-index: 20;
+    border-radius: 150px 5px 5px 150px;
+    border: 1px solid #000;
+  }
+}
+
+@keyframes openCard {
+  0% {
+    width: 150px;
+  }
+  100% {
+    width: 90%;
+  }
+}
+
+.home__cardTag {
+  position: absolute;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #ffffff;
+  width: 100%;
+  text-align: center;
+  padding: 5px 0;
+  text-transform: uppercase;
+  font-size: 0.8em;
+  font-weight: bold;
+}
+
+.home__cardText {
+  width: 90%;
+  font-size: 1.3em;
+  line-height: 1.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  padding: 0 2%;
+  border: 1px solid #000;
+  border-radius: 0 5px 5px 0;
+
+  @include breakpoints.medium {
+    border: 0;
+    border-radius: unset;
+  }
+}
+
+.home__card {
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 150px;
+  position: relative;
+  border-radius: 100px 0 0 100px;
+  cursor: pointer;
+
+  @include breakpoints.medium {
+    border-width: 0 1px 0 0;
+  }
+}
+
+.home__card-open {
+  border-width: 1px 0 1px 1px;
+  border-style: solid;
+  border-color: #000;
+  @include breakpoints.medium {
+    border-width: 0 1px 0 0;
+  }
+}
+
+.home__card-close {
+  border: 0;
+}
+
+.home__cardImg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 150px;
+  height: 150px;
+}
+
+.home__zContainer {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border: 0;
+
+  @include breakpoints.medium {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 1px solid #000;
+  }
+}
+
+.home__zContainer-teachers {
+  @extend .home__zContainer;
+  margin: 0;
+  border-radius: 0;
+  border-right: 0;
+
+  @include breakpoints.medium {
+    margin: 0 0 5% 10%;
+    border-radius: 0 0 0 35px;
+  }
+}
+
+.home__zContainer-students {
+  @extend .home__zContainer;
+  margin: 0;
+  border-radius: 0;
+  border-left: 0;
+
+  @include breakpoints.medium {
+    margin: 0 0 5% 0;
+    border-radius: 0 0 35px 0;
+  }
+}
+
+.home__textZ {
+  font-size: 1.2em;
+  line-height: 1.4em;
+  padding: 15px;
+
+  @include breakpoints.medium {
+    font-size: 1.8em;
+    line-height: 2em;
+    padding: 0 50px;
+  }
+}
+
+.home__imgZ-right {
+  border-width: 0 0 1px 0;
+  border-style: solid;
+  border-color: #000;
+
+  @include breakpoints.medium {
+    border-width: 0 1px 0 0;
+  }
+}
+
+.home__imgZ-left {
+  border-width: 0 0 1px 0;
+  border-style: solid;
+  border-color: #000;
+
+  @include breakpoints.medium {
+    border-width: 0 0 0 1px;
+  }
+}
+
+.home__imgZ-right > img,
+.home__imgZ-left > img {
+  display: block;
+}
+
+.home__catchPhrase {
+  width: 90%;
+  padding: 2% 5%;
+  line-height: 1.5em;
+  background-color: colors.$primaryColor;
+  color: white;
+  border-top: 1px solid #000;
+
+  @include breakpoints.medium {
+    width: 80%;
+    line-height: 2em;
+  }
+}
+
+.home__catchPhrase-teachers {
+  @extend .home__catchPhrase;
+  margin: 0;
+  border-right: 0;
+  border-radius: 0;
+
+  @include breakpoints.medium {
+    border-right: 1px solid #000;
+    border-radius: 0 35px 0 0;
+  }
+}
+
+.home__catchPhrase-students {
+  @extend .home__catchPhrase;
+  margin: 0;
+  border-right: 0;
+  border-radius: 0;
+
+  @include breakpoints.medium {
+    margin: 0 0 0 9.9%;
+    border-left: 1px solid #000;
+    border-radius: 35px 0 0 0;
+  }
+}
+
+.reveal-section {
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity 0.8s ease-out,
+    transform 0.8s ease-out;
+  visibility: hidden;
+}
+
+.reveal-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+}
+
+.home__heroCTA {
+  display: none;
+
+  @include breakpoints.medium {
+    width: 100%;
+    display: block;
+    border-top: 1px solid #000;
+    position: relative;
+    overflow: hidden;
+  }
+}
+
+.home__heroCTAmobile {
+  @include breakpoints.medium {
+    display: none;
+  }
+}
+
+.home__heroCTA > img,
+.home__heroCTAmobile > img {
+  width: 100%;
+  display: block;
+}
+
+.home__heroCTA-text {
+  @extend .home__hero-text;
+  width: 80%;
+  font-size: 1.1em;
+  font-weight: bold;
+  bottom: 15vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 5px 0 0 5px;
+
+  @include breakpoints.medium {
+    width: 40%;
+    bottom: 3vh;
+  }
+}
+
+.home__heroCTA-btn {
+  @extend .home__startBtn;
+  font-size: 1em;
+  margin-top: 15px;
+  width: fit-content;
+}

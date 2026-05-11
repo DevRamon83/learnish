@@ -1,0 +1,17 @@
+export const classes = {
+  main: "home__main",
+  cardTitle: "home__cardTitle",
+  cardContainer: "home__cardContainer",
+  callToSignup: "home__callToSignup",
+  callToSignupHide: "home__callToSignup-hide",
+  startText: "home__startText",
+  startBtn: "home__startBtn",
+  heroCTA: "home__heroCTA",
+  hero: "home__hero",
+  cardBlock: "home__cardBlock",
+  homeCard: "home__card",
+  catchPhrase: "home__catchPhrase",
+  zContainer: "home__zContainer",
+  imgZ: "home__imgZ",
+  textZ: "home__textZ",
+};
