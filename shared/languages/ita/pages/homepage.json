@@ -1,4 +1,18 @@
 {
   "welcome": "Benvenuto in homepage",
-  "introduction": "Impara l'inglese con l'ia"
+  "introduction": "Impara l'inglese con l'ia",
+  "charts": "Traccia e monitora i tuoi progressi, analizza i tuoi errori con l'aiuto dell'intelligenza artificiale e definisci i vari ambiti in cui è necessario concentrarti maggiormente per superare le tue lacune",
+  "exercises": "Scegli gli esercizi migliori per centrare i tuoi obiettivi in base al tuo livello attuale, utilizza le statistiche per definire una routine quotidiana di esercizi da svolgere",
+  "teachers": "I migliori insegnanti per ogni tua esigenza, lezioni, tutoring e sessioni di speaking individuali, per diventare sempre più fluente e sicuro di te nella tua comunicazione quotidiana; a lavoro, a scuola, nel tempo libero",
+  "vocabulary": "Estendi il tuo vocabolario, impara ogni giorno nuove parole, utilizza la flashcard per avere la certezza di non dimenticare mai ciò che hai imparato; bastano davvero pochi minuti al giorno, provare per credere",
+  "phonetic": "Migliora la tua pronuncia e le tue skills di ascolto, grazie ai servizi di natural reading integrati e alle sessioni di speaking con i nostri insegnanti e gli altri studenti come te",
+  "grammar": "Lezioni di grammatica modulari e semplici, per ogni livello di competenza, da sbloccare attraverso un percorso di crescita che ti garantirà di arrivare a padroneggiare la lingua in modo ideale",
+  "hero": "Imparare l'inglese non è mai stato così facile",
+  "intro": "I migliori strumenti, le migliori strategie, tutto ciò che ti serve per imparare veramente una nuova lingua",
+  "forTeachers": "Unifica la tua attività didattica online, crea classi virtuali per i tuoi studenti, accedi alle loro statistiche per sviluppare piani didattici ad hoc per le loro esigenze",
+  "forStudents": "Definisci tempi, obiettivi e strategie di apprendimento, scegli se studiare da autodidatta o avvalerti di un tutor e aumenta la tua competenza linguistica costantemente nel tempo",
+  "teachersCatchPhrase": "Docente online? Trova nuovi studenti, converti il tuo seguito social e dedicati esclusivamente a ciò in cui sei più bravo, lasciando a noi l'onere di fornirti gli strumenti più adeguati per esprimerti al meglio nel tuo lavoro",
+  "studentsCatchPhrase": "Non è mai troppo tardi per imparare una nuova lingua, e chiunque può riuscirci con gli strumenti giusti, le giuste motivazioni e impegno; il tuo viaggio inizia qui, attiva subito il tuo account, è gratis",
+  "callToSignup": "Il tuo viaggio per imparare l'inglese comincia qui",
+  "callToSignupBtn": "Registrati subito"
 }
