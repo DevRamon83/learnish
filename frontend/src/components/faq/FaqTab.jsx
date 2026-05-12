@@ -1,22 +1,20 @@
-export default function FaqTab({ setAnswer, setAccount, account }) {
+export default function FaqTab({ setAnswer, setAccount, account, classes }) {
   const handler = (tab) => {
     setAnswer(null);
     setAccount(tab);
   };
+
+  const { faqTabBtnActive, faqTabBtn } = classes;
   return (
-    <div className="faq__tab">
+    <div className={classes.faqTab}>
       <div
-        className={
-          account === "students" ? "faq__tabBtn-active" : "faq__tabBtn"
-        }
+        className={account === "students" ? faqTabBtnActive : faqTabBtn}
         onClick={() => handler("students")}
       >
         student
       </div>
       <div
-        className={
-          account === "teachers" ? "faq__tabBtn-active" : "faq__tabBtn"
-        }
+        className={account === "teachers" ? faqTabBtnActive : faqTabBtn}
         onClick={() => handler("teachers")}
       >
         teacher

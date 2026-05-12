@@ -1,14 +1,15 @@
-export default function QuestionBtn({ answer, setAnswer, index, question }) {
+export default function QuestionBtn({
+  answer,
+  setAnswer,
+  index,
+  question,
+  classes,
+}) {
+  const { questionButton, textActive, text, arrow } = classes;
   return (
-    <div className="faq__question-btn" onClick={() => setAnswer(index)}>
-      <div
-        className={
-          answer === index ? "faq__question-textActive" : "faq__question-text"
-        }
-      >
-        {question}
-      </div>
-      <div className="faq__question-arrow">
+    <div className={questionButton} onClick={() => setAnswer(index)}>
+      <div className={answer === index ? textActive : text}>{question}</div>
+      <div className={arrow}>
         <img src="/arrow.svg" />
       </div>
     </div>
