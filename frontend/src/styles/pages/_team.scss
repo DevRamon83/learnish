@@ -5,7 +5,7 @@
   display: block;
 }
 
-.team__carousell-container {
+.team__carousel-container {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -17,7 +17,7 @@
   }
 }
 
-.team__carousell {
+.team__carousel {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -45,7 +45,7 @@
   width: 100%;
 }
 
-.team__carousellDirection {
+.team__carouselDirection {
   position: absolute;
   bottom: 0;
   z-index: 10;
@@ -62,13 +62,13 @@
   cursor: pointer;
 }
 
-.team__carousell-back {
-  @extend .team__carousellDirection;
+.team__carousel-back {
+  @extend .team__carouselDirection;
   left: 0;
 }
 
-.team__carousell-forward {
-  @extend .team__carousellDirection;
+.team__carousel-forward {
+  @extend .team__carouselDirection;
   right: 0;
 }
 
