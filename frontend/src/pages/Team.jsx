@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useLang } from "../hooks/useLang";
 import { i18nAddresses } from "../constants/i18nAddresses";
+import { classes } from "../constants/pages/team";
 
 export default function Team() {
   const { strings, lang } = useLang(i18nAddresses.team);
@@ -17,23 +18,26 @@ export default function Team() {
 
     setCurrent(index);
   };
-  return (
-    <main className="team__main">
-      <div className="team__carousell-container">
-        <h4 className="team__name-mobile">{people[current].name}</h4>
-        <div className="team__carousell">
-          <img className="team__img" src={people[current].img} />
 
-          <div onClick={() => handler(-1)} className="team__carousell-back">
+  return (
+    <main className={classes.main}>
+      <div className={classes.container}>
+        <h4 className={classes.nameMobile}>{people[current].name}</h4>
+        <div className={classes.carousel}>
+          <img className={classes.img} src={people[current].img} />
+
+          <div onClick={() => handler(-1)} className={classes.back}>
             {strings.back}
           </div>
-          <div onClick={() => handler(+1)} className="team__carousell-forward">
+          <div onClick={() => handler(+1)} className={classes.forward}>
             {strings.forward}
           </div>
         </div>
-        <div className="team__info">
-          <h4 className="team__name-desktop">{people[current].name}</h4>
-          <div className="team__description">{people[current].description}</div>
+        <div className={classes.info}>
+          <h4 className={classes.nameDesk}>{people[current].name}</h4>
+          <div className={classes.description}>
+            {people[current].description}
+          </div>
         </div>
       </div>
     </main>
