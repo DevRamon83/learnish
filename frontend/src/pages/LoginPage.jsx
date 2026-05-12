@@ -1,5 +1,5 @@
 import LoginForm from "../components/forms/LoginForm";
-import { classes } from "../constants/page";
+import { classes } from "../constants/pages/auth";
 
 export default function Login() {
   return (
