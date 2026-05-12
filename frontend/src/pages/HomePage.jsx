@@ -9,9 +9,10 @@ import HeroCTASection from "../ui/HeroCTASection";
 import { useState } from "react";
 import ScrollReveal from "../components/ScrollReveal";
 import { classes } from "../constants/home";
+import { i18nAddresses } from "../constants/i18nAddresses";
 
 export default function Home() {
-  const { strings } = useLang("pages.homepage");
+  const { strings } = useLang(i18nAddresses.home);
   const [showSignup, setShowSignup] = useState(true);
   const signupHandler = (action) => {
     if (action === "show") {

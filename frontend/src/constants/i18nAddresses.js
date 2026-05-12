@@ -8,4 +8,6 @@ export const i18nAddresses = {
   team: "components.team",
   metadata: "components.metadata",
   contact: "components.contact",
+  price: "components.price",
+  home: "pages.homepage",
 };
