@@ -1,0 +1,90 @@
+@use "../variables/colors";
+@use "../breakpoints";
+
+.price__main {
+  margin-top: 80px;
+}
+
+.price__tabMenu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+}
+
+.price__tabBtn {
+  border: 1px solid #000;
+  width: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  padding: 10px 0;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: colors.$primaryColor;
+  color: white;
+  font-weight: bold;
+}
+
+.price__tabBtn-active {
+  @extend .price__tabBtn;
+  background-color: white;
+  color: colors.$primaryColor;
+}
+
+.price__studentContainer {
+  width: 100%;
+  margin-top: 25px;
+}
+
+.price__planContainer {
+  border: 1px solid #000;
+  width: 25vw;
+}
+
+.price__rowContainer {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  width: 90%;
+  margin-left: 5%;
+  grid-auto-rows: mincontent;
+  background-color: white;
+}
+
+.price__rowCell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.price__rowCell0 {
+  @extend .price__rowCell;
+  grid-column: 1 / 2;
+  border: 1px solid #000;
+  justify-content: flex-start;
+}
+
+.price__rowCell1 {
+  @extend .price__rowCell;
+  grid-column: 2 / 3;
+  border: 1px solid #000;
+}
+
+.price__rowCell2 {
+  @extend .price__rowCell;
+  grid-column: 3 / 4;
+  border: 1px solid #000;
+}
+
+.price__rowCell3 {
+  @extend .price__rowCell;
+  grid-column: 4 / 5;
+  border: 1px solid #000;
+}
+
+.price__note {
+  padding: 0 15px;
+}

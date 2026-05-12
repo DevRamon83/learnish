@@ -1,0 +1,26 @@
+{
+  "plans": ["piani", "FREE", "BASIC", "PRO"],
+  "ads": ["ads", 3, 1, 0],
+  "modules": ["moduli", 1, 2, 3],
+  "tutoring": ["tutoring", "false", "true", "true"],
+  "summary": ["sommari", 0, 1, 3],
+  "stats": ["statistiche", "false", "true", "true"],
+  "phonetic": ["fonetica", "false", "true", "true"],
+  "level": ["livello", "A1/A2", "B1/B2", "C1/C2"],
+  "price": ["prezzo", "0€", "1€", "10€"],
+  "explain": {
+    "plans": "tipologie di sottoscrizione possibili",
+    "ads": "* numero massimo di annunci pubblicitari per pagina",
+    "modules": "numero di lezioni che è possibile sbloccare giornalmente",
+    "tutoring": "** possibilità di richiedere il sostegno di un docente",
+    "summary": "numero massimo di sommari da sottoporre all'ia per giorno",
+    "stats": "accesso alle proprie statistiche personali",
+    "phonetic": "accesso alle lezioni di fonetica",
+    "level": "massimi livelli conseguibili per il piano",
+    "price": "costo mensile"
+  },
+  "note": {
+    "ads": "* Tentiamo in ogni caso di esporre la pubblicità in modo non invasivo, il numero di annunci per pagina è indicativa, non significa necessariamente che in ogni singola pagina troverai il numero di banner indicato, potresti trovarne meno, ma mai di più",
+    "tutoring": "** Il costo dell'abbonamento mensile non include anche i servizi di tutoring; ogni insegnante, infatti, ha i propri metodi didattici e, di conseguenza, il proprio tariffario. Tutte le informazioni che ti servono in merito le trovi nei profili dei docenti"
+  }
+}
