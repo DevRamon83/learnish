@@ -1,5 +1,5 @@
 import SignupForm from "../components/forms/SignupForm";
-import { classes } from "../constants/pages";
+import { classes } from "../constants/page";
 
 export default function SignupPage() {
   return (

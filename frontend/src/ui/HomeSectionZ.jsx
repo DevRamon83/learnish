@@ -1,4 +1,4 @@
-import { classes } from "../constants/home";
+import { classes } from "../constants/pages/home";
 
 export default function HomeSectionZ({ strings, side, protagonist }) {
   const stringKey = protagonist === "student" ? "forStudents" : "forTeachers";

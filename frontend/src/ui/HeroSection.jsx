@@ -1,4 +1,4 @@
-import { classes } from "../constants/home";
+import { classes } from "../constants/pages/home";
 
 export default function HeroSection({ strings }) {
   return (

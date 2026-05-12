@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ScrollReveal from "../ScrollReveal";
 import HomeCard from "../../ui/HomeCard";
-import { classes } from "../../constants/home";
+import { classes } from "../../constants/pages/home";
 
 export default function IntroHome({ strings }) {
   const images = [

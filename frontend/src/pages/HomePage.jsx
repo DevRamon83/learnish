@@ -8,7 +8,7 @@ import HomeSectionZ from "../ui/HomeSectionZ";
 import HeroCTASection from "../ui/HeroCTASection";
 import { useState } from "react";
 import ScrollReveal from "../components/ScrollReveal";
-import { classes } from "../constants/home";
+import { classes } from "../constants/pages/home";
 import { i18nAddresses } from "../constants/i18nAddresses";
 
 export default function Home() {

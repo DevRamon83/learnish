@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { classes } from "../constants/home";
+import { classes } from "../constants/pages/home";
 
 export default function HeroCTA({ strings, isMobile }) {
   const suffix = isMobile ? "mobile" : "";
