@@ -10,29 +10,7 @@ import uploadFile from "./helpers/uploadFile.js";
 import getFlashcard from "./helpers/flashcard.js";
 import pipelinesLogModel from "../models/logs/pipelinesLog.js";
 import audioGroq from "./helpers/audioGroq.js";
-
-const writeLog = async (data) => {
-  try {
-    await pipelinesLogModel.create(data);
-  } catch (err) {
-    console.error("Vocabulary pipeline log failed: ", err);
-  }
-};
-
-const attempt = async (func, data, dataError) => {
-  if (dataError.skip) return { error: true };
-  const res = await func(...data);
-  if (res.error) {
-    dataError.errorMsg = res.errorMsg;
-    dataError.type = res.type;
-    dataError.service = res.service;
-    dataError.skip = true;
-    await writeLog(dataError);
-    return { error: true };
-  }
-
-  return { error: false, res };
-};
+import { attempt } from "./helpers/commons.js";
 
 const dailyRecordCounter = async () => {
   const today = new Date().setHours(0, 0, 0, 0);

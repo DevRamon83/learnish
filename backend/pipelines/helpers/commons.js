@@ -1,3 +1,5 @@
+import pipelinesLogModel from "../../models/logs/pipelinesLog.js";
+
 export const defineCaller = (caller) => {
   switch (caller) {
     case "flashcards":
@@ -41,4 +43,27 @@ export const vocabularySchema = (wordObj) => {
 export const audioDefiner = (process, newWord) => {
   if (process === "vocabulary") return newWord.word;
   if (process === "examplePhrase") return newWord.phrase;
+};
+
+const writeLog = async (data) => {
+  try {
+    await pipelinesLogModel.create(data);
+  } catch (err) {
+    console.error("Vocabulary pipeline log failed: ", err);
+  }
+};
+
+export const attempt = async (func, data, dataError) => {
+  if (dataError?.skip) return { error: true };
+  const res = await func(...data);
+  if (dataError && res.error) {
+    dataError.errorMsg = res.errorMsg;
+    dataError.type = res.type;
+    dataError.service = res.service;
+    dataError.skip = true;
+    await writeLog(dataError);
+    return { error: true };
+  }
+
+  return { error: false, res };
 };
