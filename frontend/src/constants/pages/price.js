@@ -6,4 +6,5 @@ export const classes = {
   studentsContainer: "price__studentContainer",
   rowContainer: "price__rowContainer",
   rowCell: "price__rowCell",
+  teachersContainer: "price__teachersContainer",
 };

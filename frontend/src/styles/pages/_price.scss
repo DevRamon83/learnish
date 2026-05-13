@@ -39,6 +39,10 @@
   margin-top: 25px;
 }
 
+.price__teachersContainer {
+  @extend .price__studentContainer;
+}
+
 .price__planContainer {
   border: 1px solid #000;
   width: 25vw;

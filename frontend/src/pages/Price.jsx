@@ -3,6 +3,7 @@ import StudentsPrice from "../components/price/StudentsPrice";
 import { useLang } from "../hooks/useLang";
 import { i18nAddresses } from "../constants/i18nAddresses";
 import { classes } from "../constants/pages/price";
+import TeachersPrice from "../components/price/TeachersPrice";
 
 export default function Price() {
   const [account, setAccount] = useState("students");
@@ -31,7 +32,7 @@ export default function Price() {
       {account === "students" ? (
         <StudentsPrice strings={strings} classes={classes} />
       ) : (
-        "insegnanti"
+        <TeachersPrice strings={strings} classes={classes} />
       )}
     </div>
   );
