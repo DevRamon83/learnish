@@ -11,6 +11,7 @@ import messagesRoute from "./routes/messagesRoute.js";
 
 import wordsList from "./wordsList.json" with { type: "json" };
 import vocabularyPipeline from "./pipelines/vocabularyPipeline.js";
+import { recoveryWordData } from "./pipelines/recoveryPipeline.js";
 
 const app = express();
 
