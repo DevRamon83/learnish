@@ -34,7 +34,6 @@ export default function SummaryCard({ summary, setter, open, classes }) {
         />
 
         <div className={classes.summary.title}>{title}</div>
-        <div className={classes.summary.channel}>{mySummary.channel}</div>
         <div className={classes.summary.info}>
           <SummaryCardErrors
             errorCount={errorCount}
