@@ -5,7 +5,6 @@ const Schema = mongoose.Schema;
 const SummarySchema = new Schema(
   {
     title: { type: String, required: true },
-    channel: { type: String, required: true },
     videoID: { type: String, required: true },
     summary: { type: String, required: true },
     isDraft: { type: Boolean, required: true, default: true },
