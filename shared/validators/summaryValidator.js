@@ -4,7 +4,8 @@ import { langsArray } from "../constants/atomicConstants.js";
 const summaryValidator = (obj) => {
   let validYoutube = true;
   let hasHTML = false;
-  const { youtube, summary, lang, caller } = obj;
+  const { title, youtube, summary, lang, caller } = obj;
+  if (!title) return { error: true, errorMsg: "missing title" };
   if (!youtube) return { error: true, errorMsg: "missing youtube url" };
 
   if (caller === "frontend") {
@@ -14,6 +15,8 @@ const summaryValidator = (obj) => {
   } else if (typeof youtube !== "string" || youtube.length !== 11) {
     validYoutube = false;
   }
+
+  if (title.length > 250) return { error: true, errorMsg: "title is too long" };
 
   if (hasHTML) return { error: true, errorMsg: "invalid summary" };
 
