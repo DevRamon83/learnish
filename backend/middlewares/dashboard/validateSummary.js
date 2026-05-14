@@ -3,15 +3,22 @@ import handleErrorResponse from "../../helpers/handleErrorResponse.js";
 const { summaryValidator } = bundle.validators;
 
 const validateSummary = (req, res, next) => {
-  const { idVideo, summary, lang } = req.body;
-  const objValidator = { youtube: idVideo, summary, lang, caller: "backend" };
+  const { title, idVideo, summary, lang } = req.body;
+
+  const objValidator = {
+    title,
+    youtube: idVideo,
+    summary,
+    lang,
+    caller: "backend",
+  };
 
   const validData = summaryValidator(objValidator);
   if (validData.error) {
     const log = true;
-    const userBann = true;
+    const userBan = true;
     const errorType = validData.errorMsg;
-    return handleErrorResponse(res, req, errorType, 403, log, userBann);
+    return handleErrorResponse(res, req, errorType, 403, log, userBan);
   }
 
   next();
