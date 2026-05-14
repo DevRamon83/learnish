@@ -12,8 +12,8 @@ const dashboardRoute = express.Router();
 // need specific validation middleware
 dashboardRoute.post(
   "/newSummary",
-  validateSummary,
   ...protectedRoutes,
+  validateSummary,
   newSummary,
 );
 
