@@ -35,7 +35,6 @@ export default function SummaryErrorStats({ strings, data, stats }) {
     -0.5,
     0.5,
   );
-  console.log("su ", errorMap);
 
   return (
     <div className="summary__errors">
