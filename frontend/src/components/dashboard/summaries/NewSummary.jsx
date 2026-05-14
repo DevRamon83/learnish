@@ -1,4 +1,9 @@
-import { TextareaInput, UrlInput, useRamonForm } from "ramon-form-sdude";
+import {
+  TextareaInput,
+  UrlInput,
+  TextInput,
+  useRamonForm,
+} from "ramon-form-sdude";
 import FormInput from "../../forms/FormInput";
 import { useState } from "react";
 import { useRef } from "react";
@@ -40,16 +45,21 @@ export default function NewSummary({
       setError("there is no data");
       return { error: true };
     }
-    const { youtube, summary } = data;
-    const objValidator = { youtube, summary, lang, caller: "frontend" };
+    const { title, youtube, summary } = data;
+    const objValidator = { title, youtube, summary, lang, caller: "frontend" };
 
     const validData = summaryValidator(objValidator);
     if (validData.error) {
-      setError("invalid url");
+      setError(validData.errorMsg);
       return { error: true, errorMsg: validData.errorMsg };
     }
 
-    return { error: false, idVideo: validData.idVideo, summary: data.summary };
+    return {
+      error: false,
+      title,
+      idVideo: validData.idVideo,
+      summary: data.summary,
+    };
   };
 
   const submitHandler = async (e) => {
@@ -59,17 +69,16 @@ export default function NewSummary({
 
     const isValidData = validate(data);
 
-    if (isValidData.error) {
-      // error handler
-      return;
-    }
+    if (isValidData.error) return;
 
     setUploadStep((prev) => ({ ...prev, draft: true }));
     const dataObj = {
+      title: isValidData.title,
       idVideo: isValidData.idVideo,
       summary: isValidData.summary,
       lang,
     };
+
     setNewSummary(dataObj);
   };
 
@@ -100,6 +109,7 @@ export default function NewSummary({
               classes={classes}
               closeHandler={closeHandler}
             />
+            <FormInput Element={UrlInput} data={fields.title} lang={lang} />
             <FormInput Element={UrlInput} data={fields.youtube} lang={lang} />
             <FormInput Element={TextareaInput} data={summary} lang={lang} />
             <ErrorOnSubmit error={error} />
