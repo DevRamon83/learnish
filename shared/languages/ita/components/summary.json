@@ -6,6 +6,10 @@
   "newSummaryBtn": "nuovo sommario",
   "retry": "riprova",
   "newSummaryForm": {
+    "title": {
+      "placeholder": "how to build a cabinet",
+      "label": "titolo del sommario"
+    },
     "youtube": {
       "placeholder": "youtube link",
       "label": "link a youtube"
