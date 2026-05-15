@@ -12,6 +12,12 @@ const UserSchema = new Schema(
       required: true,
       default: "student",
     },
+    plan: {
+      type: String,
+      enum: ["free", "basic", "pro"],
+      required: true,
+      default: "free",
+    },
     isVerified: { type: Boolean, required: true, default: false },
     confirmationToken: { type: String },
     isPremium: { type: Boolean, required: true, default: false },
