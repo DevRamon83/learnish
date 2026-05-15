@@ -17,6 +17,7 @@ import Team from "./pages/Team";
 import Tos from "./pages/Tos";
 import Metadata from "./components/Metadata";
 import useScrollToTop from "./hooks/useScrollToTop";
+import Lesson from "./pages/Lesson";
 
 function App() {
   const authState = useAuth();
@@ -49,6 +50,7 @@ function App() {
 
         <Route path="/user" element={<PrivateRoutes />}>
           <Route path="/user/dashboard/:id" element={<Dashboard />} />
+          <Route path="/user/lesson/:name" element={<Lesson />} />
         </Route>
       </Routes>
       <Footer />

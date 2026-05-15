@@ -10,4 +10,5 @@ export const i18nAddresses = {
   contact: "pages.contact",
   price: "pages.price",
   home: "pages.homepage",
+  englishLessons: "lessons.englishLessons",
 };
