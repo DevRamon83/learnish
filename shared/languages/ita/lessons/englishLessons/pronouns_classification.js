@@ -1,6 +1,6 @@
-const lesson2 = {
-  title: "pronomi e congiunzioni",
-  level: "a2",
+export default {
+  title: "classificazione dei pronomi",
+  level: "a1",
   markup: `
 <div class="lesson__article">
 <p>
@@ -20,5 +20,3 @@ Oggi iniziamo a studiare i pronomi, partiamo dalla classificazione in italiano, 
 </p>
 </div>`,
 };
-
-export default lesson2;

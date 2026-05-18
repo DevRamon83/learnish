@@ -1,6 +1,6 @@
-const lesson1 = {
+export default {
   title: "singolari, plurali e articoli",
-  level: "a2",
+  level: "a1",
   markup: `
 <div class="lesson__article">
 <p>
@@ -33,5 +33,3 @@ In inglese abbiamo solo tre articoli, l'articolo determinativo <strong>THE</stro
 </ol>
 </div>`,
 };
-
-export default lesson1;
