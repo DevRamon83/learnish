@@ -61,3 +61,102 @@
   border-radius: 5px;
   font-weight: bold;
 }
+
+.lesson__table {
+  display: grid;
+  margin-bottom: 0;
+  align-items: stretch;
+
+  @include breakpoints.medium {
+    margin-bottom: 25px;
+  }
+}
+
+.lesson__table-threeCols {
+  @extend .lesson__table;
+  grid-template-columns: 1fr 2fr 2fr;
+  width: 100%;
+  margin-left: 0%;
+
+  @include breakpoints.medium {
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 90%;
+    margin-left: 5%;
+  }
+}
+
+.lesson__table-fiveCols {
+  @extend .lesson__table;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  width: 100%;
+  margin-left: 0%;
+
+  @include breakpoints.medium {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    width: 90%;
+    margin-left: 5%;
+  }
+}
+
+.lesson__cell {
+  border: 1px solid #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lesson__cell-single {
+  padding: 10px 0;
+}
+
+.lesson__cell-double {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.lesson__cell-mother {
+  border-right: 1px solid #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 50%;
+  background-color: aliceblue;
+  padding: 10px 0;
+}
+
+.lesson__cell-target {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 50%;
+  background-color: oldlace;
+  padding: 10px 0;
+}
+
+.lesson__example {
+  border: 1px solid #000;
+  background-color: oldlace;
+  padding: 10px 25px;
+  border-radius: 5px;
+  line-height: 3em;
+  width: fit-content;
+}
+
+.lesson__highlight {
+  background-color: colors.$primaryColor;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-right: 15px;
+}
+
+.lesson__note {
+  border: 1px solid #000;
+  background-color: oldlace;
+  padding: 10px 25px;
+  border-radius: 5px;
+  width: fit-content;
+}
