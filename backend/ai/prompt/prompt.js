@@ -1,5 +1,5 @@
-export const mistralVocabularyPrompt = (myWord) => {
-  return `Starting from the word "${myWord}" provide: 
+export const mistralVocabularyPrompt = (myWord, type) => {
+  return `Starting from the ${type} "${myWord}" provide: 
   1) flashcard as boolean: if the word is suitable for generate a flashcard (meaning it must be possible to guess the word from the image), 
   2) a string whit an example phrase (max 20 words)
   3) for each one of this languages (italian, french, spanish, portuguese) a translation for both, word and example phrase
