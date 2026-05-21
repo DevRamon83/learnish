@@ -3,7 +3,7 @@ import { useLang } from "../hooks/useLang";
 import { i18nAddresses } from "../constants/i18nAddresses";
 import { useState } from "react";
 import { useEffect } from "react";
-import Table from "../components/Table";
+import Table from "../ui/Table";
 
 export default function Lesson() {
   const { pathname } = useLocation();
