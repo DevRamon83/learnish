@@ -24,13 +24,31 @@ export const recoveryWordData = async () => {
     const wordObj = await vocabularyModel.findOne({ word: wrongWord });
     console.log("myWord ", wrongWord);
 
-    const newWord = { ...wordObj };
+    //  const newWord = { ...wordObj };
     const myWord = await attempt(getWordData, [wordObj]);
 
     if (!myWord.error) {
       await canDelete(records[i]._id);
     } else {
       console.log("failed");
+    }
+
+    await delay();
+  }
+};
+
+export const recoveryMissingValues = async (value) => {
+  const recordsToFix = await vocabularyModel.find({
+    [value]: { $exists: false },
+  });
+
+  for (let i = 0; i < recordsToFix.length; i++) {
+    const myWord = await attempt(getWordData, [recordsToFix[i]]);
+
+    if (!myWord.error) {
+      console.log("recover");
+    } else {
+      console.log("failed ", wrongWord);
     }
 
     await delay();
