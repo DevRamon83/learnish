@@ -72,6 +72,19 @@
   }
 }
 
+.lesson__table-twoCols {
+  @extend .lesson__table;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  margin-left: 0%;
+
+  @include breakpoints.medium {
+    grid-template-columns: 1fr 1fr;
+    width: 90%;
+    margin-left: 5%;
+  }
+}
+
 .lesson__table-threeCols {
   @extend .lesson__table;
   grid-template-columns: 1fr 2fr 2fr;
@@ -98,6 +111,19 @@
   }
 }
 
+.lesson__table-sixCols {
+  @extend .lesson__table;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  width: 100%;
+  margin-left: 0%;
+
+  @include breakpoints.medium {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    width: 90%;
+    margin-left: 5%;
+  }
+}
+
 .lesson__cell {
   border: 1px solid #000;
   display: flex;
@@ -106,7 +132,7 @@
 }
 
 .lesson__cell-single {
-  padding: 10px 0;
+  padding: 10px;
 }
 
 .lesson__cell-double {
@@ -136,6 +162,10 @@
   padding: 10px 0;
 }
 
+.lesson__cell-array {
+  padding: 0 15px;
+}
+
 .lesson__example {
   border: 1px solid #000;
   background-color: oldlace;
@@ -159,4 +189,9 @@
   padding: 10px 25px;
   border-radius: 5px;
   width: fit-content;
+}
+
+.lesson__red {
+  color: crimson;
+  font-weight: bold;
 }
