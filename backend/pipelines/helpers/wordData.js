@@ -22,7 +22,7 @@ const mistralUpdater = async (newWord, data) => {
 };
 
 const getWordData = async (newWord) => {
-  const mistralPrompt = mistralVocabularyPrompt(newWord.word);
+  const mistralPrompt = mistralVocabularyPrompt(newWord.word, newWord.type);
   const output = await mistralFetch(newWord.word, mistralPrompt);
   const errorMsg = "getWordData failed";
 
