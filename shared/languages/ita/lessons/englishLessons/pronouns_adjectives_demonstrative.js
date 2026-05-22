@@ -1,6 +1,7 @@
 export default {
   title: "pronomi e aggettivi dimostrativi",
   level: "a1",
+  index: "6.00",
   markup: `
 <div class="lesson__article">
 <p> In questa lezione studieremo sia gli aggettivi dimostrativi che i pronomi dimostrativi; partiamo dal dire che, sostanzialmente, sono identici, semplicemente le stesse parole, per cui that [questo] [quello] [questi] [quelli], possono essere usate sia come aggettivi che come pronomi. Detto questo, in verità, non c'è molto altro da dire sul tema, per cui dedichiamoci a introdurre alcune questioni relative agli aggettivi. Più nel dettaglio partiamo dal definire, come da schema seguente, quante e quali sono le diverse tipologie di aggettivi esistenti in italiano; non è, ovviamente, necessario imparare a memoria questa classificazione, tuttavia averne una cognizione, anche vaga, è una cosa che torna normalmente molto utile.

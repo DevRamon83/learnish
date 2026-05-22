@@ -1,6 +1,7 @@
 export default {
   title: "I verbi essere e avere in inglese",
   level: "a2",
+  index: "18.00",
   markup: `
 <div class="lesson__article">
 <p>

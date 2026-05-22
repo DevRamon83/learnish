@@ -1,6 +1,7 @@
 export default {
   title: "Tempi verbali in inglese: future simple",
   level: "b2",
+  index: "38.00",
   markup: `
 <div class="lesson__article">
 <p>

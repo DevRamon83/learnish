@@ -1,6 +1,7 @@
 export default {
   title: "Ripasso sulle coniugazioni al presente",
   level: "b1",
+  index: "30.00",
   markup: `
 <div class="lesson__article">
 <p>

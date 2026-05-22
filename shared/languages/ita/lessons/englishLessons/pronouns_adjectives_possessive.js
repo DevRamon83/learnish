@@ -1,6 +1,7 @@
 export default {
   title: "pronomi e aggettivi possessivi",
   level: "a1",
+  index: "7.00",
   markup: `
 <div class="lesson__article">
 <p> Sia i pronomi che gli aggettivi possessivi identificano possesso o appartenenza e sono fonte di diverse difficoltà per gli studenti italiani perché nella nostra lingua queste parole sono sostanzialmente identiche (mio, tuo, etc. possono essere usati sia come pronomi che come aggettivi);

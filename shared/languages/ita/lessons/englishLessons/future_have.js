@@ -1,6 +1,7 @@
 export default {
   title: "verbo avere: declinazioni del tempo futuro",
   level: "b2",
+  index: "36.00",
   markup: `
 <div class="lesson__article">
 <p>

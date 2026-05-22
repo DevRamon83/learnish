@@ -1,6 +1,7 @@
 export default {
   title: "singolari, plurali e articoli",
   level: "a1",
+  index: "1.00",
   markup: `
 <div class="lesson__article">
 <p>

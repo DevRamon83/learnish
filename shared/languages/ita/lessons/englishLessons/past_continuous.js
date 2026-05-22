@@ -1,6 +1,7 @@
 export default {
   title: "Tempi verbali inglesi: past continuous",
   level: "b2",
+  index: "32.00",
   markup: `
 <div class="lesson__article">
 <p>

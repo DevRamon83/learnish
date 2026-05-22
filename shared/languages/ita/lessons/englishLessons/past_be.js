@@ -1,6 +1,7 @@
 export default {
   title: "verbo essere: declinazioni del tempo passato",
   level: "b1",
+  index: "29.00",
   markup: `
 <div class="lesson__article">
 <p>

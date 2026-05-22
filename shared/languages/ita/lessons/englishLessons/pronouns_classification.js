@@ -1,6 +1,7 @@
 export default {
   title: "classificazione dei pronomi",
   level: "a1",
+  index: "2.00",
   markup: `
 <div class="lesson__article">
 <p>

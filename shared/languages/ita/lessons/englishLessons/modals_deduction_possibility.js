@@ -1,6 +1,7 @@
 export default {
   title: "Verbi modali: deduzione e possibilità",
   level: "c1",
+  index: "45.00",
   markup: `
 <div class="lesson__article">
 <p>

@@ -1,6 +1,7 @@
 export default {
   title: "pronomi personali",
   level: "a1",
+  index: "3.00",
   markup: `
 <div class="lesson__article">
 <p>

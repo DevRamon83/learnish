@@ -1,6 +1,7 @@
 export default {
   title: "Ripasso sulle coniugazioni al passato",
   level: "b2",
+  index: "35.00",
   markup: `
 <div class="lesson__article">
 <p>

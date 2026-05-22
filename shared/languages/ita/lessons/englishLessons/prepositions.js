@@ -1,6 +1,7 @@
 export default {
   title: "Le preposizioni in inglese",
   level: "a1",
+  index: "10.00",
   markup: `
 <div class="lesson__article">
 <p>

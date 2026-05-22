@@ -1,6 +1,7 @@
 export default {
   title: "Le preposizioni di luogo",
   level: "a1",
+  index: "12.00",
   markup: `
 <div class="lesson__article">
 <p>

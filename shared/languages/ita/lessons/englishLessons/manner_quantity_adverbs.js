@@ -1,6 +1,7 @@
 export default {
   title: "Avverbi di modo e di quantità",
   level: "a2",
+  index: "17.00",
   markup: `
 <div class="lesson__article">
 <p>

@@ -1,6 +1,7 @@
 export default {
   title: "Aggettivi con suffisso -ED e -ING",
   level: "a1",
+  index: "9.00",
   markup: `
 <div class="lesson__article">
 <p>

@@ -1,6 +1,7 @@
 export default {
   title: "Comparativi, superlativi e verbi preposizionali",
   level: "a2",
+  index: "14.00",
   markup: `
 <div class="lesson__article">
 <p>

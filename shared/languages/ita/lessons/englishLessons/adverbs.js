@@ -1,6 +1,7 @@
 export default {
   title: "Gli avverbi in inglese",
   level: "a2",
+  index: "15.00",
   markup: `
 <div class="lesson__article">
 <p>

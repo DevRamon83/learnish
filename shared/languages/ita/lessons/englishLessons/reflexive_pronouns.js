@@ -1,6 +1,7 @@
 export default {
   title: "pronomi riflessivi",
   level: "a1",
+  index: "4.00",
   markup: `
 <div class="lesson__article">
 <p>

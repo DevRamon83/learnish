@@ -1,6 +1,7 @@
 export default {
   title: "Frasi negative e contrazioni in inglese",
   level: "a2",
+  index: "20.00",
   markup: `
 <div class="lesson__article">
 <p>

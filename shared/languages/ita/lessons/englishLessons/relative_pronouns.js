@@ -1,6 +1,7 @@
 export default {
   title: "pronomi relativi",
   level: "a1",
+  index: "5.00",
   markup: `
 <div class="lesson__article">
 <p>

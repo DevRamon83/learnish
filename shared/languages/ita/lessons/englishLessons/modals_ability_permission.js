@@ -1,6 +1,7 @@
 export default {
   title: "Verbi modali: abilità e permesso",
   level: "c1",
+  index: "43.00",
   markup: `
 <div class="lesson__article">
 <p>

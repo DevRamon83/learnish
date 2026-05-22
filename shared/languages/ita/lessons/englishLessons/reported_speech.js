@@ -1,6 +1,7 @@
 export default {
   title: "Il discorso indiretto (Reported Speech)",
   level: "c1",
+  index: "52.00",
   markup: `
 <div class="lesson__article">
 <p>

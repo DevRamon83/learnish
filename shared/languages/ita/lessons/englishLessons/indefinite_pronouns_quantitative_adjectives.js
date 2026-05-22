@@ -1,6 +1,7 @@
 export default {
   title: "Pronomi indefiniti e aggettivi quantitativi",
   level: "a1",
+  index: "8.00",
   markup: `
 <div class="lesson__article">
 <p>
