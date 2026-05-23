@@ -1,5 +1,5 @@
 export default {
-  title: "Ripasso generale sui periodi ipotetici (Conditionals)",
+  title: "Ripasso generale sui periodi ipotetici",
   level: "c1",
   index: "50.00",
   markup: `

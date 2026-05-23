@@ -1,5 +1,5 @@
 export default {
-  title: "Il discorso indiretto (Reported Speech)",
+  title: "Il discorso indiretto",
   level: "c1",
   index: "52.00",
   markup: `

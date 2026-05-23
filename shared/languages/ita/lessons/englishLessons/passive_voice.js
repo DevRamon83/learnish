@@ -1,5 +1,5 @@
 export default {
-  title: "La forma passiva (Passive Voice)",
+  title: "La forma passiva",
   level: "c1",
   index: "51.00",
   markup: `
