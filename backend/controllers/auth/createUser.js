@@ -4,6 +4,7 @@ import isUnique from "../../helpers/isUnique.js";
 import { userModel } from "../../models/user.js";
 import argon2 from "argon2";
 import { v4 as uuidv4 } from "uuid";
+import lessonModel from "../../models/trackers/lessonsTracker.js";
 
 const createUser = async (req, res) => {
   try {
@@ -37,7 +38,14 @@ const createUser = async (req, res) => {
 
     const model = defineModel(data);
 
-    await model.create(userObj);
+    const user = await model.create(userObj);
+
+    await lessonModel.create({
+      userId: user._id,
+      unlocked: [],
+      unlockedToday: 0,
+      nextUnlock: 0,
+    });
 
     return res.status(201).json({ url: verifyUrl, message: "created" });
   } catch (err) {
