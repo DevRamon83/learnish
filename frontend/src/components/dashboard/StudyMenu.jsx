@@ -1,5 +1,10 @@
+import { i18nAddresses } from "../../constants/i18nAddresses";
+import { useLang } from "../../hooks/useLang";
+
 export default function StudyMenu({ activeTab, setActiveTab }) {
-  const tabs = ["lezioni", "sommari", "flashcards", "esercizi"];
+  const { strings } = useLang(i18nAddresses.dashboard);
+  const tabs = strings.tabs;
+
   return (
     <ul className="dashboard__studyMenu">
       {tabs.map((tab, index) => (
