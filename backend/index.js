@@ -11,7 +11,11 @@ import messagesRoute from "./routes/messagesRoute.js";
 
 import wordsList from "./wordsList.json" with { type: "json" };
 import vocabularyPipeline from "./pipelines/vocabularyPipeline.js";
-import { recoveryWordData } from "./pipelines/recoveryPipeline.js";
+import {
+  recoveryMissingValues,
+  recoveryWordData,
+} from "./pipelines/recoveryPipeline.js";
+import trackersRoute from "./routes/trackersRoute.js";
 
 const app = express();
 
@@ -52,6 +56,7 @@ app.set("securityCache", securityCache);
 app.use("/api/auth", authRoute);
 app.use("/api/dashboard", dashboardRoute);
 app.use("/api/messages", messagesRoute);
+app.use("/api/trackers", trackersRoute);
 
 mongoose
   .connect(MONGO_URI)
@@ -62,7 +67,9 @@ mongoose
       "username isRevoked isBanned",
     );
     setPopulator(unauthorizedUsers, tokensRevoked, usersBanned);
-    vocabularyPipeline(wordsList, "wordsData");
+    // vocabularyPipeline(wordsList, "wordsData");
+    // recoveryWordData();
+    // recoveryMissingValues("definition");
     app.listen(PORT, () => {
       env === "DEV" && console.log("server running on port ", PORT);
     });
