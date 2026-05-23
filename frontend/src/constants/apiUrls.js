@@ -21,4 +21,9 @@ export const API_URLS = {
     base: "/messages",
     new: "/new",
   },
+  trackers: {
+    base: "/trackers",
+    lessons: "/unlockedLessons",
+    unlock: "/unlockLesson",
+  },
 };
