@@ -28,5 +28,8 @@
   "ratio": "Errori ogni 100 parole",
   "errors": "Errori",
   "error": "Error",
-  "words": "parole"
+  "words": "parole",
+  "slotUnavailable": "Non puoi sbloccare altre lezioni per oggi, esegui l'upgrade del tuo account o aspetta domani",
+  "close": "chiudi",
+  "invalidPlan": "Per sbloccare questa lezione devi eseguire l'upgrade del tuo account"
 }
