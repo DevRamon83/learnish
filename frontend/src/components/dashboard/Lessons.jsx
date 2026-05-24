@@ -1,45 +1,33 @@
 import { useEffect, useState } from "react";
-import fetchLessons from "../../api/handlers/fetchLessons";
 import { i18nAddresses } from "../../constants/i18nAddresses";
 import { useLang } from "../../hooks/useLang";
 import UnlockLesson from "./UnlockLesson";
+import ReadLesson from "./ReadLesson";
+import { useUnlockedLessons } from "../../hooks/useUnlockedLessons";
 
 export default function Lessons() {
   const { strings } = useLang(i18nAddresses.englishLessons);
   const errorsStrings = useLang(i18nAddresses.errors);
-  const [userLessons, setUserLessons] = useState(null);
+  const { userLessons, setUserLessons } = useUnlockedLessons();
   const [error, setError] = useState(null);
-  const urls = Object.keys(strings);
-  useEffect(() => {
-    const controller = new AbortController();
-
-    const lessons = async () => {
-      const resp = await fetchLessons(controller.signal);
-      if (resp.error) {
-        // error handler
-      } else {
-        setUserLessons(resp.unlocked);
-      }
-    };
-
-    lessons();
-    return () => controller.abort();
-  }, []);
+  const urls = Array.from(strings.keys());
 
   return (
     <div className="dashboard__lessonsContainer">
       {userLessons &&
         urls.map((url) => (
           <div className="dashboard__lessonRow" key={url}>
-            <div className="dashboard__lessonLevel">{strings[url].level}</div>
-            <div>{strings[url].title}</div>
+            <div className="dashboard__lessonLevel">
+              {strings.get(url).level}
+            </div>
+            <div>{strings.get(url).title}</div>
             <div>
-              {userLessons.includes(strings[url].index) ? (
-                "leggi"
+              {userLessons.includes(strings.get(url).index) ? (
+                <ReadLesson url={url} />
               ) : (
                 <UnlockLesson
-                  index={strings[url].index}
-                  level={strings[url].level}
+                  index={strings.get(url).index}
+                  level={strings.get(url).level}
                   lessonsSetter={setUserLessons}
                   errorSetter={setError}
                 />
