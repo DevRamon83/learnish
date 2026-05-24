@@ -134,6 +134,16 @@
   background-color: crimson;
   border-left: 1px solid #000;
   cursor: pointer;
+  width: 100px;
+  padding: 0;
+}
+
+.dashboard__readLesson {
+  @extend .dashboard__lessonLevel;
+  border-left: 1px solid #000;
+  cursor: pointer;
+  width: 100px;
+  padding: 0;
 }
 
 .dashboard__lessonError {

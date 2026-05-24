@@ -195,3 +195,84 @@
   color: crimson;
   font-weight: bold;
 }
+
+.lesson__backToDashboard {
+  background-color: crimson;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 150px;
+  height: 40px;
+  border-width: 1px 1px 0 0;
+  border-style: solid;
+  border-color: #000;
+  padding-right: 10px;
+  border-radius: 0 5px 0 0;
+}
+
+.lesson__next {
+  @extend .lesson__backToDashboard;
+  background-color: colors.$primaryColor;
+  border-width: 1px 0 0 1px;
+  padding-right: 0;
+  width: fit-content;
+  border-radius: 5px 0 0 0;
+  padding-left: 15px;
+}
+
+.lesson__next-img {
+  background-color: white;
+  border-left: 1px solid #000;
+  height: 40px;
+  margin-left: 15px;
+}
+
+.lesson__backToDashboard-img {
+  background-color: white;
+  border-right: 1px solid #000;
+  height: 40px;
+}
+
+.lesson__menu {
+  width: 100%;
+  margin-top: 100px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.lesson__mainLocked {
+  padding: 100px 30px 30px 30px;
+}
+
+.lesson__locked {
+  display: flex;
+}
+
+.lesson__locked > img {
+  width: 300px;
+}
+
+.lesson__lockedText {
+  margin-left: 30px;
+  font-size: 2em;
+  display: flex;
+  flex-direction: column;
+}
+
+.lesson__lockedBack {
+  background-color: crimson;
+  color: white;
+  font-weight: bold;
+  display: block;
+  width: fit-content;
+  padding: 10px 25px;
+  text-transform: uppercase;
+  font-size: 0.8em;
+  margin-top: 25px;
+  border-radius: 10px;
+  border: 1px solid #000;
+  cursor: pointer;
+}
