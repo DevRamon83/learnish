@@ -1,4 +1,9 @@
 {
   "tabs": ["lezioni", "sommari", "flashcards", "esercizi"],
-  "unlock": "sblocca"
+  "unlock": "sblocca",
+  "read": "leggi",
+  "backToDashboard": "dashboard",
+  "lessonLocked": " Questa lezione non è ancora stata sbloccata",
+  "goToDashboard": "Torna alla tua area riservata",
+  "lockedText": "Puoi sbloccare la lezione dalla tua area riservata se il tuo attuale piano lo consente; in caso contrario valuta un upgrade o aspetta domani"
 }

@@ -52,60 +52,72 @@ import conditionals_general from "./conditionals_general.js";
 import passive_voice from "./passive_voice.js";
 import reported_speech from "./reported_speech.js";
 
-const englishLessons = {
-  singolar_plurals_articles,
-  pronouns_classification,
-  personal_pronouns,
-  reflexive_pronouns,
-  relative_pronouns,
+const englishLessons = new Map();
+
+englishLessons.set("singolar_plurals_articles", singolar_plurals_articles);
+englishLessons.set("pronouns_classification", pronouns_classification);
+englishLessons.set("personal_pronouns", personal_pronouns);
+englishLessons.set("reflexive_pronouns", reflexive_pronouns);
+englishLessons.set("relative_pronouns", relative_pronouns);
+englishLessons.set(
+  "pronouns_adjectives_demonstrative",
   pronouns_adjectives_demonstrative,
+);
+englishLessons.set(
+  "pronouns_adjectives_possessive",
   pronouns_adjectives_possessive,
+);
+englishLessons.set(
+  "indefinite_pronouns_quantitative_adjectives",
   indefinite_pronouns_quantitative_adjectives,
-  ed_ing_adjectives,
-  prepositions,
-  prepositions_time,
-  prepositions_place,
-  in_on_at,
-  comparatives_superlatives,
-  adverbs,
-  adverbs_place_time,
-  manner_quantity_adverbs,
-  verbs_be_have,
-  interrogative,
-  negative_contractions,
-  question_tag,
-  svompt,
-  present_simple,
-  present_continuous,
-  present_perfect,
-  present_perfect_continuous,
-  present_have,
-  past_have,
-  present_be,
-  past_be,
-  present_general,
-  past_simple,
-  past_continuous,
-  past_perfect,
-  past_perfect_continuous,
-  past_general,
-  future_have,
-  future_be,
-  future_simple,
-  future_continuous,
-  future_perfect,
-  future_perfect_continuous,
-  future_general,
-  modals_ability_permission,
-  modals_obligation_necessity,
+);
+englishLessons.set("ed_ing_adjectives", ed_ing_adjectives);
+englishLessons.set("prepositions", prepositions);
+englishLessons.set("prepositions_time", prepositions_time);
+englishLessons.set("prepositions_place", prepositions_place);
+englishLessons.set("in_on_at", in_on_at);
+englishLessons.set("comparatives_superlatives", comparatives_superlatives);
+englishLessons.set("adverbs", adverbs);
+englishLessons.set("adverbs_place_time", adverbs_place_time);
+englishLessons.set("manner_quantity_adverbs", manner_quantity_adverbs);
+englishLessons.set("verbs_be_have", verbs_be_have);
+englishLessons.set("interrogative", interrogative);
+englishLessons.set("negative_contractions", negative_contractions);
+englishLessons.set("question_tag", question_tag);
+englishLessons.set("svompt", svompt);
+englishLessons.set("present_simple", present_simple);
+englishLessons.set("present_continuous", present_continuous);
+englishLessons.set("present_perfect", present_perfect);
+englishLessons.set("present_perfect_continuous", present_perfect_continuous);
+englishLessons.set("present_have", present_have);
+englishLessons.set("past_have", past_have);
+englishLessons.set("present_be", present_be);
+englishLessons.set("past_be", past_be);
+englishLessons.set("present_general", present_general);
+englishLessons.set("past_simple", past_simple);
+englishLessons.set("past_continuous", past_continuous);
+englishLessons.set("past_perfect", past_perfect);
+englishLessons.set("past_perfect_continuous", past_perfect_continuous);
+englishLessons.set("past_general", past_general);
+englishLessons.set("future_have", future_have);
+englishLessons.set("future_be", future_be);
+englishLessons.set("future_simple", future_simple);
+englishLessons.set("future_continuous", future_continuous);
+englishLessons.set("future_perfect", future_perfect);
+englishLessons.set("future_perfect_continuous", future_perfect_continuous);
+englishLessons.set("future_general", future_general);
+englishLessons.set("modals_ability_permission", modals_ability_permission);
+englishLessons.set("modals_obligation_necessity", modals_obligation_necessity);
+englishLessons.set(
+  "modals_deduction_possibility",
   modals_deduction_possibility,
-  modals_general,
-  zero_first_conditional,
-  second_third_conditional,
-  mixed_conditionals,
-  conditionals_general,
-  passive_voice,
-  reported_speech,
-};
+);
+englishLessons.set("modals_general", modals_general);
+englishLessons.set("zero_first_conditional", zero_first_conditional);
+englishLessons.set("second_third_conditional", second_third_conditional);
+englishLessons.set("mixed_conditionals", mixed_conditionals);
+englishLessons.set("conditionals_general", conditionals_general);
+englishLessons.set("passive_voice", passive_voice);
+englishLessons.set("reported_speech", reported_speech);
 
 export default englishLessons;
