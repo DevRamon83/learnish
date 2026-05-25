@@ -503,6 +503,11 @@
   margin: 10px 0;
 }
 
+.summary__process-unavailable {
+  @extend .summary__process-label;
+  color: crimson;
+}
+
 .summary__draft {
   @extend .process;
   background-color: dodgerblue;
