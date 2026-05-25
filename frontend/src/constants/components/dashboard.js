@@ -38,6 +38,11 @@ export const classes = {
     errorClose: "summary__error-close",
     scoreContainer: "summary__score-container",
     errorsContainer: "summary__errors-container",
+    processSpace: "summary__process-space",
+    processLabel: "summary__process-label",
+    processUnavailable: "summary__process-unavailable",
+    processContainer: "summary__process-container",
+    feed: "summary__feedback",
     score: {
       bad: "summary__iconScore-bad",
       medium: "summary__iconScore-medium",
