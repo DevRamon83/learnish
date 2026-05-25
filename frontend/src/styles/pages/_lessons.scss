@@ -197,50 +197,87 @@
 }
 
 .lesson__backToDashboard {
-  background-color: crimson;
-  color: white;
+  background-color: ghostwhite;
+  color: black;
   font-weight: bold;
   text-transform: uppercase;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 150px;
-  height: 40px;
-  border-width: 1px 1px 0 0;
+  width: 90%;
+  border-width: 1px 0 1px 0;
   border-style: solid;
   border-color: #000;
-  padding-right: 10px;
-  border-radius: 0 5px 0 0;
+  padding-right: 10%;
+  border-radius: 0;
+  height: 70px;
+  font-size: 0.9em;
+
+  @include breakpoints.medium {
+    border-radius: 0 5px 0 0;
+    border-width: 1px 1px 0 0;
+    width: 150px;
+    padding-right: 10px;
+    height: 40px;
+    font-size: 1em;
+    background-color: crimson;
+    color: white;
+  }
 }
 
 .lesson__next {
   @extend .lesson__backToDashboard;
-  background-color: colors.$primaryColor;
-  border-width: 1px 0 0 1px;
+  background-color: aliceblue;
+  border-width: 0;
   padding-right: 0;
   width: fit-content;
-  border-radius: 5px 0 0 0;
+  border-radius: 0;
   padding-left: 15px;
+  height: 70px;
+
+  @include breakpoints.medium {
+    background-color: colors.$primaryColor;
+    border-radius: 5px 0 0 0;
+    border-width: 1px 0 0 1px;
+    height: 40px;
+  }
 }
 
 .lesson__next-img {
   background-color: white;
-  border-left: 1px solid #000;
+  border-width: 1px 0 1px 1px;
+  border-color: #000;
+  border-style: solid;
   height: 40px;
   margin-left: 15px;
+
+  @include breakpoints.medium {
+    height: 40px;
+    border-width: 0 0 0 1px;
+  }
 }
 
 .lesson__backToDashboard-img {
-  background-color: white;
-  border-right: 1px solid #000;
-  height: 40px;
+  @extend .lesson__next-img;
+  margin-left: 0;
+  border-width: 1px 1px 1px 0;
+
+  @include breakpoints.medium {
+    border-width: 1px 1px 1px 0;
+  }
 }
 
 .lesson__menu {
   width: 100%;
-  margin-top: 100px;
+  margin-top: 50px;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
+
+  @include breakpoints.medium {
+    flex-direction: row;
+    margin-top: 100px;
+  }
 }
 
 .lesson__mainLocked {

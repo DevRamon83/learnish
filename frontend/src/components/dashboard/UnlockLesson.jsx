@@ -1,4 +1,5 @@
 import fetchUnlock from "../../api/handlers/fetchUnlock";
+import { classes } from "../../constants/components/dashboard";
 import { i18nAddresses } from "../../constants/i18nAddresses";
 import { useLang } from "../../hooks/useLang";
 
@@ -21,7 +22,7 @@ export default function UnlockLesson({
   };
 
   return (
-    <div className="dashboard__lessonUnlock" onClick={unlock}>
+    <div className={classes.lessons.unlock} onClick={unlock}>
       {strings.unlock}
     </div>
   );

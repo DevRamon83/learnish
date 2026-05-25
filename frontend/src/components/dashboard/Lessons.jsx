@@ -4,6 +4,7 @@ import { useLang } from "../../hooks/useLang";
 import UnlockLesson from "./UnlockLesson";
 import ReadLesson from "./ReadLesson";
 import { useUnlockedLessons } from "../../hooks/useUnlockedLessons";
+import { classes } from "../../constants/components/dashboard";
 
 export default function Lessons() {
   const { strings } = useLang(i18nAddresses.englishLessons);
@@ -13,14 +14,16 @@ export default function Lessons() {
   const urls = Array.from(strings.keys());
 
   return (
-    <div className="dashboard__lessonsContainer">
+    <div className={classes.lessons.container}>
       {userLessons &&
         urls.map((url) => (
-          <div className="dashboard__lessonRow" key={url}>
-            <div className="dashboard__lessonLevel">
+          <div className={classes.lessons.row} key={url}>
+            <div className={classes.lessons.level}>
               {strings.get(url).level}
             </div>
-            <div>{strings.get(url).title}</div>
+            <div className={classes.lessons.title}>
+              {strings.get(url).title}
+            </div>
             <div>
               {userLessons.includes(strings.get(url).index) ? (
                 <ReadLesson url={url} />
@@ -36,13 +39,13 @@ export default function Lessons() {
           </div>
         ))}
       {error && (
-        <div className="dashboard__lessonError">
-          <div className="dashboard__lessonError-msg">
+        <div className={classes.lessons.error}>
+          <div className={classes.lessons.errorMsg}>
             {errorsStrings.strings[error]}
           </div>
           <div
             onClick={() => setError(null)}
-            className="dashboard__lessonError-close"
+            className={classes.lessons.errorClose}
           >
             {errorsStrings.strings.close}
           </div>

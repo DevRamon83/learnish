@@ -103,18 +103,34 @@
   margin: 60px 0 15px 0;
 }
 
+.dashboard__lessonTitle {
+  width: 100%;
+  margin-left: 15px;
+
+  @include breakpoints.medium {
+    width: unset;
+    margin-left: unset;
+  }
+}
+
 .dashboard__lessonRow {
   background-color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 90%;
+  width: 100%;
   margin-bottom: 15px;
-  height: 40px;
+  height: 80px;
   text-transform: capitalize;
-  border-radius: 10px;
+  border-radius: 0px;
   border: 1px solid #000;
   overflow: hidden;
+
+  @include breakpoints.medium {
+    width: 90%;
+    border-radius: 10px;
+    height: 40px;
+  }
 }
 
 .dashboard__lessonLevel {
@@ -127,23 +143,50 @@
   align-items: center;
   text-transform: uppercase;
   padding: 0px 10px;
+  font-size: 0.8em;
+
+  @include breakpoints.medium {
+    font-size: 1em;
+  }
 }
 
 .dashboard__lessonUnlock {
   @extend .dashboard__lessonLevel;
   background-color: crimson;
-  border-left: 1px solid #000;
+  border-width: 1px 0 1px 1px;
+  border-style: solid;
+  border-color: #000;
   cursor: pointer;
-  width: 100px;
+  width: 75px;
   padding: 0;
+  font-size: 0.8em;
+
+  @include breakpoints.medium {
+    font-size: 1em;
+    width: 100px;
+    border-width: 0 0 0 1px;
+    border-style: solid;
+    border-color: #000;
+  }
 }
 
 .dashboard__readLesson {
   @extend .dashboard__lessonLevel;
-  border-left: 1px solid #000;
+  border-width: 1px 0 1px 1px;
+  border-style: solid;
+  border-color: #000;
   cursor: pointer;
-  width: 100px;
+  width: 75px;
   padding: 0;
+  font-size: 0.8em;
+
+  @include breakpoints.medium {
+    font-size: 1em;
+    width: 100px;
+    border-width: 0 0 0 1px;
+    border-style: solid;
+    border-color: #000;
+  }
 }
 
 .dashboard__lessonError {

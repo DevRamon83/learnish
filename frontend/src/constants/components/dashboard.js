@@ -2,6 +2,7 @@ export const classes = {
   dashActiveBtn: "btn__dash-active",
   dashBtn: "btn__dash",
   dashPanel: "dashboard__panel",
+  menu: "dashboard__menu",
   summary: {
     base: "summary__",
     correction: "summary__correction",
@@ -42,6 +43,22 @@ export const classes = {
       medium: "summary__iconScore-medium",
       good: "summary__iconScore-good",
     },
+  },
+  lessons: {
+    container: "dashboard__lessonsContainer",
+    row: "dashboard__lessonRow",
+    level: "dashboard__lessonLevel",
+    error: "dashboard__lessonError",
+    errorMsg: "dashboard__lessonError-msg",
+    errorClose: "dashboard__lessonError-close",
+    read: "dashboard__readLesson",
+    unlock: "dashboard__lessonUnlock",
+    title: "dashboard__lessonTitle",
+  },
+  study: {
+    menu: "dashboard__studyMenu",
+    activeTab: "dashboard__studyMenu-tabActive",
+    tab: "dashboard__studyMenu-tab",
   },
 };
 

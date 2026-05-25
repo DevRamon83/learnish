@@ -2,10 +2,10 @@ import { classes } from "../../constants/components/dashboard";
 import IconBtn from "../../ui/buttons/IconBtn";
 
 export default function DashboardMenu({ setCurrent, current }) {
-  const { dashBtn, dashActiveBtn } = classes;
+  const { dashBtn, dashActiveBtn, menu } = classes;
 
   return (
-    <div className="dashboard__menu">
+    <div className={menu}>
       <IconBtn
         iconClass={current === "study" ? dashActiveBtn : dashBtn}
         img={"/study.svg"}

@@ -7,6 +7,7 @@ import Table from "../ui/Table";
 import LessonMenu from "../components/dashboard/LessonMenu";
 import { useUnlockedLessons } from "../hooks/useUnlockedLessons";
 import LessonLocked from "../ui/LessonLocked";
+import { classes } from "../constants/pages/lessons";
 
 export default function Lesson() {
   const { pathname } = useLocation();
@@ -23,7 +24,7 @@ export default function Lesson() {
       {userLessons && (
         <>
           {userLessons.includes(lessonObj.index) ? (
-            <div className="lesson__main">
+            <div className={classes.main}>
               <h1>{lessonObj.title}</h1>
               <div dangerouslySetInnerHTML={{ __html: markup }} />
               {table && <Table data={table} />}

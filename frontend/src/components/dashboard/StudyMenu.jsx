@@ -1,3 +1,4 @@
+import { classes } from "../../constants/components/dashboard";
 import { i18nAddresses } from "../../constants/i18nAddresses";
 import { useLang } from "../../hooks/useLang";
 
@@ -6,15 +7,13 @@ export default function StudyMenu({ activeTab, setActiveTab }) {
   const tabs = strings.tabs;
 
   return (
-    <ul className="dashboard__studyMenu">
+    <ul className={classes.study.menu}>
       {tabs.map((tab, index) => (
         <li
           key={tab}
           onClick={() => setActiveTab(index)}
           className={
-            activeTab === index
-              ? "dashboard__studyMenu-tabActive"
-              : "dashboard__studyMenu-tab"
+            activeTab === index ? classes.study.activeTab : classes.study.tab
           }
         >
           {tab}
