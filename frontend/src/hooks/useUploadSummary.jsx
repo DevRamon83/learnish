@@ -8,10 +8,19 @@ import {
   newSummaryInitialStep,
 } from "../constants/components/dashboard";
 
+const errorHandler = (errorMsg, setUploadStatus, caller) => {
+  let value = "failed";
+  if (errorMsg === "unavailable") {
+    value = "unavailable";
+  }
+
+  setUploadStatus((prev) => ({ ...prev, [caller]: value }));
+};
+
 const respHandler = (resp, setters, caller) => {
   const { setUploadStep, setUploadStatus, setSummaryData } = setters;
   if (resp.error) {
-    setUploadStatus((prev) => ({ ...prev, [caller]: "failed" }));
+    errorHandler(resp.errorMessage, setUploadStatus, caller);
   } else {
     setUploadStep((prev) => ({ ...prev, [caller]: true }));
     setUploadStatus((prev) => ({ ...prev, [caller]: "success" }));
