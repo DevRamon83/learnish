@@ -5,6 +5,8 @@
   "yourSummaries": "i tuoi sommari",
   "newSummaryBtn": "nuovo sommario",
   "retry": "riprova",
+  "unavailable": "Sommari odierni esauriti",
+  "failed": "Qualcosa è andato storto, riprova",
   "newSummaryForm": {
     "title": {
       "placeholder": "how to build a cabinet",
