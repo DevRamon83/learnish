@@ -1,3 +1,7 @@
+import { classes } from "../../constants/components/dashboard";
+import SummaryFailed from "./SummaryFailed";
+import SummarySuccess from "./SummarySuccess";
+
 export default function SummaryProcess({
   step,
   status,
@@ -17,25 +21,22 @@ export default function SummaryProcess({
   };
 
   return (
-    <div className="summary__process-space">
-      {status === "failed" ? (
-        <>
-          <div className="summary__process-label">
-            Qualcosa è andato storto
-            <img src={`/${status || "pending"}.svg`} />
-          </div>
-          <button onClick={retryHandler}>{strings.retry}</button>
-        </>
+    <div className={classes.summary.processSpace}>
+      {status === "failed" || status === "unavailable" ? (
+        <SummaryFailed
+          classes={classes}
+          status={status}
+          strings={strings}
+          retryHandler={retryHandler}
+        />
       ) : (
-        <>
-          <div className="summary__process-label">
-            {label}
-            <img src={`/${status || "pending"}.svg`} />
-          </div>
-          <div className="summary__process-container">
-            <div className={step ? `${bar}-process` : bar}></div>
-          </div>
-        </>
+        <SummarySuccess
+          classes={classes}
+          status={status}
+          step={step}
+          bar={bar}
+          label={label}
+        />
       )}
     </div>
   );
