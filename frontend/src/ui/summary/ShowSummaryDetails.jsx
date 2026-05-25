@@ -11,7 +11,7 @@ export default function ShowSummaryDetails({ data, stats }) {
     <>
       <div className={classes.summary.scoreContainer}>
         <SummaryScore strings={strings} stats={stats} data={data} />
-        <div className="summary__feedback">
+        <div className={classes.summary.feed}>
           <h4>{strings.score.rating}:</h4>
           <p>{data.feedback}</p>
         </div>
