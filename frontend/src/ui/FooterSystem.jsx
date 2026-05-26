@@ -1,21 +1,22 @@
 import { NavLink } from "react-router-dom";
+import { classes } from "../constants/layout/footer";
 
 export default function FooterSystem() {
   return (
-    <div className="footer__system">
-      <NavLink className="footer__btn-system" to="/" end>
+    <div className={classes.system}>
+      <NavLink className={`${classes.btnBase}-system`} to="/" end>
         home
       </NavLink>
       |
-      <NavLink className="footer__btn-system" to="/login">
+      <NavLink className={`${classes.btnBase}-system`} to="/login">
         accedi
       </NavLink>
       |
-      <NavLink className="footer__btn-system" to="/signup">
+      <NavLink className={`${classes.btnBase}-system`} to="/signup">
         registrati
       </NavLink>
       |
-      <NavLink className="footer__btn-system" to="/price">
+      <NavLink className={`${classes.btnBase}-system`} to="/price">
         prezzi
       </NavLink>
     </div>

@@ -7,4 +7,5 @@ export const classes = {
   rowContainer: "price__rowContainer",
   rowCell: "price__rowCell",
   teachersContainer: "price__teachersContainer",
+  note: "price__note",
 };

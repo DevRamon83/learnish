@@ -1,12 +1,13 @@
 import { NavLink } from "react-router-dom";
+import { classes } from "../constants/layout/footer";
 
 export default function FooterLegal({ strings }) {
   return (
     <h5>
-      <NavLink className="footer__tos" to="/tos">
+      <NavLink className={classes.tos} to="/tos">
         {strings.tos}
       </NavLink>
-      <NavLink className="footer__privacy" to="/privacy">
+      <NavLink className={classes.privacy} to="/privacy">
         {strings.privacy}
       </NavLink>
     </h5>

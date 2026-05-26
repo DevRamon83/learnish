@@ -1,9 +1,9 @@
+import { classes, buttons } from "../constants/layout/footer";
 import InfoBtn from "./buttons/InfoBtn";
 
 export default function FooterInfo({ strings }) {
-  const buttons = ["faq", "contact", "about", "mission", "team"];
   return (
-    <div className="footer__info">
+    <div className={classes.infoBase}>
       {buttons.map((element) => (
         <InfoBtn
           key={"footer_" + element}

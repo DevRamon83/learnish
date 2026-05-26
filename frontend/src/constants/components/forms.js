@@ -13,6 +13,7 @@ export const classes = {
     form: "contact__form",
     formHide: "contact__form-hide",
     success: "contact__success",
+    main: "contact__main",
   },
   signup: "form__signup",
   login: "form__login",

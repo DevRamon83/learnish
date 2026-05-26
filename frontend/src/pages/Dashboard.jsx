@@ -5,6 +5,7 @@ import fetchLogout from "../api/handlers/fetchLogout";
 import { useDispatch } from "react-redux";
 import { setAuth, setUser } from "../redux/slices/authSlice";
 import useRetriveStats from "../hooks/useRetriveStats";
+import { classes } from "../constants/components/dashboard";
 
 export default function Dashboard() {
   const dispatch = useDispatch();
@@ -28,9 +29,9 @@ export default function Dashboard() {
   }, [current]);
 
   return (
-    <main className="dashboard__main">
+    <main className={classes.main}>
       <DashboardMenu setCurrent={setCurrent} current={current} />
-      <div className="dashboard">{current === "study" && <Study />}</div>
+      <div className={classes.core}>{current === "study" && <Study />}</div>
     </main>
   );
 }

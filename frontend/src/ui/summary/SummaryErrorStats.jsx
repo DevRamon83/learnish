@@ -1,7 +1,7 @@
 import { i18nAddresses } from "../../constants/i18nAddresses";
 import { findMyStats, mapSymbols } from "../../helpers/stats/finders";
 import { useLang } from "../../hooks/useLang";
-import { statsSymbols } from "../../constants/components/dashboard";
+import { classes, statsSymbols } from "../../constants/components/dashboard";
 
 export default function SummaryErrorStats({ strings, data, stats }) {
   const errorLang = useLang(i18nAddresses.errors);
@@ -36,14 +36,16 @@ export default function SummaryErrorStats({ strings, data, stats }) {
     0.5,
   );
 
+  const detailsBase = classes.summary.detailsBase;
+
   return (
-    <div className="summary__errors">
+    <div className={classes.summary.summaryError}>
       <h4>Errori ogni 100 parole</h4>
       {errorsArray.map((key) => (
-        <div className="summary__detail-errorsContainer" key={`${key}Details`}>
+        <div className={`${detailsBase}-errorsContainer`} key={`${key}Details`}>
           {errorStrings[key]}: {ratio(errors[key], summaryStats.words)}
           <div
-            className={`summary__details-score summary__details-${errorMap[key]}`}
+            className={`${detailsBase}-score ${detailsBase}-${errorMap[key]}`}
           >
             {statsSymbols[errorMap[key]]}
           </div>
@@ -52,8 +54,3 @@ export default function SummaryErrorStats({ strings, data, stats }) {
     </div>
   );
 }
-
-/*
-
-
-            */

@@ -35,8 +35,8 @@ export default function TeachersPrice({ strings, classes }) {
           stringKey="teachersPrice"
         />
       </div>
-      <p className="price__note">{strings.note.ads}</p>
-      <p className="price__note">{strings.note.costPerStudent}</p>
+      <p className={classes.note}>{strings.note.ads}</p>
+      <p className={classes.note}>{strings.note.costPerStudent}</p>
     </>
   );
 }

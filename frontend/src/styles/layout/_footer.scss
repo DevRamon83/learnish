@@ -13,7 +13,7 @@
   }
 }
 
-.footer_left {
+.footer__left {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,7 +25,7 @@
   }
 }
 
-.footer_bottom {
+.footer__bottom {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -124,7 +124,7 @@
   font-size: 0.8em;
 }
 
-.footer_right > h5 {
+.footer__right > h5 {
   width: 100%;
   display: flex;
   justify-content: center;

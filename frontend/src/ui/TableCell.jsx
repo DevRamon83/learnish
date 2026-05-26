@@ -1,11 +1,13 @@
+import { classes } from "../constants/components/dashboard";
+
 export default function TableCell({ row }) {
   const data = row.text;
 
   return (
-    <div className="lesson__cell-single">
+    <div className={classes.lessons.singleCell}>
       {Array.isArray(data)
         ? data.map((text, index) => (
-            <p className="lesson__cell-array" key={`textMap${index}`}>
+            <p className={classes.lessons.cellArray} key={`textMap${index}`}>
               {text}
             </p>
           ))

@@ -1,4 +1,4 @@
-import { statsSymbols } from "../../constants/components/dashboard";
+import { classes, statsSymbols } from "../../constants/components/dashboard";
 import { mapSymbols } from "../../helpers/stats/finders";
 
 export default function SummaryScore({ strings, data, stats }) {
@@ -13,13 +13,15 @@ export default function SummaryScore({ strings, data, stats }) {
     0.5,
   );
 
+  const detailsBase = classes.summary.detailsBase;
+
   return (
-    <div className="summary__score">
+    <div className={classes.summary.scoreStats}>
       {scoreKeys.map((key) => (
-        <div className="summary__detail-scoreContainer" key={key}>
+        <div className={classes.summary.scoreDetailsContainer} key={key}>
           {strings.score[key]}: {data.score[key]}
           <div
-            className={`summary__details-score summary__details-${scoreMap[key]}`}
+            className={`${detailsBase}-score ${detailsBase}-${scoreMap[key]}`}
           >
             {statsSymbols[scoreMap[key]]}
           </div>

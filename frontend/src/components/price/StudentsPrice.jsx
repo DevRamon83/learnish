@@ -23,8 +23,8 @@ export default function StudentsPrice({ strings, classes }) {
         <PriceRow data={strings.level} config={config} stringKey="level" />
         <PriceRow data={strings.price} config={config} stringKey="price" />
       </div>
-      <p className="price__note">{strings.note.ads}</p>
-      <p className="price__note">{strings.note.tutoring}</p>
+      <p className={classes.note}>{strings.note.ads}</p>
+      <p className={classes.note}>{strings.note.tutoring}</p>
     </>
   );
 }

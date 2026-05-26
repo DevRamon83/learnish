@@ -1,9 +1,9 @@
+import { socials, classes } from "../constants/layout/footer";
 import SocialLink from "./SocialLink";
 
 export default function SocialSection() {
-  const socials = ["facebook", "x", "youtube", "instagram", "tiktok"];
   return (
-    <div className="footer__social">
+    <div className={classes.social}>
       {socials.map((social) => (
         <SocialLink key={social} social={social} />
       ))}
