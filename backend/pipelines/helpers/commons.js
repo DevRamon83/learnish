@@ -45,7 +45,7 @@ export const audioDefiner = (process, newWord) => {
   if (process === "examplePhrase") return newWord.phrase;
 };
 
-const writeLog = async (data) => {
+export const writeLog = async (data) => {
   try {
     await pipelinesLogModel.create(data);
   } catch (err) {
