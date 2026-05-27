@@ -22,9 +22,6 @@ export const recoveryWordData = async () => {
   for (let i = 0; i < records.length; i++) {
     const wrongWord = records[i].word;
     const wordObj = await vocabularyModel.findOne({ word: wrongWord });
-    console.log("myWord ", wrongWord);
-
-    //  const newWord = { ...wordObj };
     const myWord = await attempt(getWordData, [wordObj]);
 
     if (!myWord.error) {
