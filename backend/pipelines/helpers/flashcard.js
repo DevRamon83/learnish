@@ -1,13 +1,24 @@
+import mistralFetch from "../../ai/fetch/mistralFetch.js";
 import pollinationsFetch from "../../ai/fetch/pollinationsFetch.js";
-import { pollinationsImgPrompt } from "../../ai/prompt/prompt.js";
+import {
+  mistralWordAnalysis,
+  pollinationsImgPrompt,
+} from "../../ai/prompt/prompt.js";
+import { flashcardContent } from "../../ai/userContents.js";
 import { defineCaller } from "./commons.js";
 import uploadFile from "./uploadFile.js";
 
 const updateSchema = async (newWord, fileName) => {
-  newWord.flashcard = true;
-  newWord.metadata.storage = "supabase";
-  newWord.metadata.bucketImg = "flashcard";
-  newWord.metadata.flashcardFile = fileName;
+  if (!fileName) {
+    newWord.discard = true;
+  } else {
+    newWord.discard = false;
+    newWord.flashcard = true;
+    newWord.metadata.storage = "supabase";
+    newWord.metadata.bucketImg = "flashcard";
+    newWord.metadata.flashcardFile = fileName;
+  }
+
   try {
     newWord.save();
     return { error: false };
@@ -17,11 +28,36 @@ const updateSchema = async (newWord, fileName) => {
   }
 };
 
-const getFlashcard = async (newWord, wordObj) => {
-  const word = newWord.word;
+const getFlashcard = async (data) => {
+  if (data.finish) return;
+  const wordObj = data.wordObj;
+  const word = wordObj.word;
+  const phrase = wordObj.phrase;
+  const definition = wordObj.definition;
+
+  console.log("word ", word);
   const index = wordObj.id;
+
+  const userContent = flashcardContent();
+  const promptAnalysis = mistralWordAnalysis(word, definition);
+
+  const analysis = await mistralFetch(promptAnalysis, userContent);
+
+  if (analysis.error) {
+    return { discard: "error" };
+  }
+
+  const content = analysis.response.content;
+  const parse = JSON.parse(content);
+
+  if (!parse.flashcard) {
+    await updateSchema(wordObj, null);
+    return { discard: "true" };
+  }
+
+  console.log("phrase ", parse.phrase);
   const dataCaller = defineCaller("flashcards");
-  const prompt = pollinationsImgPrompt(word);
+  const prompt = pollinationsImgPrompt(parse.phrase);
   const creation = await pollinationsFetch(prompt, word, index, dataCaller);
 
   if (creation.error) {
@@ -48,7 +84,7 @@ const getFlashcard = async (newWord, wordObj) => {
     };
   }
 
-  const update = await updateSchema(newWord, fileName);
+  const update = await updateSchema(wordObj, fileName);
   if (update.error) {
     return {
       error: true,
@@ -58,7 +94,7 @@ const getFlashcard = async (newWord, wordObj) => {
     };
   }
 
-  return { error: false };
+  return { discard: "false" };
 };
 
 export default getFlashcard;
