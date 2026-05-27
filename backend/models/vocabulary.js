@@ -11,6 +11,7 @@ const vocabularySchema = new Schema(
     level: { type: String, required: true },
     definition: { type: String },
     flashcard: { type: Boolean, default: false },
+    discard: { type: Boolean },
     metadata: {
       storage: { type: String },
       bucketImg: { type: String },
