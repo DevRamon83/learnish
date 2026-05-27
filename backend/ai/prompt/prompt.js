@@ -7,10 +7,15 @@ export const mistralVocabularyPrompt = (myWord, type) => {
   `;
 };
 
-export const pollinationsImgPrompt = (myWord) => {
-  return encodeURIComponent(
-    `A cinematic still from a Studio Ghibli animation. The scene features ${myWord} as the main visual element. Hand-painted background, lush details, bright natural lighting. The image is a pure illustration with no typography.`,
-  );
+export const mistralWordAnalysis = (myWord, definition) => {
+  return `Starting from the "${myWord}" (whose definition is ${definition}) provide a JSON object with the following numbered properties:
+  1) flashcard: boolean (true/false). Imagine explaining to a completely illiterate person what to draw in a single picture to communicate this word. If you think illustrating the drawing to a completely illiterate person is too complicated, set it to false; otherwise, set it to true.
+  2) phrase: Define the scene that needs to be drawn to be understood.
+  `;
+};
+
+export const pollinationsImgPrompt = (scene) => {
+  return encodeURIComponent(`${scene}`);
 };
 
 export const pollinationsReadPrompt = (myWord, accent) => {
