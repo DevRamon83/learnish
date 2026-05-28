@@ -95,8 +95,9 @@
   color: #000;
 }
 
-.footer__textBtn {
+.footer__btn-text {
   @extend .footer__btn;
+  border: 0;
 }
 
 .footer__btn-social {
