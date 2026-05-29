@@ -16,6 +16,7 @@ export const API_URLS = {
     correction: "/aiCorrection",
     stats: "/newStat",
     allStats: "/getStats",
+    flashcards: "/flashcards",
   },
   messages: {
     base: "/messages",
