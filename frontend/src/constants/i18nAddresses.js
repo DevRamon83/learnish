@@ -11,4 +11,5 @@ export const i18nAddresses = {
   price: "pages.price",
   home: "pages.homepage",
   englishLessons: "lessons.englishLessons",
+  flashcards: "components.flashcards",
 };
