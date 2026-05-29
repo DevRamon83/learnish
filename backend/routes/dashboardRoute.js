@@ -6,6 +6,7 @@ import aiCorrection from "../controllers/dashboard/aiCorrection.js";
 import newStats from "../controllers/dashboard/newStats.js";
 import getStats from "../controllers/dashboard/getStats.js";
 import protectedRoutes from "../middlewares/protectedRoutes.js";
+import flashcards from "../controllers/dashboard/flashcards.js";
 
 const dashboardRoute = express.Router();
 
@@ -20,6 +21,7 @@ dashboardRoute.post(
 dashboardRoute.post("/aiCorrection", ...protectedRoutes, aiCorrection);
 dashboardRoute.post("/newStat", ...protectedRoutes, newStats);
 dashboardRoute.get("/getStats", ...protectedRoutes, getStats);
+dashboardRoute.get("/flashcards", ...protectedRoutes, flashcards);
 
 dashboardRoute.get("/summariesList", ...protectedRoutes, summariesList);
 
