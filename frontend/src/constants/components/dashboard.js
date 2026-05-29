@@ -100,3 +100,6 @@ export const newSummaryInitialStatus = {
 export const statsSymbols = { up: "🢁", down: "🢃", equal: "≈" };
 
 export const bars = ["draft", "correction", "stats"];
+
+export const cardBaseURL =
+  "https://hiyapbiaalaccnrtetxg.supabase.co/storage/v1/object/public/flashcards/";
