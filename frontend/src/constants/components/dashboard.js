@@ -78,11 +78,29 @@ export const classes = {
     cellBase: "lesson__cell",
     table: "lesson__table",
   },
+  flashcards: {
+    input: "flashcard__input",
+    inputTrue: "flashcard__input-true",
+    inputFalse: "flashcard__input-false",
+    inputContainer: "flashcard__input-container",
+    container: "flashcard__container",
+    score: "flashcard__score",
+    finish: "flashcards__finish",
+    points: "flashcard__points",
+    menu: "flashcard__menu",
+    next: "flashcard__next",
+    helpBtn: "flashcard__helpBtn",
+    helpless: "flashcard__helpBtn-end",
+  },
   study: {
     menu: "dashboard__studyMenu",
     activeTab: "dashboard__studyMenu-tabActive",
     tab: "dashboard__studyMenu-tab",
   },
+};
+
+export const ids = {
+  flashcardGuess: "flashcardGuess",
 };
 
 export const newSummaryInitialStep = {
