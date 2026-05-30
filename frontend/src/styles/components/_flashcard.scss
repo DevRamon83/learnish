@@ -1,0 +1,112 @@
+@use "../variables/colors";
+
+.flashcard__container {
+  border: 1px solid #000;
+  margin-left: 25px;
+  width: 90%;
+  display: flex;
+  background-color: ghostwhite;
+}
+
+.flashcard__menu {
+  width: 90%;
+  margin-left: 25px;
+  background-color: gainsboro;
+  height: 50px;
+  margin-bottom: 25px;
+  border: 1px solid #000;
+  border-top: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.flashcard__container > img {
+  display: block;
+  border-right: 1px solid #000;
+  width: 300px;
+  height: 250px;
+}
+
+.flashcard__input {
+  height: 2em;
+  width: 250px;
+  outline: unset;
+}
+
+.flashcard__input-true {
+  @extend .flashcard__input;
+  border: 2px solid lawngreen;
+}
+
+.flashcard__input-false {
+  @extend .flashcard__input;
+  border: 2px solid red;
+}
+
+.flashcard__input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin: 25px 0 0 15px;
+  width: 70%;
+}
+
+.flashcard__input-container > label {
+  text-transform: uppercase;
+}
+
+.flashcard__score {
+  height: 100%;
+  color: colors.$primaryColor;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  text-transform: uppercase;
+  font-weight: bold;
+  background-color: white;
+  border-left: 1px solid #000;
+  border-right: 1px solid #000;
+  padding: 0 25px;
+}
+
+.flashcard__points {
+  @extend .flashcard__score;
+}
+
+%flashcard__baseBtn-menu {
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.flashcard__next {
+  @extend %flashcard__baseBtn-menu;
+  border-left: 1px solid #000;
+  background-color: white;
+}
+
+.flashcard__helpBtn {
+  @extend %flashcard__baseBtn-menu;
+  border-right: 1px solid #000;
+  background-color: greenyellow;
+}
+
+.flashcard__helpBtn-end {
+  @extend %flashcard__baseBtn-menu;
+  border-right: 1px solid #000;
+  cursor: unset;
+  background-color: crimson;
+}
+.flashcards__finish {
+  @extend %flashcard__baseBtn-menu;
+  border-right: 1px solid #000;
+  border-left: 1px solid #000;
+  background-color: crimson;
+}
+
+%flashcard__baseBtn-menu > img {
+  height: 30px;
+}
