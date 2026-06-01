@@ -10,6 +10,9 @@ import unique from "../controllers/auth/unique.js";
 import uniqueValidator from "../middlewares/auth/uniqueValidator.js";
 import bannedCheck from "../middlewares/auth/bannedCheck.js";
 import verifyUser from "../controllers/auth/verifyUser.js";
+import forgottenPsw from "../controllers/auth/forgottenPsw.js";
+import newPassword from "../controllers/auth/newPassword.js";
+import validPsw from "../middlewares/auth/validPsw.js";
 
 const authRoute = express.Router();
 
@@ -19,5 +22,7 @@ authRoute.post("/check", dataStandard, tokensValidator, bannedCheck, check);
 authRoute.post("/logout", dataStandard, tokensValidator, logout);
 authRoute.post("/unique", dataStandard, uniqueValidator, unique);
 authRoute.get("/verify/:token", verifyUser);
+authRoute.post("/newPassword/:token", validPsw, newPassword);
+authRoute.post("/forgotten", forgottenPsw);
 
 export default authRoute;
