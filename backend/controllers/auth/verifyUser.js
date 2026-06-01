@@ -1,3 +1,4 @@
+import uuidTokenExpired from "../../helpers/controller/uuidTokenExpired.js";
 import handleErrorResponse from "../../helpers/handleErrorResponse.js";
 import createTokenConfigs from "../../helpers/token/createTokenConfigs.js";
 import setTokenAndCookie from "../../helpers/token/setTokenAndCookie.js";
@@ -16,6 +17,14 @@ const verifyUser = async (req, res) => {
     if (!user) {
       const error = "cannot find the user with the current token";
       return handleErrorResponse(res, req, error, 404, log);
+    }
+
+    const isTokenExpired = uuidTokenExpired(user, "createdAt");
+
+    if (isTokenExpired) {
+      const error = "expiredToken";
+      await user.deleteOne();
+      return handleErrorResponse(res, req, error, 400, true);
     }
 
     user.isVerified = true;
