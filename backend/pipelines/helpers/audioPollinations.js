@@ -6,34 +6,35 @@ import {
 import { audioDefiner, defineCaller, getFolder } from "./commons.js";
 import uploadFile from "./uploadFile.js";
 
-const apiCaller = async (newWord, lang, dataCaller, process) => {
+const apiCaller = async (wordObj, lang, dataCaller, process) => {
   const voice = lang === "Us" ? "brian" : "nova";
-  const audioText = audioDefiner(process, newWord);
+  const audioText = audioDefiner(process, wordObj);
 
-  const { index } = newWord;
-  const prompt = pollinationsReadPrompt(audioText, lang);
+  const { index, word } = wordObj;
+  // const prompt = pollinationsReadPrompt(audioText, lang);
 
-  return await pollinationsFetch(prompt, audioText, index, dataCaller, voice);
+  return await pollinationsFetch(word, audioText, index, dataCaller, voice);
 };
 
-const generateAudio = async (myWord, lang, process) => {
+const generateAudio = async (wordObj, lang, process) => {
   const callerName = "audio" + lang;
   const dataCaller = defineCaller(callerName);
-  const audio = await apiCaller(myWord, lang, dataCaller, process);
+  const audio = await apiCaller(wordObj, lang, dataCaller, process);
 
   if (audio.error) return { error: true };
 
   return { error: false, res: audio };
 };
 
-const getAudio = async (wordObj, process) => {
-  const myWord = wordObj.res.newWord;
+const getAudio = async (data, process) => {
+  const wordObj = data.wordObj;
+  const myWord = wordObj.word;
   const audioArray = ["Us", "Uk"];
 
   for (let i = 0; i < audioArray.length; i++) {
     const lang = audioArray[i];
 
-    const audio = await generateAudio(myWord, lang, process);
+    const audio = await generateAudio(wordObj, lang, process);
     const audioFailed = "audio generation failed";
     if (audio.error) {
       return {
