@@ -15,6 +15,10 @@ const login = async (req, res) => {
       return handleErrorResponse(res, req, "user404", 404, log);
     }
 
+    if (!user.isVerified) {
+      return handleErrorResponse(res, req, "notVerified", 403, log);
+    }
+
     const match = await argon2.verify(user.password, password);
 
     if (!match) {
