@@ -31,5 +31,8 @@
   "words": "parole",
   "slotUnavailable": "Non puoi sbloccare altre lezioni per oggi, esegui l'upgrade del tuo account o aspetta domani",
   "close": "chiudi",
-  "invalidPlan": "Per sbloccare questa lezione devi eseguire l'upgrade del tuo account"
+  "invalidPlan": "Per sbloccare questa lezione devi eseguire l'upgrade del tuo account",
+  "notVerified": "Verifica la tua mail per attivare l'account",
+  "user404": "L'account con cui tenti di accedere non esiste",
+  "invalidPsw": "Credenziali invalide"
 }
