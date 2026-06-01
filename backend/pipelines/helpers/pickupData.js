@@ -43,3 +43,22 @@ export const pickupFlashcards = async () => {
   };
   return wordObj();
 };
+
+export const pickupAudio = async () => {
+  const records = await vocabularyModel.find({ type: "noun" });
+  const wordObj = () => {
+    for (let i = 0; i < records.length; i++) {
+      if (records[i].metadata.word.bucket) {
+        continue;
+      }
+      if (records[i].metadata.word.bucket === undefined) {
+        return { finish: false, wordObj: records[i] };
+      }
+
+      if (i + 1 === records.length) {
+        return { finish: true };
+      }
+    }
+  };
+  return wordObj();
+};
