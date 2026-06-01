@@ -4,9 +4,10 @@ import {
   mistralWordAnalysis,
   pollinationsImgPrompt,
 } from "../../ai/prompt/prompt.js";
-import { flashcardContent } from "../../ai/userContents.js";
 import { defineCaller } from "./commons.js";
 import uploadFile from "./uploadFile.js";
+
+const flashcardContent = `Context: Act as a gatekeeper agent for a secondary text-to-image AI that struggles to convert words into guessable images. Select only words that are easy, concrete, and immediate to convert.`;
 
 const updateSchema = async (newWord, fileName) => {
   if (!fileName) {
@@ -35,13 +36,11 @@ const getFlashcard = async (data) => {
   const phrase = wordObj.phrase;
   const definition = wordObj.definition;
 
-  console.log("word ", word);
   const index = wordObj.id;
 
-  const userContent = flashcardContent();
   const promptAnalysis = mistralWordAnalysis(word, definition);
 
-  const analysis = await mistralFetch(promptAnalysis, userContent);
+  const analysis = await mistralFetch(promptAnalysis, flashcardContent);
 
   if (analysis.error) {
     return { discard: "error" };
@@ -55,7 +54,6 @@ const getFlashcard = async (data) => {
     return { discard: "true" };
   }
 
-  console.log("phrase ", parse.phrase);
   const dataCaller = defineCaller("flashcards");
   const prompt = pollinationsImgPrompt(parse.phrase);
   const creation = await pollinationsFetch(prompt, word, index, dataCaller);
