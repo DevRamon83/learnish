@@ -3,7 +3,7 @@ const getAiUrl = (caller, prompt, lang, voice) => {
     case "img":
       return `https://gen.pollinations.ai/image/${prompt}?model=flux&width=300&height=250`;
     case "audio":
-      return `https://gen.pollinations.ai/audio/${prompt}?voice=${voice}&response_format=opus&style=${lang}%20accent`;
+      return `https://gen.pollinations.ai/audio/${prompt}?model=qwen-tts`;
     default:
       break;
   }
@@ -14,6 +14,7 @@ const pollinationsFetch = async (prompt, myWord, index, dataCaller, voice) => {
   // extension > ".jpeg" || ".opus"
   const { caller, lang, extension } = dataCaller;
   const url = getAiUrl(caller, prompt, lang, voice);
+  console.log("url ", url);
 
   const apiKey = process.env.POLLINATIONS_API_KEY;
 
@@ -24,6 +25,7 @@ const pollinationsFetch = async (prompt, myWord, index, dataCaller, voice) => {
       },
     });
 
+    console.log("response ", response);
     if (!response.ok) {
       return { error: true, errorMsg: response };
     }
