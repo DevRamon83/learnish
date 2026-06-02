@@ -5,9 +5,9 @@ export default function FlashcardHelpBtn({ setters, cards, states, classes }) {
   return (
     <div
       onClick={() => helpHandler(setters, cards, states)}
-      className={help !== "stop" ? classes.helpBtn : classes.helpless}
+      className={help.type !== "stop" ? classes.helpBtn : classes.helpless}
     >
-      <img src={`/${help}.svg`} />
+      <img src={`/${help.type}.svg`} />
     </div>
   );
 }
