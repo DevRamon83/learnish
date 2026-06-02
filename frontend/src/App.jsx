@@ -18,6 +18,7 @@ import Tos from "./pages/Tos";
 import Metadata from "./components/Metadata";
 import useScrollToTop from "./hooks/useScrollToTop";
 import Lesson from "./pages/Lesson";
+import RecoverPsw from "./pages/RecoverPsw";
 
 function App() {
   const authState = useAuth();
@@ -39,6 +40,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/verify/:token" element={<VerifyUser />} />
+        <Route path="/recover/:token" element={<RecoverPsw />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/faq" element={<Faq />} />
