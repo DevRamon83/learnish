@@ -14,11 +14,14 @@ export default function FlashcardFieldGame({
 }) {
   const { setInput } = setters;
 
-  const { currentCard, solution, inputClass, helpText, input } = states;
+  const { currentCard, cardsKeys, matchStatus, inputClass, help, input } =
+    states;
+
+  const currentWord = cards[cardsKeys[currentCard]];
 
   return (
     <div className={classes.container}>
-      <img src={`${cardBaseURL}word${cards[currentCard]._id}.jpeg`} />
+      <img src={`${cardBaseURL}word${currentWord._id}.jpeg`} />
       <div className={classes.inputContainer}>
         <label htmlFor={ids.flashcardGuess}>{strings.word}</label>
         <input
@@ -26,12 +29,12 @@ export default function FlashcardFieldGame({
           id={ids.flashcardGuess}
           className={inputClass}
           onKeyDown={(e) => commandHandler(e, states, setters, cards)}
-          onChange={(e) => onChangeHandler(e, setInput, solution)}
+          onChange={(e) => onChangeHandler(e, setInput, matchStatus.solution)}
           value={input}
           type="text"
         />
 
-        <div>{helpText}</div>
+        <div>{help.text}</div>
       </div>
     </div>
   );
