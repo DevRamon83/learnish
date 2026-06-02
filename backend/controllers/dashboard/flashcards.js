@@ -25,7 +25,15 @@ const flashcards = async (req, res) => {
       })
       .lean();
 
-    res.status(200).json({ error: false, userWords });
+    const wordsMap = new Map();
+
+    for (let i = 0; i < 100; i++) {
+      const cardIndex = Math.floor(Math.random() * userWords.length);
+      wordsMap.set(userWords[cardIndex].index, userWords[cardIndex]);
+      userWords.splice(cardIndex, 1);
+    }
+
+    res.status(200).json({ error: false, words: Object.fromEntries(wordsMap) });
   } catch (err) {
     console.error("Error in flashcards:", err);
     return handleErrorResponse(res, req, err.message, 500, log);
