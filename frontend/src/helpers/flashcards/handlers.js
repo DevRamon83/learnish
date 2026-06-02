@@ -8,26 +8,19 @@ export const onChangeHandler = (e, setInput, solution) => {
 // We have thousands of cards, so we limited a single game session
 // to around a hundred cards in order to prevent any risk of an infinite loop
 
-const newCard = (indexes) => {
-  const nullCount = indexes.filter((val) => val === null).length;
-  if ((nullCount / indexes.length) * 100 > 5) {
+const newCard = (currentCard) => {
+  if (currentCard === 100) {
     return { finish: true };
   }
 
-  let cardIndex = Math.floor(Math.random() * indexes.length);
-
-  while (indexes[cardIndex] === null) {
-    cardIndex = Math.floor(Math.random() * indexes.length);
-  }
-
-  return { finish: false, cardIndex };
+  return { finish: false, currentCard };
 };
 
-const defineScore = (guess, setPoints, currentPoints) => {
+const defineScore = (guess, setScore, points) => {
   if (guess) {
-    setPoints((prev) => prev + currentPoints);
+    setScore((prev) => prev + points);
   } else {
-    setPoints((prev) => prev - 1);
+    setScore((prev) => prev - 1);
   }
 };
 
@@ -36,67 +29,56 @@ const updateAndReset = (setters, states) => {
     setCurrentCard,
     setInputClass,
     setInput,
-    setResponse,
-    setPoints,
-    setGuess,
+    setScore,
+    setMatchStatus,
     setHelp,
-    setHelpText,
-    setSolution,
-    setCurrentPoints,
-    setIndexes,
+    setPoints,
     setStart,
   } = setters;
-  const { indexes, guess, currentPoints } = states;
-  const newIndexCard = newCard(indexes);
+  const { currentCard, matchStatus, points } = states;
+  const newIndexCard = newCard(currentCard);
 
   if (newIndexCard.finish) {
     setStart(false);
     return;
   }
 
-  setCurrentCard(newIndexCard.cardIndex);
-
   setInputClass("flashcard__input");
   setInput("");
-  setResponse(null);
-  defineScore(guess, setPoints, currentPoints);
-  setGuess(false);
-  setHelp("definition");
-  setHelpText(null);
-  setSolution(false);
+  defineScore(matchStatus.guessed, setScore, points);
+  setMatchStatus({ guessed: false, solution: false });
+  setHelp({ type: "definition", text: null });
 };
 
 export const nextHandler = (setters, states) => {
-  const { setCurrentPoints, setIndexes } = setters;
-  const { indexes, currentCard } = states;
-  setCurrentPoints(1);
-  const newIndexes = [...indexes];
+  const { setPoints, setCurrentCard } = setters;
+  const { currentCard } = states;
+  setPoints(1);
 
-  // Change index value to null to keep indexes' length aligned to cards' length
-  newIndexes[currentCard] = null;
-  setIndexes(newIndexes);
+  setCurrentCard((prev) => prev + 1);
   updateAndReset(setters, states);
 };
 
 export const helpHandler = (setters, cards, states) => {
-  const { setHelp, setHelpText, setSolution, setCurrentPoints } = setters;
-  const { currentCard, help, lang } = states;
-  const word = cards[currentCard].word;
-  const definition = cards[currentCard].definition;
-  const clearDefinition = definition.toLowerCase().replace(word, "...");
+  const { setHelp, setMatchStatus, setPoints } = setters;
+  const { cardsKeys, currentCard, help, lang } = states;
+  const currentWord = cards[cardsKeys[currentCard]];
+  const definition = currentWord.definition;
+  const clearDefinition = definition
+    .toLowerCase()
+    .replace(currentWord.word, "...");
+  const helpText = currentWord.translations[lang].word;
 
-  if (help === "definition") {
-    setHelp("translate");
-    setHelpText(clearDefinition);
-    setCurrentPoints((prev) => prev / 2);
-  } else if (help === "translate") {
-    setHelpText(cards[currentCard].translations[lang].word);
-    setCurrentPoints((prev) => prev / 2);
-    setHelp("solution");
+  if (help.type === "definition") {
+    setHelp({ type: "translate", text: clearDefinition });
+    setPoints((prev) => prev / 2);
+  } else if (help.type === "translate") {
+    setHelp({ type: "solution", text: helpText });
+    setPoints((prev) => prev / 2);
   } else {
-    setSolution(true);
-    setCurrentPoints(-1);
-    setHelp("stop");
+    setMatchStatus({ guessed: false, solution: true });
+    setPoints(-1);
+    setHelp({ type: "stop", text: helpText });
   }
 };
 
@@ -116,4 +98,9 @@ export const commandHandler = (e, states, setters, cards) => {
     default:
       return;
   }
+};
+
+export const wordHandler = (cards, states, currentCard) => {
+  const keys = states.cardsKeys;
+  return cards[keys[currentCard]].word;
 };
