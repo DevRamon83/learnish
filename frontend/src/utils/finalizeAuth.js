@@ -7,8 +7,9 @@ const successHandler = (response, data, setError) => {
 };
 
 const finalizeAuth = (response, data, setError) => {
+  const { strings } = data.errorStrings;
   if (response.error) {
-    setError(data.standardError);
+    setError(strings[response.errorMessage]);
   } else {
     successHandler(response, data, setError);
   }
