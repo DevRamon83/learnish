@@ -4,57 +4,49 @@ import { useEffect } from "react";
 import { useLang } from "../../hooks/useLang";
 import { i18nAddresses } from "../../constants/i18nAddresses";
 import { fetchData } from "../../api/fetchData";
-import {
-  helpHandler,
-  nextHandler,
-  onChangeHandler,
-} from "../../helpers/flashcards/handlers";
 import FlashcardFieldGame from "../../ui/FlashcardFieldGame";
 import FlashcardMenu from "../../ui/FlashcardMenu";
+import { wordHandler } from "../../helpers/flashcards/handlers";
 
 export default function FlashcardGame({ cards, setStart }) {
   const { flashcards } = classes;
-  const [indexes, setIndexes] = useState(Array.from(cards.keys()));
-  const [currentCard, setCurrentCard] = useState(
-    Math.floor(Math.random() * indexes.length),
-  );
+  // Tracks the index value of cardsKeys (min: 0, max: 99)
+  const [currentCard, setCurrentCard] = useState(0);
   const [inputClass, setInputClass] = useState(flashcards.input);
-  const [points, setPoints] = useState(0);
-  const [currentPoints, setCurrentPoints] = useState(1);
+  const [score, setScore] = useState(0);
+  const [points, setPoints] = useState(1);
   const [input, setInput] = useState("");
-  const [guess, setGuess] = useState(false);
-  const [help, setHelp] = useState("definition");
-  const [helpText, setHelpText] = useState(null);
-  const [solution, setSolution] = useState(false);
-  const [response, setResponse] = useState(null);
+  // Solution tracks if the user has run out of helps and the system has shown the answer
+  const [matchStatus, setMatchStatus] = useState({
+    guessed: false,
+    solution: false,
+  });
+  const [help, setHelp] = useState({
+    type: "definition",
+    text: null,
+  });
   const { strings, lang } = useLang(i18nAddresses.flashcards);
   const inputRef = useRef(null);
   const setters = {
     setCurrentCard,
     setInputClass,
     setInput,
-    setResponse,
-    setPoints,
-    setGuess,
+    setScore,
     setHelp,
-    setHelpText,
-    setSolution,
-    setCurrentPoints,
-    setIndexes,
+    setPoints,
+    setMatchStatus,
     setStart,
   };
 
   const states = {
-    indexes,
-    guess,
-    currentPoints,
     points,
+    score,
     currentCard,
-    solution,
+    cardsKeys: Object.keys(cards),
+    matchStatus,
     help,
     lang,
     inputClass,
-    helpText,
     input,
   };
 
@@ -66,41 +58,38 @@ export default function FlashcardGame({ cards, setStart }) {
   }, [inputRef]);
 
   useEffect(() => {
-    if (input === "") {
-      return;
-    } else if (input === cards[currentCard].word) {
-      setGuess(true);
+    if (input === "") return;
+
+    if (input === wordHandler(cards, states, currentCard)) {
+      setMatchStatus({ guessed: true, solution: false });
       setInputClass(flashcards.inputTrue);
     } else {
-      setGuess(false);
+      setMatchStatus({ guessed: false, solution: false });
       setInputClass(flashcards.inputFalse);
     }
   }, [input]);
 
   useEffect(() => {
-    if (solution) {
-      setInput(cards[currentCard].word);
+    if (matchStatus.solution) {
+      setInput(wordHandler(cards, states, currentCard));
     }
-  }, [solution]);
+  }, [matchStatus]);
 
   return (
     <div>
-      {typeof currentCard === "number" && (
-        <FlashcardFieldGame
-          inputRef={inputRef}
-          states={states}
-          cards={cards}
-          setters={setters}
-          classes={flashcards}
-          strings={strings}
-        />
-      )}
+      <FlashcardFieldGame
+        inputRef={inputRef}
+        states={states}
+        cards={cards}
+        setters={setters}
+        classes={flashcards}
+        strings={strings}
+      />
       <FlashcardMenu
         states={states}
         cards={cards}
         setters={setters}
         strings={strings}
-        inputRef={inputRef}
         classes={flashcards}
       />
     </div>
