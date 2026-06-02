@@ -9,7 +9,7 @@ export default function FlashcardMenu({
   strings,
   classes,
 }) {
-  const { currentPoints, points } = states;
+  const { points, score } = states;
   const { setStart } = setters;
   return (
     <div className={classes.menu}>
@@ -22,7 +22,7 @@ export default function FlashcardMenu({
       <ScoreAndPoints
         strings={strings}
         stringKey="score"
-        state={points}
+        state={score}
         scoreClass={classes.score}
       />
       <div className={classes.finish} onClick={() => setStart(false)}>
@@ -31,7 +31,7 @@ export default function FlashcardMenu({
       <ScoreAndPoints
         strings={strings}
         stringKey="points"
-        state={currentPoints}
+        state={points}
         scoreClass={classes.points}
       />
       <FlashcardNextBtn setters={setters} states={states} classes={classes} />
