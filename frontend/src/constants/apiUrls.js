@@ -8,6 +8,8 @@ export const API_URLS = {
     check: "/check",
     isUnique: "/unique",
     verify: "/verify/",
+    forgotten: "/forgotten",
+    newPsw: "/newPassword/",
   },
   dashboard: {
     base: "/dashboard",
