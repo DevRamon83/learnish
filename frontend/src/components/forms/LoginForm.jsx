@@ -12,6 +12,7 @@ import bundle from "shared";
 import finalizeAuth from "../../utils/finalizeAuth";
 import ErrorOnSubmit from "../ErrorOnSubmit";
 import { classes } from "../../constants/components/forms";
+import ForgottenPsw from "./ForgottenPsw";
 const { authValidator } = bundle.validators;
 
 export default function LoginForm() {
@@ -19,9 +20,11 @@ export default function LoginForm() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [error, setError] = useState(null);
+  const [newPsw, setNewPsw] = useState(false);
   const standardError = "invalid credentials";
 
   const { strings, lang } = useLang(i18nAddresses.auth);
+  const errorStrings = useLang(i18nAddresses.errors);
   const objConfig = authConfigBuilder(strings, "login");
 
   const { fields } = useRamonForm(objConfig);
@@ -47,19 +50,40 @@ export default function LoginForm() {
     dispatch(setAuth("pending"));
 
     const response = await fetchLogin(data);
-    const config = { dispatch, navigate, setAuth, setUser, standardError };
+    const config = { dispatch, navigate, setAuth, setUser, errorStrings };
 
     finalizeAuth(response, config, setError);
   };
 
   return (
     <>
-      <form className={classes.login} ref={formRef} onSubmit={submitHandler}>
-        <FormInput Element={TextInput} data={username} lang={lang} />
-        <FormInput Element={PasswordInput} data={password} lang={lang} />
-        <ErrorOnSubmit error={error} />
-        <button className={classes.btn.login}>{strings.login}</button>
-      </form>
+      {newPsw ? (
+        <ForgottenPsw
+          classes={classes}
+          lang={lang}
+          strings={strings}
+          username={username}
+          TextInput={TextInput}
+        />
+      ) : (
+        <>
+          <form
+            className={classes.login}
+            ref={formRef}
+            onSubmit={submitHandler}
+          >
+            <FormInput Element={TextInput} data={username} lang={lang} />
+            <FormInput Element={PasswordInput} data={password} lang={lang} />
+            <ErrorOnSubmit error={error} />
+            <button className={classes.btn.login}>{strings.login}</button>
+          </form>
+        </>
+      )}
+      <div>
+        <div onClick={() => setNewPsw(!newPsw)}>
+          {newPsw ? "Torna al modulo di login" : "Password dimenticata"}
+        </div>
+      </div>
     </>
   );
 }
