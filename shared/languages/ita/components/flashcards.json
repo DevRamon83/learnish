@@ -6,5 +6,12 @@
   "score": "punteggio",
   "points": "punti in palio",
   "next": "prossima flashcard",
-  "word": "Scrivi la parola in inglese"
+  "word": "Scrivi la parola in inglese",
+  "intro": "Gioca con le flashcards per ampliare il tuo vocabolario, ogni carta indovinata vale un punto, ma attenzione, ogni suggerimento richiesto dimezza i punti disponibili",
+  "commands": "Comandi da tastiera",
+  "enter": " Invio: per ottenere suggerimenti (o clicca sul tasto in basso a sinistra)",
+  "arrow": "Freccia destra: per passare alla carta successiva (o clicca sul tasto in basso a destra)",
+  "esc": "ESC: per terminare la partita (o clicca sul tasto stop)",
+  "start": "inizia la partita",
+  "wait": "attendi le tue carte"
 }
