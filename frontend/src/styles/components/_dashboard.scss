@@ -123,13 +123,16 @@
   height: 80px;
   text-transform: capitalize;
   border-radius: 0px;
-  border: 1px solid #000;
+  border-width: 1px 0 1px 0;
+  border-color: #000;
+  border-style: solid;
   overflow: hidden;
 
   @include breakpoints.medium {
     width: 90%;
     border-radius: 10px;
     height: 40px;
+    border-width: 1px;
   }
 }
 

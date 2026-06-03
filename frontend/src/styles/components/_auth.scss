@@ -159,3 +159,17 @@ form {
     height: 4vh;
   }
 }
+
+.recover {
+  margin: 120px 0 25px 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.recover__ok {
+  margin-bottom: 120px;
+  width: 100%;
+  text-align: center;
+}
