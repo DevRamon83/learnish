@@ -9,7 +9,7 @@ import lessonModel from "../../models/trackers/lessonsTracker.js";
 const createUser = async (req, res) => {
   try {
     const data = req.body;
-
+    console.log(data);
     const keys = ["username", "email"];
     const areUnique = await isUnique(userModel, keys, data);
 
@@ -31,6 +31,8 @@ const createUser = async (req, res) => {
       username: data.username.trim().toLowerCase(),
       password: hash,
       email: data.email.trim().toLowerCase(),
+      userType: data.userType.trim().toLowerCase(),
+      plan: data.plan.trim().toLowerCase(),
       privacy: data.privacy,
       tos: data.tos,
       confirmationToken,

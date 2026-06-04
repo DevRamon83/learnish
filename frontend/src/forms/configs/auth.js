@@ -1,4 +1,5 @@
 import bundle from "shared";
+const { constants } = bundle;
 import {
   emailMatch,
   emailOnBlur,
@@ -37,6 +38,22 @@ const confirmEmail = {
   onBlur: emailMatch,
 };
 
+const userType = {
+  id: "userType",
+  type: "select",
+  required: true,
+  options: constants.userType,
+  labels: [],
+};
+
+const plan = {
+  id: "plan",
+  type: "select",
+  required: true,
+  options: constants.plan,
+  labels: [],
+};
+
 const password = {
   id: "password",
   type: "password",
@@ -55,14 +72,12 @@ const confirmPassword = {
   onBlur: pswMatch,
 };
 
-const { constants } = bundle;
-
 const privacy = {
   name: "privacy",
   type: "radio",
   options: {
     ids: [constants.currentPrivacy],
-    labels: ["ho letto e compreso la privacy policy"],
+    labels: [],
   },
   required: true,
 };
@@ -72,13 +87,21 @@ const tos = {
   type: "radio",
   options: {
     ids: [constants.currentTos],
-    labels: ["ho letto e compreso le condizioni generali di contratto"],
+    labels: [],
   },
   required: true,
 };
 
 const loginElements = [username, password];
-const signupElements = [email, confirmEmail, confirmPassword];
+const signupElements = [
+  email,
+  confirmEmail,
+  confirmPassword,
+  userType,
+  plan,
+  privacy,
+  tos,
+];
 
 const authConfigBuilder = (strings, process) => {
   syncLang(loginElements, strings);

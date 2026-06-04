@@ -113,6 +113,20 @@ form {
   margin-right: 9%;
 }
 
+%select {
+  background-color: white;
+  width: 100%;
+  border: 0;
+}
+
+#userType {
+  @extend %select;
+}
+
+#plan {
+  @extend %select;
+}
+
 .form__signup {
   display: flex;
   justify-content: center;

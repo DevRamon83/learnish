@@ -3,7 +3,12 @@ import {
   passwordValidator,
   usernameValidator,
 } from "ramon-vanilla";
-import { currentPrivacy, currentTos } from "../constants/atomicConstants.js";
+import {
+  currentPrivacy,
+  currentTos,
+  userType,
+  plan,
+} from "../constants/atomicConstants.js";
 
 const errorTracker = (obj, key, error) => {
   obj[key] = error;
@@ -28,6 +33,12 @@ const compare = (value1, value2) => {
   return { error: dontMatch, errorArray: dontMatch ? ["match failed"] : [] };
 };
 
+const arrayValidator = (value, arraySSOT) => {
+  const isValid = arraySSOT.includes(value);
+  const error = isValid ? false : true;
+  return { error, errorArray: ["invalid datum into array"] };
+};
+
 const giveMeValidator = (key) => {
   switch (key) {
     case "username":
@@ -36,6 +47,10 @@ const giveMeValidator = (key) => {
       return emailValidator;
     case "password":
       return passwordValidator;
+    case "userType":
+      return arrayValidator;
+    case "plan":
+      return arrayValidator;
     default:
       return compare;
   }
@@ -51,6 +66,10 @@ const giveMeValue2 = (data, key) => {
       return currentPrivacy;
     case "tos":
       return currentTos;
+    case "userType":
+      return userType;
+    case "plan":
+      return plan;
     default:
       return null;
   }
@@ -79,6 +98,7 @@ const authValidator = (path, data, caller) => {
     objChecker.value2 = giveMeValue2(data, key);
     objChecker.key = key;
     const checkDatum = checker(objChecker, errors);
+
     error = error ? error : checkDatum.error;
     if (checkDatum.exit) break;
   }

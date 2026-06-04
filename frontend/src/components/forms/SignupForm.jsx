@@ -2,6 +2,7 @@ import {
   EmailInput,
   PasswordInput,
   RadioInput,
+  SelectInput,
   TextInput,
   useRamonForm,
 } from "ramon-form-sdude";
@@ -26,7 +27,7 @@ export default function SignupForm() {
   const { strings, lang } = useLang(i18nAddresses.auth);
   const objConfig = authConfigBuilder(strings, "signup");
 
-  const { fields, groups } = useRamonForm(objConfig);
+  const { fields, groups, selects } = useRamonForm(objConfig);
   const { username, email, confirmEmail, password, confirmPassword } = fields;
   const { privacy, tos } = groups;
 
@@ -43,7 +44,9 @@ export default function SignupForm() {
     e.preventDefault();
     const formData = new FormData(formRef.current);
     const data = Object.fromEntries(formData.entries());
+
     const isValidData = validate(data);
+
     if (!isValidData) {
       setError(standardError);
       return;
@@ -70,6 +73,12 @@ export default function SignupForm() {
           <FormInput Element={TextInput} data={username} lang={lang} />
           <FormInput Element={EmailInput} data={email} lang={lang} />
           <FormInput Element={EmailInput} data={confirmEmail} lang={lang} />
+          <FormInput
+            Element={SelectInput}
+            data={selects.userType}
+            lang={lang}
+          />
+          <FormInput Element={SelectInput} data={selects.plan} lang={lang} />
           <FormInput Element={PasswordInput} data={password} lang={lang} />
           <FormInput
             Element={PasswordInput}

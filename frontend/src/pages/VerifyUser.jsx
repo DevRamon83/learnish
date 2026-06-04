@@ -25,7 +25,7 @@ export default function VerifyUser() {
       setError(null);
       dispatch(setAuth("pending"));
       const response = await fetchConfirmationToken(token, controller.signal);
-
+      console.log(response);
       if (response.error) {
         setError("invalid link");
       }
@@ -37,6 +37,7 @@ export default function VerifyUser() {
 
     verifyRef.current && verifyEmail();
   }, []);
+
   return (
     <div>
       <p>Verifica email</p>

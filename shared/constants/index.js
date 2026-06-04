@@ -1,15 +1,17 @@
 import {
-  accountTypes,
+  userType,
   currentPrivacy,
   currentTos,
   langsArray,
+  plan,
 } from "./atomicConstants.js";
 
 const constants = {
   currentPrivacy,
   currentTos,
-  accountTypes,
+  userType,
   langsArray,
+  plan,
 };
 
 export default constants;
