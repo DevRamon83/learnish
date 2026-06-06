@@ -51,7 +51,8 @@ function App() {
         <Route path="/tos" element={<Tos />} />
 
         <Route path="/user" element={<PrivateRoutes />}>
-          <Route path="/user/dashboard/:id" element={<Dashboard />} />
+          <Route path="/user/student/:id" element={<Dashboard />} />
+          <Route path="/user/teacher/:id" element={<Dashboard />} />
           <Route path="/user/lesson/:name" element={<Lesson />} />
         </Route>
       </Routes>
