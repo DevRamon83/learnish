@@ -13,7 +13,6 @@ export default function UnlockLesson({
 
   const unlock = async () => {
     const res = await fetchUnlock({ lessonIndex: index, level });
-    console.log(res);
     if (res.error) {
       errorSetter(res.errorMessage);
     } else {
