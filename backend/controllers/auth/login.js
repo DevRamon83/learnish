@@ -42,9 +42,9 @@ const login = async (req, res) => {
 
     await setTokenAndCookie(res, refreshConfig);
 
-    const response = { error: false, username: user.username, id: user._id };
+    configData.error = false;
 
-    return res.status(200).json(response);
+    return res.status(200).json({ response: configData });
   } catch (err) {
     console.error("Error in login:", err);
     return handleErrorResponse(res, req, err.message, 500, log);
