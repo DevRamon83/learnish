@@ -1,6 +1,5 @@
 import handleErrorResponse from "../../helpers/handleErrorResponse.js";
 import lessonModel from "../../models/trackers/lessonsTracker.js";
-import { userModel } from "../../models/user.js";
 
 const defineSlotValue = (plan) => {
   switch (plan) {
@@ -39,6 +38,7 @@ const unlock = async (req, res) => {
   let log = false;
   try {
     const userID = req.context.auth.id;
+    const userPlan = req.context.auth.plan;
     const { lessonIndex, level } = req.body;
     const userLessons = await lessonModel.findOne({ userId: userID });
 
@@ -49,8 +49,7 @@ const unlock = async (req, res) => {
       return handleErrorResponse(res, req, errorMsg, 403, log);
     }
 
-    const userPlan = await userModel.findById(userID).select("plan").lean();
-    const validLevel = checkRequest(level, userPlan.plan);
+    const validLevel = checkRequest(level, userPlan);
 
     if (!validLevel) {
       const errorMsg = "invalidPlan";

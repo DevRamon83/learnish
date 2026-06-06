@@ -11,7 +11,8 @@ const dataStandard = (req, res, next) => {
     auth: {
       username: null,
       id: null,
-      shared: null,
+      type: null,
+      plan: null,
     },
   };
 

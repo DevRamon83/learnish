@@ -33,7 +33,8 @@ const login = async (req, res) => {
     const configData = {
       username: user.username,
       id: user._id,
-      shared: user.shareErrors,
+      plan: user.plan,
+      type: user.userType,
     };
     const { accessConfig, refreshConfig } = createTokenConfigs(configData);
 

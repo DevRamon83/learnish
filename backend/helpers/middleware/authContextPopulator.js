@@ -1,4 +1,4 @@
-const authContextPopulator = (req, username, id, shared) => {
+const authContextPopulator = (req, username, id, type, plan) => {
   const msg = "invalidPayload";
   if (!username) return { error: true, errorType: msg + "Username" };
 
@@ -6,10 +6,8 @@ const authContextPopulator = (req, username, id, shared) => {
 
   req.context.auth.username = username;
   req.context.auth.id = id;
-
-  if (shared) {
-    req.context.auth.shared = shared;
-  }
+  req.context.auth.type = type;
+  req.context.auth.plan = plan;
 
   return { error: false };
 };

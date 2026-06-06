@@ -10,14 +10,14 @@ const tokensRotation = async (req, res, next) => {
   }
   const log = true;
 
-  const { username, id, shared } = req.context.tokens.payload;
+  const { username, id, type, plan } = req.context.tokens.payload;
 
   if (!username || !id || !shared) {
     const errorMsg = "invalidPayload";
     return handleErrorResponse(res, req, errorMsg, 404, log);
   }
 
-  const configData = { username, id, shared };
+  const configData = { username, id, type, plan };
 
   const { accessConfig, refreshConfig } = createTokenConfigs(configData);
 

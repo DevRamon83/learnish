@@ -31,7 +31,12 @@ const verifyUser = async (req, res) => {
     user.confirmationToken = undefined;
     await user.save();
 
-    const configData = { username: user.username, id: user._id };
+    const configData = {
+      username: user.username,
+      id: user._id,
+      plan: user.plan,
+      type: user.userType,
+    };
     const { accessConfig, refreshConfig } = createTokenConfigs(configData);
 
     await setTokenAndCookie(res, accessConfig);

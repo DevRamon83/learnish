@@ -3,37 +3,37 @@ import analyzePayload from "../../helpers/middleware/analyzePayload.js";
 import tokenChecker from "../../helpers/middleware/tokenChecker.js";
 
 const rtErrorHandler = (data) => {
-  const { res, req, errorType, log, userBann } = data;
+  const { res, req, errorType, log, userBan } = data;
 
   if (errorType === "invalidToken") {
-    handleErrorResponse(res, req, errorType, 403, log, userBann);
+    handleErrorResponse(res, req, errorType, 403, log, userBan);
     return;
   }
 
-  handleErrorResponse(res, req, errorType, 401, false, userBann);
+  handleErrorResponse(res, req, errorType, 401, false, userBan);
 };
 
 const tokensValidator = async (req, res, next) => {
   let log = true;
-  const userBann = false;
+  const userBan = false;
   let rotateToken = false;
 
   const accessToken = await tokenChecker(req, "accessToken");
 
   if (accessToken.error && accessToken.errorType === "invalidToken") {
     const errorType = accessToken.errorType;
-    return handleErrorResponse(res, req, errorType, 403, log, userBann);
+    return handleErrorResponse(res, req, errorType, 403, log, userBan);
   }
 
   const tokensRevoked = req.context.tokensRevoked;
 
-  const accesPayload = analyzePayload(req, accessToken, "at", tokensRevoked);
+  const accessPayload = analyzePayload(req, accessToken, "at", tokensRevoked);
 
-  if (accesPayload.exit) {
-    const errorType = accesPayload.errorType;
-    const status = accesPayload.status;
+  if (accessPayload.exit) {
+    const errorType = accessPayload.errorType;
+    const status = accessPayload.status;
     log = status === 401 ? false : log;
-    return handleErrorResponse(res, req, errorType, status, log, userBann);
+    return handleErrorResponse(res, req, errorType, status, log, userBan);
   }
 
   // If accessToken is not invalid, then it is expired
@@ -49,7 +49,7 @@ const tokensValidator = async (req, res, next) => {
 
   if (refreshToken && refreshToken.error) {
     const errorType = refreshToken.errorType;
-    const data = { res, req, errorType, log, userBann, refreshToken };
+    const data = { res, req, errorType, log, userBan, refreshToken };
     rtErrorHandler(data);
     return;
   }
