@@ -1,6 +1,6 @@
 import NavbarBtn from "./buttons/NavbarBtn";
 
-export default function PubblicNavbar({ strings, toggleNavbar }) {
+export default function PublicNavbar({ strings, toggleNavbar }) {
   return (
     <>
       <NavbarBtn

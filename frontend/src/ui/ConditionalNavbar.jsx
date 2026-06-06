@@ -1,6 +1,6 @@
 import CommonNavbar from "./CommonNavbar";
 import PrivateNavbar from "./PrivateNavbar";
-import PubblicNavbar from "./PubblicNavbar";
+import PublicNavbar from "./PublicNavbar";
 
 export default function ConditionalNavbar({
   navbarState,
@@ -19,7 +19,7 @@ export default function ConditionalNavbar({
           strings={strings}
         />
       ) : (
-        <PubblicNavbar strings={strings} toggleNavbar={toggleNavbar} />
+        <PublicNavbar strings={strings} toggleNavbar={toggleNavbar} />
       )}
       <CommonNavbar strings={strings} toggleNavbar={toggleNavbar} />
     </div>
