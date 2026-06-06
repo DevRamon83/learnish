@@ -16,6 +16,8 @@ const check = async (req, res) => {
       error: false,
       username: payload.username,
       id: payload.id,
+      plan: payload.plan,
+      type: payload.type,
     };
 
     return res.status(200).json(response);
