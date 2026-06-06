@@ -3,6 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   authState: "pending",
   user: null,
+  type: null,
+  plan: null,
   error: null,
 };
 
@@ -23,8 +25,6 @@ const authSlice = createSlice({
   },
 });
 
-// Esportiamo le azioni generate automaticamente
 export const { setAuth, setUser, logout } = authSlice.actions;
 
-// Esportiamo il reducer per inserirlo nello store
 export default authSlice.reducer;
