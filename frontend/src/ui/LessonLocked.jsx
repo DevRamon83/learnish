@@ -6,7 +6,7 @@ import { classes } from "../constants/components/dashboard";
 
 export default function LessonLocked() {
   const { strings } = useLang(i18nAddresses.dashboard);
-  const userID = useSelector((state) => state.auth.user.id);
+  const user = useSelector((state) => state.auth.user);
 
   return (
     <div className={classes.lessons.mainLocked}>
@@ -17,7 +17,7 @@ export default function LessonLocked() {
           {strings.lockedText}
           <NavLink
             className={classes.lessons.lockedBack}
-            to={`/user/dashboard/${userID}`}
+            to={`/user/${user.type}/${user.id}`}
           >
             {strings.goToDashboard}
           </NavLink>

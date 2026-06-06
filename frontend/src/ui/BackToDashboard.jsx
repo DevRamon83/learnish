@@ -6,11 +6,11 @@ import { classes } from "../constants/components/dashboard";
 
 export default function BackToDashboard() {
   const { strings } = useLang(i18nAddresses.dashboard);
-  const userID = useSelector((state) => state.auth.user.id);
+  const user = useSelector((state) => state.auth.user);
   const backToDashboard = classes.lessons.backToDashboard;
 
   return (
-    <NavLink className={backToDashboard} to={`/user/dashboard/${userID}`}>
+    <NavLink className={backToDashboard} to={`/user/${user.type}/${user.id}`}>
       <img className={`${backToDashboard}-img`} src="/back.svg" />
       {strings.backToDashboard}
     </NavLink>
