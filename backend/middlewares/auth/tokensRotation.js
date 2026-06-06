@@ -12,7 +12,7 @@ const tokensRotation = async (req, res, next) => {
 
   const { username, id, type, plan } = req.context.tokens.payload;
 
-  if (!username || !id || !shared) {
+  if (!username || !id || !type || !plan) {
     const errorMsg = "invalidPayload";
     return handleErrorResponse(res, req, errorMsg, 404, log);
   }
