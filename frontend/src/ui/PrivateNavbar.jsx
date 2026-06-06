@@ -6,7 +6,7 @@ export default function PrivateNavbar({
   toggleNavbar,
   logoutHandler,
 }) {
-  const dashboardLink = "/user/dashboard/" + user?.id;
+  const dashboardLink = `/user/${user?.type}/${user?.id}`;
   const handler = () => {
     toggleNavbar();
     logoutHandler();
