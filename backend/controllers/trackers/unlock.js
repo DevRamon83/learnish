@@ -67,7 +67,7 @@ const unlock = async (req, res) => {
     const now = Date.now();
 
     const nextUnlock = defineNextUnlock(now);
-    const planSlot = defineSlotValue(userPlan.plan);
+    const planSlot = defineSlotValue(userPlan);
 
     // if true is a new day
     if (userLessons.nextUnlock < now) {
