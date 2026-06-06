@@ -11,7 +11,7 @@
   "phonetic": ["phonetic", "false", "true", "true"],
   "level": ["level", "A1/A2", "B1/B2", "C1/C2"],
   "classroom": ["classroom", "false", "false", "true"],
-  "costPerStudent": ["costPerStudent", "0€", "5€", "1€"],
+  "costPerStudent": ["costPerStudent", "false", "1€", "0€"],
   "price": ["price", "0€", "1€", "10€"],
   "teachersPrice": ["teachersPrice", "0€", "10€", "25€"],
   "explain": {
