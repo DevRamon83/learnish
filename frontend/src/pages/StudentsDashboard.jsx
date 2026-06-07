@@ -1,37 +1,20 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import DashboardMenu from "../components/dashboard/DashboardMenu";
 import Study from "../components/dashboard/Study";
-import fetchLogout from "../api/handlers/fetchLogout";
-import { useDispatch } from "react-redux";
-import { setAuth, setUser } from "../redux/slices/authSlice";
 import useRetriveStats from "../hooks/useRetriveStats";
 import { classes } from "../constants/components/dashboard";
+import useLogout from "../hooks/useLogout";
 
 export default function StudentsDashboard() {
-  const dispatch = useDispatch();
-  const [current, setCurrent] = useState("study");
+  const [currentTab, setCurrentTab] = useState("study");
   useRetriveStats();
 
-  const logoutHandler = async () => {
-    const response = await fetchLogout();
-    if (response.error) {
-      console.error(response.errorMsg);
-    } else {
-      dispatch(setUser(null));
-      dispatch(setAuth("unauthenticated"));
-    }
-  };
-
-  useEffect(() => {
-    if (current === "logout") {
-      logoutHandler();
-    }
-  }, [current]);
+  useLogout(currentTab);
 
   return (
     <main className={classes.main}>
-      <DashboardMenu setCurrent={setCurrent} current={current} />
-      <div className={classes.core}>{current === "study" && <Study />}</div>
+      <DashboardMenu setCurrentTab={setCurrentTab} currentTab={currentTab} />
+      <div className={classes.core}>{currentTab === "study" && <Study />}</div>
     </main>
   );
 }
