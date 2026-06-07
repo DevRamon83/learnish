@@ -2,15 +2,13 @@ import Logo from "./Logo";
 import { classes } from "../../constants/layout/navbar";
 import { NavLink } from "react-router-dom";
 import { usePersonalSettings } from "../../hooks/usePersonalSettings";
-import fetchLogout from "../../api/handlers/fetchLogout";
 import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { setAuth, setUser } from "../../redux/slices/authSlice";
 import Hamburger from "../../ui/Hamburger";
 import { useState } from "react";
 import { useLang } from "../../hooks/useLang";
 import { i18nAddresses } from "../../constants/i18nAddresses";
 import ConditionalNavbar from "../../ui/ConditionalNavbar";
+import useLogout from "../../hooks/useLogout";
 
 export default function Navbar() {
   const { navbarContainer, nav, navOpen } = classes;
@@ -21,7 +19,6 @@ export default function Navbar() {
 
   const { strings, lang } = useLang(i18nAddresses.layout);
 
-  const dispatch = useDispatch();
   usePersonalSettings();
 
   const toggleNavbar = () => {
@@ -35,15 +32,7 @@ export default function Navbar() {
     setIsOpen((prev) => !prev);
   };
 
-  const logoutHandler = async () => {
-    const response = await fetchLogout();
-    if (response.error) {
-      console.error(response.errorMsg);
-    } else {
-      dispatch(setUser(null));
-      dispatch(setAuth("unauthenticated"));
-    }
-  };
+  const { logoutHandler } = useLogout("navbar");
 
   return (
     <>
