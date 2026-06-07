@@ -1,33 +1,33 @@
 import { classes } from "../../constants/components/dashboard";
 import IconBtn from "../../ui/buttons/IconBtn";
 
-export default function DashboardMenu({ setCurrent, current }) {
+export default function DashboardMenu({ setCurrentTab, currentTab }) {
   const { dashBtn, dashActiveBtn, menu } = classes;
 
   return (
     <div className={menu}>
       <IconBtn
-        iconClass={current === "study" ? dashActiveBtn : dashBtn}
+        iconClass={currentTab === "study" ? dashActiveBtn : dashBtn}
         img={"/study.svg"}
-        handler={setCurrent}
+        handler={setCurrentTab}
         value={"study"}
       />
       <IconBtn
-        iconClass={current === "stats" ? dashActiveBtn : dashBtn}
+        iconClass={currentTab === "stats" ? dashActiveBtn : dashBtn}
         img={"/stats.svg"}
-        handler={setCurrent}
+        handler={setCurrentTab}
         value={"stats"}
       />
       <IconBtn
-        iconClass={current === "settings" ? dashActiveBtn : dashBtn}
+        iconClass={currentTab === "settings" ? dashActiveBtn : dashBtn}
         img={"/settings.svg"}
-        handler={setCurrent}
+        handler={setCurrentTab}
         value={"settings"}
       />
       <IconBtn
-        iconClass={current === "logout" ? dashActiveBtn : dashBtn}
+        iconClass={currentTab === "logout" ? dashActiveBtn : dashBtn}
         img={"/logout.svg"}
-        handler={setCurrent}
+        handler={setCurrentTab}
         value={"logout"}
       />
     </div>
