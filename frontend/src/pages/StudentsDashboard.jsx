@@ -7,7 +7,7 @@ import { setAuth, setUser } from "../redux/slices/authSlice";
 import useRetriveStats from "../hooks/useRetriveStats";
 import { classes } from "../constants/components/dashboard";
 
-export default function Dashboard() {
+export default function StudentsDashboard() {
   const dispatch = useDispatch();
   const [current, setCurrent] = useState("study");
   useRetriveStats();

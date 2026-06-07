@@ -1,5 +1,3 @@
-import LineChart from "../components/charts/LineChart";
-import StackedBar from "../components/charts/StackedBar";
 import { useLang } from "../hooks/useLang";
 import CallToSignup from "../ui/CallToSignup";
 import HeroSection from "../ui/HeroSection";

@@ -3,7 +3,7 @@ import { Navigate, Outlet, Route, Routes } from "react-router-dom";
 import Home from "./pages/HomePage";
 import Login from "./pages/LoginPage";
 import Signup from "./pages/SignupPage";
-import Dashboard from "./pages/Dashboard";
+import StudentsDashboard from "./pages/StudentsDashboard";
 import { useAuth } from "./hooks/useAuth";
 import Footer from "./components/layout/Footer";
 import VerifyUser from "./pages/VerifyUser";
@@ -19,6 +19,7 @@ import Metadata from "./components/Metadata";
 import useScrollToTop from "./hooks/useScrollToTop";
 import Lesson from "./pages/Lesson";
 import RecoverPsw from "./pages/RecoverPsw";
+import TeachersDashboard from "./pages/TeachersDashboard";
 
 function App() {
   const authState = useAuth();
@@ -51,8 +52,8 @@ function App() {
         <Route path="/tos" element={<Tos />} />
 
         <Route path="/user" element={<PrivateRoutes />}>
-          <Route path="/user/student/:id" element={<Dashboard />} />
-          <Route path="/user/teacher/:id" element={<Dashboard />} />
+          <Route path="/user/student/:id" element={<StudentsDashboard />} />
+          <Route path="/user/teacher/:id" element={<TeachersDashboard />} />
           <Route path="/user/lesson/:name" element={<Lesson />} />
         </Route>
       </Routes>
