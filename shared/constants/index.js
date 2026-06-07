@@ -4,6 +4,8 @@ import {
   currentTos,
   langsArray,
   plan,
+  dashboardStudentsTabs,
+  dashboardTeachersTabs,
 } from "./atomicConstants.js";
 
 const constants = {
@@ -12,6 +14,8 @@ const constants = {
   userType,
   langsArray,
   plan,
+  dashboardStudentsTabs,
+  dashboardTeachersTabs,
 };
 
 export default constants;
