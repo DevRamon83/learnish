@@ -16,6 +16,7 @@ import {
   recoveryWordData,
 } from "./pipelines/recoveryPipeline.js";
 import trackersRoute from "./routes/trackersRoute.js";
+import updateRoute from "./routes/updateRoute.js";
 
 const app = express();
 
@@ -57,6 +58,7 @@ app.use("/api/auth", authRoute);
 app.use("/api/dashboard", dashboardRoute);
 app.use("/api/messages", messagesRoute);
 app.use("/api/trackers", trackersRoute);
+app.use("/api/update", updateRoute);
 
 mongoose
   .connect(MONGO_URI)
