@@ -50,7 +50,7 @@ const plan = {
   id: "plan",
   type: "select",
   required: true,
-  options: constants.plan,
+  options: constants.plans,
   labels: [],
 };
 
