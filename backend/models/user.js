@@ -18,6 +18,11 @@ const UserSchema = new Schema(
       required: true,
       default: "free",
     },
+    profilePic: {
+      storage: { type: String },
+      bucketImg: { type: String },
+      fileName: { type: String },
+    },
     isVerified: { type: Boolean, required: true, default: false },
     confirmationToken: { type: String },
     isPremium: { type: Boolean, required: true, default: false },
@@ -42,6 +47,8 @@ const Student = userModel.discriminator(
   "student",
   new Schema({
     shareErrors: { type: Boolean, required: true, default: true },
+    targetLang: { type: String, enum: ["us", "en"] },
+    teacher: { type: Schema.Types.ObjectId },
   }),
 );
 
@@ -49,6 +56,16 @@ const Teacher = userModel.discriminator(
   "teacher",
   new Schema({
     freeTrial: { type: Boolean, required: true, default: true },
+    taughtLang: { type: String, enum: ["us", "en"] },
+    students: [{ type: Schema.Types.ObjectId }],
+    contacts: {
+      twitter: { type: String },
+      instagram: { type: String },
+      facebook: { type: String },
+      whatsapp: { type: String },
+      email: { type: String },
+      skype: { type: String },
+    },
   }),
 );
 
