@@ -6,10 +6,7 @@ import {
 import vocabularyModel from "../models/vocabulary.js";
 import saveNewWord from "./helpers/saveNewWord.js";
 import getWordData from "./helpers/wordData.js";
-import uploadFile from "./helpers/uploadFile.js";
 import getFlashcard from "./helpers/flashcard.js";
-import pipelinesLogModel from "../models/logs/pipelinesLog.js";
-import audioGroq from "./helpers/audioGroq.js";
 import { attempt } from "./helpers/commons.js";
 import {
   pickupAudio,

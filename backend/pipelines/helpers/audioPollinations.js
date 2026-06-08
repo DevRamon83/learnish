@@ -4,7 +4,7 @@ import {
   pollinationsReadPrompt,
 } from "../../ai/prompt/prompt.js";
 import { audioDefiner, defineCaller, getFolder } from "./commons.js";
-import uploadFile from "./uploadFile.js";
+import uploadFile from "../../helpers/uploadFile.js";
 
 const apiCaller = async (wordObj, lang, dataCaller, process) => {
   const voice = lang === "Us" ? "brian" : "nova";

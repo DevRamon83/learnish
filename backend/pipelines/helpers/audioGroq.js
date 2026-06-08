@@ -1,6 +1,6 @@
 import Groq from "groq-sdk";
 import { audioDefiner, getFolder } from "./commons.js";
-import uploadFile from "./uploadFile.js";
+import uploadFile from "../../helpers/uploadFile.js";
 
 const updateSchema = async (dataUpdate) => {
   const { newWord, fileName, bucket, folder, naming, lang } = dataUpdate;

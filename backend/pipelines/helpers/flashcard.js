@@ -5,7 +5,7 @@ import {
   pollinationsImgPrompt,
 } from "../../ai/prompt/prompt.js";
 import { defineCaller } from "./commons.js";
-import uploadFile from "./uploadFile.js";
+import uploadFile from "../../helpers/uploadFile.js";
 
 const flashcardContent = `Context: Act as a gatekeeper agent for a secondary text-to-image AI that struggles to convert words into guessable images. Select only words that are easy, concrete, and immediate to convert.`;
 

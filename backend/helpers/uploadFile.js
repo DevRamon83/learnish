@@ -11,6 +11,7 @@ const uploadFile = async (data) => {
       Authorization: `Bearer ${API_KEY}`,
       apikey: API_KEY,
       "Content-Type": type,
+      "x-upsert": "true",
     },
     body: buffer,
   });
