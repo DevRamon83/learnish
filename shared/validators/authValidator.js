@@ -7,7 +7,7 @@ import {
   currentPrivacy,
   currentTos,
   userType,
-  plan,
+  plans,
 } from "../constants/atomicConstants.js";
 
 const errorTracker = (obj, key, error) => {
@@ -69,7 +69,7 @@ const giveMeValue2 = (data, key) => {
     case "userType":
       return userType;
     case "plan":
-      return plan;
+      return plans;
     default:
       return null;
   }

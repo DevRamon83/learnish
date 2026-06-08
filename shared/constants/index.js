@@ -3,9 +3,10 @@ import {
   currentPrivacy,
   currentTos,
   langsArray,
-  plan,
+  plans,
   dashboardStudentsTabs,
   dashboardTeachersTabs,
+  supportedLangs,
 } from "./atomicConstants.js";
 
 const constants = {
@@ -13,9 +14,10 @@ const constants = {
   currentTos,
   userType,
   langsArray,
-  plan,
+  plans,
   dashboardStudentsTabs,
   dashboardTeachersTabs,
+  supportedLangs,
 };
 
 export default constants;
