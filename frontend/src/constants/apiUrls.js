@@ -29,4 +29,8 @@ export const API_URLS = {
     lessons: "/unlockedLessons",
     unlock: "/unlockLesson",
   },
+  update: {
+    base: "/update",
+    profilePic: "/profilePic",
+  },
 };
