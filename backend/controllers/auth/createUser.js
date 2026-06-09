@@ -9,7 +9,6 @@ import lessonModel from "../../models/trackers/lessonsTracker.js";
 const createUser = async (req, res) => {
   try {
     const data = req.body;
-    console.log(data);
     const keys = ["username", "email"];
     const areUnique = await isUnique(userModel, keys, data);
 
