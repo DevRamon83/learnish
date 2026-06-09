@@ -3,6 +3,8 @@ import protectedRoutes from "../middlewares/protectedRoutes.js";
 import prepareProfilePic from "../middlewares/update/prepareProfilePic.js";
 import parseProfilePic from "../middlewares/update/parseProfilePic.js";
 import saveProfilePic from "../controllers/update/saveProfilePic.js";
+import settingsValidator from "../middlewares/update/settingsValidator.js";
+import saveSettings from "../controllers/update/saveSettings.js";
 
 const updateRoute = express.Router();
 
@@ -12,6 +14,13 @@ updateRoute.post(
   parseProfilePic,
   prepareProfilePic,
   saveProfilePic,
+);
+
+updateRoute.post(
+  "/settings",
+  ...protectedRoutes,
+  settingsValidator,
+  saveSettings,
 );
 
 export default updateRoute;
