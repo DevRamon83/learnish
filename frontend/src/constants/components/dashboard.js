@@ -121,3 +121,6 @@ export const bars = ["draft", "correction", "stats"];
 
 export const cardBaseURL =
   "https://hiyapbiaalaccnrtetxg.supabase.co/storage/v1/object/public/flashcards/";
+
+export const userBaseURL =
+  "https://hiyapbiaalaccnrtetxg.supabase.co/storage/v1/object/public/";
