@@ -35,7 +35,9 @@ const login = async (req, res) => {
       id: user._id,
       plan: user.plan,
       type: user.userType,
+      pic: user.profilePic,
     };
+
     const { accessConfig, refreshConfig } = createTokenConfigs(configData);
 
     await setTokenAndCookie(res, accessConfig);
