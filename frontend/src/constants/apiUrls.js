@@ -32,5 +32,6 @@ export const API_URLS = {
   update: {
     base: "/update",
     profilePic: "/profilePic",
+    settings: "/settings",
   },
 };
