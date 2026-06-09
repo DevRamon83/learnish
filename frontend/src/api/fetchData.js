@@ -6,15 +6,23 @@ export const fetchData = async (
   options = {},
 ) => {
   const dataBody = myData !== undefined ? { ...myData } : {};
+  const isFormData = myData instanceof FormData;
+  let body = method !== "GET" ? JSON.stringify(dataBody) : null;
+
+  if (isFormData) {
+    body = myData;
+  }
 
   try {
     const response = await fetch(apiUrl, {
       method,
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: isFormData
+        ? undefined
+        : {
+            "Content-Type": "application/json",
+          },
       credentials,
-      body: method !== "GET" ? JSON.stringify(dataBody) : null,
+      body,
       ...options,
     });
 
