@@ -1,0 +1,15 @@
+import { userBaseURL } from "../constants/components/dashboard";
+
+const getPicUrl = (user) => {
+  if (!user.pic) {
+    return `${userBaseURL}profilePic/noPic.jpeg`;
+  }
+
+  const now = Date.now();
+
+  if (user.pic.storage === "supabase") {
+    return `${userBaseURL}${user.pic.bucketImg}/profilePics/${user.pic.fileName}?t=${now}`;
+  }
+};
+
+export default getPicUrl;
