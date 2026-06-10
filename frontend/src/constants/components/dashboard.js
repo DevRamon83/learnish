@@ -92,6 +92,15 @@ export const classes = {
     helpBtn: "flashcard__helpBtn",
     helpless: "flashcard__helpBtn-end",
   },
+  settings: {
+    btnFetch: "settings__button-fetch",
+    btnChange: "settings__button-change",
+    btnClose: "settings__button-close",
+    dataContainer: "settings__data-container",
+    container: "settings__container",
+    pswContainer: "settings__container-psw",
+    form: "settings__form",
+  },
   study: {
     menu: "dashboard__studyMenu",
     activeTab: "dashboard__studyMenu-tabActive",
