@@ -13,6 +13,7 @@ import verifyUser from "../controllers/auth/verifyUser.js";
 import forgottenPsw from "../controllers/auth/forgottenPsw.js";
 import newPassword from "../controllers/auth/newPassword.js";
 import validPsw from "../middlewares/auth/validPsw.js";
+import retrieve from "../controllers/auth/retrieve.js";
 
 const authRoute = express.Router();
 
@@ -24,5 +25,6 @@ authRoute.post("/unique", dataStandard, uniqueValidator, unique);
 authRoute.get("/verify/:token", verifyUser);
 authRoute.post("/newPassword/:token", validPsw, newPassword);
 authRoute.post("/forgotten", forgottenPsw);
+authRoute.post("/retrieve", dataStandard, tokensValidator, retrieve);
 
 export default authRoute;
