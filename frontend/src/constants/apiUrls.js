@@ -10,6 +10,7 @@ export const API_URLS = {
     verify: "/verify/",
     forgotten: "/forgotten",
     newPsw: "/newPassword/",
+    retrieve: "/retrieve",
   },
   dashboard: {
     base: "/dashboard",
