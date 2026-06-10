@@ -1,12 +1,14 @@
 import bundle from "shared";
 import handleErrorResponse from "../../helpers/handleErrorResponse.js";
 const { plans } = bundle.constants;
+const { emailValidator, passwordValidator } = bundle;
 
 const dispatchValidator = (fieldName, data) => {
   switch (fieldName) {
     case "plan":
       return plans.includes(data[fieldName]);
-
+    case "email":
+      return emailValidator(data[fieldName]);
     default:
       return false;
   }
