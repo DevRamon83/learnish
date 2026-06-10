@@ -1,0 +1,12 @@
+{
+  "labels": {
+    "password": "La tua vecchia password",
+    "newPassword": "La tua nuova password",
+    "confirmNewPassword": "Conferma la tua nuova password"
+  },
+  "placeholders": {
+    "password": "M1aPassw0rd?",
+    "newPassword": "M1aPassw0rd?",
+    "confirmNewPassword": "M1aPassw0rd?"
+  }
+}
