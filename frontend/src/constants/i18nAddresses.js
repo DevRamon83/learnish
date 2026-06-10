@@ -12,4 +12,5 @@ export const i18nAddresses = {
   home: "pages.homepage",
   englishLessons: "lessons.englishLessons",
   flashcards: "components.flashcards",
+  settings: "components.settings",
 };
