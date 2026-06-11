@@ -2,7 +2,7 @@ import { userBaseURL } from "../constants/components/dashboard";
 
 const getPicUrl = (user) => {
   if (!user.pic) {
-    return `${userBaseURL}profilePic/noPic.jpeg`;
+    return `/noPic.svg`;
   }
 
   const now = Date.now();
