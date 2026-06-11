@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import SettingsBtn from "../../../ui/buttons/SettingsBtn";
 import { classes } from "../../../constants/components/dashboard";
 import CloseSettingsBtn from "../../../ui/buttons/CloseSettingsBtn";
 import SettingsDataContainer from "../../../ui/SettingsDataContainer";
-import fetchSettings from "../../../api/handlers/fetchSettings";
 import useRetrievePersonalSettings from "../../../hooks/useRetrievePersonalSettings";
 import bundle from "shared";
 import { validateText } from "./validators";
