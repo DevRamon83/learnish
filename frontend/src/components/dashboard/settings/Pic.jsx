@@ -7,7 +7,7 @@ import CloseSettingsBtn from "../../../ui/buttons/CloseSettingsBtn";
 import SettingsDataContainer from "../../../ui/SettingsDataContainer";
 import { validatePic } from "./validators";
 
-export default function Pic({ user }) {
+export default function Pic({ user, strings }) {
   const [changePic, setChangePic] = useState(false);
   const [pic, setPic] = useState({
     url: getPicUrl(user),
