@@ -8,5 +8,8 @@
     "password": "M1aPassw0rd?",
     "newPassword": "M1aPassw0rd?",
     "confirmNewPassword": "M1aPassw0rd?"
+  },
+  "change": {
+    "teacher": "Scegli il tuo insegnante"
   }
 }
