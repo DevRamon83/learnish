@@ -3,12 +3,31 @@ import handleErrorResponse from "../../helpers/handleErrorResponse.js";
 const { plans } = bundle.constants;
 const { emailValidator, passwordValidator } = bundle;
 
+const newPasswordValidator = (data) => {
+  const keys = Object.keys(data);
+  let isValid = true;
+  if (keys.length !== 3) return false;
+
+  keys.forEach((key) => {
+    const isValidPsw = passwordValidator(data[key]);
+    isValid = isValidPsw.error ? false : isValid;
+  });
+
+  if (data.newPassword.trim() !== data.confirmNewPassword.trim()) {
+    isValid = false;
+  }
+
+  return isValid;
+};
+
 const dispatchValidator = (fieldName, data) => {
   switch (fieldName) {
     case "plan":
       return plans.includes(data[fieldName]);
     case "email":
       return emailValidator(data[fieldName]);
+    case "password":
+      return newPasswordValidator(data);
     default:
       return false;
   }
@@ -27,7 +46,10 @@ const settingsValidator = async (req, res, next) => {
   const fieldArray = Object.keys(data);
   const fieldName = fieldArray[0];
 
-  if (fieldArray.length !== 1) return stopIt(req, res, fieldName);
+  if (fieldArray.length !== 1 && fieldName !== "password") {
+    return stopIt(req, res, fieldName);
+  }
+
   const isValid = dispatchValidator(fieldName, data);
 
   if (!isValid) return stopIt(req, res, fieldName);
