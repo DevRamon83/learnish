@@ -20,6 +20,7 @@ export const API_URLS = {
     stats: "/newStat",
     allStats: "/getStats",
     flashcards: "/flashcards",
+    teachers: "/teachers",
   },
   messages: {
     base: "/messages",
@@ -34,5 +35,6 @@ export const API_URLS = {
     base: "/update",
     profilePic: "/profilePic",
     settings: "/settings",
+    password: "/newPassword",
   },
 };
