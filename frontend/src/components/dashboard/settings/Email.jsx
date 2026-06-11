@@ -9,13 +9,14 @@ import { validateText } from "./validators";
 import fetchUpdateSettings from "../../../api/handlers/fetchUpdateSettings";
 const { emailValidator } = bundle;
 
-export default function Email() {
+export default function Email({ strings }) {
   const [changeEmail, setChangeEmail] = useState(false);
   const [userEmail, setUserEmail] = useState("");
   const retrieveConfig = {
     data: { retrieve: "email" },
     setter: setUserEmail,
     key: "email",
+    strings,
   };
   useRetrievePersonalSettings(retrieveConfig);
 
