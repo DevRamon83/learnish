@@ -9,7 +9,8 @@ const retrieve = async (req, res) => {
     const userID = req.context.auth.id;
 
     const datum = await userModel.findById(userID).select(data.retrieve);
-    if (!datum) {
+
+    if (!datum[data.retrieve] && data.retrieve !== "teacher") {
       return handleErrorResponse(res, req, "invalid retrieve", 400, log, ban);
     }
 
