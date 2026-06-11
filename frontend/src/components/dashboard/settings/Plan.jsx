@@ -8,7 +8,7 @@ import CloseSettingsBtn from "../../../ui/buttons/CloseSettingsBtn";
 import SettingsDataContainer from "../../../ui/SettingsDataContainer";
 import { validatePlan } from "./validators";
 
-export default function Plan({ user }) {
+export default function Plan({ user, strings }) {
   const [changePlan, setChangePlan] = useState(false);
 
   const dispatch = useDispatch();
