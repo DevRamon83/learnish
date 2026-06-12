@@ -127,7 +127,11 @@ form {
   @extend %select;
 }
 
-.form__signup {
+#currency {
+  @extend %select;
+}
+
+%form__base {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -143,6 +147,14 @@ form {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     padding-bottom: 2vh;
   }
+}
+
+.form__signup {
+  @extend %form__base;
+}
+
+.form__contract {
+  @extend %form__base;
 }
 
 .form__login {

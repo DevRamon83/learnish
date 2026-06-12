@@ -1,0 +1,107 @@
+@use "../variables/colors";
+@use "../breakpoints";
+@use "../base/buttons";
+
+.settings__container {
+  position: relative;
+  width: 200px;
+  height: 200px;
+}
+
+.settings__container-psw {
+  position: relative;
+  width: 400px;
+  height: 400px;
+}
+
+.settings__data-container {
+  height: inherit;
+  width: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #000;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.settings__data-container > img {
+  height: 200px;
+  width: auto;
+}
+
+%settings__button {
+  border: 1px solid #000;
+  border-radius: 50%;
+  background-color: white;
+  padding: 15px;
+  width: 20px;
+  height: 20px;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  position: absolute;
+  bottom: 20px;
+  right: 10px;
+}
+
+.settings__button-change {
+  @extend %settings__button;
+  background-image: url("/change.svg");
+}
+
+.settings__button-fetch {
+  @extend %settings__button;
+  background-image: url("/save.svg");
+}
+
+.settings__form {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  background-color: black;
+  opacity: 0.9;
+  border-radius: 50%;
+}
+
+.settings__button-close {
+  @extend %settings__button;
+  right: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.settings__button-close > img {
+  width: 20px;
+  height: 20px;
+}
+
+#profilePic {
+  color: transparent;
+}
+
+#profilePic::file-selector-button {
+  background-color: #f7f8fa;
+  border: 1px solid darkgray;
+  color: #000;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  border-radius: 4px 50% 50% 4px;
+  cursor: pointer;
+}
+
+.settings__teachersList {
+  position: fixed;
+  left: 10%;
+  top: 60px;
+  bottom: 0px;
+  width: 90%;
+  background-color: white;
+  opacity: 1;
+}
