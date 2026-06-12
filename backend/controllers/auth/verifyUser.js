@@ -43,7 +43,12 @@ const verifyUser = async (req, res) => {
 
     await setTokenAndCookie(res, refreshConfig);
 
-    const response = { error: false, username: user.username, id: user._id };
+    const response = {
+      error: false,
+      username: user.username,
+      id: user._id,
+      type: user.userType,
+    };
 
     res.status(200).json(response);
   } catch (err) {
