@@ -11,3 +11,5 @@ export const dashboardTeachersTabs = [
   "logout",
 ];
 export const supportedLangs = ["us", "en"];
+export const currency = ["dollar", "euro"];
+export const subscription = ["monthly", "semiannually", "annually"];
