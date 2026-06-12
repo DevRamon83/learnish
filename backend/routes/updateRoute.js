@@ -6,6 +6,7 @@ import saveProfilePic from "../controllers/update/saveProfilePic.js";
 import settingsValidator from "../middlewares/update/settingsValidator.js";
 import saveSettings from "../controllers/update/saveSettings.js";
 import saveNewPassword from "../controllers/update/saveNewPassword.js";
+import saveDataContract from "../controllers/update/saveDataContract.js";
 
 const updateRoute = express.Router();
 
@@ -29,6 +30,13 @@ updateRoute.post(
   ...protectedRoutes,
   settingsValidator,
   saveNewPassword,
+);
+
+updateRoute.post(
+  "/dataContract",
+  ...protectedRoutes,
+  settingsValidator,
+  saveDataContract,
 );
 
 export default updateRoute;
