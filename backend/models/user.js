@@ -52,19 +52,40 @@ const Student = userModel.discriminator(
   }),
 );
 
+const productSchema = new Schema(
+  {
+    available: { type: Boolean, required: true, default: false },
+    single: { type: Number },
+    fivePack: { type: Number },
+    tenPack: { type: Number },
+  },
+  { _id: false },
+);
+
 const Teacher = userModel.discriminator(
   "teacher",
   new Schema({
-    freeTrial: { type: Boolean, required: true, default: true },
     taughtLang: { type: String, enum: ["us", "en"] },
     students: [{ type: Schema.Types.ObjectId }],
-    contacts: {
-      twitter: { type: String },
-      instagram: { type: String },
-      facebook: { type: String },
-      whatsapp: { type: String },
-      email: { type: String },
-      skype: { type: String },
+    currency: {
+      type: String,
+      enum: ["dollar", "euro"],
+      required: true,
+      default: "euro",
+    },
+    contract: {
+      isComplete: { type: Boolean, required: true, default: false },
+      subscription: {
+        monthly: { type: Number },
+        semiannually: { type: Number },
+        annually: { type: Number },
+      },
+      tutoring: productSchema,
+      speaking: productSchema,
+      qNa: {
+        available: { type: Boolean, required: true, default: false },
+        price: { type: Number },
+      },
     },
   }),
 );
