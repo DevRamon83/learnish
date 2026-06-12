@@ -1,6 +1,7 @@
 const successHandler = (resp, data, setError) => {
   const { dispatch, navigate, setUser, setAuth } = data;
   const { response } = resp;
+  console.log(response);
   setError(null);
   dispatch(setUser(response));
   dispatch(setAuth("authenticated"));
@@ -8,8 +9,10 @@ const successHandler = (resp, data, setError) => {
 };
 
 const finalizeAuth = (response, data, setError) => {
+  const { errorStrings } = data;
+
   if (response.error) {
-    setError(strings[response.errorMessage]);
+    setError(errorStrings.strings[response.errorMessage]);
   } else {
     successHandler(response, data, setError);
   }
