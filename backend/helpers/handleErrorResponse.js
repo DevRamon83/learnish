@@ -2,8 +2,9 @@ import banUser from "../services/banUser.js";
 import logWriter from "../services/logWriter.js";
 
 const logData = (req, message, userBan) => {
+  const user = req.context?.auth?.id || null;
   return {
-    username: userBan ? userBan : null,
+    userID: userBan ? user : null,
     method: req.method,
     ip: req.ip,
     url: req.originalUrl,
@@ -15,13 +16,13 @@ const logData = (req, message, userBan) => {
 const handleErrorResponse = (res, req, message, status, log, userBan) => {
   const ensureMessage = log ? "error_fakeMsg" : message;
   res.status(status).json({ error: true, message: ensureMessage });
+  const data = logData(req, message, userBan);
   if (log) {
-    const data = logData(req, message, userBan);
     logWriter(data);
   }
 
   if (userBan) {
-    banUser(userBan, req);
+    banUser(req, data);
   }
 };
 
