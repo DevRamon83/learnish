@@ -1,6 +1,6 @@
 import bundle from "shared";
 import handleErrorResponse from "../../helpers/handleErrorResponse.js";
-const { plans } = bundle.constants;
+const { plans, currency, subscription } = bundle.constants;
 const { emailValidator, passwordValidator } = bundle;
 
 const newPasswordValidator = (data) => {
@@ -20,6 +20,21 @@ const newPasswordValidator = (data) => {
   return isValid;
 };
 
+const validateSubscription = (data) => {
+  const keys = Object.keys(data.subscription);
+  if (JSON.stringify(keys) !== JSON.stringify(subscription)) {
+    return false;
+  }
+
+  const areAllNum = keys.every(
+    (key) =>
+      !isNaN(parseInt(data.subscription[key])) &&
+      data.subscription[key].trim() !== "",
+  );
+
+  return areAllNum;
+};
+
 const dispatchValidator = (fieldName, data) => {
   switch (fieldName) {
     case "plan":
@@ -28,6 +43,10 @@ const dispatchValidator = (fieldName, data) => {
       return emailValidator(data[fieldName]);
     case "password":
       return newPasswordValidator(data);
+    case "currency":
+      return currency.includes(data[fieldName]);
+    case "subscription":
+      return validateSubscription(data);
     default:
       return false;
   }
@@ -42,11 +61,12 @@ const stopIt = (req, res, fieldName = "payload structure") => {
 
 const settingsValidator = async (req, res, next) => {
   const data = req.body;
+  const path = req.path;
 
   const fieldArray = Object.keys(data);
   const fieldName = fieldArray[0];
 
-  if (fieldArray.length !== 1 && fieldName !== "password") {
+  if (fieldArray.length !== 1 && path !== "/settings") {
     return stopIt(req, res, fieldName);
   }
 
