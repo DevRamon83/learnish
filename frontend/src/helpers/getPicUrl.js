@@ -1,7 +1,7 @@
 import { userBaseURL } from "../constants/components/dashboard";
 
 const getPicUrl = (user) => {
-  if (!user.pic) {
+  if (!user.pic || Object.keys(user.pic).length === 0) {
     return `/noPic.svg`;
   }
 
