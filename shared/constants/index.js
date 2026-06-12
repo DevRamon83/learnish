@@ -7,6 +7,8 @@ import {
   dashboardStudentsTabs,
   dashboardTeachersTabs,
   supportedLangs,
+  currency,
+  subscription,
 } from "./atomicConstants.js";
 
 const constants = {
@@ -18,6 +20,8 @@ const constants = {
   dashboardStudentsTabs,
   dashboardTeachersTabs,
   supportedLangs,
+  currency,
+  subscription,
 };
 
 export default constants;
