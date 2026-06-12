@@ -21,7 +21,7 @@ const check = async (req, res) => {
       id: payload.id,
       plan: payload.plan,
       type: payload.type,
-      pic: user.profilePic,
+      pic: user?.profilePic,
     };
 
     return res.status(200).json(response);
