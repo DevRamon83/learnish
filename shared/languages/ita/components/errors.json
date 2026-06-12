@@ -34,5 +34,6 @@
   "invalidPlan": "Per sbloccare questa lezione devi eseguire l'upgrade del tuo account",
   "notVerified": "Verifica la tua mail per attivare l'account",
   "user404": "L'account con cui tenti di accedere non esiste",
-  "invalidPsw": "Credenziali invalide"
+  "invalidPsw": "Credenziali invalide",
+  "error_fakeMsg": "Il tuo account è disabilitato, contatta l'assistenza"
 }
