@@ -2,14 +2,23 @@
   "labels": {
     "password": "La tua vecchia password",
     "newPassword": "La tua nuova password",
-    "confirmNewPassword": "Conferma la tua nuova password"
+    "confirmNewPassword": "Conferma la tua nuova password",
+    "monthly": "Costo mensile",
+    "semiannually": "Costo semestrale",
+    "annually": "Costo annuale"
   },
   "placeholders": {
     "password": "M1aPassw0rd?",
     "newPassword": "M1aPassw0rd?",
-    "confirmNewPassword": "M1aPassw0rd?"
+    "confirmNewPassword": "M1aPassw0rd?",
+    "monthly": "15",
+    "semiannually": "70",
+    "annually": "120"
   },
   "change": {
-    "teacher": "Scegli il tuo insegnante"
-  }
+    "teacher": "Scegli il tuo insegnante",
+    "currency": "In che valuta vuoi essere pagato?"
+  },
+  "send": "salva",
+  "subscription": "Costo della sottoscrizione"
 }
