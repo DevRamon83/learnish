@@ -36,5 +36,6 @@ export const API_URLS = {
     profilePic: "/profilePic",
     settings: "/settings",
     password: "/newPassword",
+    contract: "/dataContract",
   },
 };
