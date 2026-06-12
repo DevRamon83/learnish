@@ -23,14 +23,14 @@ const message = {
   counterLabel: null,
 };
 
-const loginElements = [email, message];
+const dataMsg = [email, message];
 
 const contactConfigBuilder = (strings) => {
-  syncLang(loginElements, strings);
+  syncLang(dataMsg, strings);
   message.counterLabel = strings.message.counterLabel;
 
   return {
-    configArray: loginElements,
+    configArray: dataMsg,
     isAsync: false,
     i18n: true,
   };
