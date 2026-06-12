@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const LogSchema = new Schema(
   {
-    username: { type: String },
+    userID: { type: String },
     ip: { type: String },
     method: { type: String },
     url: { type: String },
