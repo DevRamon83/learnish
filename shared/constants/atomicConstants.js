@@ -13,3 +13,6 @@ export const dashboardTeachersTabs = [
 export const supportedLangs = ["us", "en"];
 export const currency = ["dollar", "euro"];
 export const subscription = ["monthly", "semiannually", "annually"];
+export const tutoring = ["single", "fivePack", "tenPack"];
+export const speaking = ["single", "fivePack", "tenPack"];
+export const qNa = ["price"];
