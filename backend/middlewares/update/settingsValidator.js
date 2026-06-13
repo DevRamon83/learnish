@@ -1,6 +1,6 @@
 import bundle from "shared";
 import handleErrorResponse from "../../helpers/handleErrorResponse.js";
-const { plans, currency, subscription } = bundle.constants;
+const { plans, currency } = bundle.constants;
 const { emailValidator, passwordValidator } = bundle;
 
 const newPasswordValidator = (data) => {
@@ -20,16 +20,17 @@ const newPasswordValidator = (data) => {
   return isValid;
 };
 
-const validateSubscription = (data) => {
-  const keys = Object.keys(data.subscription);
-  if (JSON.stringify(keys) !== JSON.stringify(subscription)) {
+const validateNumericFields = (data, fieldName) => {
+  const checkArray = bundle.constants[fieldName];
+  const keys = Object.keys(data[fieldName]);
+  if (JSON.stringify(keys) !== JSON.stringify(checkArray)) {
     return false;
   }
 
   const areAllNum = keys.every(
     (key) =>
-      !isNaN(parseInt(data.subscription[key])) &&
-      data.subscription[key].trim() !== "",
+      !isNaN(parseInt(data[fieldName][key])) &&
+      data[fieldName][key].trim() !== "",
   );
 
   return areAllNum;
@@ -46,7 +47,13 @@ const dispatchValidator = (fieldName, data) => {
     case "currency":
       return currency.includes(data[fieldName]);
     case "subscription":
-      return validateSubscription(data);
+      return validateNumericFields(data, fieldName);
+    case "tutoring":
+      return validateNumericFields(data, fieldName);
+    case "speaking":
+      return validateNumericFields(data, fieldName);
+    case "qNa":
+      return validateNumericFields(data, fieldName);
     default:
       return false;
   }
