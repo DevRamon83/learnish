@@ -4,6 +4,7 @@ import useLogout from "../hooks/useLogout";
 import DashboardMenu from "../components/dashboard/DashboardMenu";
 import { classes } from "../constants/components/dashboard";
 import YourStudents from "../components/dashboard/YourStudents";
+import Settings from "../components/dashboard/Settings";
 const { dashboardTeachersTabs } = bundle.constants;
 
 export default function TeachersDashboard() {
@@ -20,6 +21,9 @@ export default function TeachersDashboard() {
         />
         <div className={classes.core}>
           {currentTab === "students" && <YourStudents />}
+        </div>
+        <div className={classes.core}>
+          {currentTab === "settings" && <Settings userType="teacher" />}
         </div>
       </main>
     </>
