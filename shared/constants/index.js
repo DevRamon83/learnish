@@ -9,6 +9,9 @@ import {
   supportedLangs,
   currency,
   subscription,
+  tutoring,
+  speaking,
+  qNa,
 } from "./atomicConstants.js";
 
 const constants = {
@@ -22,6 +25,9 @@ const constants = {
   supportedLangs,
   currency,
   subscription,
+  tutoring,
+  speaking,
+  qNa,
 };
 
 export default constants;
