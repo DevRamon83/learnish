@@ -31,5 +31,12 @@
   "subscription": "Costo della sottoscrizione",
   "tutoring": "Attiva il servizio tutor e definisci i costi per ogni sessione di studio",
   "speaking": "Attiva il servizio di speaking e definisci il costo delle sessioni",
-  "qNa": "Attiva il servizio Q&A e definisci il costo per ogni risposta"
+  "qNa": "Attiva il servizio Q&A e definisci il costo per ogni risposta",
+  "available": "Il servizio è attivo",
+  "unavailable": "Il servizio non è attivo",
+  "contract": {
+    "subscription": "Prospetto dei costi di sottoscrizione",
+    "tutoring": "Prospetto dei costi per le sessioni di tutoring",
+    "speaking": "Prospetto dei costi per le sessioni di speaking"
+  }
 }
