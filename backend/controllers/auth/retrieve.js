@@ -3,7 +3,6 @@ import { userModel } from "../../models/user.js";
 
 const retrieve = async (req, res) => {
   const log = true;
-  const ban = true;
   try {
     const data = req.body;
     const userID = req.context.auth.id;
