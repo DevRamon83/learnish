@@ -16,3 +16,4 @@ export const subscription = ["monthly", "semiannually", "annually"];
 export const tutoring = ["single", "fivePack", "tenPack"];
 export const speaking = ["single", "fivePack", "tenPack"];
 export const qNa = ["price"];
+export const currencyMap = { dollar: "$", euro: "€" };

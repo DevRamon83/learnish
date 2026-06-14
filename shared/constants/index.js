@@ -12,6 +12,7 @@ import {
   tutoring,
   speaking,
   qNa,
+  currencyMap,
 } from "./atomicConstants.js";
 
 const constants = {
@@ -28,6 +29,7 @@ const constants = {
   tutoring,
   speaking,
   qNa,
+  currencyMap,
 };
 
 export default constants;
