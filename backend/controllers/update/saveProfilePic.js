@@ -24,7 +24,7 @@ const saveProfilePic = async (req, res) => {
       return handleErrorResponse(res, req, upload.error, 500, log);
     }
 
-    await userModel.findOneAndUpdate(
+    const user = await userModel.findOneAndUpdate(
       { _id: req.context.auth.id },
       {
         $set: {
@@ -35,7 +35,13 @@ const saveProfilePic = async (req, res) => {
       },
     );
 
-    return res.status(200).json({ error: false, picName: fileData.name });
+    const pic = {
+      storage: "supabase",
+      bucketImg: "users",
+      fileName: fileData.name,
+    };
+
+    return res.status(200).json({ error: false, pic });
   } catch (err) {
     console.error("Error in saveProfilePic:", err);
     return handleErrorResponse(res, req, err.message, 500, log);
