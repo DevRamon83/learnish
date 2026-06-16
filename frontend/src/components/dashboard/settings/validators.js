@@ -1,26 +1,7 @@
 import bundle from "shared";
 const { passwordValidator } = bundle;
 
-export const validateText = (data) => {
-  const keys = Object.keys(data);
-  if (keys.length !== 1) {
-    return { error: true, errorMsg: "invalidText" };
-  }
-
-  if (data[keys].trim() === "") {
-    return { error: true, errorMsg: "invalidText" };
-  }
-
-  return { error: false };
-};
-
 export const validatePlan = (data, user) => {
-  const isValidText = validateText(data);
-
-  if (isValidText.error) {
-    return { error: true, errorMsg: isValidText.errorMsg };
-  }
-
   if (data.plan === user.plan) {
     return { error: true, errorMsg: "equal" };
   }
