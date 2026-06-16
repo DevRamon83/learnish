@@ -13,6 +13,8 @@ import {
   speaking,
   qNa,
   currencyMap,
+  passwordKeys,
+  contracts,
 } from "./atomicConstants.js";
 
 const constants = {
@@ -30,6 +32,8 @@ const constants = {
   speaking,
   qNa,
   currencyMap,
+  passwordKeys,
+  contracts,
 };
 
 export default constants;
