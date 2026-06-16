@@ -1,6 +1,8 @@
 import createTokenConfigs from "../../helpers/token/createTokenConfigs.js";
 import setTokenAndCookie from "../../helpers/token/setTokenAndCookie.js";
 import { userModel } from "../../models/user.js";
+import bundle from "shared";
+const { contracts } = bundle.constants;
 
 const saveSettings = async (req, res) => {
   try {
@@ -11,7 +13,13 @@ const saveSettings = async (req, res) => {
     const fieldArray = Object.keys(data);
     const fieldName = fieldArray[0];
 
-    user[fieldName] = data[fieldName];
+    if (contracts.includes(fieldName)) {
+      const key = Object.keys(data[fieldName]);
+      user.contract[fieldName][key] = data[fieldName][key];
+    } else {
+      user[fieldName] = data[fieldName];
+    }
+
     await user.save();
 
     // Rotate cookies to reflect the updated plan in the JWT payload
