@@ -1,12 +1,23 @@
 import bundle from "shared";
 import handleErrorResponse from "../../helpers/handleErrorResponse.js";
-const { plans, currency } = bundle.constants;
+const { plans, currency, passwordKeys } = bundle.constants;
 const { emailValidator, passwordValidator } = bundle;
+
+const keyChecker = (array, checkArray) => {
+  let isValid = true;
+
+  if (array.length === 1) {
+    isValid = checkArray.includes(array[0]);
+  } else {
+    isValid = JSON.stringify(array) === JSON.stringify(checkArray);
+  }
+
+  return isValid;
+};
 
 const newPasswordValidator = (data) => {
   const keys = Object.keys(data);
-  let isValid = true;
-  if (keys.length !== 3) return false;
+  isValid = keyChecker(keys, passwordKeys);
 
   keys.forEach((key) => {
     const isValidPsw = passwordValidator(data[key]);
@@ -21,19 +32,18 @@ const newPasswordValidator = (data) => {
 };
 
 const validateNumericFields = (data, fieldName) => {
-  const checkArray = bundle.constants[fieldName];
+  let isValid = true;
   const keys = Object.keys(data[fieldName]);
-  if (JSON.stringify(keys) !== JSON.stringify(checkArray)) {
-    return false;
+
+  isValid = keyChecker(keys, bundle.constants[fieldName]);
+
+  for (let key in data[fieldName]) {
+    const type = typeof data[fieldName][key];
+    isValid = isValid ? type === "number" : isValid;
+    isValid = isValid ? data[fieldName][key] !== 0 : isValid;
   }
 
-  const areAllNum = keys.every(
-    (key) =>
-      !isNaN(parseInt(data[fieldName][key])) &&
-      data[fieldName][key].trim() !== "",
-  );
-
-  return areAllNum;
+  return isValid;
 };
 
 const dispatchValidator = (fieldName, data) => {
@@ -47,11 +57,8 @@ const dispatchValidator = (fieldName, data) => {
     case "currency":
       return currency.includes(data[fieldName]);
     case "subscription":
-      return validateNumericFields(data, fieldName);
     case "tutoring":
-      return validateNumericFields(data, fieldName);
     case "speaking":
-      return validateNumericFields(data, fieldName);
     case "qNa":
       return validateNumericFields(data, fieldName);
     default:
@@ -71,6 +78,7 @@ const settingsValidator = async (req, res, next) => {
   const path = req.path;
 
   const fieldArray = Object.keys(data);
+
   const fieldName = fieldArray[0];
 
   if (fieldArray.length !== 1 && path !== "/settings") {
