@@ -18,7 +18,7 @@ const saveDataContract = async (req, res) => {
       user.contract[fieldName].available = true;
     }
 
-    if (fieldName === "qNa") {
+    if (fieldName === "subscription") {
       user.contract.isComplete = true;
     }
 
