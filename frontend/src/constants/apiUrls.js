@@ -37,5 +37,6 @@ export const API_URLS = {
     settings: "/settings",
     password: "/newPassword",
     contract: "/dataContract",
+    deactivate: "/deactivate",
   },
 };
