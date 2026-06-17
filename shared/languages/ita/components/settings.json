@@ -46,9 +46,11 @@
   "confirmDeactivate": "Confermi la disattivazione del servizio?",
   "deactivateBtn": "disattiva",
   "deactivateOk": "procedi",
+  "changePsw": "Cambia la tua password",
   "contract": {
     "subscription": "Prospetto dei costi di sottoscrizione",
     "tutoring": "Prospetto dei costi per le sessioni di tutoring",
-    "speaking": "Prospetto dei costi per le sessioni di speaking"
+    "speaking": "Prospetto dei costi per le sessioni di speaking",
+    "qNa": "Prospetto dei costi per le sessioni Q&A"
   }
 }
