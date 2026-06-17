@@ -61,6 +61,7 @@ export default function SignupForm() {
     }
 
     setSuccess(true);
+    console.log(response);
   };
 
   return (
