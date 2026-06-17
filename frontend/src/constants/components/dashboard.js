@@ -104,6 +104,13 @@ export const classes = {
     evenContainer: "settings__container-even",
     pswContainer: "settings__container-psw",
     form: "settings__form",
+    activate: "settings__activate",
+    deactivate: "settings__deactivate",
+    confirmTxt: "settings__confirmText",
+    confirmBtn: "settings__confirmDeactivation",
+    closeDeactivation: "settings__closeDeactivation",
+    main: "settings__main",
+    error: "settings__error",
   },
   study: {
     menu: "dashboard__studyMenu",
@@ -137,3 +144,22 @@ export const cardBaseURL =
 
 export const userBaseURL =
   "https://hiyapbiaalaccnrtetxg.supabase.co/storage/v1/object/public/";
+
+export const servicesMap = {
+  subscription: {
+    retriever: "contract.subscription",
+    type: "number",
+  },
+  tutoring: {
+    retriever: "contract.tutoring",
+    type: "number",
+  },
+  speaking: {
+    retriever: "contract.speaking",
+    type: "number",
+  },
+  qNa: {
+    retriever: "contract.qNa",
+    type: "number",
+  },
+};
