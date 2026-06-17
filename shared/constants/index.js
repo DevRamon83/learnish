@@ -15,6 +15,7 @@ import {
   currencyMap,
   passwordKeys,
   contracts,
+  packs,
 } from "./atomicConstants.js";
 
 const constants = {
@@ -34,6 +35,7 @@ const constants = {
   currencyMap,
   passwordKeys,
   contracts,
+  packs,
 };
 
 export default constants;
