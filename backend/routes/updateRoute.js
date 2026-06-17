@@ -7,6 +7,8 @@ import settingsValidator from "../middlewares/update/settingsValidator.js";
 import saveSettings from "../controllers/update/saveSettings.js";
 import saveNewPassword from "../controllers/update/saveNewPassword.js";
 import saveDataContract from "../controllers/update/saveDataContract.js";
+import deactivateValidator from "../middlewares/update/deactivateValidator.js";
+import deactivate from "../controllers/update/deactivate.js";
 
 const updateRoute = express.Router();
 
@@ -37,6 +39,13 @@ updateRoute.post(
   ...protectedRoutes,
   settingsValidator,
   saveDataContract,
+);
+
+updateRoute.post(
+  "/deactivate",
+  ...protectedRoutes,
+  deactivateValidator,
+  deactivate,
 );
 
 export default updateRoute;
