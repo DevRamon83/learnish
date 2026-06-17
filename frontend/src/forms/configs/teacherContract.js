@@ -6,6 +6,7 @@ const blueprint = {
   placeholder: null,
   label: null,
   required: true,
+  step: 0.01,
 };
 
 const configBasicArray = (array) => {
