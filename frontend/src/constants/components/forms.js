@@ -16,6 +16,8 @@ export const classes = {
     main: "contact__main",
   },
   signup: "form__signup",
+  contract: "form__contract",
   login: "form__login",
   errorContainer: "form__errorContainer",
+  priceDefiner: "form__priceDefiner",
 };
