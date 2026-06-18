@@ -19,12 +19,16 @@ export default function TeachersDashboard() {
           setCurrentTab={setCurrentTab}
           currentTab={currentTab}
         />
-        <div className={classes.core}>
-          {currentTab === "students" && <YourStudents />}
-        </div>
-        <div className={classes.core}>
-          {currentTab === "settings" && <Settings userType="teacher" />}
-        </div>
+        {currentTab === "students" && (
+          <div className={classes.core}>
+            <YourStudents />
+          </div>
+        )}
+        {currentTab === "settings" && (
+          <div className={classes.core}>
+            <Settings userType="teacher" />
+          </div>
+        )}
       </main>
     </>
   );
