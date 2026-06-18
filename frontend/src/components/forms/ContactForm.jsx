@@ -25,7 +25,7 @@ export default function ContactForm() {
 
   const validate = (data) => {
     const validMessage = messageValidator(data);
-    console.log(validMessage);
+
     if (validMessage.error) {
       setError(standardError);
       return false;

@@ -5,24 +5,28 @@ import { useRef, useState } from "react";
 import fetchUpdateContract from "../../api/handlers/fetchUpdateContract";
 import contractConfigBuilder from "../../forms/configs/teacherContract";
 
-export default function Subscription({
+export default function PriceDefiner({
   status,
   title,
   strings,
   lang,
   setStatus,
+  next,
+  packs,
+  caller,
 }) {
   const formRef = useRef(null);
+  const objConfig = contractConfigBuilder(strings, packs);
 
-  const inputIds = ["monthly", "semiannually", "annually"];
-  const objConfig = contractConfigBuilder(strings, inputIds);
-
-  const { fields, selects } = useRamonForm(objConfig);
-
+  const { fields } = useRamonForm(objConfig);
   const submitHandler = async (e) => {
     e.preventDefault();
     const formData = new FormData(formRef.current);
-    const data = { subscription: Object.fromEntries(formData.entries()) };
+    const data = { [status]: Object.fromEntries(formData) };
+
+    for (let datum in data[status]) {
+      data[status][datum] = Number(data[status][datum]);
+    }
 
     const update = await fetchUpdateContract(data);
 
@@ -30,7 +34,11 @@ export default function Subscription({
       return;
     }
 
-    setStatus("tutoring");
+    setStatus(next);
+  };
+
+  const jump = () => {
+    setStatus(next);
   };
 
   return (
@@ -40,25 +48,23 @@ export default function Subscription({
           <h1>{title}</h1>
           <form
             ref={formRef}
-            className={classes.signup}
+            className={classes.priceDefiner}
             onSubmit={submitHandler}
           >
-            <FormInput
-              Element={NumberInput}
-              data={fields.monthly}
-              lang={lang}
-            />
-            <FormInput
-              Element={NumberInput}
-              data={fields.semiannually}
-              lang={lang}
-            />
-            <FormInput
-              Element={NumberInput}
-              data={fields.annually}
-              lang={lang}
-            />
+            {packs.map((element) => (
+              <FormInput
+                key={`key_${element}`}
+                Element={NumberInput}
+                data={fields[element]}
+                lang={lang}
+              />
+            ))}
             <button className={classes.btn.send}>{strings.send}</button>
+            {status !== "subscription" && (
+              <button className={classes.btn.send} onClick={jump}>
+                {caller ? strings.close : strings.jump}
+              </button>
+            )}
           </form>
         </>
       )}
