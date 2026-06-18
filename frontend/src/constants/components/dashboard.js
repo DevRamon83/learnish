@@ -111,6 +111,10 @@ export const classes = {
     closeDeactivation: "settings__closeDeactivation",
     main: "settings__main",
     error: "settings__error",
+    contractContainer: "settings__contractContainer",
+    titleContainer: "settings__titleContainer",
+    priceContainer: "settings__priceContainer",
+    contractForm: "settings__contractForm",
   },
   study: {
     menu: "dashboard__studyMenu",
