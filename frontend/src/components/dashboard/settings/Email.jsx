@@ -1,15 +1,13 @@
 import { useState } from "react";
-import SettingsBtn from "../../../ui/buttons/SettingsBtn";
 import { classes } from "../../../constants/components/dashboard";
-import CloseSettingsBtn from "../../../ui/buttons/CloseSettingsBtn";
 import SettingsDataContainer from "../../../ui/SettingsDataContainer";
 import useRetrievePersonalSettings from "../../../hooks/useRetrievePersonalSettings";
 import bundle from "shared";
-import { validateText } from "./validators";
 import fetchUpdateSettings from "../../../api/handlers/fetchUpdateSettings";
+import SettingsButtonContainer from "../../../ui/buttons/SettingsButtonContainer";
 const { emailValidator } = bundle;
 
-export default function Email({ strings }) {
+export default function Email({ strings, setError }) {
   const [changeEmail, setChangeEmail] = useState(false);
   const [userEmail, setUserEmail] = useState("");
   const retrieveConfig = {
@@ -28,11 +26,6 @@ export default function Email({ strings }) {
     const formData = new FormData(e.currentTarget);
 
     const data = Object.fromEntries(formData.entries());
-    const isValidData = validateText(data);
-    if (isValidData.error) {
-      setChangeEmail(!changeEmail);
-      return;
-    }
 
     const isValid = emailValidator(data.email);
     if (isValid.error) {
@@ -49,11 +42,11 @@ export default function Email({ strings }) {
   };
 
   return (
-    <div className={classes.settings.container}>
+    <div className={classes.settings.evenContainer}>
       <SettingsDataContainer
         type={"text"}
         data={userEmail}
-        classes={classes.settings}
+        containerClass={classes.settings.evenData}
       />
 
       <form
@@ -63,12 +56,13 @@ export default function Email({ strings }) {
         {changeEmail && (
           <input type="text" id="email" name="email" placeholder={userEmail} />
         )}
-        <CloseSettingsBtn
+
+        <SettingsButtonContainer
+          toggle={changeEmail}
+          setToggle={setChangeEmail}
           classes={classes.settings}
-          state={changeEmail}
-          setter={setChangeEmail}
+          setError={setError}
         />
-        <SettingsBtn classes={classes.settings} state={changeEmail} />
       </form>
     </div>
   );

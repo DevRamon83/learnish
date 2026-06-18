@@ -3,15 +3,15 @@ import fetchUpdateSettings from "../../../api/handlers/fetchUpdateSettings";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../../redux/slices/authSlice";
 import { classes } from "../../../constants/components/dashboard";
-import SettingsBtn from "../../../ui/buttons/SettingsBtn";
-import CloseSettingsBtn from "../../../ui/buttons/CloseSettingsBtn";
 import SettingsDataContainer from "../../../ui/SettingsDataContainer";
 import { validatePlan } from "./validators";
+import SettingsButtonContainer from "../../../ui/buttons/SettingsButtonContainer";
 
-export default function Plan({ user, strings }) {
+export default function Plan({ user, strings, setError }) {
   const [changePlan, setChangePlan] = useState(false);
 
   const dispatch = useDispatch();
+
   const submitHandler = async (e) => {
     e.preventDefault();
 
@@ -20,6 +20,8 @@ export default function Plan({ user, strings }) {
     const formData = new FormData(e.currentTarget);
 
     const data = Object.fromEntries(formData.entries());
+
+    if (Object.keys(data).length === 0) return;
 
     const isValid = validatePlan(data, user);
     if (isValid.error) {
@@ -39,11 +41,11 @@ export default function Plan({ user, strings }) {
   };
 
   return (
-    <div className={classes.settings.container}>
+    <div className={classes.settings.oddContainer}>
       <SettingsDataContainer
         type={"text"}
-        data={user.plan}
-        classes={classes.settings}
+        data={`${strings.activePlan} ${user.plan}`}
+        containerClass={classes.settings.oddData}
       />
 
       <form
@@ -52,17 +54,17 @@ export default function Plan({ user, strings }) {
       >
         {changePlan && (
           <select name="plan" id="plan" defaultValue={user.plan}>
-            <option value="free">0€/mese</option>
-            <option value="basic">1€/mese</option>
-            <option value="pro">10€/mese</option>
+            <option value="free">{strings.freeCost}</option>
+            <option value="basic">{strings.basicCost}</option>
+            <option value="pro">{strings.proCost}</option>
           </select>
         )}
-        <CloseSettingsBtn
+        <SettingsButtonContainer
+          toggle={changePlan}
+          setToggle={setChangePlan}
           classes={classes.settings}
-          state={changePlan}
-          setter={setChangePlan}
+          setError={setError}
         />
-        <SettingsBtn classes={classes.settings} state={changePlan} />
       </form>
     </div>
   );
