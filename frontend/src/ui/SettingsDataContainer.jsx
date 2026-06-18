@@ -1,6 +1,6 @@
-export default function SettingsDataContainer({ type, data, classes }) {
+export default function SettingsDataContainer({ type, data, containerClass }) {
   return (
-    <div className={classes.dataContainer}>
+    <div className={containerClass}>
       {type === "img" ? <img src={data} /> : <p>{data}</p>}
     </div>
   );
