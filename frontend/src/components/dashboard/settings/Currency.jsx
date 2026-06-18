@@ -1,17 +1,20 @@
 import { useState } from "react";
-import SettingsBtn from "../../../ui/buttons/SettingsBtn";
 import { classes } from "../../../constants/components/dashboard";
-import CloseSettingsBtn from "../../../ui/buttons/CloseSettingsBtn";
 import SettingsDataContainer from "../../../ui/SettingsDataContainer";
 import useRetrievePersonalSettings from "../../../hooks/useRetrievePersonalSettings";
-import bundle from "shared";
-import { validateText } from "./validators";
 import fetchUpdateSettings from "../../../api/handlers/fetchUpdateSettings";
+import SettingsButtonContainer from "../../../ui/buttons/SettingsButtonContainer";
+import bundle from "shared";
 const { currency } = bundle.constants;
 
-export default function Currency({ strings, user }) {
+export default function Currency({
+  strings,
+  user,
+  userCurrency,
+  setUserCurrency,
+  setError,
+}) {
   const [changeCurrency, setChangeCurrency] = useState(false);
-  const [userCurrency, setUserCurrency] = useState("");
   const retrieveConfig = {
     data: { retrieve: "currency" },
     setter: setUserCurrency,
@@ -28,12 +31,7 @@ export default function Currency({ strings, user }) {
     const formData = new FormData(e.currentTarget);
 
     const data = Object.fromEntries(formData.entries());
-    const isValidData = validateText(data);
-
-    if (isValidData.error) {
-      setChangeCurrency(!changeCurrency);
-      return;
-    }
+    if (Object.keys(data).length === 0) return;
 
     const isValid = currency.includes(data.currency);
     if (!isValid) {
@@ -51,11 +49,11 @@ export default function Currency({ strings, user }) {
   };
 
   return (
-    <div className={classes.settings.container}>
+    <div className={classes.settings.evenContainer}>
       <SettingsDataContainer
         type={"text"}
         data={userCurrency}
-        classes={classes.settings}
+        containerClass={classes.settings.evenData}
       />
 
       <form
@@ -64,16 +62,17 @@ export default function Currency({ strings, user }) {
       >
         {changeCurrency && (
           <select name="currency" id="currency" defaultValue={userCurrency}>
-            <option value="dollar">dollari</option>
-            <option value="euro">euro</option>
+            <option value="dollar">{strings.dollars}</option>
+            <option value="euro">{strings.euro}</option>
           </select>
         )}
-        <CloseSettingsBtn
+
+        <SettingsButtonContainer
+          toggle={changeCurrency}
+          setToggle={setChangeCurrency}
           classes={classes.settings}
-          state={changeCurrency}
-          setter={setChangeCurrency}
+          setError={setError}
         />
-        <SettingsBtn classes={classes.settings} state={changeCurrency} />
       </form>
     </div>
   );
