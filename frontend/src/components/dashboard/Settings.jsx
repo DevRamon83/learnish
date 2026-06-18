@@ -9,13 +9,19 @@ import { useLang } from "../../hooks/useLang";
 import { i18nAddresses } from "../../constants/i18nAddresses";
 import TeacherContract from "./settings/TeacherContract";
 import Currency from "./settings/Currency";
+import { useState } from "react";
+import SettingError from "./settings/SettingError";
+import { classes } from "../../constants/components/dashboard";
 
 export default function Settings({ userType }) {
   const user = useSelector((state) => state.auth.user);
   const { lang, strings } = useLang(i18nAddresses.settings);
+  const [error, setError] = useState(null);
+
+  const [userCurrency, setUserCurrency] = useState("");
 
   return (
-    <div className="settings__main">
+    <div className={classes.settings.main}>
       <Pic strings={strings} user={user} />
       <Plan strings={strings} user={user} />
       <Email strings={strings} />
@@ -23,10 +29,21 @@ export default function Settings({ userType }) {
       {userType === "student" && <MyTeacher strings={strings} />}
       {userType === "teacher" && (
         <>
-          <Currency strings={strings} user={user} />
-          <TeacherContract strings={strings} lang={lang} />
+          <Currency
+            userCurrency={userCurrency}
+            setUserCurrency={setUserCurrency}
+            strings={strings}
+            user={user}
+          />
+          <TeacherContract
+            strings={strings}
+            lang={lang}
+            userCurrency={userCurrency}
+            setError={setError}
+          />
         </>
       )}
+      {error && <SettingError classes={classes.settings} error={error} />}
     </div>
   );
 }
