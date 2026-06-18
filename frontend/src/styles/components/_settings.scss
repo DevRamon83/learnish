@@ -2,16 +2,85 @@
 @use "../breakpoints";
 @use "../base/buttons";
 
-.settings__container {
-  position: relative;
-  width: 200px;
-  height: 200px;
+.settings__main {
+  width: 100%;
+  border: 0;
+  background-color: ghostwhite;
+  margin: unset;
+  height: unset;
+  overflow: unset;
+  border-radius: unset;
+  position: unset;
+  box-shadow: unset;
+
+  @include breakpoints.medium {
+    width: 50%;
+    border: 1px solid #000;
+    margin: 0 0 50px 20%;
+    height: 50vh;
+    overflow: scroll;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  }
 }
 
-.settings__container-psw {
-  position: relative;
-  width: 400px;
-  height: 400px;
+%settings__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  border-width: 1px 0;
+  border-color: #000;
+  border-style: solid;
+  border-radius: 0;
+  margin-bottom: 25px;
+}
+
+.settings__container-even {
+  @extend %settings__container;
+  background-color: white;
+}
+
+.settings__container-even:nth-child(1) {
+  @include breakpoints.medium {
+    border-width: 0 0 1px 0;
+  }
+}
+
+.settings__container-odd {
+  @extend %settings__container;
+  background-color: colors.$primaryColor;
+}
+
+.settings__priceContainer > .settings__container-even {
+  border-top: 1px solid #000;
+}
+
+.settings__container-pic {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.settings__container-oddData {
+  @extend .settings__container-pic;
+  color: white;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.settings__container-evenData {
+  @extend .settings__container-pic;
+  background-color: white;
+  color: colors.$primaryColor;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.settings__container-pic > img {
+  height: 200px;
+  width: auto;
 }
 
 .settings__data-container {
@@ -32,17 +101,14 @@
 
 %settings__button {
   border: 1px solid #000;
-  border-radius: 50%;
-  background-color: white;
-  padding: 15px;
-  width: 20px;
-  height: 20px;
+  border-bottom: 0;
+  border-radius: 5px 5px 0 0;
+  background-color: whitesmoke;
+  width: 50px;
+  height: 30px;
   background-position: center;
   background-repeat: no-repeat;
   cursor: pointer;
-  position: absolute;
-  bottom: 20px;
-  right: 10px;
 }
 
 .settings__button-change {
@@ -55,30 +121,43 @@
   background-image: url("/save.svg");
 }
 
+.settings__contractForm {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+%h1FormBase {
+  background-color: greenyellow;
+  padding: 5px 5%;
+  border-radius: 5px 0 0 5px;
+  border: 1px solid #000;
+  border-right: 0;
+  width: 70%;
+}
+
+.settings__contractForm > h1 {
+  @extend %h1FormBase;
+}
+
 .settings__form {
-  position: absolute;
-  width: 100%;
+  width: 90%;
   height: 100%;
-  bottom: 0;
-  left: 0;
   display: flex;
   justify-content: center;
-  background-color: black;
-  opacity: 0.9;
-  border-radius: 50%;
 }
 
 .settings__button-close {
   @extend %settings__button;
-  right: 80%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .settings__button-close > img {
-  width: 20px;
-  height: 20px;
+  width: 14px;
+  height: 14px;
 }
 
 #profilePic {
@@ -88,12 +167,16 @@
 #profilePic::file-selector-button {
   background-color: #f7f8fa;
   border: 1px solid darkgray;
+  border-left: 0;
   color: #000;
   font-weight: bold;
   text-transform: uppercase;
   padding: 8px 16px;
-  border-radius: 4px 50% 50% 4px;
+  border-radius: 0px 15px 15px 0px;
   cursor: pointer;
+  position: absolute;
+  left: 0;
+  top: 45%;
 }
 
 .settings__teachersList {
@@ -103,5 +186,104 @@
   bottom: 0px;
   width: 90%;
   background-color: white;
-  opacity: 1;
+}
+
+.settings__contractContainer {
+  height: fit-content;
+}
+
+.settings__buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.settings__error {
+  position: fixed;
+  bottom: -10vh;
+  left: 0;
+  width: 100%;
+  height: 6vh;
+  background-color: crimson;
+  color: white;
+  border-top: 1px solid #000;
+  animation: showError 0.25s forwards;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+@keyframes showError {
+  0% {
+    bottom: -10vh;
+  }
+  100% {
+    bottom: 0vh;
+  }
+}
+
+.settings__titleContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  margin-bottom: 30px;
+}
+
+.settings__titleContainer > h3 {
+  background-color: #f7f8fa;
+  border-radius: 10px 0 0 10px;
+  border: 1px solid #000;
+  border-right: 0;
+  width: 80%;
+  padding: 2vh 5%;
+}
+
+.settings__deactivate {
+  background-color: crimson;
+  color: white;
+  font-weight: bold;
+  width: fit-content;
+  padding: 10px 25px;
+  border-radius: 10px 0 0 10px;
+  border: 1px solid #000;
+  border-right: 0;
+  cursor: pointer;
+  height: inherit;
+  position: relative;
+  text-transform: uppercase;
+}
+
+.settings__confirmText {
+  margin-bottom: 50px;
+}
+
+.settings__confirmDeactivation {
+  position: absolute;
+  bottom: 0;
+  left: 50px;
+  right: unset;
+  padding: 5px 15px;
+  border-radius: 5px 5px 0 0;
+  width: fit-content;
+  background-color: colors.$primaryColor;
+  color: white;
+  cursor: pointer;
+}
+
+.settings__closeDeactivation {
+  @extend .settings__confirmDeactivation;
+  left: unset;
+  right: 50px;
+}
+
+.settings__activate {
+  @extend .settings__deactivate;
+  background-color: greenyellow;
+  color: #000;
+}
+
+.settings__titleContainer > h1 {
+  @extend %h1FormBase;
 }

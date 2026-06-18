@@ -153,6 +153,27 @@ form {
   @extend %form__base;
 }
 
+.form__priceDefiner {
+  @extend %form__base;
+  padding-top: 3vh;
+  background-color: #f0f4f8;
+  border-radius: 20px;
+  width: 40%;
+  border: 1px solid colors.$primaryColor;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  padding-bottom: 2vh;
+  width: 300px;
+  border-radius: 5px 0 0 5px;
+  border-right: 0;
+
+  @include breakpoints.medium {
+  }
+}
+
+.form__priceDefiner label {
+  background: linear-gradient(to bottom, #f0f4f8 50%, #fff 50%);
+}
+
 .form__contract {
   @extend %form__base;
 }
