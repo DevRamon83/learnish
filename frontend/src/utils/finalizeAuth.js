@@ -1,7 +1,6 @@
 const successHandler = (resp, data, setError) => {
   const { dispatch, navigate, setUser, setAuth } = data;
   const { response } = resp;
-  console.log(response);
   setError(null);
   dispatch(setUser(response));
   dispatch(setAuth("authenticated"));
