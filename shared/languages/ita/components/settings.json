@@ -47,10 +47,21 @@
   "deactivateBtn": "disattiva",
   "deactivateOk": "procedi",
   "changePsw": "Cambia la tua password",
+  "next": "avanti",
+  "back": "indietro",
+  "start": "inizio",
+  "end": "fine",
+  "list": "Lista degli insegnanti",
   "contract": {
     "subscription": "Prospetto dei costi di sottoscrizione",
     "tutoring": "Prospetto dei costi per le sessioni di tutoring",
     "speaking": "Prospetto dei costi per le sessioni di speaking",
     "qNa": "Prospetto dei costi per le sessioni Q&A"
+  },
+  "front": {
+    "perRes": "costo per risposta",
+    "perSession": "costo per una sessione",
+    "fiveSessions": "costo per cinque sessioni",
+    "tenSessions": "costo per dieci sessioni"
   }
 }
