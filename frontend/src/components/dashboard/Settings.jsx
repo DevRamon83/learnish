@@ -12,11 +12,13 @@ import Currency from "./settings/Currency";
 import { useState } from "react";
 import SettingError from "./settings/SettingError";
 import { classes } from "../../constants/components/dashboard";
+import TeachersList from "../TeachersList";
 
 export default function Settings({ userType }) {
   const user = useSelector((state) => state.auth.user);
   const { lang, strings } = useLang(i18nAddresses.settings);
   const [error, setError] = useState(null);
+  const [changeTeacher, setChangeTeacher] = useState(false);
 
   const [userCurrency, setUserCurrency] = useState("");
 
@@ -26,7 +28,24 @@ export default function Settings({ userType }) {
       <Plan strings={strings} user={user} />
       <Email strings={strings} />
       <Password strings={strings} />
-      {userType === "student" && <MyTeacher strings={strings} />}
+      {userType === "student" && (
+        <>
+          <MyTeacher
+            strings={strings}
+            changeTeacher={changeTeacher}
+            setChangeTeacher={setChangeTeacher}
+          />
+
+          {changeTeacher && (
+            <TeachersList
+              classes={classes.settings}
+              strings={strings}
+              setChangeTeacher={setChangeTeacher}
+            />
+          )}
+        </>
+      )}
+
       {userType === "teacher" && (
         <>
           <Currency
