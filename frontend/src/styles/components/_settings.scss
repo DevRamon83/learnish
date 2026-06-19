@@ -5,22 +5,14 @@
 .settings__main {
   width: 100%;
   border: 0;
-  background-color: ghostwhite;
-  margin: unset;
-  height: unset;
-  overflow: unset;
-  border-radius: unset;
-  position: unset;
-  box-shadow: unset;
+  position: relative;
 
   @include breakpoints.medium {
-    width: 50%;
-    border: 1px solid #000;
-    margin: 0 0 50px 20%;
-    height: 50vh;
+    width: 70%;
+    margin-left: 10%;
+    border-right: 1px solid #000;
     overflow: scroll;
-    border-radius: 5px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border-radius: 5px 0 0 5px;
   }
 }
 
@@ -35,17 +27,18 @@
   border-style: solid;
   border-radius: 0;
   margin-bottom: 25px;
+
+  @include breakpoints.medium {
+    border-width: 1px 0 1px 1px;
+    border-radius: 10px 0 0 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    margin-bottom: 40px;
+  }
 }
 
 .settings__container-even {
   @extend %settings__container;
   background-color: white;
-}
-
-.settings__container-even:nth-child(1) {
-  @include breakpoints.medium {
-    border-width: 0 0 1px 0;
-  }
 }
 
 .settings__container-odd {
@@ -81,6 +74,10 @@
 .settings__container-pic > img {
   height: 200px;
   width: auto;
+  margin-bottom: 20px;
+  border: 1px solid #000;
+  border-top: 0;
+  border-radius: 0 0 5px 5px;
 }
 
 .settings__data-container {
@@ -180,12 +177,42 @@
 }
 
 .settings__teachersList {
-  position: fixed;
-  left: 10%;
-  top: 60px;
-  bottom: 0px;
-  width: 90%;
-  background-color: white;
+  position: absolute;
+  top: 0;
+  bottom: 40px;
+  left: 100%;
+  right: 0;
+  background-color: ghostwhite;
+  animation: showTeachersList 0.5s forwards;
+  border-width: 1px 0 0 0;
+  border-style: solid;
+  border-color: #000;
+  border-right: 0;
+  border-radius: 0;
+
+  @include breakpoints.medium {
+    border-radius: 10px 0 0 10px;
+    border-width: 1px 0 1px 1px;
+  }
+}
+
+@keyframes showTeachersList {
+  0% {
+    left: 100%;
+  }
+  100% {
+    left: 0%;
+  }
+}
+
+.settings__teachersList h1 {
+  text-align: center;
+  font-size: 18px;
+
+  @include breakpoints.medium {
+    width: 100%;
+    font-size: 26px;
+  }
 }
 
 .settings__contractContainer {
@@ -232,12 +259,16 @@
 }
 
 .settings__titleContainer > h3 {
-  background-color: #f7f8fa;
+  background-color: ghostwhite;
   border-radius: 10px 0 0 10px;
   border: 1px solid #000;
   border-right: 0;
   width: 80%;
   padding: 2vh 5%;
+
+  @include breakpoints.medium {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  }
 }
 
 .settings__deactivate {
@@ -253,6 +284,10 @@
   height: inherit;
   position: relative;
   text-transform: uppercase;
+
+  @include breakpoints.medium {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  }
 }
 
 .settings__confirmText {
@@ -282,8 +317,151 @@
   @extend .settings__deactivate;
   background-color: greenyellow;
   color: #000;
+
+  @include breakpoints.medium {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  }
 }
 
 .settings__titleContainer > h1 {
   @extend %h1FormBase;
+}
+
+.settings__teacherProfile {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+  background-color: white;
+  height: fit-content;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  padding-bottom: 50px;
+
+  @include breakpoints.medium {
+    flex-direction: row;
+    height: 400px;
+    padding-bottom: unset;
+  }
+}
+
+.settings__teacherData {
+  height: fit-content;
+  overflow: scroll;
+  padding: 0;
+  width: 100%;
+
+  @include breakpoints.medium {
+    width: 85%;
+    height: 380px;
+    padding: 0 5% 25px 10%;
+  }
+}
+
+.settings__teacherPic > img {
+  display: block;
+  border-width: 0 0 1px 0;
+  border-style: solid;
+  border-color: #000;
+  border-radius: 0;
+  height: auto;
+  width: 100%;
+  margin-top: 0px;
+
+  @include breakpoints.medium {
+    margin-top: 100px;
+    height: 200px;
+    width: auto;
+    border-width: 1px 1px 1px 0;
+    border-radius: 0 10px 10px 0;
+  }
+}
+
+.settings__teacherData h3 {
+  padding-left: 15px;
+
+  @include breakpoints.medium {
+    padding-left: unset;
+  }
+}
+
+.settings__teacherData h4 {
+  background-color: colors.$primaryColor;
+  color: white;
+  font-weight: bold;
+  padding: 10px 25px;
+  border-radius: 0;
+  text-transform: uppercase;
+
+  @include breakpoints.medium {
+    border-radius: 5px;
+  }
+}
+
+.settings__teacherFront {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-width: 1px 0;
+  border-style: solid;
+  border-color: #000;
+  border-radius: 0;
+  width: 100%;
+  background-color: #f7f8fa;
+  margin-bottom: 25px;
+
+  @include breakpoints.medium {
+    border-radius: 5px;
+    width: 75%;
+    border-width: 1px;
+  }
+}
+
+.settings__contractLabel {
+  padding-left: 25px;
+  text-transform: uppercase;
+}
+
+.settings__contractCost {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border-left: 1px solid #000;
+  width: 50px;
+  background-color: colors.$primaryColor;
+  color: white;
+  font-weight: bold;
+}
+
+.settings__teachersMenu {
+  display: flex;
+  justify-content: space-around;
+  height: 46px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 10;
+
+  @include breakpoints.medium {
+    position: unset;
+    bottom: unset;
+    width: unset;
+    height: 30px;
+  }
+}
+
+.settings__teachersMenu div {
+  background-color: white;
+  color: colors.$primaryColor;
+  font-weight: bold;
+  border: 1px solid #000;
+  border-top: 1px solid white;
+  margin-top: -1px;
+  width: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0 0 5px 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
 }
