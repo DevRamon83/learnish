@@ -12,7 +12,7 @@ import Currency from "./settings/Currency";
 import { useState } from "react";
 import SettingError from "./settings/SettingError";
 import { classes } from "../../constants/components/dashboard";
-import TeachersList from "../TeachersList";
+import TeachersList from "./settings/TeachersList";
 
 export default function Settings({ userType }) {
   const user = useSelector((state) => state.auth.user);

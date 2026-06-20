@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import fetchTeachers from "../api/handlers/fetchTeachers";
-import useScrollToTop from "../hooks/useScrollToTop";
-import TeachersProfile from "../ui/teachers/TeachersProfile";
-import ChangeTeacherMenu from "../ui/teachers/ChangeTeacherMenu";
+import fetchTeachers from "../../../api/handlers/fetchTeachers";
+import useScrollToTop from "../../../hooks/useScrollToTop";
+import TeachersProfile from "../../../ui/teachers/TeachersProfile";
+import ChangeTeacherMenu from "../../../ui/teachers/ChangeTeacherMenu";
 
 export default function TeachersList({ setChangeTeacher, strings, classes }) {
   const [teachers, setTeachers] = useState([]);
