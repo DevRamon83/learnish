@@ -48,7 +48,10 @@ const Student = userModel.discriminator(
   new Schema({
     shareErrors: { type: Boolean, required: true, default: true },
     targetLang: { type: String, enum: ["us", "en"] },
-    teacher: { type: Schema.Types.ObjectId },
+    teacher: {
+      id: { type: Schema.Types.ObjectId },
+      username: { type: String },
+    },
   }),
 );
 
