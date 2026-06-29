@@ -1,19 +1,19 @@
 import { useState } from "react";
 import fetchUpdateSettings from "../../../api/handlers/fetchUpdateSettings";
-import SettingsDataContainer from "../../../ui/SettingsDataContainer";
 import SettingsButtonContainer from "../../../ui/buttons/SettingsButtonContainer";
 
 export default function UpdateContractValue({
   configs,
-  dataContainer,
-  dataKey,
   containerClass,
-  dataClass,
   setUserField,
   setError,
+  keys,
+  currentContract,
+  contracts,
 }) {
-  const { classes, userField, type, contract, currency } = configs;
+  const { classes, userField, type, currency } = configs;
   const [changeField, setChangeField] = useState(false);
+  const contract = contracts[currentContract];
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -56,32 +56,22 @@ export default function UpdateContractValue({
     setChangeField(!changeField);
   };
 
+  const visibleKeys = keys.filter((key) => key !== "available");
   return (
-    <div className={containerClass}>
-      <SettingsDataContainer
-        type={"text"}
-        data={`${dataContainer} ${userField[contract][dataKey]}${currency}`}
-        containerClass={dataClass}
-      />
-      <form
-        className={changeField ? classes.settings.form : ""}
-        onSubmit={submitHandler}
-      >
-        {changeField && (
-          <input
-            type={type}
-            id={dataKey}
-            name={dataKey}
-            placeholder={userField[contract][dataKey]}
-          />
-        )}
-        <SettingsButtonContainer
-          toggle={changeField}
-          setToggle={setChangeField}
-          classes={classes.settings}
-          setError={setError}
+    <form
+      className={changeField ? classes.settings.form : ""}
+      onSubmit={submitHandler}
+    >
+      {visibleKeys.map((key) => (
+        <input
+          key={`input__${key}`}
+          type={type}
+          id={key}
+          name={key}
+          placeholder={userField[contract][key]}
         />
-      </form>
-    </div>
+      ))}
+      <button type="submit">salva</button>
+    </form>
   );
 }

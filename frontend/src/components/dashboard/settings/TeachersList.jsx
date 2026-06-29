@@ -2,10 +2,16 @@ import { useEffect, useState } from "react";
 import fetchTeachers from "../../../api/handlers/fetchTeachers";
 import useScrollToTop from "../../../hooks/useScrollToTop";
 import TeachersProfile from "../../../ui/teachers/TeachersProfile";
-import ChangeTeacherMenu from "../../../ui/teachers/ChangeTeacherMenu";
+import fetchYourTeacher from "../../../api/handlers/fetchYourTeacher";
 
-export default function TeachersList({ setChangeTeacher, strings, classes }) {
-  const [teachers, setTeachers] = useState([]);
+export default function TeachersList({
+  classes,
+  props,
+  setMyTeacher,
+  teachersList,
+  setTeachersList,
+}) {
+  const { strings, setToggle } = props;
   const [currentTeacher, setCurrentTeacher] = useState(0);
   const [next, setNext] = useState("");
   const [previous, setPrevious] = useState("");
@@ -19,7 +25,7 @@ export default function TeachersList({ setChangeTeacher, strings, classes }) {
       if (res.error) {
         // error handler
       } else {
-        setTeachers([...res]);
+        setTeachersList([...res]);
       }
     };
 
@@ -35,7 +41,7 @@ export default function TeachersList({ setChangeTeacher, strings, classes }) {
       setPrevious(strings.back);
     }
 
-    if (currentTeacher === teachers.length - 1) {
+    if (currentTeacher === teachersList.length - 1) {
       setNext(strings.end);
     } else {
       setNext(strings.next);
@@ -44,31 +50,47 @@ export default function TeachersList({ setChangeTeacher, strings, classes }) {
 
   const navigationHandler = (action) => {
     const step = action === "next" ? 1 : -1;
-    const end = action === "next" ? teachers.length - 1 : 0;
+    const end = action === "next" ? teachersList.length - 1 : 0;
 
     if (currentTeacher !== end) {
       setCurrentTeacher((prev) => prev + step);
     }
   };
 
+  const chooseTeacher = async () => {
+    const newTeacher = await fetchYourTeacher({
+      id: teachersList[currentTeacher]._id,
+    });
+
+    if (newTeacher.error) {
+      // error handler
+      return;
+    }
+
+    setMyTeacher(newTeacher.teacher);
+    setToggle(false);
+  };
+
   return (
     <div className={classes.teacherList}>
-      <h1>{strings.list}</h1>
-      {teachers.length !== 0 && (
+      {teachersList.length !== 0 && (
         <TeachersProfile
-          teacher={teachers[currentTeacher]}
+          teacher={teachersList[currentTeacher]}
           strings={strings}
           classes={classes}
         />
       )}
-      <ChangeTeacherMenu
-        classes={classes}
-        navigationHandler={navigationHandler}
-        setChangeTeacher={setChangeTeacher}
-        strings={strings}
-        previous={previous}
-        next={next}
-      />
+      <div className={classes.teacherMenu}>
+        <div className={classes.prev} onClick={() => navigationHandler("back")}>
+          {previous}
+        </div>
+        <div className={classes.close} onClick={chooseTeacher}>
+          {strings.choose}
+        </div>
+        <div className={classes.next} onClick={() => navigationHandler("next")}>
+          {next}
+        </div>
+      </div>
     </div>
   );
 }

@@ -8,42 +8,53 @@
   position: relative;
 
   @include breakpoints.medium {
-    width: 70%;
+    width: 90%;
     margin-left: 10%;
-    border-right: 1px solid #000;
-    overflow: scroll;
-    border-radius: 5px 0 0 5px;
   }
 }
 
-%settings__container {
+.settings__container {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   flex-direction: column;
   width: 100%;
-  border-width: 1px 0;
-  border-color: #000;
-  border-style: solid;
-  border-radius: 0;
+  height: 422px;
   margin-bottom: 25px;
+  background-color: #f7f8fa;
+  display: flex;
+  flex-direction: row;
 
   @include breakpoints.medium {
-    border-width: 1px 0 1px 1px;
-    border-radius: 10px 0 0 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     margin-bottom: 40px;
+    height: 500px;
   }
 }
 
-.settings__container-even {
-  @extend %settings__container;
+.settings__imgContainer {
+  height: fit-content;
+  width: 100%;
+  border-width: 1px 0;
+  border-style: solid;
+  border-color: #000;
   background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+
+  @include breakpoints.medium {
+    height: 440px;
+    width: 342px;
+    border-width: 1px;
+    border-radius: 20px 0 0 30px;
+  }
 }
 
-.settings__container-odd {
-  @extend %settings__container;
-  background-color: colors.$primaryColor;
+.settings__imgContainer > img {
+  height: auto;
+  width: 100%;
 }
 
 .settings__priceContainer > .settings__container-even {
@@ -54,6 +65,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
 .settings__container-oddData {
@@ -72,12 +84,8 @@
 }
 
 .settings__container-pic > img {
-  height: 200px;
-  width: auto;
-  margin-bottom: 20px;
-  border: 1px solid #000;
-  border-top: 0;
-  border-radius: 0 0 5px 5px;
+  width: 100%;
+  height: auto;
 }
 
 .settings__data-container {
@@ -100,22 +108,28 @@
   border: 1px solid #000;
   border-bottom: 0;
   border-radius: 5px 5px 0 0;
-  background-color: whitesmoke;
+  height: 50px;
   width: 50px;
-  height: 30px;
   background-position: center;
   background-repeat: no-repeat;
   cursor: pointer;
+  position: absolute;
+  bottom: 0;
+  z-index: 10;
 }
 
 .settings__button-change {
   @extend %settings__button;
   background-image: url("/change.svg");
+  background-color: greenyellow;
+  border-radius: 50%;
+  border: 1px solid #000;
 }
 
 .settings__button-fetch {
   @extend %settings__button;
   background-image: url("/save.svg");
+  background-color: greenyellow;
 }
 
 .settings__contractForm {
@@ -139,10 +153,64 @@
 }
 
 .settings__form {
-  width: 90%;
-  height: 100%;
   display: flex;
   justify-content: center;
+  width: 57%;
+  margin-left: 0;
+
+  @include breakpoints.medium {
+    margin-left: 35px;
+  }
+}
+
+.settings__form input {
+  width: 100%;
+  position: absolute;
+  left: 0px;
+  border-radius: 0 25px 25px 0;
+  height: 75%;
+
+  @include breakpoints.medium {
+    width: 52%;
+    position: absolute;
+    left: 0px;
+    height: 25px;
+    border-radius: 0;
+    border-left: 0;
+  }
+}
+
+.settings__picContainer {
+  width: 250px;
+}
+
+.settings__email {
+  width: 60% !important;
+  position: absolute !important;
+  left: 20% !important;
+  border-radius: 5px !important;
+  height: 5vh !important;
+  outline: none !important;
+
+  @include breakpoints.medium {
+    border-left: 0 !important;
+    left: 364px !important;
+    width: 40% !important;
+    border-radius: 0 25px 25px 0 !important;
+  }
+}
+
+.settings__form button {
+  position: absolute;
+  right: 50px;
+  margin-top: 250px;
+  border-radius: 50%;
+  border: 1px solid #000;
+  padding: 15px;
+}
+
+.settings__form button > img {
+  height: 25px;
 }
 
 .settings__button-close {
@@ -150,6 +218,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: red;
+  border-radius: 50%;
+  border: 1px solid #000;
+  background-image: url("/close.svg");
 }
 
 .settings__button-close > img {
@@ -179,20 +251,15 @@
 .settings__teachersList {
   position: absolute;
   top: 0;
-  bottom: 40px;
+  bottom: 90px;
   left: 100%;
-  right: 0;
-  background-color: ghostwhite;
+  right: 1px;
   animation: showTeachersList 0.5s forwards;
-  border-width: 1px 0 0 0;
-  border-style: solid;
-  border-color: #000;
-  border-right: 0;
-  border-radius: 0;
 
   @include breakpoints.medium {
-    border-radius: 10px 0 0 10px;
-    border-width: 1px 0 1px 1px;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
   }
 }
 
@@ -216,13 +283,26 @@
 }
 
 .settings__contractContainer {
-  height: fit-content;
+  height: 420px;
+  background-color: wheat;
+  position: absolute;
+  right: 0;
+  top: 50px;
+  width: 67%;
 }
 
 .settings__buttons {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  position: absolute;
+  bottom: 30px;
+  left: 25px;
+}
+
+.settings__buttons img {
+  width: 40px;
+  height: 40px;
 }
 
 .settings__error {
@@ -330,8 +410,8 @@
 .settings__teacherProfile {
   display: flex;
   flex-direction: column;
-  border-top: 1px solid #000;
-  border-bottom: 1px solid #000;
+  border: 1px solid #000;
+  border-right: 0;
   background-color: white;
   height: fit-content;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
@@ -339,7 +419,7 @@
 
   @include breakpoints.medium {
     flex-direction: row;
-    height: 400px;
+    height: 369px;
     padding-bottom: unset;
   }
 }
@@ -352,7 +432,7 @@
 
   @include breakpoints.medium {
     width: 85%;
-    height: 380px;
+    height: 320px;
     padding: 0 5% 25px 10%;
   }
 }
@@ -464,4 +544,87 @@
   border-radius: 0 0 5px 5px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   cursor: pointer;
+}
+
+.settings__menu {
+  width: 100%;
+  height: 50px;
+  position: absolute;
+  bottom: -25px;
+  right: 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  background-color: white;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #000;
+  border-radius: 0px;
+  overflow: hidden;
+
+  @include breakpoints.medium {
+    width: 54%;
+    right: 50px;
+    border-radius: 100px;
+  }
+}
+
+.settings__btnMenu {
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  padding: 0 10px;
+  border-width: 0 1px;
+  border-style: solid;
+  border-color: #000;
+  background-color: colors.$primaryColor;
+}
+
+.settings__btnMenu > img {
+  height: 50%;
+  background-color: white;
+  border-radius: 50%;
+}
+
+.settings__title {
+  width: 100%;
+  border-radius: 0;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: colors.$primaryColor;
+  color: white;
+  font-weight: bold;
+  margin: 0;
+  position: absolute;
+  top: 5vh;
+  right: 0;
+
+  @include breakpoints.medium {
+    position: absolute;
+    top: 0;
+    z-index: 10;
+    border-radius: 20px 0 0 0;
+  }
+}
+
+.settings__breadcrumbContainer {
+  height: fit-content;
+  padding: 25px 25px 25px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.settings__breadcrumb-btn {
+  border-radius: 0 25px 25px 0;
+  border: 1px solid #000;
+  border-left: 0;
+  padding: 5px 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

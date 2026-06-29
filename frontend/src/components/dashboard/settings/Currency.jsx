@@ -1,19 +1,22 @@
 import { useState } from "react";
-import { classes } from "../../../constants/components/dashboard";
-import SettingsDataContainer from "../../../ui/SettingsDataContainer";
 import useRetrievePersonalSettings from "../../../hooks/useRetrievePersonalSettings";
 import fetchUpdateSettings from "../../../api/handlers/fetchUpdateSettings";
 import SettingsButtonContainer from "../../../ui/buttons/SettingsButtonContainer";
 import bundle from "shared";
+import SettingsBreadcrumb from "../SettingsBreadcrumb";
 const { currency } = bundle.constants;
 
-export default function Currency({
-  strings,
-  user,
-  userCurrency,
-  setUserCurrency,
-  setError,
-}) {
+export default function Currency({ props }) {
+  const {
+    strings,
+    user,
+    userCurrency,
+    setUserCurrency,
+    setError,
+    toggle,
+    setToggle,
+    classes,
+  } = props;
   const [changeCurrency, setChangeCurrency] = useState(false);
   const retrieveConfig = {
     data: { retrieve: "currency" },
@@ -48,32 +51,33 @@ export default function Currency({
     setUserCurrency(data.currency);
   };
 
-  return (
-    <div className={classes.settings.evenContainer}>
-      <SettingsDataContainer
-        type={"text"}
-        data={userCurrency}
-        containerClass={classes.settings.evenData}
-      />
+  const { container, form } = classes.settings;
 
-      <form
-        className={changeCurrency ? classes.settings.form : ""}
-        onSubmit={submitHandler}
-      >
-        {changeCurrency && (
+  return (
+    <div className={container}>
+      <h3 className="settings__title">In che valuta vuoi essere pagato?</h3>
+      <div className="settings__imgContainer">
+        <img src={"/currency.jpeg"} />
+      </div>
+
+      {toggle && (
+        <form className={toggle ? form : ""} onSubmit={submitHandler}>
           <select name="currency" id="currency" defaultValue={userCurrency}>
             <option value="dollar">{strings.dollars}</option>
             <option value="euro">{strings.euro}</option>
           </select>
-        )}
+          <button className="settings__button-fetch" type="submit" />
+        </form>
+      )}
 
-        <SettingsButtonContainer
-          toggle={changeCurrency}
-          setToggle={setChangeCurrency}
-          classes={classes.settings}
-          setError={setError}
-        />
-      </form>
+      <SettingsButtonContainer
+        toggle={toggle}
+        setToggle={setToggle}
+        classes={classes}
+        submitHandler={submitHandler}
+      />
+
+      <SettingsBreadcrumb props={props} />
     </div>
   );
 }

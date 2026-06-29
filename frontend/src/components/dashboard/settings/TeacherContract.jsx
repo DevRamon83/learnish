@@ -2,14 +2,13 @@ import { useEffect, useState } from "react";
 import useRetrievePersonalSettings from "../../../hooks/useRetrievePersonalSettings";
 import DispatchContractForm from "./DispatchContractForm";
 import ContractPanel from "./ContractPanel";
-import { servicesMap } from "../../../constants/components/dashboard";
+import SettingsButtonContainer from "../../../ui/buttons/SettingsButtonContainer";
+import SettingsBreadcrumb from "../SettingsBreadcrumb";
+import ContractSwitch from "./ContractSwitch";
 
-export default function TeacherContract({
-  strings,
-  lang,
-  userCurrency,
-  setError,
-}) {
+export default function TeacherContract({ props }) {
+  const { strings, lang, userCurrency, setError, classes, toggle, setToggle } =
+    props;
   const [contract, setContract] = useState(null);
   const [isComplete, setIsComplete] = useState(false);
   const retrieveConfig = {
@@ -20,35 +19,41 @@ export default function TeacherContract({
   };
   useRetrievePersonalSettings(retrieveConfig);
 
-  const servicesKeys = Object.keys(servicesMap);
-
   useEffect(() => {
     if (contract && contract.isComplete) setIsComplete(true);
   }, [isComplete, contract]);
 
+  const { container, form } = classes.settings;
+
+  const submitHandler = () => {
+    console.log("ciao");
+  };
+
   return (
     <>
-      {!isComplete ? (
-        <DispatchContractForm
-          strings={strings}
-          lang={lang}
-          setIsComplete={setIsComplete}
+      <div className={container}>
+        <h3 className="settings__title">Prospetti dei costi e dei servizi</h3>
+        <div className="settings__imgContainer">
+          <img src={"/prices.jpeg"} />
+        </div>
+
+        {toggle && (
+          <ContractSwitch
+            props={props}
+            isComplete={isComplete}
+            setIsComplete={setIsComplete}
+          />
+        )}
+
+        <SettingsButtonContainer
+          toggle={toggle}
+          setToggle={setToggle}
+          classes={classes}
+          submitHandler={submitHandler}
         />
-      ) : (
-        <>
-          {servicesKeys.map((key) => (
-            <ContractPanel
-              key={`contract${key}`}
-              config={servicesMap[key]}
-              strings={strings}
-              lang={lang}
-              userCurrency={userCurrency}
-              contract={key}
-              setError={setError}
-            />
-          ))}
-        </>
-      )}
+
+        <SettingsBreadcrumb props={props} />
+      </div>
     </>
   );
 }

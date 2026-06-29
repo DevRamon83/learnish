@@ -1,36 +1,43 @@
 import { useState } from "react";
-import { classes } from "../../../constants/components/dashboard";
-import SettingsDataContainer from "../../../ui/SettingsDataContainer";
 import useRetrievePersonalSettings from "../../../hooks/useRetrievePersonalSettings";
-import bundle from "shared";
-const { emailValidator } = bundle;
+import getPicUrl from "../../../helpers/getPicUrl";
+import SettingsBreadcrumb from "../SettingsBreadcrumb";
+import SettingsButtonContainer from "../../../ui/buttons/SettingsButtonContainer";
 
-export default function MyTeacher({
-  strings,
-  changeTeacher,
-  setChangeTeacher,
-}) {
-  const [userTeacher, setUserTeacher] = useState(null);
+export default function MyTeacher({ props }) {
+  const { strings, classes, cardHandler, toggle, setToggle, teacherObj } =
+    props;
+  const { id, username, url, setter, state } = teacherObj;
+
   const retrieveConfig = {
     data: { retrieve: "teacher" },
-    setter: setUserTeacher,
+    setter,
     key: "teacher",
     strings,
   };
   useRetrievePersonalSettings(retrieveConfig);
 
-  return (
-    <div className={classes.settings.evenContainer}>
-      <SettingsDataContainer
-        type={"text"}
-        data={userTeacher}
-        classes={classes.settings}
-      />
+  const submitHandler = () => {
+    console.log("ciao");
+  };
 
-      <div
-        onClick={() => setChangeTeacher(true)}
-        className={classes.settings.btnChange}
-      ></div>
+  return (
+    <div className={classes.settings.container}>
+      <h3 className="settings__title">{`${strings.yourTeacher} ${username}`}</h3>
+      <div className="settings__imgContainer">
+        <img src={url} />
+      </div>
+
+      {!toggle && (
+        <SettingsButtonContainer
+          toggle={toggle}
+          setToggle={setToggle}
+          classes={classes}
+          submitHandler={submitHandler}
+        />
+      )}
+
+      <SettingsBreadcrumb props={props} />
     </div>
   );
 }

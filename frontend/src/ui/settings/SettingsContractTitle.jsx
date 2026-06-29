@@ -1,5 +1,5 @@
-import ActivateService from "../components/dashboard/settings/ActivateService";
-import Deactivate from "../components/dashboard/settings/Deactivate";
+import ActivateService from "../../components/dashboard/settings/ActivateService";
+import Deactivate from "../../components/dashboard/settings/Deactivate";
 
 export default function SettingsContractTitle({
   strings,

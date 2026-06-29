@@ -1,14 +1,14 @@
 import { useState } from "react";
-import { classes } from "../../../constants/components/dashboard";
-import SettingsDataContainer from "../../../ui/SettingsDataContainer";
 import useRetrievePersonalSettings from "../../../hooks/useRetrievePersonalSettings";
 import bundle from "shared";
 import fetchUpdateSettings from "../../../api/handlers/fetchUpdateSettings";
+import SettingsBreadcrumb from "../SettingsBreadcrumb";
 import SettingsButtonContainer from "../../../ui/buttons/SettingsButtonContainer";
 const { emailValidator } = bundle;
 
-export default function Email({ strings, setError }) {
-  const [changeEmail, setChangeEmail] = useState(false);
+export default function Email({ props }) {
+  const { strings, classes, card, setCard, toggle, setToggle } = props;
+
   const [userEmail, setUserEmail] = useState("");
   const retrieveConfig = {
     data: { retrieve: "email" },
@@ -21,49 +21,55 @@ export default function Email({ strings, setError }) {
   const submitHandler = async (e) => {
     e.preventDefault();
 
-    if (!changeEmail) setChangeEmail(!changeEmail);
-
     const formData = new FormData(e.currentTarget);
 
     const data = Object.fromEntries(formData.entries());
+    if (Object.keys(data).length === 0) return;
 
     const isValid = emailValidator(data.email);
     if (isValid.error) {
-      setChangeEmail(!changeEmail);
+      setToggle(!toggle);
       return;
     }
+
     const update = await fetchUpdateSettings(data);
     if (update.error) {
       return;
     }
-
-    setChangeEmail(!changeEmail);
+    setToggle(!toggle);
     setUserEmail(data.email);
   };
 
+  const { container, form } = classes.settings;
+
   return (
-    <div className={classes.settings.evenContainer}>
-      <SettingsDataContainer
-        type={"text"}
-        data={userEmail}
-        containerClass={classes.settings.evenData}
+    <div className={container}>
+      <h3 className="settings__title">{`La tua mail: ${userEmail}`}</h3>
+      <div className="settings__imgContainer">
+        <img src={"/email.jpeg"} />
+      </div>
+
+      {toggle && (
+        <form onSubmit={submitHandler} className={toggle ? form : ""}>
+          <input
+            className="settings__email"
+            type="text"
+            id="email"
+            name="email"
+            placeholder={userEmail}
+          />
+          <button className="settings__button-fetch" type="submit" />
+        </form>
+      )}
+
+      <SettingsButtonContainer
+        toggle={toggle}
+        setToggle={setToggle}
+        classes={classes}
+        submitHandler={submitHandler}
       />
 
-      <form
-        className={changeEmail ? classes.settings.form : ""}
-        onSubmit={submitHandler}
-      >
-        {changeEmail && (
-          <input type="text" id="email" name="email" placeholder={userEmail} />
-        )}
-
-        <SettingsButtonContainer
-          toggle={changeEmail}
-          setToggle={setChangeEmail}
-          classes={classes.settings}
-          setError={setError}
-        />
-      </form>
+      <SettingsBreadcrumb props={props} />
     </div>
   );
 }

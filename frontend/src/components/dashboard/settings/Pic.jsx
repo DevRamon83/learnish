@@ -1,23 +1,20 @@
 import { useState } from "react";
 import getPicUrl from "../../../helpers/getPicUrl";
 import fetchPic from "../../../api/handlers/fetchPic";
-import { classes } from "../../../constants/components/dashboard";
-import SettingsDataContainer from "../../../ui/SettingsDataContainer";
 import { validatePic } from "./validators";
-import SettingsButtonContainer from "../../../ui/buttons/SettingsButtonContainer";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../../redux/slices/authSlice";
+import SettingsBreadcrumb from "../SettingsBreadcrumb";
+import SettingsButtonContainer from "../../../ui/buttons/SettingsButtonContainer";
 
-export default function Pic({ user, strings, setError }) {
-  const [changePic, setChangePic] = useState(false);
-  const [pic, setPic] = useState({
-    url: getPicUrl(user),
-  });
+export default function Pic({ props }) {
+  const { strings, classes, user, toggle, setToggle, userPic, setUserPic } =
+    props;
+
   const dispatch = useDispatch();
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    if (!changePic) setChangePic(!changePic);
 
     const formData = new FormData(e.currentTarget);
 
@@ -26,7 +23,7 @@ export default function Pic({ user, strings, setError }) {
     const isValid = validatePic(file);
 
     if (isValid.error) {
-      setChangePic(!changePic);
+      setToggle(!toggle);
       return;
     }
 
@@ -35,7 +32,7 @@ export default function Pic({ user, strings, setError }) {
       return;
     }
 
-    setChangePic(!changePic);
+    setToggle(!toggle);
     const newUser = { ...user };
     newUser.pic = update.pic;
     dispatch(setUser(newUser));
@@ -51,35 +48,42 @@ export default function Pic({ user, strings, setError }) {
     }
 
     const localUrl = URL.createObjectURL(file);
-    setPic({ url: localUrl });
+    setUserPic({ url: localUrl });
   };
+
+  const { container, form } = classes.settings;
+
   return (
-    <div className={classes.settings.evenContainer}>
-      <SettingsDataContainer
-        type={"img"}
-        data={pic.url}
-        containerClass={classes.settings.picClass}
-      />
-      <form
-        className={changePic ? classes.settings.form : ""}
-        onSubmit={submitHandler}
-      >
-        {changePic && (
-          <input
-            type="file"
-            id="profilePic"
-            name="profilePic"
-            accept="image/png, image/jpeg"
-            onChange={changeUrl}
-          />
+    <>
+      <h3 className="settings__title">Immagine profilo</h3>
+      <div className={`${container}`}>
+        <div className="settings__imgContainer">
+          <img src={userPic.url} />
+        </div>
+        {toggle && (
+          <>
+            <form onSubmit={submitHandler} className={toggle ? form : ""}>
+              <input
+                type="file"
+                id="profilePic"
+                name="profilePic"
+                accept="image/png, image/jpeg"
+                onChange={changeUrl}
+              />
+              <button className="settings__button-fetch" type="submit" />
+            </form>
+          </>
         )}
+
         <SettingsButtonContainer
-          toggle={changePic}
-          setToggle={setChangePic}
-          classes={classes.settings}
-          setError={setError}
+          toggle={toggle}
+          setToggle={setToggle}
+          classes={classes}
+          submitHandler={submitHandler}
         />
-      </form>
-    </div>
+
+        <SettingsBreadcrumb props={props} />
+      </div>
+    </>
   );
 }

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { classes } from "../../../constants/components/dashboard";
-import SettingsDataContainer from "../../../ui/SettingsDataContainer";
 import { PasswordInput, useRamonForm } from "ramon-form-sdude";
 import { useLang } from "../../../hooks/useLang";
 import { i18nAddresses } from "../../../constants/i18nAddresses";
@@ -8,10 +7,11 @@ import newPswConfigBuilder from "../../../forms/configs/changePsw";
 import FormInput from "../../forms/FormInput";
 import { validatePsw } from "./validators";
 import fetchUpdatePassword from "../../../api/handlers/fetchUpdatePassword";
+import SettingsBreadcrumb from "../SettingsBreadcrumb";
 import SettingsButtonContainer from "../../../ui/buttons/SettingsButtonContainer";
 
-export default function Password({ setError }) {
-  const [changePsw, setChangePsw] = useState(false);
+export default function Password({ props }) {
+  const { classes, card, setCard, toggle, setToggle } = props;
 
   const { strings, lang } = useLang(i18nAddresses.settings);
   const objConfig = newPswConfigBuilder(strings, "signup");
@@ -21,20 +21,15 @@ export default function Password({ setError }) {
   const submitHandler = async (e) => {
     e.preventDefault();
 
-    if (!changePsw) {
-      setChangePsw(!changePsw);
-      return;
-    }
-
     const formData = new FormData(e.currentTarget);
 
     const data = Object.fromEntries(formData.entries());
+    if (Object.keys(data).length === 0) return;
 
     const isValidData = validatePsw(data);
 
     if (isValidData.error) {
-      setChangePsw(!changePsw);
-      console.log("data ", isValidData);
+      setToggle(!toggle);
       return;
     }
 
@@ -43,23 +38,21 @@ export default function Password({ setError }) {
       return;
     }
 
-    setChangePsw(!changePsw);
+    setToggle(!toggle);
   };
 
-  return (
-    <div className={classes.settings.oddContainer}>
-      <SettingsDataContainer
-        type={"text"}
-        data={strings.changePsw}
-        containerClass={classes.settings.oddData}
-      />
+  const { container, form } = classes.settings;
 
-      <form
-        className={changePsw ? classes.settings.form : ""}
-        onSubmit={submitHandler}
-      >
-        {changePsw && (
-          <>
+  return (
+    <div className={container}>
+      <h3 className="settings__title">{strings.password}</h3>
+      <div className="settings__imgContainer">
+        <img src={"/locked.jpeg"} />
+      </div>
+
+      {toggle && (
+        <>
+          <form onSubmit={submitHandler} className={toggle ? form : ""}>
             <FormInput Element={PasswordInput} data={password} lang={lang} />
             <FormInput Element={PasswordInput} data={newPassword} lang={lang} />
             <FormInput
@@ -67,15 +60,19 @@ export default function Password({ setError }) {
               data={confirmNewPassword}
               lang={lang}
             />
-          </>
-        )}
-        <SettingsButtonContainer
-          toggle={changePsw}
-          setToggle={setChangePsw}
-          classes={classes.settings}
-          setError={setError}
-        />
-      </form>
+            <button className="settings__button-fetch" type="submit" />
+          </form>
+        </>
+      )}
+
+      <SettingsButtonContainer
+        toggle={toggle}
+        setToggle={setToggle}
+        classes={classes}
+        submitHandler={submitHandler}
+      />
+
+      <SettingsBreadcrumb props={props} />
     </div>
   );
 }
