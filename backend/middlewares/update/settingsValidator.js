@@ -17,7 +17,7 @@ const keyChecker = (array, checkArray) => {
 
 const newPasswordValidator = (data) => {
   const keys = Object.keys(data);
-  isValid = keyChecker(keys, passwordKeys);
+  let isValid = keyChecker(keys, passwordKeys);
 
   keys.forEach((key) => {
     const isValidPsw = passwordValidator(data[key]);
@@ -81,12 +81,7 @@ const settingsValidator = async (req, res, next) => {
 
   const fieldName = fieldArray[0];
 
-  if (fieldArray.length !== 1 && path !== "/settings") {
-    return stopIt(req, res, fieldName);
-  }
-
   const isValid = dispatchValidator(fieldName, data);
-
   if (!isValid) return stopIt(req, res, fieldName);
 
   next();
