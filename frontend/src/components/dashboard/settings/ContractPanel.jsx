@@ -7,16 +7,13 @@ const { currencyMap } = bundle.constants;
 
 export default function ContractPanel({
   config,
-  strings,
-  userCurrency,
-  lang,
   currentContract,
   contracts,
-  setError,
-  classes,
   setCurrentContract,
+  props,
 }) {
   const { retriever, type } = config;
+  const { classes, strings, userCurrency, setError } = props;
 
   const [userField, setUserField] = useState("");
   const [keys, setKeys] = useState([]);
@@ -57,24 +54,21 @@ export default function ContractPanel({
   return (
     <div className={classes.settings.contractContainer}>
       <SettingsContractTitle
-        strings={strings}
         setExist={setExist}
         exist={exist}
         setUserField={setUserField}
-        classes={classes.settings}
         contract={contract}
-        lang={lang}
+        props={props}
       />
       <ServiceMap
         setUserField={setUserField}
-        strings={strings}
         keys={keys}
         setterConfig={setterConfig}
         setError={setError}
-        classes={classes}
         contracts={contracts}
         currentContract={currentContract}
         setCurrentContract={setCurrentContract}
+        props={props}
       />
     </div>
   );

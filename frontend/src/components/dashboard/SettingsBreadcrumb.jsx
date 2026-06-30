@@ -1,15 +1,20 @@
 export default function SettingsBreadcrumb({ props }) {
-  const { userCards, strings, setCard, toggle } = props;
+  const { userCards, strings, setCard, toggle, card } = props;
+
   return (
     <div className="settings__breadcrumbContainer">
       {!toggle &&
-        userCards.map((card) => (
+        userCards.map((value) => (
           <div
-            className="settings__breadcrumb-btn"
-            onClick={() => setCard(card)}
-            key={`breadcrumb_${card}`}
+            className={
+              card === value
+                ? "settings__breadcrumb-activeBtn"
+                : "settings__breadcrumb-btn"
+            }
+            onClick={() => setCard(value)}
+            key={`breadcrumb_${value}`}
           >
-            {strings.settingsCard[card]}
+            {strings.settingsCard[value]}
           </div>
         ))}
     </div>

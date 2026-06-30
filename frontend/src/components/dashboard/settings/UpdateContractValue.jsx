@@ -1,6 +1,9 @@
-import { useState } from "react";
+import bundle from "shared";
 import fetchUpdateSettings from "../../../api/handlers/fetchUpdateSettings";
 import SettingsButtonContainer from "../../../ui/buttons/SettingsButtonContainer";
+import useRetrievePersonalSettings from "../../../hooks/useRetrievePersonalSettings";
+import { useState } from "react";
+const { currencyMap } = bundle.constants;
 
 export default function UpdateContractValue({
   configs,
@@ -9,16 +12,26 @@ export default function UpdateContractValue({
   setError,
   keys,
   currentContract,
+  nextHandler,
   contracts,
+  props,
 }) {
-  const { classes, userField, type, currency } = configs;
-  const [changeField, setChangeField] = useState(false);
+  const { classes, userField, type } = configs;
+  const { strings } = props;
   const contract = contracts[currentContract];
+  const [currency, setCurrency] = useState(null);
+
+  const retrieveConfig = {
+    data: { retrieve: "currency" },
+    setter: setCurrency,
+    key: "currency",
+    strings,
+  };
+  useRetrievePersonalSettings(retrieveConfig);
 
   const submitHandler = async (e) => {
     e.preventDefault();
     setError(null);
-    if (!changeField) setChangeField(!changeField);
 
     const formData = new FormData(e.currentTarget);
 
@@ -42,36 +55,40 @@ export default function UpdateContractValue({
     }
 
     const update = await fetchUpdateSettings({ [contract]: data });
+
     if (update.error) {
       return;
     }
 
     setUserField((prev) => ({
       ...prev,
-      [contract]: {
-        [dataKey]: data[dataKey],
-      },
+      [contract]: { ...data },
     }));
 
-    setChangeField(!changeField);
+    nextHandler();
   };
 
   const visibleKeys = keys.filter((key) => key !== "available");
+  const { form } = classes.settings;
+
   return (
-    <form
-      className={changeField ? classes.settings.form : ""}
-      onSubmit={submitHandler}
-    >
+    <form className={form} onSubmit={submitHandler}>
       {visibleKeys.map((key) => (
-        <input
-          key={`input__${key}`}
-          type={type}
-          id={key}
-          name={key}
-          placeholder={userField[contract][key]}
-        />
+        <div key={`input__${key}`}>
+          <label className="settings__labelPrice" htmlFor={key}>
+            {strings.labels[key]}: {userField[contract][key]}
+            {currencyMap[currency]}
+          </label>
+          <input
+            type={type}
+            id={key}
+            name={key}
+            placeholder={userField[contract][key]}
+          />
+        </div>
       ))}
-      <button type="submit">salva</button>
+
+      <button className="settings__button-fetch" type="submit" />
     </form>
   );
 }

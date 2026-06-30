@@ -28,14 +28,12 @@ export default function MyTeacher({ props }) {
         <img src={url} />
       </div>
 
-      {!toggle && (
-        <SettingsButtonContainer
-          toggle={toggle}
-          setToggle={setToggle}
-          classes={classes}
-          submitHandler={submitHandler}
-        />
-      )}
+      <SettingsButtonContainer
+        toggle={toggle}
+        setToggle={setToggle}
+        classes={classes}
+        submitHandler={submitHandler}
+      />
 
       <SettingsBreadcrumb props={props} />
     </div>

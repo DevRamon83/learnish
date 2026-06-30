@@ -3,31 +3,36 @@ import UpdateContractValue from "./UpdateContractValue";
 
 export default function ServiceMap({
   setUserField,
-  strings,
   keys,
   setterConfig,
   setError,
-  classes,
+  props,
   setCurrentContract,
   currentContract,
   contracts,
 }) {
+  const { classes } = props;
+
+  const nextHandler = () => {
+    setCurrentContract((prev) => prev + 1);
+    setError(null);
+  };
   return (
     <>
-      <div className={classes.priceContainer}>
-        <UpdateContractValue
-          key={`contract${currentContract}`}
-          configs={setterConfig}
-          containerClass={classes.settings.container}
-          setUserField={setUserField}
-          setError={setError}
-          keys={keys}
-          contracts={contracts}
-          currentContract={currentContract}
-        />
-      </div>
+      <UpdateContractValue
+        key={`contract${currentContract}`}
+        configs={setterConfig}
+        containerClass={classes.settings.container}
+        setUserField={setUserField}
+        setError={setError}
+        keys={keys}
+        contracts={contracts}
+        currentContract={currentContract}
+        nextHandler={nextHandler}
+        props={props}
+      />
 
-      <div onClick={() => setCurrentContract((prev) => prev + 1)}>next</div>
+      <div onClick={nextHandler}>next</div>
     </>
   );
 }

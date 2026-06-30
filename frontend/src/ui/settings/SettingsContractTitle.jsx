@@ -2,16 +2,16 @@ import ActivateService from "../../components/dashboard/settings/ActivateService
 import Deactivate from "../../components/dashboard/settings/Deactivate";
 
 export default function SettingsContractTitle({
-  strings,
+  props,
   setExist,
   exist,
   setUserField,
-  classes,
   contract,
-  lang,
 }) {
+  const { strings, classes, lang } = props;
+
   return (
-    <div className={classes.titleContainer}>
+    <div className={classes.settings.titleContainer}>
       <h3>{strings.contract[contract]}</h3>
       {contract !== "subscription" && exist && (
         <Deactivate

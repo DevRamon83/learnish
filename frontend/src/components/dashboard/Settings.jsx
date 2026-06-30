@@ -57,6 +57,7 @@ export default function Settings({ userType }) {
   });
 
   const props = {
+    card,
     setCard,
     strings,
     classes,

@@ -1,26 +1,18 @@
 import { useState } from "react";
-import useRetrievePersonalSettings from "../../../hooks/useRetrievePersonalSettings";
 import fetchUpdateSettings from "../../../api/handlers/fetchUpdateSettings";
 import SettingsButtonContainer from "../../../ui/buttons/SettingsButtonContainer";
 import bundle from "shared";
 import SettingsBreadcrumb from "../SettingsBreadcrumb";
-const { currency } = bundle.constants;
+import useRetrievePersonalSettings from "../../../hooks/useRetrievePersonalSettings";
+const { currencies } = bundle.constants;
 
 export default function Currency({ props }) {
-  const {
-    strings,
-    user,
-    userCurrency,
-    setUserCurrency,
-    setError,
-    toggle,
-    setToggle,
-    classes,
-  } = props;
-  const [changeCurrency, setChangeCurrency] = useState(false);
+  const [currency, setCurrency] = useState(null);
+  const { strings, user, setError, toggle, setToggle, classes } = props;
+
   const retrieveConfig = {
     data: { retrieve: "currency" },
-    setter: setUserCurrency,
+    setter: setCurrency,
     key: "currency",
     strings,
   };
@@ -29,26 +21,27 @@ export default function Currency({ props }) {
   const submitHandler = async (e) => {
     e.preventDefault();
 
-    if (!changeCurrency) setChangeCurrency(!changeCurrency);
-
     const formData = new FormData(e.currentTarget);
 
     const data = Object.fromEntries(formData.entries());
+
     if (Object.keys(data).length === 0) return;
 
-    const isValid = currency.includes(data.currency);
+    const isValid = currencies.includes(data.currency);
+
     if (!isValid) {
-      setChangeCurrency(!currency);
+      setToggle(!toggle);
       return;
     }
 
     const update = await fetchUpdateSettings(data);
+
     if (update.error) {
       return;
     }
 
-    setChangeCurrency(!currency);
-    setUserCurrency(data.currency);
+    setToggle(!toggle);
+    setCurrency(data.currency);
   };
 
   const { container, form } = classes.settings;
@@ -62,7 +55,12 @@ export default function Currency({ props }) {
 
       {toggle && (
         <form className={toggle ? form : ""} onSubmit={submitHandler}>
-          <select name="currency" id="currency" defaultValue={userCurrency}>
+          <select
+            className="settings__currency"
+            name="currency"
+            id="currency"
+            defaultValue={currency}
+          >
             <option value="dollar">{strings.dollars}</option>
             <option value="euro">{strings.euro}</option>
           </select>

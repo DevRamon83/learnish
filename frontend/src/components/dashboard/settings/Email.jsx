@@ -27,6 +27,7 @@ export default function Email({ props }) {
     if (Object.keys(data).length === 0) return;
 
     const isValid = emailValidator(data.email);
+
     if (isValid.error) {
       setToggle(!toggle);
       return;

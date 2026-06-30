@@ -6,7 +6,7 @@ import bundle from "shared";
 const { contracts } = bundle.constants;
 
 export default function ContractSwitch({ props, isComplete, setIsComplete }) {
-  const { strings, lang, setError, classes, userCurrency } = props;
+  const { strings, lang } = props;
   const servicesKeys = Object.keys(servicesMap);
   const [currentContract, setCurrentContract] = useState(0);
   const [config, setConfig] = useState(0);
@@ -30,14 +30,10 @@ export default function ContractSwitch({ props, isComplete, setIsComplete }) {
       ) : (
         <ContractPanel
           config={config}
-          strings={strings}
-          lang={lang}
-          userCurrency={userCurrency}
           currentContract={currentContract}
-          setError={setError}
-          classes={classes}
           setCurrentContract={setCurrentContract}
           contracts={contracts}
+          props={props}
         />
       )}
     </>

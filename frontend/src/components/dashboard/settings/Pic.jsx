@@ -61,18 +61,16 @@ export default function Pic({ props }) {
           <img src={userPic.url} />
         </div>
         {toggle && (
-          <>
-            <form onSubmit={submitHandler} className={toggle ? form : ""}>
-              <input
-                type="file"
-                id="profilePic"
-                name="profilePic"
-                accept="image/png, image/jpeg"
-                onChange={changeUrl}
-              />
-              <button className="settings__button-fetch" type="submit" />
-            </form>
-          </>
+          <form onSubmit={submitHandler} className={toggle ? form : ""}>
+            <input
+              type="file"
+              id="profilePic"
+              name="profilePic"
+              accept="image/png, image/jpeg"
+              onChange={changeUrl}
+            />
+            <button className="settings__button-fetch" type="submit" />
+          </form>
         )}
 
         <SettingsButtonContainer
