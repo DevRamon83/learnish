@@ -51,12 +51,23 @@
   "back": "indietro",
   "start": "inizio",
   "end": "fine",
-  "list": "Lista degli insegnanti",
+  "yourTeacher": "Il tuo insegnante: ",
+  "choose": "Scegli",
+  "password": "Cambia la tua password",
+  "settingsCard": {
+    "Pic": "Avatar",
+    "Email": "Email",
+    "Password": "Password",
+    "Plan": "Piano",
+    "MyTeacher": "Docente",
+    "Currency": "Valuta",
+    "Contracts": "Prezzi"
+  },
   "contract": {
-    "subscription": "Prospetto dei costi di sottoscrizione",
-    "tutoring": "Prospetto dei costi per le sessioni di tutoring",
-    "speaking": "Prospetto dei costi per le sessioni di speaking",
-    "qNa": "Prospetto dei costi per le sessioni Q&A"
+    "subscription": "Costi di sottoscrizione",
+    "tutoring": "Costi per le sessioni di tutoring",
+    "speaking": "Costi per le sessioni di speaking",
+    "qNa": "Costi per le sessioni Q&A"
   },
   "front": {
     "perRes": "costo per risposta",

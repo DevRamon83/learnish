@@ -11,7 +11,7 @@ export const dashboardTeachersTabs = [
   "logout",
 ];
 export const supportedLangs = ["us", "en"];
-export const currency = ["dollar", "euro"];
+export const currencies = ["dollar", "euro"];
 export const subscription = ["monthly", "semiannually", "annually"];
 export const packs = ["single", "fivePack", "tenPack"];
 export const tutoring = [...packs];
