@@ -1,5 +1,6 @@
 import createTokenConfigs from "../../helpers/token/createTokenConfigs.js";
 import setTokenAndCookie from "../../helpers/token/setTokenAndCookie.js";
+import handleErrorResponse from "../../helpers/handleErrorResponse.js";
 import { userModel } from "../../models/user.js";
 import bundle from "shared";
 const { contracts } = bundle.constants;
@@ -14,8 +15,10 @@ const saveSettings = async (req, res) => {
     const fieldName = fieldArray[0];
 
     if (contracts.includes(fieldName)) {
-      const key = Object.keys(data[fieldName]);
-      user.contract[fieldName][key] = data[fieldName][key];
+      const keys = Object.keys(data[fieldName]);
+      keys.forEach((key) => {
+        user.contract[fieldName][key] = data[fieldName][key];
+      });
     } else {
       user[fieldName] = data[fieldName];
     }
