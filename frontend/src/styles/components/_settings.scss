@@ -19,15 +19,15 @@
   align-items: center;
   flex-direction: column;
   width: 100%;
-  height: 422px;
+  height: fit-content;
   margin-bottom: 25px;
   background-color: #f7f8fa;
   display: flex;
-  flex-direction: row;
 
   @include breakpoints.medium {
     margin-bottom: 40px;
     height: 500px;
+    flex-direction: row;
   }
 }
 
@@ -53,8 +53,13 @@
 }
 
 .settings__imgContainer > img {
-  height: 100%;
-  width: auto;
+  height: auto;
+  width: 100%;
+
+  @include breakpoints.medium {
+    height: 100%;
+    width: auto;
+  }
 }
 
 .settings__container-pic {
@@ -101,8 +106,9 @@
 }
 
 %settings__button {
-  border: 1px solid #000;
-  border-bottom: 0;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #000;
   border-radius: 5px 5px 0 0;
   height: 50px;
   width: 50px;
@@ -118,17 +124,34 @@
   @extend %settings__button;
   background-image: url("/change.svg");
   background-color: greenyellow;
-  border-radius: 0 15px 0 15px;
-  border: 1px solid #000;
+  border-width: 1px 0;
+  width: 100%;
+  border-radius: 0;
+
+  @include breakpoints.medium {
+    border-radius: 0 15px 0 15px;
+    border-width: 1px;
+    width: 50px;
+  }
 }
 
 .settings__button-fetch {
   @extend %settings__button;
   background-image: url("/save.svg");
   background-color: greenyellow;
-  bottom: 31px;
-  right: 40px;
-  border-radius: 5px 5px 0 0;
+  top: 0px;
+  right: 0px;
+  width: 100%;
+  border-radius: 0;
+  border-width: 0 0 1px 0;
+
+  @include breakpoints.medium {
+    top: unset;
+    bottom: 31px;
+    right: 40px;
+    border-radius: 5px 5px 0 0;
+    width: 50px;
+  }
 }
 
 .settings__contractForm {
@@ -152,18 +175,25 @@
 }
 
 .settings__form {
-  display: flex;
-  justify-content: center;
-  width: 57%;
-  margin-left: 0;
+  position: absolute;
+  top: 100px;
+  bottom: 0;
+  background-color: #f7f8fa;
+  padding-top: 80px;
+  left: 0;
+  right: 0;
 
   @include breakpoints.medium {
+    position: unset;
+    display: flex;
+    justify-content: center;
     animation: showSettingForm 0.5s forwards;
     margin-right: -200%;
     background-color: #f0f4f8;
     height: 439px;
     width: 72%;
     border-bottom: 1px solid #000;
+    padding-top: unset;
   }
 }
 
@@ -191,13 +221,23 @@
 
 .settings__button-close {
   @extend %settings__button;
+  background-image: url("/close.svg");
+  background-color: red;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: red;
   border-radius: 0 15px 0 15px;
-  border: 1px solid #000;
-  background-image: url("/close.svg");
+  border-width: 1px 0;
+  border-style: solid;
+  border-color: #000;
+  width: 100%;
+  border-radius: 0;
+
+  @include breakpoints.medium {
+    border-radius: 0 15px 0 15px;
+    border-width: 1px;
+    width: 50px;
+  }
 }
 
 .settings__button-close > img {
@@ -263,8 +303,16 @@
   flex-direction: row;
   justify-content: space-evenly;
   position: absolute;
-  bottom: 30px;
-  left: 25px;
+  top: 100px;
+  left: 0;
+  width: 100%;
+
+  @include breakpoints.medium {
+    bottom: 30px;
+    left: 25px;
+    top: unset;
+    width: unset;
+  }
 }
 
 .settings__buttons img {
@@ -569,46 +617,93 @@
   color: white;
   font-weight: bold;
   margin: 0;
-  position: absolute;
-  top: 5vh;
-  right: 0;
 
   @include breakpoints.medium {
     position: absolute;
     top: 0;
+    right: 0;
     z-index: 10;
     border-radius: 20px 0 0 0;
   }
 }
 
 .settings__breadcrumbContainer {
-  height: fit-content;
+  width: 100%;
   display: flex;
-  flex-direction: column;
   justify-content: space-evenly;
-  height: 90%;
-  margin-top: 5%;
+  position: absolute;
+  left: 5px;
+  top: 115px;
+  flex-direction: column;
+  gap: 5px;
+
+  @include breakpoints.medium {
+    height: fit-content;
+    justify-content: space-evenly;
+    align-items: flex-end;
+    height: 90%;
+    margin-top: 5%;
+    width: unset;
+    position: unset;
+    gap: unset;
+  }
+}
+
+.settings__breadcrumbContainer-mobile {
+  @include breakpoints.medium {
+    display: none;
+  }
 }
 
 .settings__breadcrumb-btn {
-  text-transform: uppercase;
-  color: colors.$primaryColor;
-  font-weight: bold;
   background-color: white;
-  border-radius: 10px 0 0 10px;
-  border: 1px solid #000;
-  border-right: 0;
-  padding: 7px 25px;
+  border-radius: 50%;
+  border-width: 1px;
+  border-color: #000;
+  border-style: solid;
+  padding: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  width: 40px;
+  height: 40px;
+
+  @include breakpoints.medium {
+    text-transform: uppercase;
+    color: colors.$primaryColor;
+    font-weight: bold;
+    background-color: white;
+    border-radius: 10px 0 0 10px;
+    border-width: 1px 0 1px 1px;
+    padding: 7px 25px;
+    width: fit-content;
+    height: unset;
+  }
+}
+
+.settings__breadcrumb-btn > img {
+  @include breakpoints.medium {
+    display: none;
+  }
+}
+
+.settings__breadcrumb-text {
+  display: none;
+
+  @include breakpoints.medium {
+    display: unset;
+  }
 }
 
 .settings__breadcrumb-activeBtn {
   @extend .settings__breadcrumb-btn;
-  background-color: colors.$primaryColor;
-  color: white;
+  background-color: lime;
+
+  @include breakpoints.medium {
+    background-color: colors.$primaryColor;
+    color: white;
+  }
 }
 
 .settings__email {
@@ -635,4 +730,17 @@
   display: block;
   margin-bottom: 5px;
   text-transform: uppercase;
+}
+
+.settings__form {
+  > #form__input-password,
+  > #form__input-newPassword,
+  > #form__input-confirmNewPassword {
+    width: 90%;
+    margin-left: 5%;
+  }
+}
+
+.settings__form label {
+  margin-left: -32px;
 }
