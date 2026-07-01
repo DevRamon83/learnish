@@ -20,8 +20,8 @@ export default function StudentsDashboard() {
         setCurrentTab={setCurrentTab}
         currentTab={currentTab}
       />
-      <div className={classes.core}>{currentTab === "study" && <Study />}</div>
       <div className={classes.core}>
+        {currentTab === "study" && <Study />}
         {currentTab === "settings" && <Settings userType="student" />}
       </div>
     </main>
