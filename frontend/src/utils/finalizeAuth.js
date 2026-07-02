@@ -1,19 +1,19 @@
 const successHandler = (resp, data, setError) => {
   const { dispatch, navigate, setUser, setAuth } = data;
-  const { response } = resp;
+
   setError(null);
-  dispatch(setUser(response));
+  dispatch(setUser(resp));
   dispatch(setAuth("authenticated"));
-  navigate(`/user/${response.type}/${response.id}`);
+  navigate(`/user/${resp.type}/${resp.id}`);
 };
 
-const finalizeAuth = (response, data, setError) => {
-  const { errorStrings } = data;
+const finalizeAuth = (resp, data, setError) => {
+  const { strings } = data;
 
-  if (response.error) {
-    setError(errorStrings.strings[response.errorMessage]);
+  if (resp.error) {
+    setError(strings[resp.errorMessage]);
   } else {
-    successHandler(response, data, setError);
+    successHandler(resp, data, setError);
   }
 };
 
