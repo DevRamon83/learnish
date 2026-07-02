@@ -1,3 +1,4 @@
+import handleErrorResponse from "../../helpers/handleErrorResponse.js";
 import { Teacher } from "../../models/user.js";
 
 const teachersList = async (req, res) => {
