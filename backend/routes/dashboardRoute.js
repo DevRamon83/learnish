@@ -8,6 +8,7 @@ import getStats from "../controllers/dashboard/getStats.js";
 import protectedRoutes from "../middlewares/protectedRoutes.js";
 import flashcards from "../controllers/dashboard/flashcards.js";
 import teachersList from "../controllers/dashboard/teachersList.js";
+import studentsList from "../controllers/dashboard/studentsList.js";
 
 const dashboardRoute = express.Router();
 
@@ -26,5 +27,6 @@ dashboardRoute.get("/flashcards", ...protectedRoutes, flashcards);
 
 dashboardRoute.get("/summariesList", ...protectedRoutes, summariesList);
 dashboardRoute.get("/teachers", ...protectedRoutes, teachersList);
+dashboardRoute.get("/students", ...protectedRoutes, studentsList);
 
 export default dashboardRoute;
