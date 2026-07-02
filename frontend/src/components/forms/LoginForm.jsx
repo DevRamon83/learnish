@@ -49,10 +49,17 @@ export default function LoginForm() {
 
     dispatch(setAuth("pending"));
 
-    const response = await fetchLogin(data);
-    const config = { dispatch, navigate, setAuth, setUser, errorStrings };
+    const resp = await fetchLogin(data);
 
-    finalizeAuth(response, config, setError);
+    const config = {
+      dispatch,
+      navigate,
+      setAuth,
+      setUser,
+      strings: errorStrings,
+    };
+
+    finalizeAuth(resp.response, config, setError);
   };
 
   return (
