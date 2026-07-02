@@ -151,6 +151,7 @@
     right: 40px;
     border-radius: 5px 5px 0 0;
     width: 50px;
+    border-width: 1px 1px 0 1px;
   }
 }
 
@@ -266,13 +267,14 @@
 
 .settings__teachersList {
   position: absolute;
-  top: 0;
+  top: 99px;
   bottom: 0;
   left: 100%;
   right: 0px;
   animation: showTeachersList 0.5s forwards;
 
   @include breakpoints.medium {
+    top: 0;
     display: flex;
     justify-content: flex-end;
     flex-direction: column;
@@ -628,7 +630,6 @@
 }
 
 .settings__breadcrumbContainer {
-  width: 100%;
   display: flex;
   justify-content: space-evenly;
   position: absolute;
