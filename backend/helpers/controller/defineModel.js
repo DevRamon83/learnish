@@ -1,7 +1,7 @@
 import { Student, Teacher } from "../../models/user.js";
 
 const defineModel = (data) => {
-  if (!data.userType || data.userType === "studente") {
+  if (!data.userType || data.userType === "student") {
     return Student;
   }
 
