@@ -7,6 +7,14 @@ const chooseTeacher = async (req, res) => {
     const userID = req.context.auth.id;
     const user = await userModel.findById(userID);
     const teacherID = req.body.id;
+    const oldTeacherID = user.teacher?.id;
+
+    if (oldTeacherID) {
+      await Teacher.findByIdAndUpdate(oldTeacherID, {
+        $pull: { students: userID },
+      });
+    }
+
     const teacher = await Teacher.findByIdAndUpdate(
       teacherID,
       {
