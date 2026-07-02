@@ -7,11 +7,10 @@ import fetchYourTeacher from "../../../api/handlers/fetchYourTeacher";
 export default function TeachersList({
   classes,
   props,
-  setMyTeacher,
   teachersList,
   setTeachersList,
 }) {
-  const { strings, setToggle } = props;
+  const { strings, setToggle, myTeacher, setMyTeacher } = props;
   const [currentTeacher, setCurrentTeacher] = useState(0);
   const [next, setNext] = useState("");
   const [previous, setPrevious] = useState("");
@@ -58,6 +57,10 @@ export default function TeachersList({
   };
 
   const chooseTeacher = async () => {
+    if (myTeacher.id === teachersList[currentTeacher]._id) {
+      setToggle(false);
+      return;
+    }
     const newTeacher = await fetchYourTeacher({
       id: teachersList[currentTeacher]._id,
     });
