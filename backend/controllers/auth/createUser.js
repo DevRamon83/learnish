@@ -41,14 +41,16 @@ const createUser = async (req, res) => {
 
     const user = await model.create(userObj);
 
-    await lessonModel.create({
-      userId: user._id,
-      unlocked: [],
-      unlockedToday: 0,
-      nextUnlock: 0,
-    });
+    if (user.userType === "student") {
+      await lessonModel.create({
+        userId: user._id,
+        unlocked: [],
+        unlockedToday: 0,
+        nextUnlock: 0,
+      });
+    }
 
-    return res.status(201).json({ url: verifyUrl, message: "created" });
+    return res.status(201).json({ url: verifyUrl, type: user.type });
   } catch (err) {
     console.error("Error in createUser:", err);
     const log = false;
