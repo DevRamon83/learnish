@@ -1,0 +1,46 @@
+{
+  "paper": [
+    {
+      "name": "Ansa",
+      "img": "/about/ansa.jpeg",
+      "description": "Chi? Non sappiamo chi siano"
+    },
+    {
+      "name": "Adnkronos",
+      "img": "/about/adnkronos.jpeg",
+      "description": "Mai sentiti! No, davvero, mai sentiti"
+    },
+    {
+      "name": "Corriere della sera",
+      "img": "/about/corsera.jpeg",
+      "description": "Non sappiamo chi siano"
+    },
+    {
+      "name": "Sole24",
+      "img": "/about/sole24.jpeg",
+      "description": "Ah, si, quelli di... no! mai sentiti nominare"
+    },
+    {
+      "name": "Milano finanza",
+      "img": "/about/milanoFinanza.jpeg",
+      "description": "Ah, si, il sito per le consegne a domicilio delle polpette? no? E allora no, non li conosciamo"
+    },
+    {
+      "name": "Repubblica",
+      "img": "/about/repubblica.jpeg",
+      "description": "Ci fanno spam da tre anni."
+    },
+    {
+      "name": "La gazzetta del mezzogiorno",
+      "img": "/about/gazzetta.jpeg",
+      "description": "Emh... Dunque... Vediamo... Forse... No, non li conosciamo"
+    },
+    {
+      "name": "Il Mattino",
+      "img": "/about/mattino.jpeg",
+      "description": "Ma che duolingo? No? E allora boh"
+    }
+  ],
+  "back": "indietro",
+  "forward": "avanti"
+}
