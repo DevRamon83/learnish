@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { setUser } from "../../../redux/slices/authSlice";
 import SettingsBreadcrumb from "../SettingsBreadcrumb";
 import SettingsButtonContainer from "../../../ui/buttons/SettingsButtonContainer";
+import SettingsCommonTitle from "../../../ui/settings/SettingsCommonTitle";
 
 export default function Pic({ props }) {
   const { strings, classes, user, toggle, setToggle, userPic, setUserPic } =
@@ -55,11 +56,12 @@ export default function Pic({ props }) {
 
   return (
     <>
-      <h3 className="settings__title">Immagine profilo</h3>
       <div className={`${container}`}>
-        <div className="settings__imgContainer">
-          <img src={userPic.url} />
-        </div>
+        <SettingsCommonTitle
+          classes={classes}
+          string={strings.profilePic}
+          src={userPic.url}
+        />
         {toggle && (
           <form onSubmit={submitHandler} className={toggle ? form : ""}>
             <input
@@ -69,7 +71,7 @@ export default function Pic({ props }) {
               accept="image/png, image/jpeg"
               onChange={changeUrl}
             />
-            <button className="settings__button-fetch" type="submit" />
+            <button className={classes.settings.btnFetch} type="submit" />
           </form>
         )}
 
@@ -77,7 +79,6 @@ export default function Pic({ props }) {
           toggle={toggle}
           setToggle={setToggle}
           classes={classes}
-          submitHandler={submitHandler}
         />
 
         <SettingsBreadcrumb props={props} />

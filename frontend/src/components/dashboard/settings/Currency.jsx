@@ -4,6 +4,7 @@ import SettingsButtonContainer from "../../../ui/buttons/SettingsButtonContainer
 import bundle from "shared";
 import SettingsBreadcrumb from "../SettingsBreadcrumb";
 import useRetrievePersonalSettings from "../../../hooks/useRetrievePersonalSettings";
+import SettingsCommonTitle from "../../../ui/settings/SettingsCommonTitle";
 const { currencies } = bundle.constants;
 
 export default function Currency({ props }) {
@@ -48,15 +49,16 @@ export default function Currency({ props }) {
 
   return (
     <div className={container}>
-      <h3 className="settings__title">In che valuta vuoi essere pagato?</h3>
-      <div className="settings__imgContainer">
-        <img src={"/currency.jpeg"} />
-      </div>
+      <SettingsCommonTitle
+        classes={classes}
+        string={strings.currencyTitle}
+        src="/currency.jpeg"
+      />
 
       {toggle && (
         <form className={toggle ? form : ""} onSubmit={submitHandler}>
           <select
-            className="settings__currency"
+            className={classes.settings.currencyInput}
             name="currency"
             id="currency"
             defaultValue={currency}
@@ -64,7 +66,7 @@ export default function Currency({ props }) {
             <option value="dollar">{strings.dollars}</option>
             <option value="euro">{strings.euro}</option>
           </select>
-          <button className="settings__button-fetch" type="submit" />
+          <button className={classes.settings.btnFetch} type="submit" />
         </form>
       )}
 
@@ -72,7 +74,6 @@ export default function Currency({ props }) {
         toggle={toggle}
         setToggle={setToggle}
         classes={classes}
-        submitHandler={submitHandler}
       />
 
       <SettingsBreadcrumb props={props} />

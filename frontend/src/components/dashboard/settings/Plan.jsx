@@ -5,6 +5,7 @@ import { setUser } from "../../../redux/slices/authSlice";
 import { validatePlan } from "./validators";
 import SettingsBreadcrumb from "../SettingsBreadcrumb";
 import SettingsButtonContainer from "../../../ui/buttons/SettingsButtonContainer";
+import SettingsCommonTitle from "../../../ui/settings/SettingsCommonTitle";
 
 export default function Plan({ userType, props }) {
   const { strings, classes, card, setCard, user, toggle, setToggle } = props;
@@ -41,11 +42,11 @@ export default function Plan({ userType, props }) {
 
   return (
     <div className={container}>
-      <h3 className="settings__title">{`${strings.activePlan} ${user.plan}`}</h3>
-
-      <div className="settings__imgContainer">
-        <img src={"/plan.jpeg"} />
-      </div>
+      <SettingsCommonTitle
+        classes={classes}
+        string={`${strings.activePlan} ${user.plan}`}
+        src="/plan.jpeg"
+      />
 
       {toggle && (
         <>
@@ -59,7 +60,7 @@ export default function Plan({ userType, props }) {
               <option value="basic">{strings.basicCost}</option>
               <option value="pro">{strings.proCost}</option>
             </select>
-            <button className="settings__button-fetch" type="submit" />
+            <button className={classes.settings.btnFetch} type="submit" />
           </form>
         </>
       )}
@@ -68,7 +69,6 @@ export default function Plan({ userType, props }) {
         toggle={toggle}
         setToggle={setToggle}
         classes={classes}
-        submitHandler={submitHandler}
       />
       <SettingsBreadcrumb props={props} />
     </div>

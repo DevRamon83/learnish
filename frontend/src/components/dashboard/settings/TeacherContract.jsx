@@ -5,6 +5,7 @@ import ContractPanel from "./ContractPanel";
 import SettingsButtonContainer from "../../../ui/buttons/SettingsButtonContainer";
 import SettingsBreadcrumb from "../SettingsBreadcrumb";
 import ContractSwitch from "./ContractSwitch";
+import SettingsCommonTitle from "../../../ui/settings/SettingsCommonTitle";
 
 export default function TeacherContract({ props }) {
   const { strings, lang, userCurrency, setError, classes, toggle, setToggle } =
@@ -25,17 +26,14 @@ export default function TeacherContract({ props }) {
 
   const { container, form } = classes.settings;
 
-  const submitHandler = () => {
-    console.log("ciao");
-  };
-
   return (
     <>
       <div className={container}>
-        <h3 className="settings__title">Prospetti dei costi e dei servizi</h3>
-        <div className="settings__imgContainer">
-          <img src={"/prices.jpeg"} />
-        </div>
+        <SettingsCommonTitle
+          classes={classes}
+          string={strings.contractTitle}
+          src="/prices.jpeg"
+        />
 
         {toggle && (
           <ContractSwitch
@@ -49,7 +47,6 @@ export default function TeacherContract({ props }) {
           toggle={toggle}
           setToggle={setToggle}
           classes={classes}
-          submitHandler={submitHandler}
         />
 
         <SettingsBreadcrumb props={props} />

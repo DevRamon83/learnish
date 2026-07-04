@@ -2,10 +2,9 @@ export default function SettingsButtonContainer({
   toggle,
   setToggle,
   classes,
-  submitHandler,
 }) {
   return (
-    <div className="settings__buttons">
+    <div className={classes.settings.buttons}>
       <div
         onClick={() => setToggle(!toggle)}
         className={

@@ -4,6 +4,7 @@ import bundle from "shared";
 import fetchUpdateSettings from "../../../api/handlers/fetchUpdateSettings";
 import SettingsBreadcrumb from "../SettingsBreadcrumb";
 import SettingsButtonContainer from "../../../ui/buttons/SettingsButtonContainer";
+import SettingsCommonTitle from "../../../ui/settings/SettingsCommonTitle";
 const { emailValidator } = bundle;
 
 export default function Email({ props }) {
@@ -45,21 +46,22 @@ export default function Email({ props }) {
 
   return (
     <div className={container}>
-      <h3 className="settings__title">{`La tua mail: ${userEmail}`}</h3>
-      <div className="settings__imgContainer">
-        <img src={"/email.jpeg"} />
-      </div>
+      <SettingsCommonTitle
+        classes={classes}
+        string={`${strings.yourMail} ${userEmail}`}
+        src="/email.jpeg"
+      />
 
       {toggle && (
         <form onSubmit={submitHandler} className={toggle ? form : ""}>
           <input
-            className="settings__email"
+            className={classes.settings.emailInput}
             type="text"
             id="email"
             name="email"
             placeholder={userEmail}
           />
-          <button className="settings__button-fetch" type="submit" />
+          <button className={classes.settings.btnFetch} type="submit" />
         </form>
       )}
 
@@ -67,7 +69,6 @@ export default function Email({ props }) {
         toggle={toggle}
         setToggle={setToggle}
         classes={classes}
-        submitHandler={submitHandler}
       />
 
       <SettingsBreadcrumb props={props} />

@@ -9,6 +9,7 @@ import { validatePsw } from "./validators";
 import fetchUpdatePassword from "../../../api/handlers/fetchUpdatePassword";
 import SettingsBreadcrumb from "../SettingsBreadcrumb";
 import SettingsButtonContainer from "../../../ui/buttons/SettingsButtonContainer";
+import SettingsCommonTitle from "../../../ui/settings/SettingsCommonTitle";
 
 export default function Password({ props }) {
   const { classes, card, setCard, toggle, setToggle } = props;
@@ -45,10 +46,11 @@ export default function Password({ props }) {
 
   return (
     <div className={container}>
-      <h3 className="settings__title">{strings.password}</h3>
-      <div className="settings__imgContainer">
-        <img src={"/locked.jpeg"} />
-      </div>
+      <SettingsCommonTitle
+        classes={classes}
+        string={strings.password}
+        src="/locked.jpeg"
+      />
 
       {toggle && (
         <>
@@ -60,7 +62,7 @@ export default function Password({ props }) {
               data={confirmNewPassword}
               lang={lang}
             />
-            <button className="settings__button-fetch" type="submit" />
+            <button className={classes.settings.btnFetch} type="submit" />
           </form>
         </>
       )}
@@ -69,7 +71,6 @@ export default function Password({ props }) {
         toggle={toggle}
         setToggle={setToggle}
         classes={classes}
-        submitHandler={submitHandler}
       />
 
       <SettingsBreadcrumb props={props} />

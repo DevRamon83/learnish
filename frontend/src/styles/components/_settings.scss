@@ -69,21 +69,6 @@
   width: 100%;
 }
 
-.settings__container-oddData {
-  @extend .settings__container-pic;
-  color: white;
-  font-weight: bold;
-  margin: 10px 0;
-}
-
-.settings__container-evenData {
-  @extend .settings__container-pic;
-  background-color: white;
-  color: colors.$primaryColor;
-  font-weight: bold;
-  margin: 10px 0;
-}
-
 .settings__container-pic > img {
   width: 100%;
   height: auto;
@@ -347,7 +332,7 @@
   }
 }
 
-.settings__titleContainer {
+.settings__contractTitle {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -355,7 +340,7 @@
   margin-bottom: 30px;
 }
 
-.settings__titleContainer > h3 {
+.settings__contractTitle > h3 {
   background-color: ghostwhite;
   border-radius: 10px 0 0 10px;
   border: 1px solid #000;
@@ -422,7 +407,7 @@
   }
 }
 
-.settings__titleContainer > h1 {
+.settings__contractTitle > h1 {
   @extend %h1FormBase;
 }
 
@@ -744,4 +729,29 @@
 
 .settings__form label {
   margin-left: -32px;
+}
+
+.settings__myStudents {
+  min-height: 50vh;
+  margin: 50px 25px;
+}
+
+.settings__student {
+  width: 80%;
+  background-color: white;
+  height: 100px;
+  border: 1px solid #000;
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.settings__student > img {
+  height: 100%;
+  width: auto;
+  border-right: 1px solid #000;
+  margin-right: 15px;
 }

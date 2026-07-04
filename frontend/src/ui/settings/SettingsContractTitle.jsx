@@ -11,7 +11,7 @@ export default function SettingsContractTitle({
   const { strings, classes, lang } = props;
 
   return (
-    <div className={classes.settings.titleContainer}>
+    <div className={classes.settings.contractTitle}>
       <h3>{strings.contract[contract]}</h3>
       {contract !== "subscription" && exist && (
         <Deactivate
