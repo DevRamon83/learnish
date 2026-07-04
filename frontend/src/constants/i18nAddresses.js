@@ -13,4 +13,5 @@ export const i18nAddresses = {
   englishLessons: "lessons.englishLessons",
   flashcards: "components.flashcards",
   settings: "components.settings",
+  about: "pages.about",
 };
