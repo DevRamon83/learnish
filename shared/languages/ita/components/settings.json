@@ -54,6 +54,11 @@
   "yourTeacher": "Il tuo insegnante: ",
   "choose": "Scegli",
   "password": "Cambia la tua password",
+  "currencyTitle": "In che valuta vuoi essere pagato?",
+  "profilePic": "Immagine profilo",
+  "contractTitle": "Prospetti dei costi e dei servizi",
+  "settingsBtn": "settings__buttons",
+  "yourMail": "La tua mail: ",
   "settingsCard": {
     "Pic": "Avatar",
     "Email": "Email",
