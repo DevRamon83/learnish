@@ -52,8 +52,9 @@ export default function Plan({ userType, props }) {
         <>
           <form onSubmit={submitHandler} className={toggle ? form : ""}>
             <select
-              name="settings__plan"
-              id="settings__plan"
+              className={classes.settings.planInput}
+              name="plan"
+              id="plan"
               defaultValue={user.plan}
             >
               <option value="free">{strings.freeCost}</option>
