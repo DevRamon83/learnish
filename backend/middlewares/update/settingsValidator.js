@@ -1,6 +1,6 @@
 import bundle from "shared";
 import handleErrorResponse from "../../helpers/handleErrorResponse.js";
-const { plans, currency, passwordKeys } = bundle.constants;
+const { plans, currencies, passwordKeys } = bundle.constants;
 const { emailValidator, passwordValidator } = bundle;
 
 const keyChecker = (array, checkArray) => {
@@ -55,7 +55,7 @@ const dispatchValidator = (fieldName, data) => {
     case "password":
       return newPasswordValidator(data);
     case "currency":
-      return currency.includes(data[fieldName]);
+      return currencies.includes(data[fieldName]);
     case "subscription":
     case "tutoring":
     case "speaking":
