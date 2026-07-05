@@ -125,6 +125,10 @@ export const classes = {
     emailInput: "settings__email",
     labelPrice: "settings__labelPrice",
     buttons: "settings__buttons",
+    breadcrumbContainer: "settings__breadcrumbContainer",
+    breadcrumbBtn: "settings__breadcrumb-btn",
+    breadcrumbActiveBtn: "settings__breadcrumb-activeBtn",
+    breadcrumbText: "settings__breadcrumb-text",
   },
   study: {
     menu: "dashboard__studyMenu",

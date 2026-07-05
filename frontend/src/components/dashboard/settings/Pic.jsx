@@ -4,7 +4,7 @@ import fetchPic from "../../../api/handlers/fetchPic";
 import { validatePic } from "./validators";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../../redux/slices/authSlice";
-import SettingsBreadcrumb from "../SettingsBreadcrumb";
+import Breadcrumb from "./Breadcrumb";
 import SettingsButtonContainer from "../../../ui/buttons/SettingsButtonContainer";
 import SettingsCommonTitle from "../../../ui/settings/SettingsCommonTitle";
 
@@ -81,7 +81,7 @@ export default function Pic({ props }) {
           classes={classes}
         />
 
-        <SettingsBreadcrumb props={props} />
+        <Breadcrumb props={props} />
       </div>
     </>
   );

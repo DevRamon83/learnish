@@ -2,9 +2,9 @@ import { useState } from "react";
 import fetchUpdateSettings from "../../../api/handlers/fetchUpdateSettings";
 import SettingsButtonContainer from "../../../ui/buttons/SettingsButtonContainer";
 import bundle from "shared";
-import SettingsBreadcrumb from "../SettingsBreadcrumb";
 import useRetrievePersonalSettings from "../../../hooks/useRetrievePersonalSettings";
 import SettingsCommonTitle from "../../../ui/settings/SettingsCommonTitle";
+import Breadcrumb from "./Breadcrumb";
 const { currencies } = bundle.constants;
 
 export default function Currency({ props }) {
@@ -76,7 +76,7 @@ export default function Currency({ props }) {
         classes={classes}
       />
 
-      <SettingsBreadcrumb props={props} />
+      <Breadcrumb props={props} />
     </div>
   );
 }

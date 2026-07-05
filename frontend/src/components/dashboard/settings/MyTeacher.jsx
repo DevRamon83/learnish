@@ -1,6 +1,6 @@
 import { useState } from "react";
 import getPicUrl from "../../../helpers/getPicUrl";
-import SettingsBreadcrumb from "../SettingsBreadcrumb";
+import Breadcrumb from "./Breadcrumb";
 import SettingsButtonContainer from "../../../ui/buttons/SettingsButtonContainer";
 import SettingsCommonTitle from "../../../ui/settings/SettingsCommonTitle";
 
@@ -23,7 +23,7 @@ export default function MyTeacher({ props }) {
         classes={classes}
       />
 
-      <SettingsBreadcrumb props={props} />
+      <Breadcrumb props={props} />
     </div>
   );
 }

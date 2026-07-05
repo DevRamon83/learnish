@@ -3,7 +3,7 @@ import useRetrievePersonalSettings from "../../../hooks/useRetrievePersonalSetti
 import DispatchContractForm from "./DispatchContractForm";
 import ContractPanel from "./ContractPanel";
 import SettingsButtonContainer from "../../../ui/buttons/SettingsButtonContainer";
-import SettingsBreadcrumb from "../SettingsBreadcrumb";
+import Breadcrumb from "./Breadcrumb";
 import ContractSwitch from "./ContractSwitch";
 import SettingsCommonTitle from "../../../ui/settings/SettingsCommonTitle";
 
@@ -49,7 +49,7 @@ export default function TeacherContract({ props }) {
           classes={classes}
         />
 
-        <SettingsBreadcrumb props={props} />
+        <Breadcrumb props={props} />
       </div>
     </>
   );

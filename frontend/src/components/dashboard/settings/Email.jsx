@@ -2,7 +2,7 @@ import { useState } from "react";
 import useRetrievePersonalSettings from "../../../hooks/useRetrievePersonalSettings";
 import bundle from "shared";
 import fetchUpdateSettings from "../../../api/handlers/fetchUpdateSettings";
-import SettingsBreadcrumb from "../SettingsBreadcrumb";
+import Breadcrumb from "./Breadcrumb";
 import SettingsButtonContainer from "../../../ui/buttons/SettingsButtonContainer";
 import SettingsCommonTitle from "../../../ui/settings/SettingsCommonTitle";
 const { emailValidator } = bundle;
@@ -71,7 +71,7 @@ export default function Email({ props }) {
         classes={classes}
       />
 
-      <SettingsBreadcrumb props={props} />
+      <Breadcrumb props={props} />
     </div>
   );
 }

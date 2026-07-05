@@ -3,7 +3,7 @@ import fetchUpdateSettings from "../../../api/handlers/fetchUpdateSettings";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../../redux/slices/authSlice";
 import { validatePlan } from "./validators";
-import SettingsBreadcrumb from "../SettingsBreadcrumb";
+import Breadcrumb from "./Breadcrumb";
 import SettingsButtonContainer from "../../../ui/buttons/SettingsButtonContainer";
 import SettingsCommonTitle from "../../../ui/settings/SettingsCommonTitle";
 
@@ -70,7 +70,7 @@ export default function Plan({ userType, props }) {
         setToggle={setToggle}
         classes={classes}
       />
-      <SettingsBreadcrumb props={props} />
+      <Breadcrumb props={props} />
     </div>
   );
 }

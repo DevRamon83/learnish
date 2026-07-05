@@ -7,7 +7,7 @@ import newPswConfigBuilder from "../../../forms/configs/changePsw";
 import FormInput from "../../forms/FormInput";
 import { validatePsw } from "./validators";
 import fetchUpdatePassword from "../../../api/handlers/fetchUpdatePassword";
-import SettingsBreadcrumb from "../SettingsBreadcrumb";
+import Breadcrumb from "./Breadcrumb";
 import SettingsButtonContainer from "../../../ui/buttons/SettingsButtonContainer";
 import SettingsCommonTitle from "../../../ui/settings/SettingsCommonTitle";
 
@@ -73,7 +73,7 @@ export default function Password({ props }) {
         classes={classes}
       />
 
-      <SettingsBreadcrumb props={props} />
+      <Breadcrumb props={props} />
     </div>
   );
 }
