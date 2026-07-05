@@ -123,6 +123,7 @@ export const classes = {
     imgContainer: "settings__imgContainer",
     currencyInput: "settings__currency",
     emailInput: "settings__email",
+    planInput: "settings__plan",
     labelPrice: "settings__labelPrice",
     buttons: "settings__buttons",
     breadcrumbContainer: "settings__breadcrumbContainer",
