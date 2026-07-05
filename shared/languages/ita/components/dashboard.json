@@ -5,5 +5,8 @@
   "backToDashboard": "dashboard",
   "lessonLocked": " Questa lezione non è ancora stata sbloccata",
   "goToDashboard": "Torna alla tua area riservata",
-  "lockedText": "Puoi sbloccare la lezione dalla tua area riservata se il tuo attuale piano lo consente; in caso contrario valuta un upgrade o aspetta domani"
+  "lockedText": "Puoi sbloccare l lezione dalla tua area riservata se il tuo attuale piano lo consente; in caso contrario valuta un upgrade o aspetta domani",
+  "yourStudents": "I tuoi studenti",
+  "zeroStudents": "Non hai studenti iscritti ai tuoi corsi",
+  "checkSettings": "Verifica che il tuo profilo sia completo"
 }
