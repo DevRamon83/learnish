@@ -32,7 +32,7 @@ export default function ServiceMap({
         props={props}
       />
 
-      <div onClick={nextHandler}>next</div>
+      <div className={classes.settings.next} onClick={nextHandler}></div>
     </>
   );
 }
