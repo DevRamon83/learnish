@@ -1,5 +1,6 @@
 import { useState } from "react";
 import fetchDeactivateContract from "../../../api/handlers/fetchDeactivateContract";
+import DeactivatePanel from "../../../ui/settings/DeactivatePanel";
 
 export default function Deactivate({
   setExist,
@@ -27,25 +28,16 @@ export default function Deactivate({
   };
 
   return (
-    <div className={classes.deactivate}>
-      {deactivate && (
-        <div className={classes.confirmTxt}>{strings.confirmDeactivate}</div>
-      )}
+    <div className={classes.settings.deactivate}>
       {!deactivate ? (
         <div onClick={deactivateHandler}>{strings.deactivateBtn}</div>
       ) : (
-        <div className={classes.confirmBtn} onClick={confirmHandler}>
-          {strings.deactivateOk}
-        </div>
-      )}
-
-      {deactivate && (
-        <div
-          className={classes.closeDeactivation}
-          onClick={() => setDeactivate(false)}
-        >
-          {strings.close}
-        </div>
+        <DeactivatePanel
+          classes={classes.settings}
+          strings={strings}
+          setDeactivate={setDeactivate}
+          confirmHandler={confirmHandler}
+        />
       )}
     </div>
   );
