@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import fetchStudents from "../../api/handlers/fetchStudents";
 import getPicUrl from "../../helpers/getPicUrl";
+import { useLang } from "../../hooks/useLang";
+import { i18nAddresses } from "../../constants/i18nAddresses";
 
 export default function YourStudents() {
   const [students, setStudents] = useState([]);
+  const { strings } = useLang(i18nAddresses.dashboard);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -30,6 +33,7 @@ export default function YourStudents() {
 
   return (
     <div className="settings__myStudents">
+      <h1>{strings.yourStudents}</h1>
       {students.length > 0 ? (
         students.map((student) => (
           <div className="settings__student" key={student._id}>
@@ -38,7 +42,10 @@ export default function YourStudents() {
           </div>
         ))
       ) : (
-        <div>Non hai ancora studenti iscritti</div>
+        <>
+          <h4>{strings.zeroStudents}</h4>
+          <h5>{strings.checkSettings}</h5>
+        </>
       )}
     </div>
   );
