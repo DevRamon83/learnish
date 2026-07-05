@@ -12,10 +12,6 @@ export default function ContractSwitch({ props, isComplete, setIsComplete }) {
   const [config, setConfig] = useState(0);
 
   useEffect(() => {
-    if (currentContract >= contracts.length - 1) {
-      setCurrentContract(0);
-    }
-
     setConfig(servicesMap[contracts[currentContract]]);
   }, [currentContract]);
 

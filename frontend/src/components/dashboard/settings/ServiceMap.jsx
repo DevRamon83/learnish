@@ -14,7 +14,13 @@ export default function ServiceMap({
   const { classes } = props;
 
   const nextHandler = () => {
-    setCurrentContract((prev) => prev + 1);
+    const resetCurrentContract = currentContract === contracts.length - 1;
+
+    if (resetCurrentContract) {
+      setCurrentContract(0);
+    } else {
+      setCurrentContract((prev) => prev + 1);
+    }
     setError(null);
   };
   return (
