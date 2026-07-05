@@ -1,5 +1,4 @@
 import { useSelector } from "react-redux";
-import { useAuth } from "../../hooks/useAuth";
 import Pic from "./settings/Pic";
 import Plan from "./settings/Plan";
 import Email from "./settings/Email";
@@ -13,6 +12,7 @@ import SettingError from "./settings/SettingError";
 import { classes } from "../../constants/components/dashboard";
 import SettingsStudent from "./SettingsStudent";
 import getPicUrl from "../../helpers/getPicUrl";
+import getCardSettings from "../../helpers/getCardSettings";
 
 export default function Settings({ userType }) {
   const user = useSelector((state) => state.auth.user);
@@ -41,11 +41,8 @@ export default function Settings({ userType }) {
 
   const [teachersList, setTeachersList] = useState([]);
   const [toggle, setToggle] = useState(false);
-  const commonsCards = ["Pic", "Email", "Password"];
-  const studentCards = [...commonsCards, "MyTeacher", "Plan"];
-  const teacherCards = [...commonsCards, "Currency", "Contracts", "Plan"];
 
-  const userCards = userType === "student" ? studentCards : teacherCards;
+  const userCards = getCardSettings(userType);
 
   const cardHandler = (nextCard) => {
     setCard(nextCard);
