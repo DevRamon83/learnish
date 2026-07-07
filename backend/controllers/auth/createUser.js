@@ -48,6 +48,14 @@ const createUser = async (req, res) => {
         unlockedToday: 0,
         nextUnlock: 0,
       });
+    } else {
+      user.contract = {
+        isComplete: false,
+        tutoring: { available: false },
+        speaking: { available: false },
+        qNa: { available: false },
+      };
+      await user.save();
     }
 
     return res.status(201).json({ url: verifyUrl, type: user.type });
