@@ -1,15 +1,11 @@
 import { useEffect, useState } from "react";
 import useRetrievePersonalSettings from "../../../hooks/useRetrievePersonalSettings";
 import DispatchContractForm from "./DispatchContractForm";
-import ContractPanel from "./ContractPanel";
-import SettingsButtonContainer from "../../../ui/buttons/SettingsButtonContainer";
-import Breadcrumb from "./Breadcrumb";
 import ContractSwitch from "./ContractSwitch";
 import SettingsCommonTitle from "../../../ui/settings/SettingsCommonTitle";
 
-export default function TeacherContract({ props }) {
-  const { strings, lang, userCurrency, setError, classes, toggle, setToggle } =
-    props;
+export default function TeacherContract({ props, contractProps }) {
+  const { strings, classes, toggle } = props;
   const [contract, setContract] = useState(null);
   const [isComplete, setIsComplete] = useState(false);
   const retrieveConfig = {
@@ -24,33 +20,24 @@ export default function TeacherContract({ props }) {
     if (contract && contract.isComplete) setIsComplete(true);
   }, [isComplete, contract]);
 
-  const { container, form } = classes.settings;
+  const { form } = classes.settings;
 
   return (
     <>
-      <div className={container}>
-        <SettingsCommonTitle
-          classes={classes}
-          string={strings.contractTitle}
-          src="/prices.jpeg"
+      <SettingsCommonTitle
+        classes={classes}
+        string={strings.contractTitle}
+        src="/prices.jpeg"
+      />
+
+      {toggle && (
+        <ContractSwitch
+          props={props}
+          contractProps={contractProps}
+          isComplete={isComplete}
+          setIsComplete={setIsComplete}
         />
-
-        {toggle && (
-          <ContractSwitch
-            props={props}
-            isComplete={isComplete}
-            setIsComplete={setIsComplete}
-          />
-        )}
-
-        <SettingsButtonContainer
-          toggle={toggle}
-          setToggle={setToggle}
-          classes={classes}
-        />
-
-        <Breadcrumb props={props} />
-      </div>
+      )}
     </>
   );
 }

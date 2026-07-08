@@ -7,12 +7,10 @@ import newPswConfigBuilder from "../../../forms/configs/changePsw";
 import FormInput from "../../forms/FormInput";
 import { validatePsw } from "./validators";
 import fetchUpdatePassword from "../../../api/handlers/fetchUpdatePassword";
-import Breadcrumb from "./Breadcrumb";
-import SettingsButtonContainer from "../../../ui/buttons/SettingsButtonContainer";
 import SettingsCommonTitle from "../../../ui/settings/SettingsCommonTitle";
 
 export default function Password({ props }) {
-  const { classes, card, setCard, toggle, setToggle } = props;
+  const { classes, toggle, setToggle, card } = props;
 
   const { strings, lang } = useLang(i18nAddresses.settings);
   const objConfig = newPswConfigBuilder(strings, "signup");
@@ -42,10 +40,10 @@ export default function Password({ props }) {
     setToggle(!toggle);
   };
 
-  const { container, form } = classes.settings;
+  const { form } = classes.settings;
 
   return (
-    <div className={container}>
+    <>
       <SettingsCommonTitle
         classes={classes}
         string={strings.password}
@@ -54,7 +52,11 @@ export default function Password({ props }) {
 
       {toggle && (
         <>
-          <form onSubmit={submitHandler} className={toggle ? form : ""}>
+          <form
+            id={`settings__${card}`}
+            onSubmit={submitHandler}
+            className={toggle ? form : ""}
+          >
             <FormInput Element={PasswordInput} data={password} lang={lang} />
             <FormInput Element={PasswordInput} data={newPassword} lang={lang} />
             <FormInput
@@ -62,18 +64,9 @@ export default function Password({ props }) {
               data={confirmNewPassword}
               lang={lang}
             />
-            <button className={classes.settings.btnFetch} type="submit" />
           </form>
         </>
       )}
-
-      <SettingsButtonContainer
-        toggle={toggle}
-        setToggle={setToggle}
-        classes={classes}
-      />
-
-      <Breadcrumb props={props} />
-    </div>
+    </>
   );
 }

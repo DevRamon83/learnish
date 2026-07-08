@@ -1,98 +1,115 @@
 import { useSelector } from "react-redux";
-import Pic from "./settings/Pic";
-import Plan from "./settings/Plan";
-import Email from "./settings/Email";
-import Password from "./settings/Password";
 import { useLang } from "../../hooks/useLang";
 import { i18nAddresses } from "../../constants/i18nAddresses";
 import TeacherContract from "./settings/TeacherContract";
-import Currency from "./settings/Currency";
 import { useState } from "react";
 import SettingError from "./settings/SettingError";
 import { classes } from "../../constants/components/dashboard";
-import SettingsStudent from "./SettingsStudent";
+import SettingsStudent from "../../ui/settings/SettingsStudent";
 import getPicUrl from "../../helpers/getPicUrl";
 import getCardSettings from "../../helpers/getCardSettings";
+import SettingsMenu from "../../ui/settings/SettingsMenu";
+import Breadcrumb from "./settings/Breadcrumb";
+import DeactivatePanel from "./settings/DeactivatePanel";
+import SettingsTeacher from "../../ui/settings/SettingsTeacher";
+import SettingsCommon from "../../ui/settings/SettingsCommon";
+import bundle from "shared";
+const { contracts } = bundle.constants;
 
 export default function Settings({ userType }) {
   const user = useSelector((state) => state.auth.user);
   const { lang, strings } = useLang(i18nAddresses.settings);
   const [error, setError] = useState(null);
-  const [userCurrency, setUserCurrency] = useState("");
+  const [dataContracts, setDataContracts] = useState(null);
+  const [deactivate, setDeactivate] = useState(false);
+
+  const [exist, setExist] = useState(false);
+  // handle the current setting
   const [card, setCard] = useState("Pic");
 
-  const [myTeacher, setMyTeacher] = useState(null);
-  const teacher = {
-    profilePic: {
-      storage: "supabase",
-      bucketImg: "users",
-      fileName: `avatar_${myTeacher?.id}.webp`,
-    },
-  };
+  // if user is a teacher and the card is Contracts, this state handle
+  // the service which the user are viewing
+  const [currentContract, setCurrentContract] = useState(0);
 
-  const url = getPicUrl(teacher);
-  const teacherObj = {
-    id: myTeacher?.id,
-    username: myTeacher?.username,
-    url,
-    setter: setMyTeacher,
-    state: myTeacher || null,
-  };
-
+  // it maybe can be move in the child component
   const [teachersList, setTeachersList] = useState([]);
+
   const [toggle, setToggle] = useState(false);
 
-  const userCards = getCardSettings(userType);
+  const [myTeacher, setMyTeacher] = useState(null);
 
-  const cardHandler = (nextCard) => {
-    setCard(nextCard);
-    setToggle(false);
-  };
+  const userCards = getCardSettings(userType);
 
   const [userPic, setUserPic] = useState({
     url: getPicUrl(user),
   });
+
+  // if user is a teacher this allow navigation between contracts
+  const nextHandler = () => {
+    const resetCurrentContract = currentContract === contracts.length - 1;
+
+    if (resetCurrentContract) {
+      setCurrentContract(0);
+    } else {
+      setCurrentContract((prev) => prev + 1);
+    }
+    setError(null);
+  };
 
   const props = {
     card,
     setCard,
     strings,
     classes,
-    cardHandler,
-    user,
     setError,
     toggle,
     setToggle,
-    userPic,
-    setUserPic,
-    myTeacher,
-    setMyTeacher,
+    userCards,
+  };
+
+  const planProps = { user };
+  const picProps = { user, userPic, setUserPic };
+
+  const contractProps = {
+    nextHandler,
+    setCurrentContract,
+    contracts,
+    currentContract,
+    dataContracts,
+    setDataContracts,
+    exist,
+    setExist,
+    deactivate,
+    setDeactivate,
+  };
+
+  const studentProps = {
     teachersList,
     setTeachersList,
-    teacherObj,
-    userCards,
-    setUserCurrency,
+    setMyTeacher,
+    myTeacher,
   };
 
   return (
     <div className={classes.settings.main}>
-      {card === "Pic" && <Pic props={props} />}
-      {card === "Email" && <Email props={props} />}
-      {card === "Password" && <Password props={props} />}
-      {card === "Plan" && <Plan props={props} userType={userType} />}
-      {card === "MyTeacher" && userType === "student" && (
-        <SettingsStudent props={props} />
-      )}
+      <div className={classes.settings.container}>
+        <SettingsCommon
+          props={props}
+          picProps={picProps}
+          planProps={planProps}
+        />
 
-      {userType === "teacher" && (
-        <>
-          {card === "Currency" && <Currency props={props} />}
+        <SettingsStudent props={props} studentProps={studentProps} />
+        <SettingsTeacher props={props} contractProps={contractProps} />
+        <SettingsMenu props={props} contractProps={contractProps} />
+        <Breadcrumb props={props} />
 
-          {card === "Contracts" && <TeacherContract props={props} />}
-        </>
-      )}
+        {error && <SettingError classes={classes.settings} error={error} />}
 
-      {error && <SettingError classes={classes.settings} error={error} />}
+        {deactivate && (
+          <DeactivatePanel props={props} contractProps={contractProps} />
+        )}
+      </div>
     </div>
   );
 }

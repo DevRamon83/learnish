@@ -1,15 +1,13 @@
 import { useState } from "react";
 import fetchUpdateSettings from "../../../api/handlers/fetchUpdateSettings";
-import SettingsButtonContainer from "../../../ui/buttons/SettingsButtonContainer";
 import bundle from "shared";
 import useRetrievePersonalSettings from "../../../hooks/useRetrievePersonalSettings";
 import SettingsCommonTitle from "../../../ui/settings/SettingsCommonTitle";
-import Breadcrumb from "./Breadcrumb";
 const { currencies } = bundle.constants;
 
 export default function Currency({ props }) {
   const [currency, setCurrency] = useState(null);
-  const { strings, user, setError, toggle, setToggle, classes } = props;
+  const { strings, card, toggle, setToggle, classes } = props;
 
   const retrieveConfig = {
     data: { retrieve: "currency" },
@@ -45,10 +43,10 @@ export default function Currency({ props }) {
     setCurrency(data.currency);
   };
 
-  const { container, form } = classes.settings;
+  const { form } = classes.settings;
 
   return (
-    <div className={container}>
+    <>
       <SettingsCommonTitle
         classes={classes}
         string={strings.currencyTitle}
@@ -56,7 +54,11 @@ export default function Currency({ props }) {
       />
 
       {toggle && (
-        <form className={toggle ? form : ""} onSubmit={submitHandler}>
+        <form
+          id={`settings__${card}`}
+          className={toggle ? form : ""}
+          onSubmit={submitHandler}
+        >
           <select
             className={classes.settings.currencyInput}
             name="currency"
@@ -66,17 +68,8 @@ export default function Currency({ props }) {
             <option value="dollar">{strings.dollars}</option>
             <option value="euro">{strings.euro}</option>
           </select>
-          <button className={classes.settings.btnFetch} type="submit" />
         </form>
       )}
-
-      <SettingsButtonContainer
-        toggle={toggle}
-        setToggle={setToggle}
-        classes={classes}
-      />
-
-      <Breadcrumb props={props} />
-    </div>
+    </>
   );
 }

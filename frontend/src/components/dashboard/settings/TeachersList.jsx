@@ -4,13 +4,11 @@ import useScrollToTop from "../../../hooks/useScrollToTop";
 import TeachersProfile from "../../../ui/teachers/TeachersProfile";
 import fetchYourTeacher from "../../../api/handlers/fetchYourTeacher";
 
-export default function TeachersList({
-  classes,
-  props,
-  teachersList,
-  setTeachersList,
-}) {
-  const { strings, setToggle, myTeacher, setMyTeacher } = props;
+export default function TeachersList({ studentProps, props }) {
+  const { strings, setToggle } = props;
+  const classes = props.classes.settings;
+  const { myTeacher, setMyTeacher, teachersList, setTeachersList } =
+    studentProps;
   const [currentTeacher, setCurrentTeacher] = useState(0);
   const [next, setNext] = useState("");
   const [previous, setPrevious] = useState("");
@@ -84,15 +82,9 @@ export default function TeachersList({
         />
       )}
       <div className={classes.teacherMenu}>
-        <div className={classes.prev} onClick={() => navigationHandler("back")}>
-          {previous}
-        </div>
-        <div className={classes.close} onClick={chooseTeacher}>
-          {strings.choose}
-        </div>
-        <div className={classes.next} onClick={() => navigationHandler("next")}>
-          {next}
-        </div>
+        <div onClick={() => navigationHandler("back")}>{previous}</div>
+        <div onClick={chooseTeacher}>{strings.choose}</div>
+        <div onClick={() => navigationHandler("next")}>{next}</div>
       </div>
     </div>
   );

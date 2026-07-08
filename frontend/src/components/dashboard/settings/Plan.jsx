@@ -3,13 +3,11 @@ import fetchUpdateSettings from "../../../api/handlers/fetchUpdateSettings";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../../redux/slices/authSlice";
 import { validatePlan } from "./validators";
-import Breadcrumb from "./Breadcrumb";
-import SettingsButtonContainer from "../../../ui/buttons/SettingsButtonContainer";
 import SettingsCommonTitle from "../../../ui/settings/SettingsCommonTitle";
 
-export default function Plan({ userType, props }) {
-  const { strings, classes, card, setCard, user, toggle, setToggle } = props;
-  const nextCard = userType === "student" ? "MyTeacher" : "Currency";
+export default function Plan({ planProps, props }) {
+  const { user } = planProps;
+  const { strings, classes, card, toggle, setToggle } = props;
 
   const dispatch = useDispatch();
 
@@ -38,10 +36,10 @@ export default function Plan({ userType, props }) {
     dispatch(setUser(newUser));
   };
 
-  const { container, form } = classes.settings;
+  const { form } = classes.settings;
 
   return (
-    <div className={container}>
+    <>
       <SettingsCommonTitle
         classes={classes}
         string={`${strings.activePlan} ${user.plan}`}
@@ -50,7 +48,11 @@ export default function Plan({ userType, props }) {
 
       {toggle && (
         <>
-          <form onSubmit={submitHandler} className={toggle ? form : ""}>
+          <form
+            id={`settings__${card}`}
+            onSubmit={submitHandler}
+            className={toggle ? form : ""}
+          >
             <select
               className={classes.settings.planInput}
               name="plan"
@@ -61,17 +63,9 @@ export default function Plan({ userType, props }) {
               <option value="basic">{strings.basicCost}</option>
               <option value="pro">{strings.proCost}</option>
             </select>
-            <button className={classes.settings.btnFetch} type="submit" />
           </form>
         </>
       )}
-
-      <SettingsButtonContainer
-        toggle={toggle}
-        setToggle={setToggle}
-        classes={classes}
-      />
-      <Breadcrumb props={props} />
-    </div>
+    </>
   );
 }

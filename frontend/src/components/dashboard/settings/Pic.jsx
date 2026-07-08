@@ -4,13 +4,12 @@ import fetchPic from "../../../api/handlers/fetchPic";
 import { validatePic } from "./validators";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../../redux/slices/authSlice";
-import Breadcrumb from "./Breadcrumb";
-import SettingsButtonContainer from "../../../ui/buttons/SettingsButtonContainer";
 import SettingsCommonTitle from "../../../ui/settings/SettingsCommonTitle";
 
-export default function Pic({ props }) {
-  const { strings, classes, user, toggle, setToggle, userPic, setUserPic } =
-    props;
+export default function Pic({ props, picProps }) {
+  const { strings, classes, toggle, setToggle, card } = props;
+
+  const { user, userPic, setUserPic } = picProps;
 
   const dispatch = useDispatch();
 
@@ -56,33 +55,26 @@ export default function Pic({ props }) {
 
   return (
     <>
-      <div className={`${container}`}>
-        <SettingsCommonTitle
-          classes={classes}
-          string={strings.profilePic}
-          src={userPic.url}
-        />
-        {toggle && (
-          <form onSubmit={submitHandler} className={toggle ? form : ""}>
-            <input
-              type="file"
-              id="profilePic"
-              name="profilePic"
-              accept="image/png, image/jpeg"
-              onChange={changeUrl}
-            />
-            <button className={classes.settings.btnFetch} type="submit" />
-          </form>
-        )}
-
-        <SettingsButtonContainer
-          toggle={toggle}
-          setToggle={setToggle}
-          classes={classes}
-        />
-
-        <Breadcrumb props={props} />
-      </div>
+      <SettingsCommonTitle
+        classes={classes}
+        string={strings.profilePic}
+        src={userPic.url}
+      />
+      {toggle && (
+        <form
+          id={`settings__${card}`}
+          onSubmit={submitHandler}
+          className={toggle ? form : ""}
+        >
+          <input
+            type="file"
+            id="profilePic"
+            name="profilePic"
+            accept="image/png, image/jpeg"
+            onChange={changeUrl}
+          />
+        </form>
+      )}
     </>
   );
 }

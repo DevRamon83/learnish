@@ -59,12 +59,14 @@ export default function PriceDefiner({
                 lang={lang}
               />
             ))}
-            <button className={classes.btn.send}>{strings.send}</button>
-            {status !== "subscription" && (
-              <button className={classes.btn.send} onClick={jump}>
-                {caller ? strings.close : strings.jump}
-              </button>
-            )}
+            <div className="settings__price-buttons">
+              <button className={classes.btn.send}>{strings.send}</button>
+              {status !== "subscription" && (
+                <button className={classes.btn.send} onClick={jump}>
+                  {caller ? strings.close : strings.jump}
+                </button>
+              )}
+            </div>
           </form>
         </>
       )}

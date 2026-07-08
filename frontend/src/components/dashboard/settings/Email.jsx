@@ -2,13 +2,11 @@ import { useState } from "react";
 import useRetrievePersonalSettings from "../../../hooks/useRetrievePersonalSettings";
 import bundle from "shared";
 import fetchUpdateSettings from "../../../api/handlers/fetchUpdateSettings";
-import Breadcrumb from "./Breadcrumb";
-import SettingsButtonContainer from "../../../ui/buttons/SettingsButtonContainer";
 import SettingsCommonTitle from "../../../ui/settings/SettingsCommonTitle";
 const { emailValidator } = bundle;
 
 export default function Email({ props }) {
-  const { strings, classes, card, setCard, toggle, setToggle } = props;
+  const { strings, classes, card, toggle, setToggle } = props;
 
   const [userEmail, setUserEmail] = useState("");
   const retrieveConfig = {
@@ -42,10 +40,10 @@ export default function Email({ props }) {
     setUserEmail(data.email);
   };
 
-  const { container, form } = classes.settings;
+  const { form } = classes.settings;
 
   return (
-    <div className={container}>
+    <>
       <SettingsCommonTitle
         classes={classes}
         string={`${strings.yourMail} ${userEmail}`}
@@ -53,7 +51,11 @@ export default function Email({ props }) {
       />
 
       {toggle && (
-        <form onSubmit={submitHandler} className={toggle ? form : ""}>
+        <form
+          id={`settings__${card}`}
+          onSubmit={submitHandler}
+          className={toggle ? form : ""}
+        >
           <input
             className={classes.settings.emailInput}
             type="text"
@@ -61,17 +63,8 @@ export default function Email({ props }) {
             name="email"
             placeholder={userEmail}
           />
-          <button className={classes.settings.btnFetch} type="submit" />
         </form>
       )}
-
-      <SettingsButtonContainer
-        toggle={toggle}
-        setToggle={setToggle}
-        classes={classes}
-      />
-
-      <Breadcrumb props={props} />
-    </div>
+    </>
   );
 }

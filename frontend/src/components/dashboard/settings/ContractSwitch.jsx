@@ -1,19 +1,14 @@
 import ContractPanel from "./ContractPanel";
 import DispatchContractForm from "./DispatchContractForm";
-import { servicesMap } from "../../../constants/components/dashboard";
-import { useEffect, useState } from "react";
-import bundle from "shared";
-const { contracts } = bundle.constants;
 
-export default function ContractSwitch({ props, isComplete, setIsComplete }) {
+export default function ContractSwitch({
+  props,
+  isComplete,
+  setIsComplete,
+  contractProps,
+}) {
   const { strings, lang } = props;
-  const servicesKeys = Object.keys(servicesMap);
-  const [currentContract, setCurrentContract] = useState(0);
-  const [config, setConfig] = useState(0);
-
-  useEffect(() => {
-    setConfig(servicesMap[contracts[currentContract]]);
-  }, [currentContract]);
+  const { currentContract, contracts } = contractProps;
 
   return (
     <>
@@ -24,13 +19,7 @@ export default function ContractSwitch({ props, isComplete, setIsComplete }) {
           setIsComplete={setIsComplete}
         />
       ) : (
-        <ContractPanel
-          config={config}
-          currentContract={currentContract}
-          setCurrentContract={setCurrentContract}
-          contracts={contracts}
-          props={props}
-        />
+        <ContractPanel props={props} contractProps={contractProps} />
       )}
     </>
   );

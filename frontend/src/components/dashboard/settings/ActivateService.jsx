@@ -4,16 +4,13 @@ import fetchSettings from "../../../api/handlers/fetchSettings";
 import bundle from "shared";
 const { packs, qNa } = bundle.constants;
 
-export default function ActivateService({
-  service,
-  strings,
-  lang,
-  setUserField,
-  setExist,
-  classes,
-}) {
+export default function ActivateService({ props, contractProps }) {
   const [isOpen, setIsOpen] = useState(false);
+  const { strings, lang, classes } = props;
+  const { setDataContracts, setExist, contracts, currentContract } =
+    contractProps;
 
+  const service = contracts[currentContract];
   const pack = service === "qNa" ? qNa : packs;
 
   const panelHandler = async () => {
@@ -28,7 +25,12 @@ export default function ActivateService({
     }
 
     if (res.contract) {
-      setUserField(res.contract);
+      const contract = contracts[currentContract];
+      const data = res.contract[contract];
+      setDataContracts((prev) => ({
+        ...prev,
+        [contract]: data,
+      }));
       setExist(true);
     }
 
@@ -38,7 +40,10 @@ export default function ActivateService({
   return (
     <>
       {!isOpen ? (
-        <div className={classes.activate} onClick={() => setIsOpen(true)}>
+        <div
+          className={classes.settings.activate}
+          onClick={() => setIsOpen(true)}
+        >
           {strings.activate}
         </div>
       ) : (

@@ -2,21 +2,13 @@ import bundle from "shared";
 import fetchUpdateSettings from "../../../api/handlers/fetchUpdateSettings";
 import useRetrievePersonalSettings from "../../../hooks/useRetrievePersonalSettings";
 import { useState } from "react";
+import ActivateService from "./ActivateService";
 const { currencyMap } = bundle.constants;
 
-export default function UpdateContractValue({
-  configs,
-  containerClass,
-  setUserField,
-  setError,
-  keys,
-  currentContract,
-  nextHandler,
-  contracts,
-  props,
-}) {
-  const { classes, userField, type } = configs;
-  const { strings } = props;
+export default function UpdateContractValue({ keys, props, contractProps }) {
+  const { classes, strings, card, setError } = props;
+  const { currentContract, contracts, dataContracts, setDataContracts, exist } =
+    contractProps;
   const contract = contracts[currentContract];
   const [currency, setCurrency] = useState(null);
 
@@ -56,7 +48,7 @@ export default function UpdateContractValue({
       return;
     }
 
-    setUserField((prev) => ({
+    setDataContracts((prev) => ({
       ...prev,
       [contract]: { ...data },
     }));
@@ -68,24 +60,37 @@ export default function UpdateContractValue({
   const { form } = classes.settings;
 
   return (
-    <form className={form} onSubmit={submitHandler}>
-      {visibleKeys.map((key) => (
-        <div key={`input__${key}`}>
-          <label className={classes.settings.labelPrice} htmlFor={key}>
-            {strings.labels[key]}: {userField[contract][key]}
-            {currencyMap[currency]}
-          </label>
-          <input
-            type={type}
-            id={key}
-            name={key}
-            placeholder={userField[contract][key]}
-            required={true}
-          />
-        </div>
-      ))}
+    <>
+      {exist && (
+        <form
+          id={`settings__${card}__${contract}`}
+          className={form}
+          onSubmit={submitHandler}
+        >
+          {visibleKeys.map((key) => (
+            <div
+              className={classes.settings.contractInput}
+              key={`input__${key}`}
+            >
+              <label className={classes.settings.labelPrice} htmlFor={key}>
+                {strings.labels[key]}: {dataContracts[contract][key]}
+                {currencyMap[currency]}
+              </label>
+              <input
+                type="number"
+                id={key}
+                name={key}
+                placeholder={dataContracts[contract][key]}
+                required={true}
+              />
+            </div>
+          ))}
+        </form>
+      )}
 
-      <button className={classes.settings.btnFetch} type="submit" />
-    </form>
+      {contract !== "subscription" && !exist && (
+        <ActivateService props={props} contractProps={contractProps} />
+      )}
+    </>
   );
 }

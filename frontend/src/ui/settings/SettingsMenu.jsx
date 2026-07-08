@@ -1,5 +1,12 @@
 import Deactivate from "../../components/dashboard/settings/Deactivate";
 
+const showHandler = (card, dataContracts, contract) => {
+  if (card !== "Contracts") return true;
+  if (!dataContracts?.isComplete) return false;
+  if (contract === "subscription") return true;
+  return dataContracts ? dataContracts[contract].available : false;
+};
+
 export default function SettingsMenu({ props, contractProps }) {
   const { toggle, setToggle, classes, card, setError } = props;
 
@@ -11,7 +18,7 @@ export default function SettingsMenu({ props, contractProps }) {
     ? classes.settings.btnClose
     : classes.settings.btnChange;
 
-  const show = dataContracts ? dataContracts[contract].available : false;
+  const show = showHandler(card, dataContracts, contract);
 
   return (
     <div className={classes.settings.menu}>
