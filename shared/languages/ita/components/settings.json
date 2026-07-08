@@ -2,7 +2,7 @@
   "labels": {
     "password": "Vecchia password",
     "newPassword": "Nuova password",
-    "confirmNewPassword": "Conferma la nuova password",
+    "confirmNewPassword": "Conferma password",
     "monthly": "Mensile",
     "semiannually": "Semestrale",
     "annually": "Annuale",
