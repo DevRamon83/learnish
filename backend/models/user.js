@@ -51,6 +51,18 @@ const Student = userModel.discriminator(
     teacher: {
       id: { type: Schema.Types.ObjectId },
       username: { type: String },
+      subscription: {
+        periodicity: {
+          type: String,
+          enum: ["monthly", "semiannually", "annually", "unset"],
+        },
+        price: { type: Number },
+      },
+      services: {
+        tutoring: { type: Number },
+        speaking: { type: Number },
+        qNa: { type: Number },
+      },
     },
   }),
 );
