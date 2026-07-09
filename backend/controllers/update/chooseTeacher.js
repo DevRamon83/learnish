@@ -26,6 +26,15 @@ const chooseTeacher = async (req, res) => {
     const response = {
       id: teacherID,
       username: teacher.username,
+      subscription: {
+        periodicity: "unset",
+        price: 0,
+      },
+      services: {
+        tutoring: 0,
+        speaking: 0,
+        qNa: 0,
+      },
     };
     user.teacher = response;
     await user.save();
