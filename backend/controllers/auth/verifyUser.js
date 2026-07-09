@@ -52,7 +52,7 @@ const verifyUser = async (req, res) => {
 
     res.status(200).json(response);
   } catch (err) {
-    console.error("Error in user verification:", err);
+    console.error("Error in verifyUser:", err);
     return handleErrorResponse(res, req, err.message, 500, log);
   }
 };

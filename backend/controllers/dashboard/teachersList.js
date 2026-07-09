@@ -11,7 +11,7 @@ const teachersList = async (req, res) => {
 
     return res.status(200).json(teachers);
   } catch (err) {
-    console.error("Error in summaryList:", err);
+    console.error("Error in teachersList:", err);
     return handleErrorResponse(res, req, err.message, 500, log);
   }
 };

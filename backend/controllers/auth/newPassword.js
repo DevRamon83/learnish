@@ -31,7 +31,7 @@ const newPassword = async (req, res) => {
 
     res.status(200).json({ message: "okPassword" });
   } catch (err) {
-    console.error("Error in user verification:", err);
+    console.error("Error in newPassword:", err);
     return handleErrorResponse(res, req, err.message, 500, log);
   }
 };

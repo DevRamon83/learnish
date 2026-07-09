@@ -40,7 +40,7 @@ const chooseTeacher = async (req, res) => {
     await user.save();
     return res.status(200).json({ error: false, teacher: response });
   } catch (err) {
-    console.error("Error in saveDataContract:", err);
+    console.error("Error in chooseTeacher:", err);
     return handleErrorResponse(res, req, err.message, 500, log);
   }
 };
