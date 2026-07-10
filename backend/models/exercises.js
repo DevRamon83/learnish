@@ -12,22 +12,15 @@ const ExerciseSchema = new Schema({
     type: String,
     enum: ["multipleChoice"],
   },
-  targetLang: { type: String },
   instructions: { type: String },
-  question: {
+  instructionsTranslations: {
     italian: { type: String },
     spanish: { type: String },
     french: { type: String },
     portuguese: { type: String },
-    english: { type: String },
   },
-  options: {
-    italian: { type: [String] },
-    spanish: { type: [String] },
-    french: { type: [String] },
-    portuguese: { type: [String] },
-    english: { type: [String] },
-  },
+  question: { type: String },
+  options: { type: [String] },
   answer: { type: String },
 });
 
