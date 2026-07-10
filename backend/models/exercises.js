@@ -28,13 +28,7 @@ const ExerciseSchema = new Schema({
     portuguese: { type: [String] },
     english: { type: [String] },
   },
-  answer: {
-    italian: { type: [String] },
-    spanish: { type: [String] },
-    french: { type: [String] },
-    portuguese: { type: [String] },
-    english: { type: [String] },
-  },
+  answer: { type: String },
 });
 
 const exerciseModel = mongoose.model("Exercise", ExerciseSchema);

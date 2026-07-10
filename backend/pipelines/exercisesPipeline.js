@@ -8,7 +8,7 @@ const { englishLessons } = bundle.langs.italian.lessons;
 const exercisesPipeline = async (currentPosition) => {
   const titles = [];
   const indexes = [];
-  const position = currentPosition || 1;
+  const position = currentPosition || 0;
 
   englishLessons.forEach((lesson) => {
     titles.push(lesson.title);
@@ -71,7 +71,7 @@ const exercisesPipeline = async (currentPosition) => {
         targetLang: "english",
         question: { english: datum.question },
         options: { english: datum.options },
-        answer: { english: [datum.correct_answer] },
+        answer: datum.correct_answer,
       });
     }
 
