@@ -8,13 +8,6 @@ import { userModel } from "./models/user.js";
 import { setPopulator } from "./utils/atomicUtils.js";
 import dashboardRoute from "./routes/dashboardRoute.js";
 import messagesRoute from "./routes/messagesRoute.js";
-
-import wordsList from "./wordsList.json" with { type: "json" };
-import vocabularyPipeline from "./pipelines/vocabularyPipeline.js";
-import {
-  recoveryMissingValues,
-  recoveryWordData,
-} from "./pipelines/recoveryPipeline.js";
 import trackersRoute from "./routes/trackersRoute.js";
 import updateRoute from "./routes/updateRoute.js";
 
@@ -69,9 +62,7 @@ mongoose
       "username isRevoked isBanned",
     );
     setPopulator(unauthorizedUsers, tokensRevoked, usersBanned);
-    //  vocabularyPipeline(null, "audio");
-    //recoveryWordData();
-    // recoveryMissingValues("definition");
+
     app.listen(PORT, () => {
       env === "DEV" && console.log("server running on port ", PORT);
     });
