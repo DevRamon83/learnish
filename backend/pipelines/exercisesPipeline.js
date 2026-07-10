@@ -69,8 +69,8 @@ const exercisesPipeline = async (currentPosition) => {
         index: indexes[position],
         type: "multipleChoice",
         targetLang: "english",
-        question: { english: datum.question },
-        options: { english: datum.options },
+        question: datum.question,
+        options: datum.options,
         answer: datum.correct_answer,
       });
     }
