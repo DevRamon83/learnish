@@ -1,5 +1,5 @@
-import { classes } from "../../constants/components/dashboard";
-import IconBtn from "../../ui/buttons/IconBtn";
+import { classes } from "../constants/components/dashboard";
+import IconBtn from "./buttons/IconBtn";
 
 export default function DashboardMenu({ tabs, setCurrentTab, currentTab }) {
   const { dashBtn, dashActiveBtn, menu } = classes;

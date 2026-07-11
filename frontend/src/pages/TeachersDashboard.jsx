@@ -1,10 +1,10 @@
 import { useState } from "react";
 import bundle from "shared";
 import useLogout from "../hooks/useLogout";
-import DashboardMenu from "../components/dashboard/DashboardMenu";
 import { classes } from "../constants/components/dashboard";
 import YourStudents from "../components/dashboard/YourStudents";
 import Settings from "../components/dashboard/Settings";
+import DashboardMenu from "../ui/DashboardMenu";
 const { dashboardTeachersTabs } = bundle.constants;
 
 export default function TeachersDashboard() {

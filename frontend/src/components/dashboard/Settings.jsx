@@ -9,11 +9,11 @@ import SettingsStudent from "../../ui/settings/SettingsStudent";
 import getPicUrl from "../../helpers/getPicUrl";
 import getCardSettings from "../../helpers/getCardSettings";
 import SettingsMenu from "../../ui/settings/SettingsMenu";
-import Breadcrumb from "./settings/Breadcrumb";
 import DeactivatePanel from "./settings/DeactivatePanel";
 import SettingsTeacher from "../../ui/settings/SettingsTeacher";
 import SettingsCommon from "../../ui/settings/SettingsCommon";
 import bundle from "shared";
+import Breadcrumb from "../../ui/settings/Breadcrumb";
 const { contracts } = bundle.constants;
 
 export default function Settings({ userType }) {
