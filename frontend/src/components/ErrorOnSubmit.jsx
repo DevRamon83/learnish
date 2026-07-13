@@ -1,3 +1,3 @@
 export default function ErrorOnSubmit({ error }) {
-  return <>{error && <div>{error}</div>}</>;
+  return <>{error && <>{error}</>}</>;
 }
