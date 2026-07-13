@@ -91,6 +91,10 @@ export const classes = {
     next: "flashcard__next",
     helpBtn: "flashcard__helpBtn",
     helpless: "flashcard__helpBtn-end",
+    main: "flashcard__main",
+    intro: "flashcard__intro",
+    commands: "flashcard__command",
+    start: "flashcard__start",
   },
   settings: {
     btnFetch: "settings__button-fetch",
@@ -136,6 +140,7 @@ export const classes = {
     activeTab: "dashboard__studyMenu-tabActive",
     tab: "dashboard__studyMenu-tab",
   },
+  error: "dashboard__error",
 };
 
 export const ids = {

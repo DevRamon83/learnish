@@ -40,5 +40,6 @@
   "qNa": "per il campo qNa non è ammesso",
   "subscription": "per il campo sottoscrizione non è ammesso",
   "tutoring": "per il campo tutoring non è ammesso",
-  "speaking": "per il campo speaking non è ammesso"
+  "speaking": "per il campo speaking non è ammesso",
+  "generic": "Qualcosa è andato storto, riprova o contatta l'assistenza"
 }
