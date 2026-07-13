@@ -9,7 +9,7 @@ import ErrorOnSubmit from "../ErrorOnSubmit";
 export default function Flashcards() {
   const [cards, setCards] = useState(null);
   const [start, setStart] = useState(false);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState(null);
   const { strings, lang } = useLang(i18nAddresses.flashcards);
   const errorStrings = useLang(i18nAddresses.errors);
 
@@ -19,6 +19,8 @@ export default function Flashcards() {
 
     const loadFlashcards = async () => {
       const res = await fetchFlashcards(controller.signal);
+      if (res.aborted) return;
+
       if (res.error) {
         setError(errorStrings.strings.generic);
       } else {
