@@ -62,6 +62,11 @@ export default function LoginForm() {
     finalizeAuth(resp.response, config, setError);
   };
 
+  const newPasswordHandler = () => {
+    setNewPsw(!newPsw);
+    setError(null);
+  };
+
   return (
     <>
       {newPsw ? (
@@ -90,8 +95,8 @@ export default function LoginForm() {
         </>
       )}
       <div>
-        <div onClick={() => setNewPsw(!newPsw)}>
-          {newPsw ? "Torna al modulo di login" : "Password dimenticata"}
+        <div onClick={newPasswordHandler}>
+          {newPsw ? strings.backToLogin : strings.forgottenPsw}
         </div>
       </div>
     </>
