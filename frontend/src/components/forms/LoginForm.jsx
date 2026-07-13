@@ -71,6 +71,9 @@ export default function LoginForm() {
           strings={strings}
           username={username}
           TextInput={TextInput}
+          error={error}
+          setError={setError}
+          errorStrings={errorStrings}
         />
       ) : (
         <>
