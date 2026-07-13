@@ -3,19 +3,24 @@ import fetchFlashcards from "../../api/handlers/fetchFlashcards";
 import FlashcardGame from "./FlashcardGame";
 import { useLang } from "../../hooks/useLang";
 import { i18nAddresses } from "../../constants/i18nAddresses";
+import { classes } from "../../constants/components/dashboard";
+import ErrorOnSubmit from "../ErrorOnSubmit";
 
 export default function Flashcards() {
   const [cards, setCards] = useState(null);
   const [start, setStart] = useState(false);
+  const [error, setError] = useState(false);
   const { strings, lang } = useLang(i18nAddresses.flashcards);
+  const errorStrings = useLang(i18nAddresses.errors);
 
   useEffect(() => {
     const controller = new AbortController();
+    setError(null);
 
     const loadFlashcards = async () => {
       const res = await fetchFlashcards(controller.signal);
       if (res.error) {
-        // error handler
+        setError(errorStrings.strings.generic);
       } else {
         setCards(res.words);
       }
@@ -27,19 +32,19 @@ export default function Flashcards() {
   }, []);
 
   return (
-    <div className="flashcard__main">
+    <div className={classes.flashcards.main}>
       {!start && (
-        <div className="flashcard__intro">
+        <div className={classes.flashcards.intro}>
           <p>{strings.intro}</p>
           <h2>{strings.commands}</h2>
-          <ol className="flashcard__command">
+          <ol className={classes.flashcards.commands}>
             <li>{strings.enter}</li>
             <li>{strings.arrow}</li>
             <li>{strings.esc}</li>
           </ol>
 
           <div
-            className="flashcard__start"
+            className={classes.flashcards.start}
             onClick={() => (cards ? setStart(true) : null)}
           >
             {cards ? strings.start : strings.wait}
@@ -47,6 +52,11 @@ export default function Flashcards() {
         </div>
       )}
       {start && cards && <FlashcardGame setStart={setStart} cards={cards} />}
+      {error && (
+        <div className={classes.error}>
+          <ErrorOnSubmit error={error} />
+        </div>
+      )}
     </div>
   );
 }
