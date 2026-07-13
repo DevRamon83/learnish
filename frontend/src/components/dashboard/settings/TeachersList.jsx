@@ -3,12 +3,15 @@ import fetchTeachers from "../../../api/handlers/fetchTeachers";
 import useScrollToTop from "../../../hooks/useScrollToTop";
 import TeachersProfile from "../../../ui/teachers/TeachersProfile";
 import fetchYourTeacher from "../../../api/handlers/fetchYourTeacher";
+import { useLang } from "../../../hooks/useLang";
+import { i18nAddresses } from "../../../constants/i18nAddresses";
 
 export default function TeachersList({ studentProps, props }) {
-  const { strings, setToggle } = props;
+  const { strings, setToggle, setError } = props;
   const classes = props.classes.settings;
   const { myTeacher, setMyTeacher, teachersList, setTeachersList } =
     studentProps;
+  const errorStrings = useLang(i18nAddresses.errors);
   const [currentTeacher, setCurrentTeacher] = useState(0);
   const [next, setNext] = useState("");
   const [previous, setPrevious] = useState("");
@@ -16,11 +19,14 @@ export default function TeachersList({ studentProps, props }) {
 
   useEffect(() => {
     const controller = new AbortController();
+    setError(null);
 
     const retrive = async () => {
       const res = await fetchTeachers(controller.signal);
+      if (res.aborted) return;
+
       if (res.error) {
-        // error handler
+        setError(errorStrings.strings.generic);
       } else {
         setTeachersList([...res]);
       }
@@ -59,12 +65,14 @@ export default function TeachersList({ studentProps, props }) {
       setToggle(false);
       return;
     }
+
+    setError(null);
     const newTeacher = await fetchYourTeacher({
       id: teachersList[currentTeacher]._id,
     });
 
     if (newTeacher.error) {
-      // error handler
+      setError(errorStrings.strings.generic);
       return;
     }
 

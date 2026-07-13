@@ -1,7 +1,9 @@
 import fetchDeactivateContract from "../../../api/handlers/fetchDeactivateContract";
+import { i18nAddresses } from "../../../constants/i18nAddresses";
+import { useLang } from "../../../hooks/useLang";
 
 export default function DeactivatePanel({ props, contractProps }) {
-  const { classes, strings } = props;
+  const { classes, strings, setError } = props;
   const {
     setExist,
     setDataContracts,
@@ -10,14 +12,16 @@ export default function DeactivatePanel({ props, contractProps }) {
     setDeactivate,
   } = contractProps;
   const contract = contracts[currentContract];
+  const errorStrings = useLang(i18nAddresses.errors);
 
   const confirmHandler = async () => {
     const data = { contract };
+    setError(null);
     const updated = await fetchDeactivateContract(data);
 
     if (updated.error) {
+      setError(errorStrings.strings.generic);
       return;
-      // error handler
     }
 
     setExist(false);

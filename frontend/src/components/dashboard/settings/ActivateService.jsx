@@ -2,11 +2,14 @@ import { useState } from "react";
 import PriceDefiner from "../../forms/PriceDefiner";
 import fetchSettings from "../../../api/handlers/fetchSettings";
 import bundle from "shared";
+import { useLang } from "../../../hooks/useLang";
+import { i18nAddresses } from "../../../constants/i18nAddresses";
 const { packs, qNa } = bundle.constants;
 
 export default function ActivateService({ props, contractProps }) {
   const [isOpen, setIsOpen] = useState(false);
-  const { strings, lang, classes } = props;
+  const errorStrings = useLang(i18nAddresses.errors);
+  const { strings, lang, classes, setError } = props;
   const { setDataContracts, setExist, contracts, currentContract } =
     contractProps;
 
@@ -15,12 +18,13 @@ export default function ActivateService({ props, contractProps }) {
 
   const panelHandler = async () => {
     const controller = new AbortController();
+    setError(null);
 
     const retriever = `contract.${service}`;
 
     const res = await fetchSettings({ retrieve: retriever }, controller.signal);
     if (res.error) {
-      // error handler
+      setError(errorStrings.strings.generic);
       return;
     }
 
