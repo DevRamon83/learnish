@@ -1,4 +1,3 @@
-import { useState } from "react";
 import fetchUpdateSettings from "../../../api/handlers/fetchUpdateSettings";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../../redux/slices/authSlice";

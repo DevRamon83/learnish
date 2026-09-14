@@ -8,7 +8,6 @@ export default function ContractSwitch({
   contractProps,
 }) {
   const { strings, lang } = props;
-  const { currentContract, contracts } = contractProps;
 
   return (
     <>

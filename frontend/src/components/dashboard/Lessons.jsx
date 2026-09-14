@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { i18nAddresses } from "../../constants/i18nAddresses";
 import { useLang } from "../../hooks/useLang";
 import UnlockLesson from "./UnlockLesson";

@@ -1,9 +1,8 @@
 import { useRef, useState } from "react";
-import { cardBaseURL, classes } from "../../constants/components/dashboard";
+import { classes } from "../../constants/components/dashboard";
 import { useEffect } from "react";
 import { useLang } from "../../hooks/useLang";
 import { i18nAddresses } from "../../constants/i18nAddresses";
-import { fetchData } from "../../api/fetchData";
 import FlashcardFieldGame from "../../ui/FlashcardFieldGame";
 import FlashcardMenu from "../../ui/FlashcardMenu";
 import { wordHandler } from "../../helpers/flashcards/handlers";

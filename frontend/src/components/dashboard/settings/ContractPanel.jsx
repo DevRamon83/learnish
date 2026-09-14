@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import useRetrievePersonalSettings from "../../../hooks/useRetrievePersonalSettings";
-import bundle from "shared";
 import UpdateContractValue from "./UpdateContractValue";
-const { currencyMap } = bundle.constants;
 
 export default function ContractPanel({ props, contractProps }) {
-  const { classes, strings, userCurrency } = props;
+  const { classes, strings } = props;
   const {
     contracts,
     currentContract,

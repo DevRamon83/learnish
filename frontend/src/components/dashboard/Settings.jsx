@@ -1,7 +1,6 @@
 import { useSelector } from "react-redux";
 import { useLang } from "../../hooks/useLang";
 import { i18nAddresses } from "../../constants/i18nAddresses";
-import TeacherContract from "./settings/TeacherContract";
 import { useState } from "react";
 import SettingError from "./settings/SettingError";
 import { classes } from "../../constants/components/dashboard";
@@ -18,7 +17,7 @@ const { contracts } = bundle.constants;
 
 export default function Settings({ userType }) {
   const user = useSelector((state) => state.auth.user);
-  const { lang, strings } = useLang(i18nAddresses.settings);
+  const { strings } = useLang(i18nAddresses.settings);
   const [error, setError] = useState(null);
   const [dataContracts, setDataContracts] = useState(null);
   const [deactivate, setDeactivate] = useState(false);

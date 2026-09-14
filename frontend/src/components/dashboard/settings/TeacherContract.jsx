@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import useRetrievePersonalSettings from "../../../hooks/useRetrievePersonalSettings";
-import DispatchContractForm from "./DispatchContractForm";
 import ContractSwitch from "./ContractSwitch";
 import SettingsCommonTitle from "../../../ui/settings/SettingsCommonTitle";
 
@@ -19,8 +18,6 @@ export default function TeacherContract({ props, contractProps }) {
   useEffect(() => {
     if (contract && contract.isComplete) setIsComplete(true);
   }, [isComplete, contract]);
-
-  const { form } = classes.settings;
 
   return (
     <>

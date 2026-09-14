@@ -1,5 +1,3 @@
-import { useState } from "react";
-import getPicUrl from "../../../helpers/getPicUrl";
 import fetchPic from "../../../api/handlers/fetchPic";
 import { validatePic } from "./validators";
 import { useDispatch } from "react-redux";

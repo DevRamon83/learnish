@@ -1,10 +1,9 @@
-import { useState } from "react";
 import getPicUrl from "../../../helpers/getPicUrl";
 import SettingsCommonTitle from "../../../ui/settings/SettingsCommonTitle";
 import useRetrievePersonalSettings from "../../../hooks/useRetrievePersonalSettings";
 
 export default function MyTeacher({ props, studentProps }) {
-  const { strings, classes, toggle, setToggle } = props;
+  const { strings, classes } = props;
   const { myTeacher, setMyTeacher } = studentProps;
 
   const retrieveConfig = {
