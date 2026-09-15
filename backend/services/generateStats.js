@@ -8,6 +8,12 @@ const { defineDate } = bundle.helpers;
 const generateStats = async (summary) => {
   const mongoIDsummary = summary._id;
   try {
+    const alreadyExists = await statsModel.findOne({
+      "dayStat.mongoIDsummary": mongoIDsummary,
+    });
+
+    if (alreadyExists) return { error: false, summary: alreadyExists };
+
     const { day, month, year } = defineDate(summary.createdAt);
     const userId = summary.owner;
     const words = wordsCounter(summary.summary);
