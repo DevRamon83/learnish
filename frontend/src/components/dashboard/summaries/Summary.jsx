@@ -4,6 +4,7 @@ import ShowSummary from "../../../ui/summary/ShowSummary";
 import { useSelector } from "react-redux";
 import ShowSummaryDetails from "../../../ui/summary/ShowSummaryDetails";
 import ExplainMistake from "../../../ui/summary/ExplainMistake";
+import { classes } from "../../../constants/components/dashboard";
 
 export default function Summary({ data, setter }) {
   const { parse, isInvalid } = useParseSummary(data.aiText);
@@ -24,8 +25,8 @@ export default function Summary({ data, setter }) {
   };
 
   return (
-    <div className="summary__panel">
-      <div className="summary__container">
+    <div className={classes.panel}>
+      <div className={classes.summaryContainer}>
         <h1>{data.title}</h1>
         <ShowSummary
           parse={parse}
@@ -36,7 +37,7 @@ export default function Summary({ data, setter }) {
         />
         <ExplainMistake mistake={mistake} classMistake={classMistake} />
       </div>
-      <div className="summary__closePanel" onClick={() => setter(false)}>
+      <div className={classes.closePanel} onClick={() => setter(false)}>
         Chiudi
       </div>
       <ShowSummaryDetails data={data} stats={stats} />
