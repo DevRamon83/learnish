@@ -41,5 +41,9 @@
   "subscription": "per il campo sottoscrizione non è ammesso",
   "tutoring": "per il campo tutoring non è ammesso",
   "speaking": "per il campo speaking non è ammesso",
-  "generic": "Qualcosa è andato storto, riprova o contatta l'assistenza"
+  "generic": "Qualcosa è andato storto, riprova o contatta l'assistenza",
+  "nothing": "Nessun",
+  "present": "presente",
+  "connection": "Errore di connessione",
+  "tryAgain": "Riprova"
 }

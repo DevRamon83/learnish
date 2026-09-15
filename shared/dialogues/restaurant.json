@@ -1,0 +1,755 @@
+{
+  "A": [
+    {
+      "character": "Brian",
+      "englishText": "Hi there! Welcome to The Daily Grill.",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_a_01.mp3"
+    },
+    {
+      "character": "Emma",
+      "englishText": "Hello! Hi. Do you have a table for one?",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_a_02.mp3"
+    },
+    {
+      "character": "Brian",
+      "englishText": "We certainly do. Right this way, please.",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_a_03.mp3"
+    },
+    {
+      "character": "Emma",
+      "englishText": "Perfect, thank you.",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_a_04.mp3"
+    },
+    {
+      "character": "Brian",
+      "englishText": "Is this table by the window okay for you?",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_a_05.mp3"
+    },
+    {
+      "character": "Emma",
+      "englishText": "Yes, this is lovely. Thanks.",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_a_06.mp3"
+    },
+    {
+      "character": "Brian",
+      "englishText": "Great. My name is Brian, and I’ll be your server today.",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_a_07.mp3"
+    },
+    {
+      "character": "Emma",
+      "englishText": "Nice to meet you, Brian.",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_a_08.mp3"
+    },
+    {
+      "character": "Brian",
+      "englishText": "Here’s the menu. Can I get you started with something to drink?",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_a_09.mp3"
+    },
+    {
+      "character": "Emma",
+      "englishText": "Just some water for now, please.",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_a_10.mp3"
+    },
+    {
+      "character": "Brian",
+      "englishText": "Sure thing. Tap water, or bottled water?",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_a_11.mp3"
+    },
+    {
+      "character": "Emma",
+      "englishText": "Tap is fine, but with lots of ice, please.",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_a_12.mp3"
+    },
+    {
+      "character": "Brian",
+      "englishText": "You got it. I'll be right back with that.",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_a_13.mp3"
+    },
+    {
+      "character": "Emma",
+      "englishText": "Take your time. I need a moment to look at the menu.",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_a_14.mp3"
+    },
+    {
+      "character": "Brian",
+      "englishText": "Here is your ice water. Are you ready to order, or do you need a few more minutes?",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_a_15.mp3"
+    },
+    {
+      "character": "Emma",
+      "englishText": "I think I'm ready. To start, I'll have the tomato soup.",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_a_16.mp3"
+    },
+    {
+      "character": "Brian",
+      "englishText": "Excellent. And for your main entree?",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_a_17.mp3"
+    },
+    {
+      "character": "Emma",
+      "englishText": "Can I get the grilled chicken with a side of fries?",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_a_18.mp3"
+    },
+    {
+      "character": "Brian",
+      "englishText": "Sure. Would you like any sauces with the fries?",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_a_19.mp3"
+    },
+    {
+      "character": "Emma",
+      "englishText": "Just some ketchup, please.",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_a_20.mp3"
+    },
+    {
+      "character": "Brian",
+      "englishText": "Perfect. So, that's the tomato soup, and the chicken with fries and ketchup.",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_a_21.mp3"
+    },
+    {
+      "character": "Emma",
+      "englishText": "Yes, that's exactly right.",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_a_22.mp3"
+    },
+    {
+      "character": "Brian",
+      "englishText": "Great. I'll get that order into the kitchen for you.",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_a_23.mp3"
+    },
+    {
+      "character": "Emma",
+      "englishText": "Thank you so much.",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_a_24.mp3"
+    },
+    {
+      "character": "Brian",
+      "englishText": "You're very welcome. Enjoy your evening.",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_a_25.mp3"
+    },
+    {
+      "character": "Emma",
+      "englishText": "Thanks, you too.",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_a_26.mp3"
+    },
+    {
+      "character": "Brian",
+      "englishText": "Let me know if you need anything else.",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_a_27.mp3"
+    },
+    {
+      "character": "Emma",
+      "englishText": "Will do.",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_a_28.mp3"
+    },
+    {
+      "character": "Brian",
+      "englishText": "I'll be back shortly.",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_a_29.mp3"
+    }
+  ],
+  "B": [
+    {
+      "character": "Brian",
+      "englishText": "Hi, folks! How are we doing tonight? Ready to order, or do you need another minute?",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_b_01.mp3"
+    },
+    {
+      "character": "Emma",
+      "englishText": "Hey! We're doing great, thanks. I think we're actually good to go. To start, could we share the spinach dip?",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_b_02.mp3"
+    },
+    {
+      "character": "Brian",
+      "englishText": "Excellent choice, that's a crowd favorite. And what can I get you for your main entrees?",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_b_03.mp3"
+    },
+    {
+      "character": "Emma",
+      "englishText": "I'll go with the medium-rare sirloin steak, but could I swap the mashed potatoes for a side salad?",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_b_04.mp3"
+    },
+    {
+      "character": "Brian",
+      "englishText": "You got it. Subbing mashed potatoes for a side salad. Any preference on the dressing for the salad?",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_b_05.mp3"
+    },
+    {
+      "character": "Emma",
+      "englishText": "What choices do you have? I usually prefer something light if possible.",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_b_06.mp3"
+    },
+    {
+      "character": "Brian",
+      "englishText": "We have ranch, blue cheese, honey mustard, and a light balsamic vinaigrette.",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_b_07.mp3"
+    },
+    {
+      "character": "Emma",
+      "englishText": "The balsamic vinaigrette sounds perfect. Let's go with that one, please.",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_b_08.mp3"
+    },
+    {
+      "character": "Brian",
+      "englishText": "Perfect. I'll get those appetizers out to you shortly. Enjoy the rest of your evening for now.",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_b_09.mp3"
+    },
+    {
+      "character": "Emma",
+      "englishText": "Thanks a lot! Oh, by the way, sorry to bother you, but where is the restroom located?",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_b_10.mp3"
+    },
+    {
+      "character": "Brian",
+      "englishText": "No trouble at all. It's just down the hallway to the left, right past the kitchen doors.",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_b_11.mp3"
+    },
+    {
+      "character": "Emma",
+      "englishText": "Awesome, thank you. I'll be right back before the food gets here.",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_b_12.mp3"
+    },
+    {
+      "character": "Brian",
+      "englishText": "Take your time! (Fast forward in time) How did everything taste? Did you enjoy the steak?",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_b_13.mp3"
+    },
+    {
+      "character": "Emma",
+      "englishText": "Oh, it was absolutely delicious. The steak was cooked perfectly. We're completely stuffed.",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_b_14.mp3"
+    },
+    {
+      "character": "Brian",
+      "englishText": "I'm so glad to hear that. Can I interest you in any dessert, or maybe some coffee?",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_b_15.mp3"
+    },
+    {
+      "character": "Emma",
+      "englishText": "As tempting as that looks, I don't think I have any room left. Just the check, please.",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_b_16.mp3"
+    },
+    {
+      "character": "Brian",
+      "englishText": "Sure thing. I'll bring that right over. Will this be on one bill or split?",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_b_17.mp3"
+    },
+    {
+      "character": "Emma",
+      "englishText": "We'll put it all together on one card, thank you. That makes it easier.",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_b_18.mp3"
+    },
+    {
+      "character": "Brian",
+      "englishText": "Alright, here is the bill. Take your time, and I can take the card whenever you're ready.",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_b_19.mp3"
+    },
+    {
+      "character": "Emma",
+      "englishText": "Here you go. Do I need to sign the receipt, or do you use the digital screen?",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_b_20.mp3"
+    },
+    {
+      "character": "Brian",
+      "englishText": "You can just use the screen right here. It will walk you through the payment steps.",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_b_21.mp3"
+    },
+    {
+      "character": "Emma",
+      "englishText": "Got it. I'll add the tip on here as well. The service was excellent.",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_b_22.mp3"
+    },
+    {
+      "character": "Brian",
+      "englishText": "Thank you so much, I really appreciate that! It was a pleasure serving you.",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_b_23.mp3"
+    },
+    {
+      "character": "Emma",
+      "englishText": "The pleasure was ours. Have a wonderful rest of your night!",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_b_24.mp3"
+    },
+    {
+      "character": "Brian",
+      "englishText": "Thanks, you too! Drive safe and have a good weekend.",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_b_25.mp3"
+    },
+    {
+      "character": "Emma",
+      "englishText": "Thanks, bye!",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_b_26.mp3"
+    },
+    {
+      "character": "Brian",
+      "englishText": "Take care!",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_b_27.mp3"
+    }
+  ],
+  "C": [
+    {
+      "character": "Brian",
+      "englishText": "Good evening! Welcome to Bistro 84. Do you happen to have a reservation with us tonight?",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_c_01.mp3"
+    },
+    {
+      "character": "Emma",
+      "englishText": "Hi, good evening. Yes, it should be under Emma. Though, I do have a quick question before we get seated.",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_c_02.mp3"
+    },
+    {
+      "character": "Brian",
+      "englishText": "Of course, fire away! I'm here to help with whatever you need.",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_c_03.mp3"
+    },
+    {
+      "character": "Emma",
+      "englishText": "Well, it was originally booked for just myself, but a colleague of mine might drop by later on. Would it be a hassle to grab a table with an extra setting just in case?",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_c_04.mp3"
+    },
+    {
+      "character": "Brian",
+      "englishText": "Oh, that's not a problem at all. We can easily accommodate that. Let me look at the floor plan and find a cozy spot for two.",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_c_05.mp3"
+    },
+    {
+      "character": "Emma",
+      "englishText": "That's wonderful, thank you. I really appreciate your flexibility on short notice.",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_c_06.mp3"
+    },
+    {
+      "character": "Brian",
+      "englishText": "Think nothing of it! Follow me right this way. How does this corner booth look to you?",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_c_07.mp3"
+    },
+    {
+      "character": "Emma",
+      "englishText": "This is actually perfect, plenty of room. By the way, I should probably mention a rather severe dietary restriction before I even look at the menu.",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_c_08.mp3"
+    },
+    {
+      "character": "Brian",
+      "englishText": "Absolutely, please let me know. We take food safety incredibly seriously here, so I'll make sure the kitchen is fully aware.",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_c_09.mp3"
+    },
+    {
+      "character": "Emma",
+      "englishText": "I have a highly acute peanut allergy. It's not just about avoiding peanuts in the dish, cross-contamination is a massive issue for me.",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_c_10.mp3"
+    },
+    {
+      "character": "Brian",
+      "englishText": "Understood completely. I will flag your table in our system immediately and personally speak with the head chef to ensure separate utensils are used.",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_c_11.mp3"
+    },
+    {
+      "character": "Emma",
+      "englishText": "That puts my mind at ease, thank you. Given that, are there any specific entrees you would recommend steering clear of?",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_c_12.mp3"
+    },
+    {
+      "character": "Brian",
+      "englishText": "To be safe, you should definitely avoid the Thai chicken salad and our house pesto, as they both utilize nuts extensively in the prep station.",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_c_13.mp3"
+    },
+    {
+      "character": "Emma",
+      "englishText": "Got it, those are off the table. What about the pan-seared salmon? Does that contain any hidden nut oils or garnishes?",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_c_14.mp3"
+    },
+    {
+      "character": "Brian",
+      "englishText": "No, the salmon is entirely safe. It's drizzled with a citrus glaze and cooked in pure olive oil, so you're completely good to go there.",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_c_15.mp3"
+    },
+    {
+      "character": "Emma",
+      "englishText": "Fabulous. Let's lock that in then. I'll take the salmon with a side of roasted asparagus, please.",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_c_16.mp3"
+    },
+    {
+      "character": "Brian",
+      "englishText": "You got it. One salmon, roasted asparagus, and an absolute zero-tolerance policy on peanuts for the kitchen staff.",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_c_17.mp3"
+    },
+    {
+      "character": "Emma",
+      "englishText": "Exactly. You're a lifesaver, Brian. Could I also get a glass of your house Chardonnay to start off with?",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_c_18.mp3"
+    },
+    {
+      "character": "Brian",
+      "englishText": "Coming right up. I'll go pour that wine and bring out some bread while you wait for your friend.",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_c_19.mp3"
+    },
+    {
+      "character": "Emma",
+      "englishText": "Sounds like a plan. Thank you again for going the extra mile with the allergy check.",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_c_20.mp3"
+    },
+    {
+      "character": "Brian",
+      "englishText": "It's genuinely my pleasure. We want you to enjoy your meal with total peace of mind.",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_c_21.mp3"
+    },
+    {
+      "character": "Emma",
+      "englishText": "It certainly looks like I will. This place has a fantastic atmosphere.",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_c_22.mp3"
+    },
+    {
+      "character": "Brian",
+      "englishText": "Thank you, we try our best. I'll let you settle in and be back with your drink in a jiffy.",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_c_23.mp3"
+    },
+    {
+      "character": "Emma",
+      "englishText": "Perfect, take your time. I'll just check my emails while I wait.",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_c_24.mp3"
+    },
+    {
+      "character": "Brian",
+      "englishText": "Here is your wine, and the kitchen is already on it. Let me know if your colleague arrives so I can grab another menu.",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_c_25.mp3"
+    },
+    {
+      "character": "Emma",
+      "englishText": "Will do. Thanks again, Brian. Have a good one!",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_c_26.mp3"
+    },
+    {
+      "character": "Brian",
+      "englishText": "You too! Catch you in a bit.",
+      "italianText": "",
+      "spanishText": "",
+      "frenchText": "",
+      "portugueseText": "",
+      "englishAudio": "english_restaurant_c_27.mp3"
+    }
+  ]
+}
