@@ -96,6 +96,7 @@
 
   @include breakpoints.medium {
     justify-content: space-evenly;
+    min-height: 40vh;
   }
 }
 
