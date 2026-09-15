@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import fetchSummaries from "../../../api/handlers/fetchSummaries";
 import SummaryCard from "./SummaryCard";
 import FetchObserver from "../../../api/FetchObserver";
