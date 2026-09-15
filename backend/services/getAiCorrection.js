@@ -10,7 +10,7 @@ const getAiCorrection = async (summary, lang) => {
 
   try {
     const response = await groq.chat.completions.create({
-      model: "llama-3.3-70b-versatile",
+      model: "groq/compound",
       messages: [
         {
           role: "system",
