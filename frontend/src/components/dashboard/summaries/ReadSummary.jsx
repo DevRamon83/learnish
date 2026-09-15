@@ -5,6 +5,7 @@ import { i18nAddresses } from "../../../constants/i18nAddresses";
 import fetchCorrection from "../../../api/handlers/fetchCorrection";
 import SummaryYoutubeBtn from "../../../ui/summary/SummaryYoutubeBtn";
 import SummaryOpenBtn from "../../../ui/summary/SummaryOpenBtn";
+import fetchStats from "../../../api/handlers/fetchStats";
 
 export default function ReadSummary({
   setter,
@@ -28,11 +29,11 @@ export default function ReadSummary({
 
   const actionHandler = async (action) => {
     let response = null;
+    const data = { id: summary._id, lang };
     if (action === "correction") {
-      const data = { id: summary._id, lang };
       response = await fetchCorrection(data);
     } else if (action === "stats") {
-      // api stat alignment
+      response = await fetchStats(data);
     }
 
     if (response.error) {
