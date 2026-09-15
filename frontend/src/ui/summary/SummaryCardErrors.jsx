@@ -6,20 +6,23 @@ export default function SummaryCardErrors({
   currentError,
   summary,
 }) {
-  const { lang, strings } = useLang(i18nAddresses.errors);
+  const { strings } = useLang(i18nAddresses.errors);
   const words = summary.summary.split(" ").length;
   const ratio = (summary.errorCodes.length / words) * 100;
   const grammar =
     summary.errorCodes.length === 1 ? strings.error : strings.errors;
+
+  const text = currentError
+    ? `${strings[currentError]}: ${errorCount}`
+    : strings.goodJob;
 
   return (
     <>
       <div>
         {summary.errorCodes.length} {grammar} in {words} {strings.words}
       </div>
-      <div>
-        {strings[currentError]}: {errorCount}
-      </div>
+      <div>{text}</div>
+
       <div>
         {strings.average}: {ratio.toFixed(1)} {strings.ratio}
       </div>

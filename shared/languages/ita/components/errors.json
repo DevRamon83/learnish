@@ -45,5 +45,7 @@
   "nothing": "Nessun",
   "present": "presente",
   "connection": "Errore di connessione",
-  "tryAgain": "Riprova"
+  "tryAgain": "Riprova",
+  "notFound": "Non trovato",
+  "goodJob": "Ottimo lavoro!"
 }
