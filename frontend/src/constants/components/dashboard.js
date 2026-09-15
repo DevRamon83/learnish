@@ -6,6 +6,9 @@ export const classes = {
   main: "dashboard__main",
   core: "dashboard",
   summary: {
+    panel: "summary__panel",
+    summaryContainer: "summary__container",
+    closePanel: "summary__closePanel",
     iconVideo: "summary__iconVideo",
     youtube: "summary__youtube",
     base: "summary__",
