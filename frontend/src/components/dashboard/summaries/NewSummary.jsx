@@ -22,6 +22,7 @@ export default function NewSummary({
   strings,
   lang,
   setData,
+  data,
 }) {
   const [error, setError] = useState(null);
   const [newSummary, setNewSummary] = useState(null);
@@ -78,9 +79,11 @@ export default function NewSummary({
   };
 
   const closeHandler = () => {
-    if (states.summary) {
-      const uploadedSummary = states.summary.summary;
+    const uploadedSummary = states.summary?.summary;
+    if (states.summary && data) {
       setData((prev) => [uploadedSummary, ...prev]);
+    } else {
+      setData([uploadedSummary]);
     }
     resets.resetAll();
     setUploadStep(newSummaryInitialStep);

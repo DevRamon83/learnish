@@ -46,6 +46,7 @@ export default function Summaries() {
         strings={strings}
         lang={lang}
         setData={setData}
+        data={data}
       />
     </>
   );
