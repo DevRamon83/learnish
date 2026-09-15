@@ -56,6 +56,7 @@ const newSummary = async (req, res) => {
       summary,
       shared,
       owner: id,
+      userLang,
     };
 
     const mySummary = await summaryModel.create(data);

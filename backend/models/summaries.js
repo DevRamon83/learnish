@@ -27,7 +27,7 @@ const SummarySchema = new Schema(
     },
     feedback: { type: String },
     errorCodes: { type: [String] },
-    shared: { type: Boolean, required: true },
+    userLang: { type: String, required: true },
     misalignment: { type: Boolean, required: true, default: true },
     owner: {
       type: mongoose.Schema.Types.ObjectId,
