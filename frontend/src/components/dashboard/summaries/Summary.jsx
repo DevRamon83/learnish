@@ -25,8 +25,8 @@ export default function Summary({ data, setter }) {
   };
 
   return (
-    <div className={classes.panel}>
-      <div className={classes.summaryContainer}>
+    <div className={classes.summary.panel}>
+      <div className={classes.summary.summaryContainer}>
         <h1>{data.title}</h1>
         <ShowSummary
           parse={parse}
@@ -37,7 +37,7 @@ export default function Summary({ data, setter }) {
         />
         <ExplainMistake mistake={mistake} classMistake={classMistake} />
       </div>
-      <div className={classes.closePanel} onClick={() => setter(false)}>
+      <div className={classes.summary.closePanel} onClick={() => setter(false)}>
         Chiudi
       </div>
       <ShowSummaryDetails data={data} stats={stats} />
