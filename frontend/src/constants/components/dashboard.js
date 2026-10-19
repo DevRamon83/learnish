@@ -137,6 +137,10 @@ export const classes = {
     trash: "settings__delete",
     popUp: "settings__popUp",
     activate: "settings__activate-btn",
+    deactivatePanel: "settings__deactivatePanel",
+    deactivateBtnNo: "settings__deactivateBtn-negative",
+    deactivateBtnYes: "settings__deactivateBtn-affermative",
+    deactivateBtnContainer: "settings__deactivateBtnContainer",
   },
   study: {
     menu: "dashboard__studyMenu",
