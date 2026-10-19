@@ -1,7 +1,7 @@
 import handleErrorResponse from "../../helpers/handleErrorResponse.js";
 import { userModel, Teacher } from "../../models/user.js";
 
-const chooseTeacher = async (req, res) => {
+const teacherAction = async (req, res) => {
   const log = true;
   try {
     const userID = req.context.auth.id;
@@ -15,26 +15,23 @@ const chooseTeacher = async (req, res) => {
       });
     }
 
+    if (req.body.action === "deactivate") {
+      user.teacher = undefined;
+      await user.save();
+      return res.status(200).json({ error: false, teacher: "choose" });
+    }
+
     const teacher = await Teacher.findByIdAndUpdate(
       teacherID,
       {
         $push: { students: userID },
       },
-      { new: true },
+      { returnDocument: "after" },
     );
 
     const response = {
       id: teacherID,
       username: teacher.username,
-      subscription: {
-        periodicity: "unset",
-        price: 0,
-      },
-      services: {
-        tutoring: 0,
-        speaking: 0,
-        qNa: 0,
-      },
     };
     user.teacher = response;
     await user.save();
@@ -45,4 +42,4 @@ const chooseTeacher = async (req, res) => {
   }
 };
 
-export default chooseTeacher;
+export default teacherAction;

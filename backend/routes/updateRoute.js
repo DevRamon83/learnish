@@ -9,7 +9,8 @@ import saveNewPassword from "../controllers/update/saveNewPassword.js";
 import saveDataContract from "../controllers/update/saveDataContract.js";
 import deactivateValidator from "../middlewares/update/deactivateValidator.js";
 import deactivate from "../controllers/update/deactivate.js";
-import chooseTeacher from "../controllers/update/chooseTeacher.js";
+import teacherAction from "../controllers/update/teacherAction.js";
+import teacherActionValidator from "../middlewares/update/teacherActionValidator.js";
 
 const updateRoute = express.Router();
 
@@ -49,6 +50,11 @@ updateRoute.post(
   deactivate,
 );
 
-updateRoute.post("/selectTeacher", ...protectedRoutes, chooseTeacher);
+updateRoute.post(
+  "/teacherAction",
+  ...protectedRoutes,
+  teacherActionValidator,
+  teacherAction,
+);
 
 export default updateRoute;
