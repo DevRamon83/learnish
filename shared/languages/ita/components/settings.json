@@ -25,7 +25,10 @@
   },
   "change": {
     "teacher": "Scegli il tuo insegnante",
-    "currency": "In che valuta vuoi essere pagato?"
+    "currency": "In che valuta vuoi essere pagato?",
+    "deactivateAlertText": " sei sicuro di voler abbandonare il tuo insegnante?",
+    "no": "no",
+    "yes": "si"
   },
   "freeCost": "0€/mese",
   "basicCost": "1€/mese",
@@ -53,6 +56,7 @@
   "end": "fine",
   "yourTeacher": "Il tuo insegnante: ",
   "choose": "Scegli",
+  "deactivate": "Disdici",
   "password": "Cambia la tua password",
   "currencyTitle": "In che valuta vuoi essere pagato?",
   "profilePic": "Immagine profilo",
