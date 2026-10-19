@@ -3,7 +3,8 @@ import { fetchData } from "../fetchData";
 
 const fetchYourTeacher = async (data) => {
   const { base, update } = API_URLS;
-  const apiUrl = base + update.base + update.selectTeacher;
+
+  const apiUrl = base + update.base + update.teacherAction;
 
   const method = "POST";
   const credentials = "include";

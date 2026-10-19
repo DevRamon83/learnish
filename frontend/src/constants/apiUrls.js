@@ -39,6 +39,6 @@ export const API_URLS = {
     password: "/newPassword",
     contract: "/dataContract",
     deactivate: "/deactivate",
-    selectTeacher: "/selectTeacher",
+    teacherAction: "/teacherAction",
   },
 };
