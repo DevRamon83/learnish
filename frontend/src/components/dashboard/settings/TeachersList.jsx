@@ -1,74 +1,42 @@
-import { useEffect, useState } from "react";
-import fetchTeachers from "../../../api/handlers/fetchTeachers";
 import useScrollToTop from "../../../hooks/useScrollToTop";
 import TeachersProfile from "../../../ui/teachers/TeachersProfile";
 import fetchYourTeacher from "../../../api/handlers/fetchYourTeacher";
 import { useLang } from "../../../hooks/useLang";
 import { i18nAddresses } from "../../../constants/i18nAddresses";
+import useTeacherNav from "../../../hooks/UseTeacherNav";
+import useRetriveTeachersList from "../../../hooks/useRetriveTeachersList";
+import { useState } from "react";
+import TeacherDeactivateAlert from "../../../ui/settings/TeacherDeactivateAlert";
 
 export default function TeachersList({ studentProps, props }) {
   const { strings, setToggle, setError } = props;
   const classes = props.classes.settings;
   const { myTeacher, setMyTeacher, teachersList, setTeachersList } =
     studentProps;
+  const [deactivatePanel, setDeactivatePanel] = useState("close");
   const errorStrings = useLang(i18nAddresses.errors);
-  const [currentTeacher, setCurrentTeacher] = useState(0);
-  const [next, setNext] = useState("");
-  const [previous, setPrevious] = useState("");
   useScrollToTop();
-
-  useEffect(() => {
-    const controller = new AbortController();
-    setError(null);
-
-    const retrive = async () => {
-      const res = await fetchTeachers(controller.signal);
-      if (res.aborted) return;
-
-      if (res.error) {
-        setError(errorStrings.strings.generic);
-      } else {
-        setTeachersList([...res]);
-      }
-    };
-
-    retrive();
-
-    return () => controller.abort();
-  }, []);
-
-  useEffect(() => {
-    if (currentTeacher === 0) {
-      setPrevious(strings.start);
-    } else {
-      setPrevious(strings.back);
-    }
-
-    if (currentTeacher === teachersList.length - 1) {
-      setNext(strings.end);
-    } else {
-      setNext(strings.next);
-    }
-  }, [currentTeacher]);
-
-  const navigationHandler = (action) => {
-    const step = action === "next" ? 1 : -1;
-    const end = action === "next" ? teachersList.length - 1 : 0;
-
-    if (currentTeacher !== end) {
-      setCurrentTeacher((prev) => prev + step);
-    }
-  };
+  useRetriveTeachersList(setError, setTeachersList, errorStrings);
+  const { chooseBtnText, navigationHandler, next, previous, currentTeacher } =
+    useTeacherNav(strings, myTeacher, teachersList);
 
   const chooseTeacher = async () => {
-    if (myTeacher.id === teachersList[currentTeacher]._id) {
-      setToggle(false);
-      return;
-    }
-
     setError(null);
+
+    const action =
+      teachersList[currentTeacher].username === myTeacher.username
+        ? "deactivate"
+        : "choose";
+
+    const alert = deactivatePanel === "close" && action === "deactivate";
+
+    if (alert) return setDeactivatePanel("open");
+
+    setDeactivatePanel("close");
+
     const newTeacher = await fetchYourTeacher({
       id: teachersList[currentTeacher]._id,
+      action,
     });
 
     if (newTeacher.error) {
@@ -91,9 +59,16 @@ export default function TeachersList({ studentProps, props }) {
       )}
       <div className={classes.teacherMenu}>
         <div onClick={() => navigationHandler("back")}>{previous}</div>
-        <div onClick={chooseTeacher}>{strings.choose}</div>
+        <div onClick={chooseTeacher}>{chooseBtnText}</div>
         <div onClick={() => navigationHandler("next")}>{next}</div>
       </div>
+      <TeacherDeactivateAlert
+        deactivatePanel={deactivatePanel}
+        setDeactivatePanel={setDeactivatePanel}
+        chooseTeacher={chooseTeacher}
+        classes={classes}
+        strings={strings}
+      />
     </div>
   );
 }
