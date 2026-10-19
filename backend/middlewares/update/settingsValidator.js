@@ -75,7 +75,6 @@ const stopIt = (req, res, fieldName = "payload structure") => {
 
 const settingsValidator = async (req, res, next) => {
   const data = req.body;
-  const path = req.path;
 
   const fieldArray = Object.keys(data);
 
