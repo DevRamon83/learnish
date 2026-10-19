@@ -1,6 +1,6 @@
-import getPicUrl from "../../../helpers/getPicUrl";
 import SettingsCommonTitle from "../../../ui/settings/SettingsCommonTitle";
 import useRetrievePersonalSettings from "../../../hooks/useRetrievePersonalSettings";
+import useTeacherPic from "../../../hooks/useTeacherPic";
 
 export default function MyTeacher({ props, studentProps }) {
   const { strings, classes } = props;
@@ -14,23 +14,15 @@ export default function MyTeacher({ props, studentProps }) {
   };
   useRetrievePersonalSettings(retrieveConfig);
 
-  const teacher = {
-    profilePic: {
-      storage: "supabase",
-      bucketImg: "users",
-      fileName: `avatar_${myTeacher?.id}.webp`,
-    },
-  };
+  const url = useTeacherPic(myTeacher);
 
-  const url = getPicUrl(teacher);
+  const title = !myTeacher?.username
+    ? strings.change.teacher
+    : `${strings.yourTeacher} ${myTeacher?.username}`;
 
   return (
     <>
-      <SettingsCommonTitle
-        classes={classes}
-        string={`${strings.yourTeacher} ${myTeacher?.username}`}
-        src={url}
-      />
+      <SettingsCommonTitle classes={classes} string={title} src={url} />
     </>
   );
 }
