@@ -35,7 +35,7 @@ const doCorrections = async (summary, lang) => {
     updatedSummary = await summaryModel.findOneAndUpdate(
       { _id: summaryId },
       ai,
-      { new: true },
+      { returnDocument: "after" },
     );
     return { error: false, updatedSummary };
   } catch (err) {

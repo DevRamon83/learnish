@@ -39,7 +39,7 @@ const generateStats = async (summary) => {
           },
         },
       },
-      { upsert: true, new: true },
+      { upsert: true, returnDocument: "after" },
     );
 
     const updateSummary = await summaryModel.findOneAndUpdate(
