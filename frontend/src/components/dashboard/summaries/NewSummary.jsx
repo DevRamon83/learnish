@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useRef } from "react";
 import summaryConfigBuilder from "../../../forms/configs/summary";
 import ErrorOnSubmit from "../../ErrorOnSubmit";
-import bundle from "shared";
 import {
   classes,
   newSummaryInitialStatus,
@@ -14,18 +13,18 @@ import { useHideOverflow } from "../../../hooks/useHideOverflow";
 import SummaryUpload from "../../../ui/summary/SummaryUpload";
 import useUploadSummary from "../../../hooks/useUploadSummary";
 import NewSummaryTitle from "../../../ui/summary/NewSummaryTitle";
-const { summaryValidator } = bundle.validators;
+import { submitHandler } from "../../../helpers/newSummary";
 
 export default function NewSummary({
   panel,
   setPanel,
   strings,
   lang,
-  setData,
-  data,
+  setRetry,
 }) {
   const [error, setError] = useState(null);
   const [newSummary, setNewSummary] = useState(null);
+  const [isUiBlocked, setIsUiBlocked] = useState(false);
   const formRef = useRef();
   useHideOverflow(panel);
 
@@ -33,64 +32,29 @@ export default function NewSummary({
   const { fields, textareas, resets } = useRamonForm(objConfig);
   const { summary } = textareas;
 
-  const { states, setters } = useUploadSummary(newSummary, lang);
-  const { setUploadStep, setUploadStatus, setSummaryData } = setters;
+  // This custom hook orchestrates the entire sequential pipeline (creating the draft,
+  // generating AI corrections, and computing error statistics).
+  // The external submitHandler simply updates states to start this process.
+  const { states, setters } = useUploadSummary(
+    newSummary,
+    lang,
+    setIsUiBlocked,
+  );
+  const { setUploadStep, setUploadStatus, setSummaryID } = setters;
 
-  const validate = (data) => {
-    if (!data) {
-      setError("there is no data");
-      return { error: true };
+  const closeHandler = async () => {
+    const { summaryID } = states;
+    if (summaryID) {
+      setRetry((prev) => prev + 1);
     }
-    const { title, youtube, summary } = data;
-    const objValidator = { title, youtube, summary, lang, caller: "frontend" };
 
-    const validData = summaryValidator(objValidator);
-    if (validData.error) {
-      setError(validData.errorMsg);
-      return { error: true, errorMsg: validData.errorMsg };
-    }
-
-    return {
-      error: false,
-      title,
-      idVideo: validData.idVideo,
-      summary: data.summary,
-    };
-  };
-
-  const submitHandler = async (e) => {
-    e.preventDefault();
-    const formData = new FormData(formRef.current);
-    const data = Object.fromEntries(formData.entries());
-
-    const isValidData = validate(data);
-
-    if (isValidData.error) return;
-
-    setUploadStep((prev) => ({ ...prev, draft: true }));
-    const dataObj = {
-      title: isValidData.title,
-      idVideo: isValidData.idVideo,
-      summary: isValidData.summary,
-      lang,
-    };
-
-    setNewSummary(dataObj);
-  };
-
-  const closeHandler = () => {
-    const uploadedSummary = states.summary?.summary;
-    if (states.summary && data) {
-      setData((prev) => [uploadedSummary, ...prev]);
-    } else {
-      setData([uploadedSummary]);
-    }
     resets.resetAll();
+    setIsUiBlocked(false);
     setUploadStep(newSummaryInitialStep);
     setUploadStatus(newSummaryInitialStatus);
     setNewSummary(false);
     setPanel(false);
-    setSummaryData(null);
+    setSummaryID(null);
   };
 
   return (
@@ -100,7 +64,16 @@ export default function NewSummary({
           <form
             className={classes.summary.form}
             ref={formRef}
-            onSubmit={submitHandler}
+            onSubmit={(e) =>
+              submitHandler(
+                e,
+                formRef,
+                setError,
+                setUploadStep,
+                setNewSummary,
+                lang,
+              )
+            }
           >
             <NewSummaryTitle
               strings={strings}
@@ -123,6 +96,11 @@ export default function NewSummary({
               </button>
             )}
           </form>
+        </div>
+      )}
+      {isUiBlocked && (
+        <div className="summary__uiBlocker">
+          <p>TESTO DI PROVA</p>
         </div>
       )}
     </>
