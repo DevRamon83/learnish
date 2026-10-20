@@ -1,17 +1,23 @@
 import { useEffect, useState } from "react";
+import fetchAllStats from "../api/handlers/fetchAllStats";
+import { useDispatch } from "react-redux";
+import statsHandler from "../helpers/stats/statsHandler";
+import { setStats } from "../redux/slices/statsSlice";
 
 const useFetchData = (fetchHandler) => {
   const [fetchStatus, setFetchStatus] = useState(null);
   const [retry, setRetry] = useState(0);
   const [data, setData] = useState(null);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const controller = new AbortController();
+    const summariesController = new AbortController();
+    const statsController = new AbortController();
 
     const loadData = async () => {
       setFetchStatus(null);
+      const res = await fetchHandler(summariesController.signal);
 
-      const res = await fetchHandler(controller.signal);
       if (res.error) {
         setFetchStatus("fail");
         return;
@@ -25,9 +31,22 @@ const useFetchData = (fetchHandler) => {
       }
     };
 
+    const allStats = async () => {
+      const resp = await fetchAllStats(statsController.signal);
+      if (resp.error) {
+        // error handler
+      } else {
+        statsHandler(resp.stats, dispatch, setStats);
+      }
+    };
+
+    allStats();
     loadData();
 
-    return () => controller.abort();
+    return () => {
+      summariesController.abort();
+      statsController.abort();
+    };
   }, [retry]);
 
   return { fetchStatus, setFetchStatus, retry, setRetry, data, setData };
