@@ -5,6 +5,7 @@ const banUser = async (req, data) => {
     const user = await userModel.findOneAndUpdate(
       { _id: data.userID },
       { $set: { isBanned: true } },
+      { returnDocument: "after" },
     );
 
     req.context.usersBanned.add(user.username);
