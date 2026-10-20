@@ -61,7 +61,7 @@ const newSummary = async (req, res) => {
 
     const mySummary = await summaryModel.create(data);
 
-    res.status(200).json({ error: false, summary: mySummary });
+    res.status(200).json({ error: false, id: mySummary._id });
   } catch (err) {
     console.error("Error in newSummary:", err);
     return handleErrorResponse(res, req, err.message, 500, log);
