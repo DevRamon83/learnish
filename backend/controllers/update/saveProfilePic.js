@@ -24,7 +24,7 @@ const saveProfilePic = async (req, res) => {
       return handleErrorResponse(res, req, upload.error, 500, log);
     }
 
-    const user = await userModel.findOneAndUpdate(
+    await userModel.updateOne(
       { _id: req.context.auth.id },
       {
         $set: {
