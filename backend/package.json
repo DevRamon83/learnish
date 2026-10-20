@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@google/genai": "^2.30.0",
     "@mistralai/mistralai": "^2.2.1",
     "argon2": "^0.44.0",
     "cookie-parser": "^1.4.7",
@@ -20,13 +21,14 @@
     "express": "^5.2.1",
     "express-rate-limit": "^8.2.1",
     "groq-sdk": "^1.1.2",
-    "install": "^0.13.0",
     "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.1.6",
     "multer": "^2.1.1",
-    "nodemon": "^3.1.11",
     "shared": "file:../shared",
-    "sharp": "^0.34.5",
+    "sharp": "^0.35.5",
     "uuid": "^14.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
   }
 }
