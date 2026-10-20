@@ -152,7 +152,7 @@
 
 .flashcard__score {
   height: 50px;
-  width: 100%;
+  min-width: 150px;
   display: flex;
   flex-direction: row;
   color: colors.$primaryColor;
@@ -166,7 +166,6 @@
   padding: 0;
 
   @include breakpoints.medium {
-    padding: 0 25px;
     border-left: 1px solid #000;
     border-right: 1px solid #000;
   }
