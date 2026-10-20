@@ -45,7 +45,7 @@ const generateStats = async (summary) => {
     const updateSummary = await summaryModel.findOneAndUpdate(
       { _id: mongoIDsummary },
       { misalignment: false },
-      { upsert: true, new: true },
+      { upsert: true, returnDocument: "after" },
     );
 
     return { error: false, summary: updateSummary };
