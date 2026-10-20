@@ -29,7 +29,7 @@ const aiCorrection = async (req, res) => {
       return handleErrorResponse(res, req, errorMsg, 500, log);
     }
 
-    res.status(200).json({ error: false, summary: newSummary.updatedSummary });
+    res.status(200).json({ error: false, message: "success" });
   } catch (err) {
     console.error("Error in correction:", err);
     return handleErrorResponse(res, req, err.message, 500, log);
