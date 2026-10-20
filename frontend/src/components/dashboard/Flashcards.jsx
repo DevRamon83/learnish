@@ -10,10 +10,11 @@ export default function Flashcards() {
   const [cards, setCards] = useState(null);
   const [start, setStart] = useState(false);
   const [error, setError] = useState(null);
-  const { strings, lang } = useLang(i18nAddresses.flashcards);
+  const { strings } = useLang(i18nAddresses.flashcards);
   const errorStrings = useLang(i18nAddresses.errors);
 
   useEffect(() => {
+    if (cards !== null) return;
     const controller = new AbortController();
     setError(null);
 
@@ -29,9 +30,12 @@ export default function Flashcards() {
     };
 
     loadFlashcards();
-
     return () => controller.abort();
-  }, []);
+  }, [cards]);
+
+  useEffect(() => {
+    !start && setCards(null);
+  }, [start]);
 
   return (
     <div className={classes.flashcards.main}>
