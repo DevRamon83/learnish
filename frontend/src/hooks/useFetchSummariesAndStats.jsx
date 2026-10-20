@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import statsHandler from "../helpers/stats/statsHandler";
 import { setStats } from "../redux/slices/statsSlice";
 
-const useFetchData = (fetchHandler) => {
+const useFetchSummariesAndStats = (fetchHandler) => {
   const [fetchStatus, setFetchStatus] = useState(null);
   const [retry, setRetry] = useState(0);
   const [data, setData] = useState(null);
@@ -52,4 +52,4 @@ const useFetchData = (fetchHandler) => {
   return { fetchStatus, setFetchStatus, retry, setRetry, data, setData };
 };
 
-export default useFetchData;
+export default useFetchSummariesAndStats;

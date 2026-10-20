@@ -6,7 +6,7 @@ import NewSummary from "./NewSummary";
 import { useLang } from "../../../hooks/useLang";
 import { i18nAddresses } from "../../../constants/i18nAddresses";
 import { useHideOverflow } from "../../../hooks/useHideOverflow";
-import useFetchData from "../../../hooks/useFetchData";
+import useFetchSummariesAndStats from "../../../hooks/useFetchSummariesAndStats";
 import { classes } from "../../../constants/components/dashboard";
 
 export default function Summaries() {
@@ -14,7 +14,8 @@ export default function Summaries() {
   const [open, setOpen] = useState(false);
   const { strings, lang } = useLang(i18nAddresses.summary);
   useHideOverflow(open);
-  const { fetchStatus, setRetry, data } = useFetchData(fetchSummaries);
+  const { fetchStatus, setRetry, data } =
+    useFetchSummariesAndStats(fetchSummaries);
 
   return (
     <>
