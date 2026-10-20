@@ -14,7 +14,7 @@ export default function Summaries() {
   const [open, setOpen] = useState(false);
   const { strings, lang } = useLang(i18nAddresses.summary);
   useHideOverflow(open);
-  const { fetchStatus, setRetry, data, setData } = useFetchData(fetchSummaries);
+  const { fetchStatus, setRetry, data } = useFetchData(fetchSummaries);
 
   return (
     <>
@@ -45,8 +45,7 @@ export default function Summaries() {
         setPanel={setPanel}
         strings={strings}
         lang={lang}
-        setData={setData}
-        data={data}
+        setRetry={setRetry}
       />
     </>
   );
