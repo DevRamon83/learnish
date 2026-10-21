@@ -9,12 +9,17 @@ import { useState } from "react";
 import TeacherDeactivateAlert from "../../../ui/settings/TeacherDeactivateAlert";
 
 export default function TeachersList({ studentProps, props }) {
+  // 1. Destructuring & Layout Config
   const { strings, setToggle, setError } = props;
   const classes = props.classes.settings;
   const { myTeacher, setMyTeacher, teachersList, setTeachersList } =
     studentProps;
+
+  // 2. Local UI States & Translations
   const [deactivatePanel, setDeactivatePanel] = useState("close");
   const errorStrings = useLang(i18nAddresses.errors);
+
+  // 3. Side Effects & Domain Hooks
   useScrollToTop();
   useRetriveTeachersList(setError, setTeachersList, errorStrings);
   const { chooseBtnText, navigationHandler, next, previous, currentTeacher } =
