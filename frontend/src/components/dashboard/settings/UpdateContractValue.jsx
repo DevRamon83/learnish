@@ -3,12 +3,19 @@ import fetchUpdateSettings from "../../../api/handlers/fetchUpdateSettings";
 import useRetrievePersonalSettings from "../../../hooks/useRetrievePersonalSettings";
 import { useState } from "react";
 import ActivateService from "./ActivateService";
+import ContractInputField from "../../../ui/forms/ContractInputField";
 const { currencyMap } = bundle.constants;
 
 export default function UpdateContractValue({ keys, props, contractProps }) {
   const { classes, strings, card, setError } = props;
-  const { currentContract, contracts, dataContracts, setDataContracts, exist } =
-    contractProps;
+  const {
+    currentContract,
+    contracts,
+    dataContracts,
+    setDataContracts,
+    exist,
+    nextHandler,
+  } = contractProps;
   const contract = contracts[currentContract];
   const [currency, setCurrency] = useState(null);
 
@@ -34,7 +41,7 @@ export default function UpdateContractValue({ keys, props, contractProps }) {
 
     for (let datum in data) {
       data[datum] = Number(data[datum]);
-      isZero = data[datum] === 0;
+      isZero = !isZero ? data[datum] === 0 : isZero;
     }
 
     if (isZero) {
@@ -68,22 +75,14 @@ export default function UpdateContractValue({ keys, props, contractProps }) {
           onSubmit={submitHandler}
         >
           {visibleKeys.map((key) => (
-            <div
-              className={classes.settings.contractInput}
+            <ContractInputField
               key={`input__${key}`}
-            >
-              <label className={classes.settings.labelPrice} htmlFor={key}>
-                {strings.labels[key]}: {dataContracts[contract][key]}
-                {currencyMap[currency]}
-              </label>
-              <input
-                type="number"
-                id={key}
-                name={key}
-                placeholder={dataContracts[contract][key]}
-                required={true}
-              />
-            </div>
+              fieldKey={key}
+              contractData={dataContracts[contract]}
+              strings={strings}
+              currencySymbol={currencyMap[currency]}
+              classes={classes}
+            />
           ))}
         </form>
       )}
