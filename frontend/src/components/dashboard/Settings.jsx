@@ -82,12 +82,16 @@ export default function Settings({ userType }) {
   const planProps = { user };
   const picProps = { user, userPic, setUserPic };
 
+  // NOTE: Onboarding & Business Logic Context
+  // At first login post-signup, contracts are non-existent (void).
+  // This object bundles the states required to either force the onboarding
+  // initialization wizard or manage active services during subsequent sessions.
   const contractProps = {
     nextHandler,
     setCurrentContract,
-    contracts,
+    contracts, // A simple array of existing contracts imported from bundle
     currentContract,
-    dataContracts,
+    dataContracts, // Prices and other data for each contract fetched from DB
     setDataContracts,
     exist,
     setExist,
