@@ -5,44 +5,52 @@ const summarySchema = (lang) => {
       text: {
         type: "string",
         description:
-          "Original text with errors must be wrapped in <del></del> tags (It is absolutely important that you do not skip this step). No nested or adjacent tags.",
+          "Original text with errors wrapped in <del></del> tags. No nested or adjacent tags.",
       },
       mistakes: {
         type: "array",
         description:
-          "A flat array of objects. Do NOT wrap individual objects in nested arrays.",
+          "A flat list of grammatical and lexical mistakes found in the text.",
         items: {
           type: "object",
           properties: {
             error: {
               type: "string",
-              description: "The exact text inside the <del> tags",
+              description:
+                "The exact substring inside the <del> tags from the text field.",
             },
             correction: {
               type: "string",
-              description: "The corrected version of the fragment",
+              description: "The corrected version of the error fragment.",
             },
             explain: {
               type: "string",
-              description: `Exhaustive pedagogical feedback in ${lang} (max 100 words)`,
+              description: `Exhaustive pedagogical feedback written in ${lang} (max 100 words).`,
             },
-            errorCode: {
-              type: "string",
+            errorCodes: {
+              type: "array",
               description:
-                "Error codes representing the type of linguistic mistake, separated by '-': " +
-                "spell (spelling/orthography), " +
-                "tens (verb tense/aspect), " +
-                "agree (subject-verb or gender-number agreement), " +
-                "prep (preposition usage), " +
-                "word (inappropriate lexical choice/vocabulary), " +
-                "order (word order/syntax), " +
-                "sing (singular/plural noun errors), " +
-                "art (article usage), " +
-                "pron (pronoun usage). " +
-                "Use ONLY these codes; do not invent new ones.",
+                "List of linguistic mistake categories that apply to this error. " +
+                "spell: spelling/orthography, tens: verb tense/aspect, agree: subject-verb or gender-number agreement, " +
+                "prep: preposition usage, word: inappropriate lexical choice, order: word order/syntax, " +
+                "sing: singular/plural noun errors, art: article usage, pron: pronoun usage.",
+              items: {
+                type: "string",
+                enum: [
+                  "spell",
+                  "tens",
+                  "agree",
+                  "prep",
+                  "word",
+                  "order",
+                  "sing",
+                  "art",
+                  "pron",
+                ],
+              },
             },
           },
-          required: ["error", "correction", "explain", "errorCode"],
+          required: ["error", "correction", "explain", "errorCodes"],
         },
       },
       score: {
@@ -51,7 +59,7 @@ const summarySchema = (lang) => {
           overall: {
             type: "number",
             description:
-              "The average score from 1 to 9. Use one decimal place (e.g., 6.5).",
+              "The average score from 1.0 to 9.0. Use exactly one decimal place.",
           },
           breakdown: {
             type: "object",
@@ -59,37 +67,30 @@ const summarySchema = (lang) => {
               cohesion: {
                 type: "number",
                 description:
-                  "Score from 1 to 9, only integer. Evaluates the logical flow and use of transitions.",
+                  "Score from 1.0 to 9.0. Evaluates logical flow and transitions.",
               },
               vocabulary: {
                 type: "number",
                 description:
-                  "Score from 1 to 9, only integer. Measures range and precision of lexical choices.",
+                  "Score from 1.0 to 9.0. Measures range and precision of vocabulary.",
               },
               grammar: {
                 type: "number",
                 description:
-                  "Score from 1 to 9, only integer. Evaluates sentence structure and grammatical accuracy.",
+                  "Score from 1.0 to 9.0. Evaluates sentence structure and accuracy.",
               },
             },
             required: ["cohesion", "vocabulary", "grammar"],
           },
           feedback: {
             type: "string",
-            description: `A personalized analysis of the user's text as a whole in ${lang} (max 50 words). Mention at least one specific strength or weakness found in the text. Avoid generic praise.`,
+            description: `Personalized analysis of the user's text as a whole in ${lang} (max 50 words). Must mention one specific strength or weakness.`,
           },
         },
         required: ["overall", "breakdown", "feedback"],
       },
-      missingCode: {
-        type: "array",
-        items: { type: "string" },
-        description:
-          "Brief explanations for errors that don't fit the standard codes. Null if empty.",
-        nullable: true,
-      },
     },
-    required: ["text", "mistakes", "missingCode"],
+    required: ["text", "mistakes", "score"],
   };
 };
 

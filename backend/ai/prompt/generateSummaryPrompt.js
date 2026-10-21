@@ -24,7 +24,11 @@ Calculation: Start from the selected MAX grade and deduct 0.1 points for every e
 Example: A text with basic errors starts at 5. If it has 5 errors, the final grade is 4.5.
 Instruction: Be clinical. Do not inflate grades.
 
-3. OUTPUT: Respond ONLY with a JSON object.
+3. ERROR SELECTION & RESTRICTION:
+   - You are allowed to detect an error ONLY if it falls under one of these specific codes: 'spell', 'tens', 'agree', 'prep', 'word', 'order', 'sing', 'art', 'pron'.
+   - CRITICAL: If you find a mistake, bad phrasing, or stylistic issue that DOES NOT fit into these specific codes, you MUST completely ignore it. Do not report it, do not correct it, and do not tag it.
+
+4. OUTPUT: Respond ONLY with a JSON object.
 `;
 };
 
