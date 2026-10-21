@@ -1,27 +1,12 @@
 import { useEffect, useState } from "react";
-import useRetrievePersonalSettings from "../../../hooks/useRetrievePersonalSettings";
 import UpdateContractValue from "./UpdateContractValue";
 
 export default function ContractPanel({ props, contractProps }) {
   const { classes, strings } = props;
-  const {
-    contracts,
-    currentContract,
-    dataContracts,
-    setDataContracts,
-    exist,
-    setExist,
-  } = contractProps;
+  const { contracts, currentContract, dataContracts, exist, setExist } =
+    contractProps;
   const [keys, setKeys] = useState([]);
   const contract = contracts[currentContract];
-  const retrieveConfig = {
-    data: { retrieve: "contract" },
-    setter: setDataContracts,
-    key: "contract",
-    strings,
-  };
-
-  useRetrievePersonalSettings(retrieveConfig);
 
   const availableHandler = () => {
     if (contract === "subscription") {
