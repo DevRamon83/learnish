@@ -5,19 +5,25 @@ import SettingsCommonTitle from "../../../ui/settings/SettingsCommonTitle";
 
 export default function TeacherContract({ props, contractProps }) {
   const { strings, classes, toggle } = props;
-  const [contract, setContract] = useState(null);
+  const { dataContracts, setDataContracts } = contractProps;
   const [isComplete, setIsComplete] = useState(false);
+
+  // This configuration object is passed down to the wizard form (DispatchContractForm).
+  // When a new teacher configures their prices for the first time, the form uses this config
+  // to refresh the parent's data from the database. This updates the screen instantly
+  // without requiring a manual page reload.
+
   const retrieveConfig = {
     data: { retrieve: "contract" },
-    setter: setContract,
+    setter: setDataContracts,
     key: "contract",
     strings,
   };
   useRetrievePersonalSettings(retrieveConfig);
 
   useEffect(() => {
-    if (contract && contract.isComplete) setIsComplete(true);
-  }, [isComplete, contract]);
+    if (dataContracts && dataContracts.isComplete) setIsComplete(true);
+  }, [dataContracts]);
 
   return (
     <>
@@ -33,6 +39,7 @@ export default function TeacherContract({ props, contractProps }) {
           contractProps={contractProps}
           isComplete={isComplete}
           setIsComplete={setIsComplete}
+          contractRetrieve={retrieveConfig}
         />
       )}
     </>
