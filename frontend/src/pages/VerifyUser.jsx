@@ -28,7 +28,7 @@ export default function VerifyUser() {
       setError(null);
       dispatch(setAuth("pending"));
       const response = await fetchConfirmationToken(token, controller.signal);
-      console.log("data ", response);
+
       if (response.error) {
         setError(standardError);
       }
