@@ -58,6 +58,15 @@ export default function NewSummary({
     setSummaryID(null);
   };
 
+  // NOTE: This local handler delegates form extraction and validation
+  // to an external helper.
+  // Instead of triggering an immediate API fetch, 'submitHandler'
+  // updates the 'newSummary' and step states, which in turn acts
+  // as the reactive trigger for the 'useUploadSummary' pipeline.
+  const handler = (e) => {
+    submitHandler(e, formRef, setError, setUploadStep, setNewSummary, lang);
+  };
+
   return (
     <>
       {panel && (
@@ -65,16 +74,7 @@ export default function NewSummary({
           <form
             className={classes.summary.form}
             ref={formRef}
-            onSubmit={(e) =>
-              submitHandler(
-                e,
-                formRef,
-                setError,
-                setUploadStep,
-                setNewSummary,
-                lang,
-              )
-            }
+            onSubmit={handler}
           >
             <NewSummaryTitle
               strings={strings}
@@ -85,6 +85,8 @@ export default function NewSummary({
             <FormInput Element={UrlInput} data={fields.youtube} lang={lang} />
             <FormInput Element={TextareaInput} data={summary} lang={lang} />
             <ErrorOnSubmit error={error} />
+            {/* Renders the multi-step upload interface once the initial draft 
+            state is triggered */}
             {states.status.draft ? (
               <SummaryUpload
                 strings={strings}
