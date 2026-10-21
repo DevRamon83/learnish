@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import SummaryAction from "../../../ui/summary/SummaryAction";
 import { useLang } from "../../../hooks/useLang";
 import { i18nAddresses } from "../../../constants/i18nAddresses";
@@ -15,7 +15,6 @@ export default function ReadSummary({
   classes,
 }) {
   const [status, setStatus] = useState(null);
-  const [scoreClass, setScoreClass] = useState(null);
   const { lang, strings } = useLang(i18nAddresses.summary);
   const { score } = classes.summary;
   const draft = summary.isDraft;
@@ -37,6 +36,7 @@ export default function ReadSummary({
     }
 
     if (response.error) {
+      // handle error
     } else {
       setMySummary(response.summary);
       setCurrentError(response.summary.errorCodes[0]);
@@ -44,16 +44,16 @@ export default function ReadSummary({
     }
   };
 
-  useEffect(() => {
-    if (!summary.score) return;
+  let scoreClass = null;
+  if (summary.score) {
     if (summary.score.overall <= 3) {
-      setScoreClass(score.bad);
+      scoreClass = score.bad;
     } else if (summary.score.overall <= 6) {
-      setScoreClass(score.medium);
+      scoreClass = score.medium;
     } else {
-      setScoreClass(score.good);
+      scoreClass = score.good;
     }
-  }, [summary]);
+  }
 
   const url = `https://youtu.be/${summary.videoID}`;
 
