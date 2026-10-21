@@ -15,6 +15,23 @@ import bundle from "shared";
 import Breadcrumb from "../../ui/settings/Breadcrumb";
 const { contracts } = bundle.constants;
 
+/**
+ * ARCHITECTURE NOTE: Centralized State Management & Component Polymorphism
+ *
+ * This main dashboard acts as a central orchestrator for both Student and Teacher settings.
+ * To strictly respect the DRY (Don't Repeat Yourself) principle and maintain a unified,
+ * non-redundant layout container, states for all sub-views are hosted here.
+ *
+ * 1. Intentional Prop Drilling: States are bundled into macro-objects
+ *    (props, contractProps, studentProps) and passed down to specialized sub-routers
+ *    (SettingsCommon, SettingsStudent, SettingsTeacher). This avoids code duplication
+ *     and allows children to trigger state changes up to the parent.
+ *
+ * 2. State Machine Wizard: Complex, multi-step sequential workflows
+ *    (such as the Teacher Contract wizard) rely on these centralized states to
+ *    handle isolated, step-by-step API saves safely.
+ */
+
 export default function Settings({ userType }) {
   const user = useSelector((state) => state.auth.user);
   const { strings } = useLang(i18nAddresses.settings);
@@ -31,11 +48,8 @@ export default function Settings({ userType }) {
   const [currentContract, setCurrentContract] = useState(0);
 
   const [teachersList, setTeachersList] = useState([]);
-
   const [toggle, setToggle] = useState(false);
-
   const [myTeacher, setMyTeacher] = useState(null);
-
   const userCards = getCardSettings(userType);
 
   const [userPic, setUserPic] = useState({
