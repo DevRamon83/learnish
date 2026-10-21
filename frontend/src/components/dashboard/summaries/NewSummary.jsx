@@ -14,6 +14,7 @@ import SummaryUpload from "../../../ui/summary/SummaryUpload";
 import useUploadSummary from "../../../hooks/useUploadSummary";
 import NewSummaryTitle from "../../../ui/summary/NewSummaryTitle";
 import { submitHandler } from "../../../helpers/newSummary";
+import SummaryBlocker from "../../../ui/summary/SummaryBlocker";
 
 export default function NewSummary({
   panel,
@@ -98,11 +99,7 @@ export default function NewSummary({
           </form>
         </div>
       )}
-      {isUiBlocked && (
-        <div className="summary__uiBlocker">
-          <p>TESTO DI PROVA</p>
-        </div>
-      )}
+      {isUiBlocked && <SummaryBlocker strings={strings} classes={classes} />}
     </>
   );
 }

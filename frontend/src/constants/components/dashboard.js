@@ -60,6 +60,7 @@ export const classes = {
       medium: "summary__iconScore-medium",
       good: "summary__iconScore-good",
     },
+    uiBlocker: "summary__uiBlocker",
   },
   lessons: {
     container: "dashboard__lessonsContainer",
