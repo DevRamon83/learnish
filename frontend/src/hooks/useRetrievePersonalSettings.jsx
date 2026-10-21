@@ -6,7 +6,7 @@ export default function useRetrievePersonalSettings(config) {
   useEffect(() => {
     const controller = new AbortController();
 
-    const retrive = async () => {
+    const retrieve = async () => {
       const res = await fetchSettings(data, controller.signal);
       if (res.error) {
         // error handler
@@ -16,7 +16,7 @@ export default function useRetrievePersonalSettings(config) {
       }
     };
 
-    retrive();
+    retrieve();
 
     return () => controller.abort();
   }, []);
