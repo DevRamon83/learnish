@@ -30,7 +30,6 @@ export default function Settings({ userType }) {
   // the service which the user are viewing
   const [currentContract, setCurrentContract] = useState(0);
 
-  // it maybe can be move in the child component
   const [teachersList, setTeachersList] = useState([]);
 
   const [toggle, setToggle] = useState(false);
