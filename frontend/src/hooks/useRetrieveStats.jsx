@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setStats } from "../redux/slices/statsSlice";
 import statsHandler from "../helpers/stats/statsHandler";
 
-const useRetriveStats = () => {
+const useRetrieveStats = () => {
   const statsRedux = useSelector((state) => state.stats);
   const dispatch = useDispatch();
 
@@ -27,4 +27,4 @@ const useRetriveStats = () => {
   }, []);
 };
 
-export default useRetriveStats;
+export default useRetrieveStats;
