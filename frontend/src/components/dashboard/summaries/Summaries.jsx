@@ -14,6 +14,17 @@ export default function Summaries() {
   const [open, setOpen] = useState(false);
   const { strings, lang } = useLang(i18nAddresses.summary);
   useHideOverflow(open);
+
+  // NOTE: This hook orchestrates a synchronized fetch of both summaries and global
+  //       statistics.
+  // 1. Redux Sync: 'allStats' is strictly required to refresh the global Redux store;
+  //    omitting it will break downstream features across the app.
+  // 2. Retry Mechanism: The 'retry' dependency serves a dual purpose:
+  //    - It acts as a trigger to manually re-fetch data if the initial
+  //      server response fails or times out.
+  //    - It automatically re-fetches the dataset once a new summary is
+  //      successfully created,
+  //      ensuring the UI instantly updates with the new item.
   const { fetchStatus, setRetry, data } =
     useFetchSummariesAndStats(fetchSummaries);
 
