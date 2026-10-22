@@ -1,0 +1,87 @@
+@use "../variables/colors";
+
+%legend {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  border-width: 2px 2px 2px 25px;
+  border-style: solid;
+  border-radius: 10px;
+  width: 300px;
+  text-transform: uppercase;
+  background-color: white;
+  cursor: pointer;
+}
+
+.stats__spell {
+  @extend %legend;
+  border-color: colors.$error_spell;
+}
+
+.stats__tens {
+  @extend %legend;
+  border-color: colors.$error_tens;
+}
+
+.stats__agree {
+  @extend %legend;
+  border-color: colors.$error_agree;
+}
+
+.stats__prep {
+  @extend %legend;
+  border-color: colors.$error_prep;
+}
+
+.stats__word {
+  @extend %legend;
+  border-color: colors.$error_word;
+}
+
+.stats__order {
+  @extend %legend;
+  border-color: colors.$error_order;
+}
+
+.stats__sing {
+  @extend %legend;
+  border-color: colors.$error_sing;
+}
+
+.stats__art {
+  @extend %legend;
+  border-color: colors.$error_art;
+}
+
+.stats__pron {
+  @extend %legend;
+  border-color: colors.$error_pron;
+}
+
+.stats__legendContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 25px;
+  margin-bottom: 25px;
+}
+
+.stats__legendContent {
+  border-left: 1px solid black;
+  width: 100%;
+  padding: 15px;
+}
+
+.stats__stackedBarContainer {
+  width: 90%;
+}
+
+.stats__legendActive {
+  @extend %legend;
+  background-color: lightyellow;
+  color: black;
+  border-color: black;
+  font-weight: bold;
+}
