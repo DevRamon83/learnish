@@ -12,7 +12,7 @@ export default function Footer() {
   return (
     <footer>
       <div className={classes.left}>
-        <FooterSystem />
+        <FooterSystem strings={strings} />
         <h2>{strings.social}</h2>
         <SocialSection />
       </div>

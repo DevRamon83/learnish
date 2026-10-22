@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { classes } from "../constants/layout/footer";
 
-export default function FooterSystem() {
+export default function FooterSystem({ strings }) {
   return (
     <div className={classes.system}>
       <NavLink className={`${classes.btnBase}-system`} to="/" end>
@@ -9,15 +9,15 @@ export default function FooterSystem() {
       </NavLink>
       |
       <NavLink className={`${classes.btnBase}-system`} to="/login">
-        accedi
+        {strings.login}
       </NavLink>
       |
       <NavLink className={`${classes.btnBase}-system`} to="/signup">
-        registrati
+        {strings.signup}
       </NavLink>
       |
       <NavLink className={`${classes.btnBase}-system`} to="/price">
-        prezzi
+        {strings.price}
       </NavLink>
     </div>
   );
