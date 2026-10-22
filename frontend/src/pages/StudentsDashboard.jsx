@@ -6,6 +6,7 @@ import useLogout from "../hooks/useLogout";
 import bundle from "shared";
 import Settings from "../components/dashboard/Settings";
 import DashboardMenu from "../ui/DashboardMenu";
+import Statistics from "../components/dashboard/stats/Statistics";
 const { dashboardStudentsTabs } = bundle.constants;
 
 export default function StudentsDashboard() {
@@ -27,6 +28,7 @@ export default function StudentsDashboard() {
       />
       <div className={classes.core}>
         {currentTab === "study" && <Study />}
+        {currentTab === "stats" && <Statistics />}
         {currentTab === "settings" && <Settings userType="student" />}
       </div>
     </main>
