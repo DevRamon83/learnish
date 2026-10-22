@@ -11,4 +11,8 @@ export const classes = {
   navOpen: "navbar__nav-open",
   tab: "navbar__tab",
   tabImg: "navbar__tab-img",
+  langsContainer: "navbar__langsContainer",
+  langActive: "navbar__lang-active",
+  lang: "navbar__lang",
+  langIcon: "navbar__langImg",
 };

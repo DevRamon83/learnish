@@ -218,3 +218,30 @@
   width: 29px;
   background-color: white;
 }
+
+.navbar__langsContainer {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  padding: 15px 0;
+}
+
+.navbar__lang {
+  width: fit-content;
+  height: 25px;
+  border-radius: 5px;
+  border: 1px solid black;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.navbar__lang-active {
+  @extend .navbar__lang;
+  filter: grayscale(100%);
+}
+
+.navbar__langImg {
+  height: 25px;
+  width: auto;
+}
