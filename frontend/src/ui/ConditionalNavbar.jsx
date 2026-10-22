@@ -1,3 +1,4 @@
+import Langs from "../components/layout/Langs";
 import CommonNavbar from "./CommonNavbar";
 import PrivateNavbar from "./PrivateNavbar";
 import PublicNavbar from "./PublicNavbar";
@@ -11,6 +12,7 @@ export default function ConditionalNavbar({
 }) {
   return (
     <div className={navbarState}>
+      <Langs />
       {user ? (
         <PrivateNavbar
           user={user}
