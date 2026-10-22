@@ -1,21 +1,7 @@
 import useViewportObserver from "../../hooks/useViewportObserver";
 
-export default function StackedBar() {
+export default function StackedBar({ totalMistakes, rawData }) {
   const { chartWidth, isMobile } = useViewportObserver();
-
-  const totalMistakes = 39;
-
-  const rawData = [
-    { id: "spell", errors: 5 },
-    { id: "tens", errors: 6 },
-    { id: "agree", errors: 3 },
-    { id: "prep", errors: 6 },
-    { id: "word", errors: 4 },
-    { id: "order", errors: 9 },
-    { id: "sing", errors: 3 },
-    { id: "art", errors: 2 },
-    { id: "pron", errors: 1 },
-  ];
 
   let currentX = 0;
 
