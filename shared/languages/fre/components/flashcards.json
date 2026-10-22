@@ -1,0 +1,17 @@
+{
+  "help": "montre-moi la",
+  "translate": "traduction",
+  "definition": "définition",
+  "solution": "solution",
+  "score": "score",
+  "points": "points en jeu",
+  "next": "carte suivante",
+  "word": "Écrivez le mot en anglais",
+  "intro": "Jouez avec les flashcards pour enrichir votre vocabulaire ; chaque carte devinée vaut un point, mais attention : chaque indice demandé divise par deux les points disponibles",
+  "commands": "Raccourcis clavier",
+  "enter": " Entrée : pour obtenir des indices (ou cliquez sur le bouton en bas à gauche)",
+  "arrow": "Flèche droite : pour passer à la carte suivante (ou cliquez sur le bouton en bas à droit)",
+  "esc": "ÉCHAP : pour terminer la partie (ou cliquez sur le bouton stop)",
+  "start": "commencer la partie",
+  "wait": "attendez vos cartes"
+}

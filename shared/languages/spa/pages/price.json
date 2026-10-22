@@ -1,0 +1,39 @@
+{
+  "plans": ["plans", "FREE", "BASIC", "PRO"],
+  "ads": ["ads", 3, 1, 0],
+  "modules": ["modules", 1, 2, 3],
+  "follow": ["follow", 3, 10, "ilimitado"],
+  "tutoring": ["tutoring", "false", "true", "true"],
+  "visibility": ["visibility", "false", "true", "true"],
+  "summary": ["summary", 0, 1, 3],
+  "stats": ["stats", "false", "true", "true"],
+  "sharedStats": ["sharedStats", "false", "true", "true"],
+  "phonetic": ["phonetic", "false", "true", "true"],
+  "level": ["level", "A1/A2", "B1/B2", "C1/C2"],
+  "classroom": ["classroom", "false", "false", "true"],
+  "costPerStudent": ["costPerStudent", "false", "1€", "0€"],
+  "price": ["price", "0€", "1€", "10€"],
+  "teachersPrice": ["teachersPrice", "0€", "10€", "25€"],
+  "explain": {
+    "plans": "Tipos de suscripción posibles",
+    "ads": "* Número máximo de anuncios publicitarios por página",
+    "modules": "Número de lecciones que se pueden desbloquear diariamente",
+    "follow": "Número de estudiantes que se pueden seguir simultáneamente",
+    "tutoring": "** Posibilidad de solicitar el apoyo de un profesor",
+    "visibility": "Visibilidad en la sección de profesores",
+    "classroom": "Posibilidad de formar una clase virtual",
+    "costPerStudent": "** Coste mensual por añadir un nuevo estudiante",
+    "summary": "Número máximo de resúmenes para enviar a la IA por día",
+    "stats": "Acceso a tus estadísticas personales",
+    "sharedStats": "Acceso a las estadísticas personales de los estudiantes",
+    "phonetic": "Acceso a las lecciones de fonética",
+    "level": "Niveles máximos alcanzables para el plan",
+    "price": "Coste mensual",
+    "teachersPrice": "Coste mensual"
+  },
+  "note": {
+    "ads": "* Intentamos en cualquier caso mostrar la publicidad de forma no invasiva; el número de anuncios por página es orientativo, no significa necesariamente que en cada página vayas a encontrar el número indicado de banners, podrías ver menos, pero nunca más",
+    "tutoring": "** El coste de la suscripción mensual no incluye los servicios de tutoría; de hecho, cada profesor tiene sus propios métodos de enseñanza y, por tanto, sus propias tarifas. Toda la información que necesitas al respecto la encontrarás en los perfiles de los profesores",
+    "costPerStudent": "** El coste por estudiante se aplica únicamente a las cuentas creadas directamente por el profesor, las cuales disfrutan de una cuenta gratuita; las solicitudes de tutoría enviadas por nuestros estudiantes a los profesores colaboradores no contemplan ningún coste adicional"
+  }
+}

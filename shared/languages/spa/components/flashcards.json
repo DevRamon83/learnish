@@ -1,0 +1,17 @@
+{
+  "help": "muéstrame la",
+  "translate": "traducción",
+  "definition": "definición",
+  "solution": "solución",
+  "score": "puntuación",
+  "points": "puntos en juego",
+  "next": "siguiente tarjeta",
+  "word": "Escribe la palabra en inglés",
+  "intro": "Juega con las tarjetas didácticas para ampliar tu vocabulario; cada tarjeta acertada vale un punto, pero cuidado: cada pista solicitada reduce a la mitad los puntos disponibles",
+  "commands": "Comandos de teclado",
+  "enter": " Intro: para obtener pistas (o haz clic en el botón de abajo a la izquierda)",
+  "arrow": "Flecha derecha: para pasar a la siguiente tarjeta (o haz clic en el botón de abajo a la derecha)",
+  "esc": "ESC: para terminar la partida (o haz clic en el botón de parada)",
+  "start": "empezar la partida",
+  "wait": "espera tus tarjetas"
+}

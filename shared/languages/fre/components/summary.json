@@ -1,0 +1,47 @@
+{
+  "summary": "résumé",
+  "newSummary": "créer un nouveau résumé",
+  "sendSummary": "corriger",
+  "yourSummaries": "vos résumés",
+  "newSummaryBtn": "nouveau résumé",
+  "retry": "réessayer",
+  "unavailable": "Résumés d'aujourd'hui épuisés",
+  "failed": "Une erreur est survenue, veuillez réessayer",
+  "newSummaryForm": {
+    "title": {
+      "placeholder": "how to build a cabinet",
+      "label": "titre du résumé"
+    },
+    "youtube": {
+      "placeholder": "youtube link",
+      "label": "lien vers youtube"
+    },
+    "summary": {
+      "label": "écrivez votre résumé",
+      "counterLabel": "mots maximum"
+    }
+  },
+  "score": {
+    "rating": "évaluation de l'intelligence artificielle",
+    "overall": "général",
+    "grammar": "grammaire",
+    "vocabulary": "vocabulaire",
+    "cohesion": "cohésion"
+  },
+  "process": {
+    "draft": "Création du résumé",
+    "correction": "Correction du résumé",
+    "stats": "Génération des statistiques"
+  },
+  "actions": {
+    "actionCorrection": "Action requise : corriger le résumé",
+    "correction": "corriger",
+    "close": "fermer",
+    "actionStats": "Action requise : générer les statistiques",
+    "stats": "lancer"
+  },
+  "blocker": {
+    "why": "L'IA prendra environ une minute pour traiter et corriger votre résumé.",
+    "patience": "Pour éviter les interruptions accidentelles du processus, l'interaction avec le site est temporairement suspendue. Merci de votre patience, votre résumé sera bientôt prêt !"
+  }
+}

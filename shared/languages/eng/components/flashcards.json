@@ -1,0 +1,17 @@
+{
+  "help": "show me the",
+  "translate": "translation",
+  "definition": "definition",
+  "solution": "solution",
+  "score": "score",
+  "points": "points up for grabs",
+  "next": "next flashcard",
+  "word": "Write the word in English",
+  "intro": "Play with flashcards to expand your vocabulary; each guessed card is worth one point, but watch out: each requested hint halves the available points",
+  "commands": "Keyboard shortcuts",
+  "enter": " Enter: to get hints (or click the bottom-left button)",
+  "arrow": "Right arrow: to move to the next card (or click the bottom-right button)",
+  "esc": "ESC: to end the game (or click the stop button)",
+  "start": "start the game",
+  "wait": "wait for your cards"
+}

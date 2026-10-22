@@ -1,0 +1,46 @@
+{
+  "paper": [
+    {
+      "name": "Ansa",
+      "img": "/about/ansa.jpeg",
+      "description": "Who? We don't know who they are"
+    },
+    {
+      "name": "Adnkronos",
+      "img": "/about/adnkronos.jpeg",
+      "description": "Never heard of them! No, really, never heard of them"
+    },
+    {
+      "name": "Corriere della sera",
+      "img": "/about/corsera.jpeg",
+      "description": "We don't know who they are"
+    },
+    {
+      "name": "Sole24",
+      "img": "/about/sole24.jpeg",
+      "description": "Oh, right, the ones from... no! Never heard of them"
+    },
+    {
+      "name": "Milano finanza",
+      "img": "/about/milanoFinanza.jpeg",
+      "description": "Oh, right, the meatball home delivery website? No? Then no, we don't know them"
+    },
+    {
+      "name": "Repubblica",
+      "img": "/about/repubblica.jpeg",
+      "description": "They've been spamming us for three years."
+    },
+    {
+      "name": "La gazzetta del mezzogiorno",
+      "img": "/about/gazzetta.jpeg",
+      "description": "Uhm... Well... Let's see... Maybe... No, we don't know them"
+    },
+    {
+      "name": "Il Mattino",
+      "img": "/about/mattino.jpeg",
+      "description": "Like Duolingo? No? Then no idea"
+    }
+  ],
+  "back": "back",
+  "forward": "forward"
+}

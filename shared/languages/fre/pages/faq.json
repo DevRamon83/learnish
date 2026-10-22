@@ -1,0 +1,84 @@
+{
+  "students": [
+    {
+      "question": "Quelles informations partagé-je en acceptant la réduction de 50 % ?",
+      "answer": "En acceptant la réduction de 50 %, vous ne partagerez aucune information personnelle, mais vous permettrez à tous les autres étudiants d'utiliser vos erreurs pour s'exercer, sans que cela ne leur permette de relier ces erreurs à votre compte."
+    },
+    {
+      "question": "Comment puis-je résilier ?",
+      "answer": "Votre compte fait l'objet d'un déclassement automatique à l'expiration de l'abonnement ; vous n'avez aucune résiliation à faire, vous passerez automatiquement à la version gratuite."
+    },
+    {
+      "question": "Qu'advient-il de mon compte si mon enseignant résilie son abonnement ?",
+      "answer": "Si votre enseignant résilie son abonnement, votre compte repassera automatiquement à la version gratuite."
+    },
+    {
+      "question": "Puis-je supprimer complètement mon compte ?",
+      "answer": "Vous pouvez supprimer complètement votre compte uniquement si vous n'avez pas accepté la réduction de 50 % ; si vous avez accepté la réduction, vous pouvez supprimer vos informations personnelles, mais pas les résumés créés, qui continueront d'être utilisés pour permettre aux autres étudiants de s'exercer."
+    },
+    {
+      "question": "Comment fonctionne le renouvellement ?",
+      "answer": "Si vous souhaitez renouveler, vous devez veiller à effectuer le paiement avant l'échéance ; nous prendrons soin de vous envoyer une alerte un mois avant l'expiration. Dans tous les cas, même si vous oubliez d'effectuer le paiement, vous pourrez toujours faire une nouvelle mise à niveau depuis le compte gratuit."
+    },
+    {
+      "question": "Combien de temps dure l'abonnement ?",
+      "answer": "La durée de l'abonnement est annuelle."
+    },
+    {
+      "question": "Puis-je payer mensuellement ?",
+      "answer": "Il n'est pas possible actuellement de payer mensuellement ; nous travaillons pour vous offrir cette opportunité à l'avenir."
+    },
+    {
+      "question": "À quel point les corrections de l'IA sont-elles fiables ?",
+      "answer": "Les corrections de l'IA sont normalement fiables, mais il est possible que l'IA vous signale comme erreur un choix de mots ou des structures syntaxiques qui ne sont peut-être pas particulièrement adaptés, mais pas obligatoirement faux."
+    },
+    {
+      "question": "Délivrez-vous des certifications ?",
+      "answer": "Non, nous ne délivrons aucune certification."
+    },
+    {
+      "question": "Comment faire la mise à niveau vers un compte premium ?",
+      "answer": "Vous pouvez demander la mise à niveau depuis un compte gratuit simplement en accédant à votre espace privé."
+    },
+    {
+      "question": "Puis-je revenir à un compte gratuit ?",
+      "answer": "Absolument oui, lorsque votre abonnement expirera, vous reviendrez automatiquement à la version gratuite."
+    }
+  ],
+  "teachers": [
+    {
+      "question": "Comment fonctionne l'essai gratuit ?",
+      "answer": "L'essai gratuit dure trois mois, au terme desquels vous pouvez décider de vous abonner ou non ; si vous décidez de ne pas vous abonner, les comptes des étudiants que vous avez activés pendant l'essai deviendront automatiquement gratuits, vos étudiants ne perdront donc pas le travail accompli."
+    },
+    {
+      "question": "Que se passe-t-il à la fin de l'essai gratuit ?",
+      "answer": "À la fin de l'essai gratuit, vous disposez de 15 jours pour effectuer le paiement, après quoi votre compte sera automatiquement supprimé."
+    },
+    {
+      "question": "Comment ajouter un nouvel étudiant ?",
+      "answer": "Pour ajouter un nouvel étudiant, il vous suffit d'accéder à votre espace privé et de cliquer sur ajouter."
+    },
+    {
+      "question": "Comment publier mon cours ?",
+      "answer": "Pour publier votre cours, il vous suffit d'accéder à votre espace privé et de cliquer sur le bouton pour créer un nouveau cours."
+    },
+    {
+      "question": "Puis-je utiliser des vidéos pour mon cours ?",
+      "answer": "Absolument oui, lorsque vous ajoutez un nouveau cours, vous pouvez choisir s'il s'agit d'un cours textuel ou si vous souhaitez charger/saisir l'URL d'une vidéo YouTube."
+    }
+  ],
+  "commons": [
+    {
+      "question": "Quels modes de paiement acceptez-vous ?",
+      "answer": "Nous n'acceptons pas de paiements pour le moment, le site est encore en version bêta ; pour cette raison, vous ne pouvez activer qu'un compte gratuit."
+    },
+    {
+      "question": "J'ai un problème, comment contacter l'assistance ?",
+      "answer": "Vous pouvez contacter l'assistance en accédant à votre espace privé."
+    },
+    {
+      "question": "Quels sont les délais de réponse de l'assistance ?",
+      "answer": "Normalement, nous répondons à tout le monde sous 24 heures ; cependant, les jours de forte affluence, il se peut que nous ne puissions pas respecter cette limite."
+    }
+  ]
+}

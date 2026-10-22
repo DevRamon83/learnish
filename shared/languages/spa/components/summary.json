@@ -1,0 +1,47 @@
+{
+  "summary": "resumen",
+  "newSummary": "crear un nuevo resumen",
+  "sendSummary": "corregir",
+  "yourSummaries": "tus resúmenes",
+  "newSummaryBtn": "nuevo resumen",
+  "retry": "intentar de nuevo",
+  "unavailable": "Resúmenes de hoy agotados",
+  "failed": "Algo salió mal, inténtalo de nuevo",
+  "newSummaryForm": {
+    "title": {
+      "placeholder": "how to build a cabinet",
+      "label": "título del resumen"
+    },
+    "youtube": {
+      "placeholder": "youtube link",
+      "label": "enlace a youtube"
+    },
+    "summary": {
+      "label": "escribe tu resumen",
+      "counterLabel": "máximo de palabras"
+    }
+  },
+  "score": {
+    "rating": "evaluación de la inteligencia artificial",
+    "overall": "general",
+    "grammar": "gramática",
+    "vocabulary": "vocabulario",
+    "cohesion": "cohesión"
+  },
+  "process": {
+    "draft": "Creación del resumen",
+    "correction": "Corrección del resumen",
+    "stats": "Generación de estadísticas"
+  },
+  "actions": {
+    "actionCorrection": "Acción requerida: corregir el resumen",
+    "correction": "corregir",
+    "close": "cerrar",
+    "actionStats": "Acción requerida: generar estadísticas",
+    "stats": "iniciar"
+  },
+  "blocker": {
+    "why": "La IA tardará aproximadamente un minuto en procesar y corregir tu resumen.",
+    "patience": "Para evitar interrupciones accidentales del proceso, la interacción con el sitio se ha suspendido temporalmente. ¡Gracias por tu paciencia, tu resumen estará listo pronto!"
+  }
+}

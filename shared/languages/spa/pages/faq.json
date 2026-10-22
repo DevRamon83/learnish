@@ -1,0 +1,84 @@
+{
+  "students": [
+    {
+      "question": "¿Qué información comparto al aceptar el descuento del 50 %?",
+      "answer": "Al aceptar el descuento del 50 % no compartirás ninguna información personal, pero permitirás que todos los demás estudiantes utilicen tus errores para practicar, sin que esto les permita vincular esos errores con tu cuenta."
+    },
+    {
+      "question": "¿Cómo cancelo mi suscripción?",
+      "answer": "Tu cuenta pasa por una degradación automática al vencimiento de la suscripción; no tienes que realizar ninguna cancelación, pasarás automáticamente a la versión gratuita."
+    },
+    {
+      "question": "¿Qué pasa con mi cuenta si mi profesor cancela su suscripción?",
+      "answer": "Si tu profesor cancela su suscripción, tu cuenta pasará automáticamente a la versión gratuita."
+    },
+    {
+      "question": "¿Puedo eliminar completamente mi cuenta?",
+      "answer": "Puedes eliminar completamente tu cuenta solo si no tienes activado el descuento del 50 %; en caso de haber aceptado el descuento, puedes borrar tu información personal, pero no los resúmenes creados, que seguirán utilizándose para que los demás estudiantes puedan practicar."
+    },
+    {
+      "question": "¿Cómo funciona la renovación?",
+      "answer": "Si deseas renovar, debes asegurarte de realizar el pago antes del vencimiento; nos encargaremos de enviarte una alerta con un mes de antelación. En cualquier caso, aunque olvides realizar el pago, siempre podrás solicitar una nueva mejora desde tu cuenta gratuita."
+    },
+    {
+      "question": "¿Cuánto dura la suscripción?",
+      "answer": "La duración de la suscripción es anual."
+    },
+    {
+      "question": "¿Puedo pagar mensualmente?",
+      "answer": "Actualmente no es posible pagar mensualmente; estamos trabajando para ofrecerte esta oportunidad en el futuro."
+    },
+    {
+      "question": "¿Qué tan fiables son las correcciones de la IA?",
+      "answer": "Las correcciones de la IA son normalmente fiables, pero es posible que la IA te señale como error la elección de palabras o estructuras sintácticas que tal vez solo no sean particularmente idóneas, pero no necesariamente incorrectas."
+    },
+    {
+      "question": "¿Emiten certificaciones?",
+      "answer": "No, no emitimos ninguna certificación."
+    },
+    {
+      "question": "¿Cómo mejoro a una cuenta premium?",
+      "answer": "Puedes solicitar la mejora desde una cuenta gratuita simplemente accediendo a tu área privada."
+    },
+    {
+      "question": "¿Puedo volver a una cuenta gratuita?",
+      "answer": "Absolutamente sí, cuando tu suscripción expire volverás automáticamente a la versión gratuita."
+    }
+  ],
+  "teachers": [
+    {
+      "question": "¿Cómo funciona la prueba gratuita?",
+      "answer": "La prueba gratuita tiene una duración de tres meses, al término de la cual puedes decidir si suscribirte o no; si decides no suscribirte, las cuentas de los estudiantes que hayas activado durante la prueba pasarán automáticamente a ser gratuitas, por lo que tus estudiantes no perderán el trabajo realizado."
+    },
+    {
+      "question": "¿Qué ocurre al término de la prueba gratuita?",
+      "answer": "Al término de la prueba gratuita tienes 15 días de plazo para realizar el pago; una vez finalizado este periodo, tu cuenta se eliminará automáticamente."
+    },
+    {
+      "question": "¿Cómo añado a un nuevo estudiante?",
+      "answer": "Para añadir a un nuevo estudiante solo tienes que acceder a tu área privada y hacer clic en añadir."
+    },
+    {
+      "question": "¿Cómo publico mi curso?",
+      "answer": "Para publicar tu curso solo tienes que acceder a tu área privada y hacer clic en el botón para crear un nuevo curso."
+    },
+    {
+      "question": "¿Puedo utilizar vídeos para mi curso?",
+      "answer": "Absolutamente sí, al añadir una nueva lección puedes elegir si se trata de una lección de texto o si quieres subir/pegar la URL de un vídeo de YouTube."
+    }
+  ],
+  "commons": [
+    {
+      "question": "¿Qué métodos de pago aceptan?",
+      "answer": "No aceptamos pagos en este momento, el sitio aún está en fase beta; por este motivo, solo puedes activar una cuenta gratuita."
+    },
+    {
+      "question": "Tengo un problema, ¿cómo me pongo en contacto con el soporte técnico?",
+      "answer": "Puedes ponerte en contacto con el soporte técnico accediendo a tu área privada."
+    },
+    {
+      "question": "¿Cuáles son los plazos de respuesta del soporte técnico?",
+      "answer": "Normalmente respondemos a todo el mundo en un plazo de 24 horas; sin embargo, en días con un gran volumen de solicitudes es posible que no podamos cumplir con este límite."
+    }
+  ]
+}

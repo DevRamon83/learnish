@@ -1,0 +1,39 @@
+{
+  "plans": ["plans", "FREE", "BASIC", "PRO"],
+  "ads": ["ads", 3, 1, 0],
+  "modules": ["modules", 1, 2, 3],
+  "follow": ["follow", 3, 10, "unlimited"],
+  "tutoring": ["tutoring", "false", "true", "true"],
+  "visibility": ["visibility", "false", "true", "true"],
+  "summary": ["summary", 0, 1, 3],
+  "stats": ["stats", "false", "true", "true"],
+  "sharedStats": ["sharedStats", "false", "true", "true"],
+  "phonetic": ["phonetic", "false", "true", "true"],
+  "level": ["level", "A1/A2", "B1/B2", "C1/C2"],
+  "classroom": ["classroom", "false", "false", "true"],
+  "costPerStudent": ["costPerStudent", "false", "1€", "0€"],
+  "price": ["price", "0€", "1€", "10€"],
+  "teachersPrice": ["teachersPrice", "0€", "10€", "25€"],
+  "explain": {
+    "plans": "Possible subscription types",
+    "ads": "* Maximum number of advertisements per page",
+    "modules": "Number of lessons that can be unlocked daily",
+    "follow": "Number of students that can be followed simultaneously",
+    "tutoring": "** Possibility to request a teacher's support",
+    "visibility": "Visibility in the teachers section",
+    "classroom": "Possibility to create a virtual classroom",
+    "costPerStudent": "** Monthly cost for adding a new student",
+    "summary": "Maximum number of summaries to submit to the AI per day",
+    "stats": "Access to your personal statistics",
+    "sharedStats": "Access to students' personal statistics",
+    "phonetic": "Access to phonetics lessons",
+    "level": "Maximum achievable levels for the plan",
+    "price": "Monthly cost",
+    "teachersPrice": "Monthly cost"
+  },
+  "note": {
+    "ads": "* In any case, we attempt to display advertisements in a non-invasive way; the number of ads per page is indicative, it does not necessarily mean that you will find the specified number of banners on every single page—you might find fewer, but never more",
+    "tutoring": "** The monthly subscription cost does not include tutoring services; each teacher has their own teaching methods and, consequently, their own rates. You can find all the information you need about this on the teachers' profiles",
+    "costPerStudent": "** The cost per student only applies to accounts created directly by the teacher, which have a free account; tutoring requests sent by our students to partner teachers do not involve any additional cost"
+  }
+}

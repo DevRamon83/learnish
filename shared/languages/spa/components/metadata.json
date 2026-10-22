@@ -1,0 +1,28 @@
+{
+  "titles": {
+    "fallback": "Learnish",
+    "contact": "Contacto",
+    "price": "Precios",
+    "about": "Lo que dicen de nosotros",
+    "mission": "Misión",
+    "login": "Iniciar sesión",
+    "signup": "Registrarse",
+    "team": "Quiénes somos",
+    "faq": "FAQ",
+    "tos": "Condiciones de uso",
+    "privacy": "Privacidad"
+  },
+  "descriptions": {
+    "fallback": "",
+    "contact": "¿Tienes un proyecto en mente o quieres colaborar? Ponte en contacto con nosotros a través del formulario o de nuestras redes sociales.",
+    "price": "Descubre los planes y soluciones a la medida de tus necesidades. Transparencia y calidad para cualquier tipo de presupuesto.",
+    "about": "Lee los testimonios y reseñas de los clientes y socios con los que he colaborado.",
+    "mission": "Descubre los valores y objetivos detrás de Learnish: la visión que guía el desarrollo de cada proyecto.",
+    "login": "Accede a tu área personal en Learnish para gestionar tus datos y monitorizar tus proyectos en curso.",
+    "signup": "Crea tu cuenta en Learnish y empieza a aprovechar todas las funciones de nuestra plataforma de inmediato.",
+    "team": "Conoce a las personas detrás del proyecto. Un equipo de profesionales dedicado a crear soluciones digitales innovadoras.",
+    "faq": "Preguntas frecuentes: encuentra respuestas rápidas a las dudas más comunes sobre servicios, pagos y funcionamiento del sitio.",
+    "tos": "Consulta los términos y condiciones de uso del servicio Learnish para conocer tus derechos y nuestros deberes.",
+    "privacy": "Política de privacidad: descubre cómo protegemos, gestionamos y tratamos tus datos personales con total seguridad."
+  }
+}

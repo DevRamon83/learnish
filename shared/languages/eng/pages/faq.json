@@ -1,0 +1,84 @@
+{
+  "students": [
+    {
+      "question": "What information do I share by accepting the 50% discount?",
+      "answer": "By accepting the 50% discount, you will not share any personal information, but you will allow all other students to use your mistakes to practice, without allowing them to link those mistakes back to your account."
+    },
+    {
+      "question": "How do I cancel?",
+      "answer": "Your account is automatically downgraded when your subscription expires; you do not need to cancel, you will automatically switch to the free version."
+    },
+    {
+      "question": "What happens to my account if my teacher cancels?",
+      "answer": "If your teacher cancels their subscription, your account will automatically be downgraded to the free version."
+    },
+    {
+      "question": "Can I completely delete my account?",
+      "answer": "You can completely delete your account only if you have not accepted the 50% discount; if you accepted the discount, you can delete your personal information, but not the created summaries, which will continue to be used to allow other students to practice."
+    },
+    {
+      "question": "How does renewal work?",
+      "answer": "If you wish to renew, you must make sure to complete the payment before the expiration date; we will take care of sending you an alert one month in advance. In any case, even if you forget to make the payment, you can always make a new upgrade from your free account."
+    },
+    {
+      "question": "How long does the subscription last?",
+      "answer": "The subscription duration is annual."
+    },
+    {
+      "question": "Can I pay monthly?",
+      "answer": "It is currently not possible to pay monthly; we are working to offer you this opportunity in the future."
+    },
+    {
+      "question": "How reliable are the AI corrections?",
+      "answer": "AI corrections are normally reliable, but it is possible that the AI might flag word choices or syntax structures as errors that might just be not particularly ideal, but not necessarily wrong."
+    },
+    {
+      "question": "Do you issue certifications?",
+      "answer": "No, we do not issue any certifications."
+    },
+    {
+      "question": "How do I upgrade to a premium account?",
+      "answer": "You can request an upgrade from a free account simply by accessing your private area."
+    },
+    {
+      "question": "Can I switch back to a free account?",
+      "answer": "Absolutely yes, when your subscription expires you will automatically return to the free version."
+    }
+  ],
+  "teachers": [
+    {
+      "question": "How does the free trial work?",
+      "answer": "The free trial lasts for three months, at the end of which you can decide whether to subscribe or not; should you decide not to subscribe, the student accounts you activated during the trial will automatically become free, so your students will not lose the work they have done."
+    },
+    {
+      "question": "What happens at the end of the free trial?",
+      "answer": "At the end of the free trial, you have 15 days to make the payment, after which your account will be automatically removed."
+    },
+    {
+      "question": "How do I add a new student?",
+      "answer": "To add a new student, simply log into your private area and click on add."
+    },
+    {
+      "question": "How do I publish my course?",
+      "answer": "To publish your course, simply log into your private area and click on the button to create a new course."
+    },
+    {
+      "question": "Can I use videos for my course?",
+      "answer": "Absolutely yes, when you add a new lesson you can choose whether it is a text lesson or whether to upload/paste a video URL from YouTube."
+    }
+  ],
+  "commons": [
+    {
+      "question": "What payment methods do you accept?",
+      "answer": "We do not accept payments at this time, the site is still in beta; for this reason, you can only activate a free account."
+    },
+    {
+      "question": "I have a problem, how do I contact support?",
+      "answer": "You can contact support by accessing your private area."
+    },
+    {
+      "question": "What are the support response times?",
+      "answer": "We normally reply to everyone within 24 hours; however, on days with a high volume of requests, we might not be able to meet this limit."
+    }
+  ]
+}

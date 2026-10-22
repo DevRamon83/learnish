@@ -1,0 +1,12 @@
+{
+  "tabs": ["cours", "résumés", "flashcards", "exercices"],
+  "unlock": "débloquer",
+  "read": "lire",
+  "backToDashboard": "tableau de bord",
+  "lessonLocked": " Ce cours n'a pas encore été débloqué",
+  "goToDashboard": "Retour à votre espace privé",
+  "lockedText": "Vous pouvez débloquer le cours depuis votre espace privé si votre forfait actuel le permet ; sinon, envisagez une mise à niveau ou attendez demain",
+  "yourStudents": "Vos étudiants",
+  "zeroStudents": "Vous n'avez aucun étudiant inscrit à vos cours",
+  "checkSettings": "Vérifiez que votre profil est complet"
+}

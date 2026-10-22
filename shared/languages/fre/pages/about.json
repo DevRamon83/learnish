@@ -1,0 +1,46 @@
+{
+  "paper": [
+    {
+      "name": "Ansa",
+      "img": "/about/ansa.jpeg",
+      "description": "Qui ? Nous ne savons pas qui ils sont"
+    },
+    {
+      "name": "Adnkronos",
+      "img": "/about/adnkronos.jpeg",
+      "description": "Jamais entendu parler ! Non, vraiment, jamais entendu parler"
+    },
+    {
+      "name": "Corriere della sera",
+      "img": "/about/corsera.jpeg",
+      "description": "Nous ne savons pas qui ils sont"
+    },
+    {
+      "name": "Sole24",
+      "img": "/about/sole24.jpeg",
+      "description": "Ah, oui, ceux de... non ! Jamais entendu parler"
+    },
+    {
+      "name": "Milano finanza",
+      "img": "/about/milanoFinanza.jpeg",
+      "description": "Ah, oui, le site de livraison de boulettes à domicile ? Non ? Alors non, on ne les connaît pas"
+    },
+    {
+      "name": "Repubblica",
+      "img": "/about/repubblica.jpeg",
+      "description": "Ils nous spamment depuis trois ans."
+    },
+    {
+      "name": "La gazzetta del mezzogiorno",
+      "img": "/about/gazzetta.jpeg",
+      "description": "Euh... Alors... Voyons voir... Peut-être... Non, on ne les connaît pas"
+    },
+    {
+      "name": "Il Mattino",
+      "img": "/about/mattino.jpeg",
+      "description": "Quoi, Duolingo ? Non ? Alors aucune idée"
+    }
+  ],
+  "back": "retour",
+  "forward": "suivant"
+}

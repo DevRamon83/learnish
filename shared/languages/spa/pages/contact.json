@@ -1,0 +1,15 @@
+{
+  "labels": {
+    "email": "Correo electrónico",
+    "message": "Tu mensaje"
+  },
+  "placeholders": {
+    "email": "mario.rossi@gmail.com"
+  },
+  "message": {
+    "counterLabel": "máximo de palabras"
+  },
+  "send": "Enviar tu mensaje",
+  "success": "Hemos recibido tu mensaje, responderemos lo antes posible",
+  "back": "Volver a la página de inicio"
+}

@@ -1,0 +1,47 @@
+{
+  "summary": "summary",
+  "newSummary": "create a new summary",
+  "sendSummary": "correct",
+  "yourSummaries": "your summaries",
+  "newSummaryBtn": "new summary",
+  "retry": "retry",
+  "unavailable": "Today's summaries are exhausted",
+  "failed": "Something went wrong, please try again",
+  "newSummaryForm": {
+    "title": {
+      "placeholder": "how to build a cabinet",
+      "label": "summary title"
+    },
+    "youtube": {
+      "placeholder": "youtube link",
+      "label": "link to youtube"
+    },
+    "summary": {
+      "label": "write your summary",
+      "counterLabel": "maximum words"
+    }
+  },
+  "score": {
+    "rating": "artificial intelligence evaluation",
+    "overall": "overall",
+    "grammar": "grammar",
+    "vocabulary": "vocabulary",
+    "cohesion": "cohesion"
+  },
+  "process": {
+    "draft": "Summary creation",
+    "correction": "Summary correction",
+    "stats": "Statistics generation"
+  },
+  "actions": {
+    "actionCorrection": "Action required: correct the summary",
+    "correction": "correct",
+    "close": "close",
+    "actionStats": "Action required: generate statistics",
+    "stats": "start"
+  },
+  "blocker": {
+    "why": "The AI will take about a minute to process and correct your summary.",
+    "patience": "To avoid accidental process interruptions, interaction with the site is temporarily suspended. Thank you for your patience, your summary will be ready shortly!"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "tabs": ["lessons", "summaries", "flashcards", "exercises"],
+  "unlock": "unlock",
+  "read": "read",
+  "backToDashboard": "dashboard",
+  "lessonLocked": " This lesson has not been unlocked yet",
+  "goToDashboard": "Back to your private area",
+  "lockedText": "You can unlock the lesson from your private area if your current plan allows it; otherwise, consider an upgrade or wait until tomorrow",
+  "yourStudents": "Your students",
+  "zeroStudents": "You have no students enrolled in your courses",
+  "checkSettings": "Verify that your profile is complete"
+}

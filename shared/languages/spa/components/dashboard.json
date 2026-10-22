@@ -1,0 +1,12 @@
+{
+  "tabs": ["lecciones", "resúmenes", "tarjetas didácticas", "ejercicios"],
+  "unlock": "desbloquear",
+  "read": "leer",
+  "backToDashboard": "panel de control",
+  "lessonLocked": " Esta lección aún no ha sido desbloqueada",
+  "goToDashboard": "Volver a tu área privada",
+  "lockedText": "Puedes desbloquear la lección desde tu área privada si tu plan actual lo permite; de lo contrario, considera una mejora o espera a mañana",
+  "yourStudents": "Tus estudiantes",
+  "zeroStudents": "No tienes estudiantes inscritos en tus cursos",
+  "checkSettings": "Verifica que tu perfil esté completo"
+}
