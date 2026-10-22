@@ -7,8 +7,6 @@ import {
   useRamonForm,
 } from "ramon-form-sdude";
 import authConfigBuilder from "../../forms/configs/auth";
-import { useLang } from "../../hooks/useLang";
-import { i18nAddresses } from "../../constants/i18nAddresses";
 import FormInput from "./FormInput";
 import fetchSignup from "../../api/handlers/fetchSignup";
 import { useState, useRef } from "react";
@@ -17,14 +15,13 @@ import ErrorOnSubmit from "../ErrorOnSubmit";
 import { classes } from "../../constants/components/forms";
 const { authValidator } = bundle.validators;
 
-export default function SignupForm() {
+export default function SignupForm({ strings, lang }) {
   const formRef = useRef();
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
 
   const standardError = "registration failed. check your data";
 
-  const { strings, lang } = useLang(i18nAddresses.auth);
   const objConfig = authConfigBuilder(strings, "signup");
 
   const { fields, groups, selects } = useRamonForm(objConfig);
