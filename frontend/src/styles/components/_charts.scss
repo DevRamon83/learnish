@@ -40,13 +40,11 @@
   fill: colors.$error_pron;
 }
 
-#chart__line-container {
-  width: 500px;
-}
-
 #chart__line-wrapper {
   border-bottom: 1px solid #000;
   border-left: 1px solid #000;
+  flex-grow: 1;
+  width: 100%;
 }
 
 #reveal-wrapper {
@@ -69,4 +67,16 @@
   justify-content: space-between;
   width: 110%;
   margin-left: -5%;
+}
+
+.chart__labels-y {
+  height: 100%;
+  background-color: antiquewhite;
+  width: 20px;
+  margin-left: -50px;
+}
+
+.chart__line-container {
+  flex-grow: 1;
+  width: 100%;
 }

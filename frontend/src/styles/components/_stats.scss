@@ -85,3 +85,17 @@
   border-color: black;
   font-weight: bold;
 }
+
+.stats__lineChartContainer {
+  height: 250px;
+  display: flex;
+  width: 90%;
+  margin-bottom: 100px;
+}
+
+.stats__y {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  width: 50px;
+}
