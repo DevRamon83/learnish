@@ -1,70 +1,62 @@
 import { useEffect, useState } from "react";
 import useViewportObserver from "../../hooks/useViewportObserver";
+import { defineMax } from "../../helpers/stats/calculators";
+import { findLabelsX } from "../../helpers/stats/finders";
+import { classes, ids } from "../../constants/components/stats";
+import LineChartSvg from "./LineChartSVG";
 
-const tagDefiner = (chartType, startDate) => {
-  let duration = null;
-  if (chartType === "weekly") {
-    duration = 7;
-  }
-
-  if (chartType === "montly") {
-    duration = 30;
-  }
-
-  if (chartType === "quarter") {
-    duration = 90;
-  }
-
-  const step = parseInt(duration / 6);
-  const tags = [];
-
-  for (let i = 0; i < 7; i++) {
-    const newDate = new Date(startDate);
-    newDate.setDate(startDate.getDate() + i * step);
-    const label = newDate.toLocaleString(undefined, {
-      day: "numeric",
-      month: "long",
-    });
-    tags.push(label);
-  }
-
-  const simplifyTags = [];
-  simplifyTags.push(tags[0], tags[3], tags[6]);
-
-  return { tags, simplifyTags };
-};
-
-export default function LineChart() {
+export default function LineChart({ rawData, height, period }) {
   const { chartWidth, isMobile } = useViewportObserver();
   const [labels, setLabels] = useState(null);
   const [points, setPoints] = useState(null);
-  const max = 2;
-  const rawData = [
-    { errors: 5, words: 500 },
-    { errors: 3, words: 350 },
-    { errors: 3, words: 400 },
-    { errors: 1, words: 420 },
-    { errors: 3, words: 440 },
-    { errors: 7, words: 380 },
-    { errors: 4, words: 280 },
-  ];
+  const max = defineMax(rawData);
 
   const date = new Date();
-  const { tags, simplifyTags } = tagDefiner("montly", date);
+  const { tags, simplifyTags } = findLabelsX(period, date);
 
   useEffect(() => {
     if (chartWidth) {
-      const chartPoints = rawData.map((datum, i) => {
-        const ratio = (datum.errors / datum.words) * 100;
+      const allLines = []; // ["x1,y1 x2,y2", "x3,y3 x4,y4"]
+      let currentLinePoints = [];
+      const circles = [];
 
+      let starter = false;
+
+      for (let i = 0; i < rawData.length; i++) {
+        const datum = rawData[i];
+
+        // until no data
+        if (datum.words === 0 && !starter) {
+          continue;
+        }
+
+        starter = true;
         const x = i * (chartWidth / (rawData.length - 1));
 
-        const y = 100 - Math.min((ratio / max) * 100, 100);
+        if (datum.words > 0) {
+          // 2. we have data
+          const ratio = (datum.errors / datum.words) * 100;
+          const y = height - Math.min((ratio / max) * height, height);
 
-        return `${x},${y}`;
+          currentLinePoints.push(`${x},${y}`);
+          circles.push({ x, y });
+        } else {
+          // 3. no data, cut the line
+          if (currentLinePoints.length >= 2) {
+            allLines.push(currentLinePoints.join(" "));
+          }
+          currentLinePoints = [];
+        }
+      }
+
+      if (currentLinePoints.length >= 2) {
+        allLines.push(currentLinePoints.join(" "));
+      }
+
+      setPoints({
+        lines: allLines,
+        circles: circles,
       });
-
-      setPoints(chartPoints);
     }
 
     if (isMobile) {
@@ -77,31 +69,19 @@ export default function LineChart() {
   return (
     <>
       {chartWidth && (
-        <div className="chart__line-container">
-          <div id="chart__line-wrapper">
-            <svg
-              viewBox={`0 0 ${chartWidth} 100`}
-              preserveAspectRatio="none"
-              width="100%"
-              height="100"
-            >
-              <g id="reveal-wrapper">
-                {" "}
-                {/* Riutilizziamo la tua animazione clip-path */}
-                <polyline
-                  points={points}
-                  fill="none"
-                  stroke="#3B82F6" // Un blu per la linea
-                  strokeWidth="2"
-                  vectorEffect="non-scaling-stroke" // Mantiene lo spessore costante
-                />
-              </g>
-            </svg>
+        <div className={classes.lineContainer}>
+          <div id={ids.lineWrapper}>
+            <LineChartSvg
+              chartWidth={chartWidth}
+              height={height}
+              ids={ids}
+              points={points}
+            />
           </div>
-          <div className="chart__labels-x">
+          <div className={classes.labelX}>
             {labels &&
               labels.map((tag) => (
-                <div key={tag.replace(" ", "")} className="chart__labels">
+                <div key={tag.replace(" ", "")} className={classes.labels}>
                   {tag}
                 </div>
               ))}
