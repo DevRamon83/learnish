@@ -19,7 +19,7 @@ export default function SummaryErrorStats({ strings, data, stats }) {
     return +ratio.toFixed(1);
   };
 
-  const summaryStats = findMyStats(errors, stats, data);
+  const summaryStats = findMyStats(stats, data);
 
   const errorsArray = Object.keys(errors);
   const errorsRatio = {};
@@ -40,7 +40,7 @@ export default function SummaryErrorStats({ strings, data, stats }) {
 
   return (
     <div className={classes.summary.summaryError}>
-      <h4>Errori ogni 100 parole</h4>
+      <h4>{strings.errorStats}</h4>
       {errorsArray.map((key) => (
         <div className={`${detailsBase}-errorsContainer`} key={`${key}Details`}>
           {errorStrings[key]}: {ratio(errors[key], summaryStats.words)}
