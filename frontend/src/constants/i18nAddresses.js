@@ -14,4 +14,5 @@ export const i18nAddresses = {
   flashcards: "components.flashcards",
   settings: "components.settings",
   about: "pages.about",
+  stats: "components.stats",
 };
