@@ -15,4 +15,5 @@ export const i18nAddresses = {
   settings: "components.settings",
   about: "pages.about",
   stats: "components.stats",
+  exercises: "components.exercises",
 };
