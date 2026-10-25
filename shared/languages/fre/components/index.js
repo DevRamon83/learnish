@@ -6,6 +6,8 @@ import errors from "./errors.json" with { type: "json" };
 import metadata from "./metadata.json" with { type: "json" };
 import flashcards from "./flashcards.json" with { type: "json" };
 import settings from "./settings.json" with { type: "json" };
+import stats from "./stats.json" with { type: "json" };
+import exercises from "./exercises.json" with { type: "json" };
 
 const components = {
   auth,
@@ -16,6 +18,8 @@ const components = {
   metadata,
   flashcards,
   settings,
+  stats,
+  exercises,
 };
 
 export default components;

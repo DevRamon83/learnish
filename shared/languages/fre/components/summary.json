@@ -43,5 +43,6 @@
   "blocker": {
     "why": "L'IA prendra environ une minute pour traiter et corriger votre résumé.",
     "patience": "Pour éviter les interruptions accidentelles du processus, l'interaction avec le site est temporairement suspendue. Merci de votre patience, votre résumé sera bientôt prêt !"
-  }
+  },
+  "errorStats": "Erreurs pour 100 mots"
 }

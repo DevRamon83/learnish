@@ -1,0 +1,26 @@
+{
+  "errorCodes": {
+    "spell": "ortografía",
+    "tens": "tiempos verbales",
+    "agree": "concordancia",
+    "prep": "preposiciones",
+    "word": "vocabulario",
+    "order": "sintaxis",
+    "sing": "singular/plural",
+    "art": "artículos",
+    "pron": "pronombres"
+  },
+  "texts": {
+    "category": "Categoría de error: ",
+    "lineChartH3": "Evolución de los errores a lo largo del período indicado (cada punto de la línea representa un día)",
+    "stackedBarH2": "Distribución media de tus errores por cada 100 palabras",
+    "stackedBarH3Average": "Sobre un promedio total de ",
+    "stackedBarH3Explain": " palabras por resumen",
+    "labelSelect": "Selecciona el período",
+    "semiAnnually": "ÚLTIMO SEMESTRE",
+    "quarter": "ÚLTIMO TRIMESTRE",
+    "monthly": "ÚLTIMO MES",
+    "weekly": "ÚLTIMA SEMANA",
+    "legend": "Leyenda de errores"
+  }
+}

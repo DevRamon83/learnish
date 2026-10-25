@@ -43,5 +43,6 @@
   "blocker": {
     "why": "L'IA impiegherà circa un minuto per elaborare e correggere il tuo sommario.",
     "patience": "Per evitare interruzioni accidentali del processo, l'interazione con il sito è temporaneamente sospesa. Grazie per la pazienza, il tuo sommario sarà pronto a breve!"
-  }
+  },
+  "errorStats": "Errori ogni 100 parole"
 }

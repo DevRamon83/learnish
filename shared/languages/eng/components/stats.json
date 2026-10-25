@@ -1,0 +1,26 @@
+{
+  "errorCodes": {
+    "spell": "spelling",
+    "tens": "tenses",
+    "agree": "agreement",
+    "prep": "prepositions",
+    "word": "vocabulary",
+    "order": "syntax",
+    "sing": "singular/plural",
+    "art": "articles",
+    "pron": "pronouns"
+  },
+  "texts": {
+    "category": "Error category: ",
+    "lineChartH3": "Error trend over the specified period (each point on the line represents one day)",
+    "stackedBarH2": "Average distribution of your errors per 100 words",
+    "stackedBarH3Average": "Out of a total average of ",
+    "stackedBarH3Explain": " words per summary",
+    "labelSelect": "Select period",
+    "semiAnnually": "LAST HALF YEAR",
+    "quarter": "LAST QUARTER",
+    "monthly": "LAST MONTH",
+    "weekly": "LAST WEEK",
+    "legend": "Error legend"
+  }
+}

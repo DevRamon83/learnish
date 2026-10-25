@@ -43,5 +43,6 @@
   "blocker": {
     "why": "The AI will take about a minute to process and correct your summary.",
     "patience": "To avoid accidental process interruptions, interaction with the site is temporarily suspended. Thank you for your patience, your summary will be ready shortly!"
-  }
+  },
+  "errorStats": "Errores por cada 100 palabras"
 }

@@ -43,5 +43,6 @@
   "blocker": {
     "why": "La IA tardará aproximadamente un minuto en procesar y corregir tu resumen.",
     "patience": "Para evitar interrupciones accidentales del proceso, la interacción con el sitio se ha suspendido temporalmente. ¡Gracias por tu paciencia, tu resumen estará listo pronto!"
-  }
+  },
+  "errorStats": "Errores por cada 100 palabras"
 }

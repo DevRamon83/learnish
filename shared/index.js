@@ -1,5 +1,6 @@
 import constants from "./constants/index.js";
 import langs from "./languages/index.js";
+import dialogues from "./dialogues/index.js";
 import {
   acceptOnly,
   usernameValidator,
@@ -20,6 +21,7 @@ const bundle = {
   passwordValidator,
   emailValidator,
   helpers,
+  dialogues,
 };
 
 export default bundle;
