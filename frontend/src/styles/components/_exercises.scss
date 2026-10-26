@@ -133,7 +133,25 @@
   align-items: center;
   gap: 20px;
   flex-direction: column;
-  padding-bottom: 25vh;
+  padding-bottom: 80px;
+}
+
+.exercise__repeatLarBtn {
+  margin-bottom: 50px;
+  font-size: 16px;
+  font-weight: bold;
+  width: fit-content;
+  padding: 20px 30px;
+  height: 22px;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: #002147;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  text-transform: uppercase;
 }
 
 %exercise__larRow {

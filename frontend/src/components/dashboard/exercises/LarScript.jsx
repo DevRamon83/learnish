@@ -3,7 +3,13 @@ import LarRow from "../../../ui/exercises/LarRow";
 import { classes } from "../../../constants/components/exercises";
 import getDurations from "../../../helpers/getLarDurations";
 
-export default function LarScript({ card, dialogues, setCard, strings }) {
+export default function LarScript({
+  card,
+  dialogues,
+  setCard,
+  strings,
+  setRepeat,
+}) {
   const [rows, setRows] = useState([]);
   const [index, setIndex] = useState(0);
   const [durations, setDurations] = useState([]);
@@ -45,6 +51,8 @@ export default function LarScript({ card, dialogues, setCard, strings }) {
     }
   }, [rows]);
 
+  console.log("dia ", currentDialogue.length);
+  console.log("index ", index);
   return (
     <div className={classes.scriptContainer} ref={dialogueContainerRef}>
       <div className={classes.section}>
@@ -63,6 +71,14 @@ export default function LarScript({ card, dialogues, setCard, strings }) {
             />
           ))}
       </div>
+      {Object.keys(currentDialogue).length === index && (
+        <div
+          className={classes.repeatBtn}
+          onClick={() => setRepeat(Date.now())}
+        >
+          {strings.repeatDialogue}
+        </div>
+      )}
     </div>
   );
 }

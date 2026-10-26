@@ -8,6 +8,7 @@ const { dialogues } = bundle;
 
 export default function ListenAndRepeat({ setPanel, strings }) {
   const dialogueKeys = Object.keys(dialogues);
+  const [repeat, setRepeat] = useState(0);
   const [card, setCard] = useState({
     dialogue: null,
     level: null,
@@ -59,10 +60,12 @@ export default function ListenAndRepeat({ setPanel, strings }) {
       )}
       {card.dialogue && (
         <LarScript
+          key={`repeatScript${repeat}`}
           setCard={setCard}
           card={card}
           dialogues={dialogues}
           strings={strings}
+          setRepeat={setRepeat}
         />
       )}
     </>

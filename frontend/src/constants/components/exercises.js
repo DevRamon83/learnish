@@ -11,4 +11,5 @@ export const classes = {
   scriptContainer: "exercise__larScriptContainer",
   dialogueContainer: "exercise__dialogueContainer",
   base: "exercise__",
+  repeatBtn: "exercise__repeatLarBtn",
 };
