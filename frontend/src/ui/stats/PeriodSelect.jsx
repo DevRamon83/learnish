@@ -1,7 +1,6 @@
 export default function PeriodSelect({ setter, strings }) {
   return (
     <>
-      <label>{strings.labelSelect}</label>
       <select
         name="selectPeriod"
         defaultValue="semiAnnually"

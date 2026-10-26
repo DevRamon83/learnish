@@ -10,6 +10,7 @@ import {
 import { findLabelsY } from "../../../helpers/stats/finders";
 import StackedBarContainer from "../../../ui/stats/StackedBarContainer";
 import LineChartContainer from "../../../ui/stats/LineChartContainer";
+import { classes } from "../../../constants/components/stats";
 
 export default function Statistics() {
   const { average, data } = useSelector((state) => state.stats);
@@ -39,19 +40,21 @@ export default function Statistics() {
   };
 
   return (
-    <>
+    <div className={classes.statsContainer}>
       <Legend
         errorKeys={errorKeys}
         rawData={average.errorTypes}
         currentStat={currentStat}
         setCurrentStat={handleStatChange}
         strings={strings}
+        classes={classes}
       />
       <StackedBarContainer
         totalMistakes={totalMistakes}
         rawAverage={rawAverage}
         averageWord={average.words}
         strings={strings.texts}
+        classes={classes}
       />
       <LineChartContainer
         currentRawData={currentRawData}
@@ -60,7 +63,8 @@ export default function Statistics() {
         currentStat={currentStat}
         period={period}
         strings={strings}
+        classes={classes}
       />
-    </>
+    </div>
   );
 }

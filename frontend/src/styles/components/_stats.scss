@@ -1,4 +1,18 @@
 @use "../variables/colors";
+@use "../breakpoints";
+
+.stats__container {
+  width: 95%;
+  padding-left: 5%;
+  @include breakpoints.medium {
+    width: unset;
+    padding-left: unset;
+  }
+}
+
+.stats__container select {
+  margin-bottom: 25px;
+}
 
 %legend {
   display: flex;
@@ -75,7 +89,9 @@
 }
 
 .stats__stackedBarContainer {
-  width: 90%;
+  @include breakpoints.medium {
+    width: 90%;
+  }
 }
 
 .stats__legendActive {
@@ -89,8 +105,11 @@
 .stats__lineChartContainer {
   height: 250px;
   display: flex;
-  width: 90%;
   margin-bottom: 100px;
+
+  @include breakpoints.medium {
+    width: 90%;
+  }
 }
 
 .stats__y {

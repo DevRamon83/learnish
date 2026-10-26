@@ -8,6 +8,7 @@ export const classes = {
   lineContainer: "chart__line-container",
   labelX: "chart__labels-x",
   labels: "chart__labels",
+  statsContainer: "stats__container",
 };
 
 export const ids = {
