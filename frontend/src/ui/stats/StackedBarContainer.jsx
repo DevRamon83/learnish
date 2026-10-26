@@ -1,11 +1,11 @@
 import StackedBar from "../../components/charts/StackedBar";
-import { classes } from "../../constants/components/stats";
 
 export default function StackedBarContainer({
   totalMistakes,
   rawAverage,
   averageWord,
   strings,
+  classes,
 }) {
   return (
     <>

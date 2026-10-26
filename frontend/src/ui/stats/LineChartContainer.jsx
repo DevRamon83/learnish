@@ -1,5 +1,4 @@
 import LineChart from "../../components/charts/LineChart";
-import { classes } from "../../constants/components/stats";
 import PeriodSelect from "./PeriodSelect";
 
 export default function LineChartContainer({
@@ -9,6 +8,7 @@ export default function LineChartContainer({
   period,
   strings,
   currentStat,
+  classes,
 }) {
   const { texts, errorCodes } = strings;
 

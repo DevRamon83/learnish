@@ -1,11 +1,10 @@
-import { classes } from "../../constants/components/stats";
-
 export default function Legend({
   errorKeys,
   rawData,
   currentStat,
   setCurrentStat,
   strings,
+  classes,
 }) {
   const { errorCodes, texts } = strings;
 
