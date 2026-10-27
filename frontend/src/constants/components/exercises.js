@@ -12,4 +12,11 @@ export const classes = {
   dialogueContainer: "exercise__dialogueContainer",
   base: "exercise__",
   repeatBtn: "exercise__repeatLarBtn",
+  create: {
+    btnBase: "exercise__btn",
+    levelContainer: "exercise__level",
+    yourQuestion: "exercise__questionText",
+    questionContainer: "exercise__questionContainer",
+    submit: "exercise__submitBtn",
+  },
 };
