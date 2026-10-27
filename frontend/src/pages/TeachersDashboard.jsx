@@ -5,12 +5,12 @@ import { classes } from "../constants/components/dashboard";
 import YourStudents from "../components/dashboard/YourStudents";
 import Settings from "../components/dashboard/Settings";
 import DashboardMenu from "../ui/DashboardMenu";
+import NewExercise from "../components/dashboard/exercises/create/NewExercise";
 const { dashboardTeachersTabs } = bundle.constants;
 
 export default function TeachersDashboard() {
   const [currentTab, setCurrentTab] = useState("students");
   useLogout(currentTab);
-
   return (
     <>
       <main className={classes.main}>
@@ -22,6 +22,11 @@ export default function TeachersDashboard() {
         {currentTab === "students" && (
           <div className={classes.core}>
             <YourStudents />
+          </div>
+        )}
+        {currentTab === "classrooms" && (
+          <div className={classes.core}>
+            <NewExercise />
           </div>
         )}
         {currentTab === "settings" && (
