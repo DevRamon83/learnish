@@ -51,8 +51,6 @@ export default function LarScript({
     }
   }, [rows]);
 
-  console.log("dia ", currentDialogue.length);
-  console.log("index ", index);
   return (
     <div className={classes.scriptContainer} ref={dialogueContainerRef}>
       <div className={classes.section}>
