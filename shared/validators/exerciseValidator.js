@@ -66,18 +66,16 @@ const validateMultipleAnswer = (wrongString) => {
   return resp;
 };
 
-export const invalidExercise = (exercise, lessons, setExercise) => {
+export const invalidExercise = (exercise, lessons, caller, setExercise) => {
   if (!validTypes.includes(exercise.type)) return "invalidTypeExercise";
 
   if (typeof exercise.question !== "string") return "invalidTypeExercise";
 
   if (exercise.question.length > 250) return "invalidQuestion";
 
-  const { lessonIndex, lessonTitle, lessonKey, lessonLevel } =
-    exercise.lessonData;
+  const { lessonIndex, lessonKey, lessonLevel } = exercise.lessonData;
 
-  if (!lessonIndex || !lessonTitle || !lessonKey || !lessonLevel)
-    return "lessonDataMissing";
+  if (!lessonIndex || !lessonKey || !lessonLevel) return "lessonDataMissing";
 
   const lessonObj = lessons.get(lessonKey);
   if (!lessonObj) return "invalidLessonKey";
@@ -85,17 +83,16 @@ export const invalidExercise = (exercise, lessons, setExercise) => {
   if (lessonIndex.trim() !== lessonObj.index.trim())
     return "invalidLessonIndex";
 
-  if (lessonTitle.trim() !== lessonObj.title.trim())
-    return "invalidLessonTitle";
-
   if (lessonLevel.trim() !== lessonObj.level.trim())
     return "invalidLessonLevel";
 
   let resp;
+
   if (exercise.type === "multipleChoice") {
-    resp = validateMultipleAnswer(exercise.multipleWrongs, setExercise);
+    resp = validateMultipleAnswer(exercise.multipleWrongs);
   }
-  if (resp.error) return resp.error;
+
+  if (resp && resp.error) return resp.error;
 
   if (!Array.isArray(exercise.answer)) return "malformedAnswer";
 
@@ -107,7 +104,7 @@ export const invalidExercise = (exercise, lessons, setExercise) => {
 
   if (typeof exercise.answer[1] !== "number") return "malformedAnswer";
 
-  if (resp) {
+  if (resp && caller === "frontend") {
     setExercise((prev) => ({
       ...prev,
       multipleWrongs: resp.cleanArray,
