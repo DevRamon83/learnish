@@ -1,4 +1,9 @@
-export default function MultipleChoice({ setExercise, strings, setError }) {
+export default function MultipleChoice({
+  setExercise,
+  strings,
+  setError,
+  classes,
+}) {
   const handler = (e) => {
     setExercise((prev) => ({
       ...prev,
@@ -7,13 +12,13 @@ export default function MultipleChoice({ setExercise, strings, setError }) {
   };
   return (
     <>
-      <h3>{strings.multipleChoiceHeader}</h3>
-      <p>{strings.multipleChoiceExample}</p>
+      <h2>{strings.multipleChoiceHeader}</h2>
       <input
+        className={classes.inputMultipleChoice}
         onFocus={() => setError(null)}
         onBlur={handler}
-        size="100"
         type="text"
+        placeholder={strings.multipleChoiceExample}
       />
     </>
   );
