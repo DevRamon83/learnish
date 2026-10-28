@@ -10,6 +10,8 @@ import LessonDefiner from "./LessonDefiner";
 import QuestionDefiner from "./QuestionDefiner";
 import { cleanUp } from "../../../../helpers/exercises/exerciseHelpers";
 import { classes } from "../../../../constants/components/exercises";
+import fetchNewExercise from "../../../../api/handlers/fetchNewExercise";
+import SuccessfullyUpload from "../../../../ui/exercises/SuccessfullyUpload";
 const { create } = classes;
 
 /**
@@ -37,28 +39,21 @@ export default function NewExercise() {
   const [error, setError] = useState(null);
   const [changeQuestion, setChangeQuestion] = useState(false);
   const [chooseAnswer, setChooseAnswer] = useState([]);
+  const [success, setSuccess] = useState(false);
 
   const [exercise, setExercise] = useState({
     type: null,
     question: null,
+    lang: texts.lang,
     clozeQuestion: null,
     answer: [],
     multipleWrongs: null,
     lessonData: {
       lessonIndex: null,
-      lessonTitle: null,
       lessonKey: null,
       lessonLevel: null,
     },
   });
-
-  const errorHandler = (invalid, errorType) => {
-    if (invalid) {
-      setError(errorType);
-    } else {
-      setError(null);
-    }
-  };
 
   useEffect(() => {
     if (!submit) return;
@@ -69,10 +64,23 @@ export default function NewExercise() {
     // with older browsers.
     const payload = cleanUp(exercise);
 
-    // qui dentro facciamo partire la fetch
-    // a seconda della risposta possiamo mostrare un errore o un tasto
-    // per inserire un nuovo esercizio
-    console.log(payload);
+    const controller = new AbortController();
+
+    const uploadExercise = async () => {
+      const res = await fetchNewExercise(payload, controller.signal);
+
+      if (res.aborted) return;
+      if (res.error) {
+        setError(res.errorMessage);
+        setSubmit(false);
+      } else {
+        setSubmit(false);
+        setSuccess(true);
+      }
+    };
+
+    uploadExercise();
+    return () => controller.abort();
   }, [submit]);
 
   return (
@@ -93,24 +101,24 @@ export default function NewExercise() {
         />
       )}
       {exercise.lessonData.lessonIndex && (
-        <>
-          <QuestionDefiner
-            setExercise={setExercise}
-            setError={setError}
-            exercise={exercise}
-            changeQuestion={changeQuestion}
-            setChangeQuestion={setChangeQuestion}
-            setChooseAnswer={setChooseAnswer}
-            strings={texts.strings}
-            classes={create}
-          />
-        </>
+        <QuestionDefiner
+          setExercise={setExercise}
+          setError={setError}
+          exercise={exercise}
+          changeQuestion={changeQuestion}
+          setChangeQuestion={setChangeQuestion}
+          setChooseAnswer={setChooseAnswer}
+          strings={texts.strings}
+          classes={create}
+        />
       )}
 
       {changeQuestion && exercise.question && (
         <SetCorrectAnswer
           chooseAnswer={chooseAnswer}
+          strings={texts.strings}
           setExercise={setExercise}
+          classes={create}
         />
       )}
 
@@ -121,6 +129,7 @@ export default function NewExercise() {
             setError={setError}
             setExercise={setExercise}
             strings={texts.strings}
+            classes={create}
           />
         )}
 
@@ -128,13 +137,21 @@ export default function NewExercise() {
         <SubmitExercise
           lessons={lessons.strings}
           exercise={exercise}
-          errorHandler={errorHandler}
+          setError={setError}
           setExercise={setExercise}
           setSubmit={setSubmit}
+          strings={texts.strings}
           classes={create}
         />
       )}
       {error && <InvalidExercise strings={errors.strings} error={error} />}
+      {success && (
+        <SuccessfullyUpload
+          lang={texts.lang}
+          setSuccess={setSuccess}
+          setExercise={setExercise}
+        />
+      )}
     </div>
   );
 }
