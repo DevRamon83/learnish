@@ -1,7 +1,12 @@
 import { useState } from "react";
 import { answerCleaner } from "../../../../helpers/exercises/exerciseHelpers";
 
-export default function SetCorrectAnswer({ chooseAnswer, setExercise }) {
+export default function SetCorrectAnswer({
+  chooseAnswer,
+  setExercise,
+  strings,
+  classes,
+}) {
   const [selected, setSelected] = useState({ btn: null, index: null });
 
   const handler = (btn, index) => {
@@ -20,11 +25,13 @@ export default function SetCorrectAnswer({ chooseAnswer, setExercise }) {
     }));
   };
 
-  const btnBase = "exercise__btn";
+  const btnBase = classes.btnBase;
 
   return (
     <>
-      <div className="exercise__answer">
+      <h2>{strings.correctAnswer}</h2>
+
+      <div className={classes.answer}>
         {chooseAnswer.map((btn, index) => (
           <div
             className={`${btnBase}${btn === selected.btn && index === selected.index ? "-selected" : ""}`}
