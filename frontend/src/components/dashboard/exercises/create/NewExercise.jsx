@@ -150,6 +150,7 @@ export default function NewExercise() {
           lang={texts.lang}
           setSuccess={setSuccess}
           setExercise={setExercise}
+          strings={texts.strings}
         />
       )}
     </div>
