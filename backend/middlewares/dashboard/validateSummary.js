@@ -18,7 +18,7 @@ const validateSummary = (req, res, next) => {
     const log = true;
     const userBan = true;
     const errorType = validData.errorMsg;
-    return handleErrorResponse(res, req, errorType, 403, log, userBan);
+    return handleErrorResponse(res, req, errorType, 400, log, userBan);
   }
 
   next();
