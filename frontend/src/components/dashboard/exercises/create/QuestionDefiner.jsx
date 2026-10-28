@@ -52,12 +52,11 @@ export default function QuestionDefiner({
             defaultValue={text}
             maxLength={250}
             rows="5"
-            cols="100"
           />
 
           <img
             src="/upload.svg"
-            className={classes.sendBtn}
+            className={classes.submit}
             onClick={questionHandler}
           />
         </div>
