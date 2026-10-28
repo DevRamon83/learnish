@@ -14,7 +14,16 @@ const logData = (req, message, userBan) => {
 };
 
 const handleErrorResponse = (res, req, message, status, log, userBan) => {
-  const ensureMessage = log ? "error_fakeMsg" : message;
+  let ensureMessage = message;
+
+  if (log && !userBan) {
+    ensureMessage = "generic";
+  }
+
+  if (userBan) {
+    ensureMessage = "error_fakeMsg";
+  }
+
   res.status(status).json({ error: true, message: ensureMessage });
   const data = logData(req, message, userBan);
   if (log) {
