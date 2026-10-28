@@ -3,28 +3,32 @@ const { validators } = bundle;
 
 export default function SubmitExercise({
   exercise,
-  errorHandler,
+  setError,
   lessons,
   setExercise,
   setSubmit,
   classes,
+  strings,
 }) {
   const handler = () => {
     const isInvalid = validators.invalidExercise(
       exercise,
       lessons,
+      "frontend",
       setExercise,
     );
 
     if (isInvalid) {
       setSubmit(false);
-      return errorHandler(true, isInvalid);
+      return setError(isInvalid);
     }
     setSubmit(true);
   };
   return (
     <>
-      <img className={classes.submit} src="/upload.svg" onClick={handler} />
+      <div className={classes.submitExercise} onClick={handler}>
+        {strings.submitExercise}
+      </div>
     </>
   );
 }
