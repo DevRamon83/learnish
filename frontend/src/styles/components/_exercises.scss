@@ -199,20 +199,12 @@
   @extend %exercise__larRowChar;
   color: #002147;
   padding: 0 15px;
-
-  @include breakpoints.medium {
-    padding: unset;
-  }
 }
 
 .exercise__larRow-emma p {
   @extend %exercise__larRowChar;
   color: crimson;
   padding: 0 15px;
-
-  @include breakpoints.medium {
-    padding: unset;
-  }
 }
 
 .exercise__character-brian {
@@ -310,4 +302,254 @@
   @include breakpoints.medium {
     height: 30px;
   }
+}
+
+.exercises__createContainer {
+  width: 100%;
+  min-height: 420px;
+  margin: 0;
+  padding-bottom: 50px;
+
+  @include breakpoints.medium {
+    width: 97%;
+    margin: 0 0 0 3%;
+  }
+}
+
+.exercises__createContainer h1 {
+  background-color: #002147;
+  color: white;
+  font-size: 25px;
+  text-align: center;
+  padding: 10px 0;
+
+  @include breakpoints.medium {
+    width: 50%;
+    margin: 25px 0 0 50%;
+    border-radius: 10px 0 0 10px;
+  }
+}
+
+.exercises__createContainer h2 {
+  text-transform: uppercase;
+  border-bottom: 1px solid black;
+  width: 100%;
+  border-top: 1px solid black;
+  background-color: cornsilk;
+  padding: 10px 0;
+  text-align: center;
+  color: #002147;
+  margin: 50px 0 30px 0;
+
+  @include breakpoints.medium {
+    border: 1px solid black;
+    border-radius: 10px;
+    width: fit-content;
+    padding: 10px 20px;
+    text-align: unset;
+  }
+}
+
+%exerciseContainers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  gap: 10px 0;
+}
+
+.exercise__typeDefiner {
+  @extend %exerciseContainers;
+
+  @include breakpoints.medium {
+    margin-left: 2%;
+  }
+}
+
+.exercise__level {
+  @extend %exerciseContainers;
+  @include breakpoints.medium {
+    margin-left: 2%;
+  }
+}
+
+.exercise__answer {
+  @extend %exerciseContainers;
+  flex-wrap: wrap;
+
+  @include breakpoints.medium {
+    width: 50%;
+    margin-left: 2%;
+  }
+}
+
+select[name="selectLesson"] {
+  padding: 8px 15px;
+  line-height: 1.2;
+  text-transform: uppercase;
+  font-weight: bold;
+  border-radius: 10px;
+  width: 90%;
+  margin: 0 0 0 5%;
+  display: block;
+
+  @include breakpoints.medium {
+    width: unset;
+    margin: 0 0 10px 2%;
+  }
+}
+
+.exercise__multipleInput {
+  width: 90%;
+  outline: none;
+  height: 25px;
+  margin-left: 2%;
+
+  @include breakpoints.medium {
+    width: 50%;
+  }
+}
+
+.exercise__btn {
+  border: 1px solid black;
+  margin: 0 10px 0 20px;
+  padding: 10px;
+  width: fit-content;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: gainsboro;
+  font-size: 13px;
+
+  @include breakpoints.medium {
+    font-size: unset;
+    margin: 0 10px 0 0;
+  }
+}
+
+.exercise__btn-selected {
+  @extend .exercise__btn;
+  background-color: white;
+}
+
+.exercise__questionText {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  background-color: white;
+  color: crimson;
+  font-weight: bold;
+  width: 100%;
+  padding: 15px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: fit-content;
+  margin: 10px 0 25px 0;
+
+  @include breakpoints.medium {
+    width: 50%;
+    border-radius: 10px;
+    border: 1px solid black;
+    margin: 10px 0 0 2%;
+  }
+}
+
+.exercise__questionText img {
+  margin: 0 15px;
+  border: 1px solid black;
+  height: 25px;
+  background-color: aliceblue;
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.exercise__questionContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.exercise__questionContainer textarea {
+  width: 100%;
+  outline: none;
+
+  @include breakpoints.medium {
+    width: 60%;
+    margin-left: 2%;
+  }
+}
+
+.exercise__submitBtn {
+  margin: 35px 0 0 2%;
+  border: 1px solid black;
+  width: 25px;
+  background-color: lime;
+  cursor: pointer;
+  border-radius: 50%;
+  display: block;
+  padding: 5px;
+  text-transform: uppercase;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.exercise__submitBtn-exercise {
+  @extend .exercise__submitBtn;
+  padding: 10px 25px;
+  width: fit-content;
+  border-radius: 10px;
+}
+
+.exercise__questionContainer img {
+  display: unset;
+  margin: 0 15px;
+  height: 25px;
+}
+
+.exercise__successAlert {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.exercise__successAlert p {
+  background-color: white;
+  border: 1px solid black;
+  height: 250px;
+  width: fit-content;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-transform: uppercase;
+  font-weight: bold;
+  border-radius: 25px;
+  align-items: center;
+}
+
+.exercise__successBtn {
+  padding: 10px 20px;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: lime;
+  color: black;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
 }
