@@ -18,5 +18,8 @@ export const classes = {
     yourQuestion: "exercise__questionText",
     questionContainer: "exercise__questionContainer",
     submit: "exercise__submitBtn",
+    inputMultipleChoice: "exercise__multipleInput",
+    submitExercise: "exercise__submitBtn-exercise",
+    answer: "exercise__answer",
   },
 };
