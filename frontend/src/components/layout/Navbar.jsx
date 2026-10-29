@@ -4,11 +4,14 @@ import { NavLink } from "react-router-dom";
 import { usePersonalSettings } from "../../hooks/usePersonalSettings";
 import { useSelector } from "react-redux";
 import Hamburger from "../../ui/Hamburger";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLang } from "../../hooks/useLang";
 import { i18nAddresses } from "../../constants/i18nAddresses";
 import ConditionalNavbar from "../../ui/ConditionalNavbar";
 import useLogout from "../../hooks/useLogout";
+import { initializeSocket } from "../../socket/socketClient";
+import { API_URLS } from "../../constants/apiUrls";
+import socketActions from "../../socket/socketActions";
 
 export default function Navbar() {
   const { navbarContainer, nav, navOpen } = classes;
@@ -18,6 +21,17 @@ export default function Navbar() {
   const user = useSelector((state) => state.auth.user);
 
   const { strings, lang } = useLang(i18nAddresses.layout);
+
+  useEffect(() => {
+    if (!user) return;
+
+    const backendOrigin = API_URLS.base.replace("/api", "");
+
+    initializeSocket(backendOrigin);
+    const data = { userId: user.id, username: user.username };
+
+    socketActions("register_user", data);
+  }, [user]);
 
   usePersonalSettings();
 
