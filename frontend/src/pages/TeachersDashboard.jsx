@@ -1,6 +1,5 @@
 import { useState } from "react";
 import bundle from "shared";
-import useLogout from "../hooks/useLogout";
 import { classes } from "../constants/components/dashboard";
 import YourStudents from "../components/dashboard/YourStudents";
 import Settings from "../components/dashboard/Settings";
@@ -10,7 +9,7 @@ const { dashboardTeachersTabs } = bundle.constants;
 
 export default function TeachersDashboard() {
   const [currentTab, setCurrentTab] = useState("students");
-  useLogout(currentTab);
+
   return (
     <>
       <main className={classes.main}>
@@ -34,6 +33,7 @@ export default function TeachersDashboard() {
             <Settings userType="teacher" />
           </div>
         )}
+        {currentTab === "messages" && <Messages />}
       </main>
     </>
   );

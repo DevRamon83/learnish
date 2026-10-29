@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Study from "../components/dashboard/Study";
 import useRetrieveStats from "../hooks/useRetrieveStats";
 import { classes } from "../constants/components/dashboard";
-import useLogout from "../hooks/useLogout";
 import bundle from "shared";
 import Settings from "../components/dashboard/Settings";
 import DashboardMenu from "../ui/DashboardMenu";
 import Statistics from "../components/dashboard/stats/Statistics";
+import Messages from "../components/dashboard/messages/Messages";
+import { getSocket } from "../socket/socketClient";
 const { dashboardStudentsTabs } = bundle.constants;
 
 export default function StudentsDashboard() {
@@ -17,7 +18,19 @@ export default function StudentsDashboard() {
   // (e.g., generating new summaries)rely on this up-to-date statistical data
   // to function correctly.
   useRetrieveStats();
-  useLogout(currentTab);
+  const socket = getSocket();
+
+  useEffect(() => {
+    if (!socket) return;
+
+    socket.on("received_msg", (data) => {
+      const sender = data.sender;
+      const content = data.content;
+      // qui il codice per aggiornare redux
+    });
+
+    return () => socket.off("received_msg");
+  }, [socket]);
 
   return (
     <main className={classes.main}>
@@ -30,6 +43,7 @@ export default function StudentsDashboard() {
         {currentTab === "study" && <Study />}
         {currentTab === "stats" && <Statistics />}
         {currentTab === "settings" && <Settings userType="student" />}
+        {currentTab === "messages" && <Messages />}
       </div>
     </main>
   );
