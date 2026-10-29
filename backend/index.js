@@ -10,8 +10,12 @@ import dashboardRoute from "./routes/dashboardRoute.js";
 import messagesRoute from "./routes/messagesRoute.js";
 import trackersRoute from "./routes/trackersRoute.js";
 import updateRoute from "./routes/updateRoute.js";
+import { createServer } from "http";
+import { Server } from "socket.io";
+import initSocketLogic from "./initSocketLogic.js";
 
 const app = express();
+const server = createServer(app);
 
 const env = process.env.NODE_ENV;
 const ORIGIN = env === "DEV" ? process.env.ORIGIN_DEV : process.env.ORIGIN_PROD;
@@ -53,6 +57,25 @@ app.use("/api/messages", messagesRoute);
 app.use("/api/trackers", trackersRoute);
 app.use("/api/update", updateRoute);
 
+const connectedUsers = new Map();
+const messages = new Map();
+
+const contextMaps = {
+  securityCache,
+  connectedUsers,
+  messages,
+};
+
+const io = new Server(server, {
+  cors: {
+    origin: ORIGIN,
+    methods: ["GET", "POST"],
+    credentials: true,
+  },
+});
+
+initSocketLogic(io, contextMaps);
+
 mongoose
   .connect(MONGO_URI)
 
@@ -63,7 +86,7 @@ mongoose
     );
     setPopulator(unauthorizedUsers, tokensRevoked, usersBanned);
 
-    app.listen(PORT, () => {
+    server.listen(PORT, () => {
       env === "DEV" && console.log("server running on port ", PORT);
     });
   })
