@@ -1,7 +1,7 @@
 import { API_URLS } from "../../constants/apiUrls";
 import { fetchData } from "../fetchData";
 
-const fetchNewMessage = async (data) => {
+const fetchNewContactRequest = async (data) => {
   const { base, messages } = API_URLS;
   const apiUrl = base + messages.base + messages.new;
 
@@ -12,4 +12,4 @@ const fetchNewMessage = async (data) => {
   return response;
 };
 
-export default fetchNewMessage;
+export default fetchNewContactRequest;

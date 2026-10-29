@@ -7,7 +7,7 @@ import FormInput from "./FormInput";
 import { classes } from "../../constants/components/forms";
 import ErrorOnSubmit from "../ErrorOnSubmit";
 import bundle from "shared";
-import fetchNewMessage from "../../api/handlers/fetchNewMessage";
+import fetchNewContactRequest from "../../api/handlers/fetchNewContactRequest";
 import MessageSent from "../MessageSent";
 const { messageValidator } = bundle.validators;
 
@@ -44,7 +44,7 @@ export default function ContactForm() {
     const isValidData = validate(data);
     if (!isValidData) return;
 
-    const response = await fetchNewMessage(data);
+    const response = await fetchNewContactRequest(data);
 
     if (response.error) {
       setError(standardError);

@@ -26,7 +26,7 @@ export const API_URLS = {
   },
   messages: {
     base: "/messages",
-    new: "/new",
+    new: "/newContact",
   },
   trackers: {
     base: "/trackers",
