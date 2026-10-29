@@ -7,6 +7,8 @@ import useTeacherNav from "../../../hooks/UseTeacherNav";
 import useRetriveTeachersList from "../../../hooks/useRetriveTeachersList";
 import { useState } from "react";
 import TeacherDeactivateAlert from "../../../ui/settings/TeacherDeactivateAlert";
+import { updateStudentTeacher } from "../../../redux/slices/authSlice";
+import { useDispatch } from "react-redux";
 
 export default function TeachersList({ studentProps, props }) {
   // 1. Destructuring & Layout Config
@@ -14,6 +16,8 @@ export default function TeachersList({ studentProps, props }) {
   const classes = props.classes.settings;
   const { myTeacher, setMyTeacher, teachersList, setTeachersList } =
     studentProps;
+
+  const dispatch = useDispatch();
 
   // 2. Local UI States & Translations
   const [deactivatePanel, setDeactivatePanel] = useState("close");
@@ -49,6 +53,16 @@ export default function TeachersList({ studentProps, props }) {
       return;
     }
 
+    let teacherData = null;
+
+    if (action === "choose") {
+      teacherData = {
+        id: teachersList[currentTeacher]._id,
+        username: teachersList[currentTeacher].username,
+      };
+    }
+
+    dispatch(updateStudentTeacher(teacherData));
     setMyTeacher(newTeacher.teacher);
     setToggle(false);
   };
