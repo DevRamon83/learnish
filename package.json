@@ -7,6 +7,13 @@
     "backend",
     "shared"
   ],
+  "allowScripts": {
+    "@google/genai": true,
+    "@parcel/watcher": true,
+    "argon2": true,
+    "esbuild": true,
+    "protobufjs": true
+  },
   "description": "",
   "main": "index.js",
   "scripts": {

@@ -29,13 +29,6 @@
     "socket.io": "^4.8.4",
     "uuid": "^14.0.0"
   },
-  "allowScripts": {
-    "@google/genai": true,
-    "@parcel/watcher": true,
-    "argon2": true,
-    "esbuild": true,
-    "protobufjs": true
-  },
   "devDependencies": {
     "nodemon": "^3.1.14"
   }
