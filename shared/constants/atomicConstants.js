@@ -3,12 +3,12 @@ export const currentTos = "tos_v1.0.0";
 export const userType = ["teacher", "student"];
 export const langsArray = ["italian", "english", "spanish"];
 export const plans = ["free", "basic", "pro"];
-export const dashboardStudentsTabs = ["study", "stats", "settings", "logout"];
+export const dashboardStudentsTabs = ["study", "stats", "settings", "messages"];
 export const dashboardTeachersTabs = [
   "students",
   "classrooms",
   "settings",
-  "logout",
+  "messages",
 ];
 export const supportedLangs = ["us", "en"];
 export const currencies = ["dollar", "euro"];
