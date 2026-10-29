@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const Schema = mongoose.Schema;
 
-const MessageSchema = new Schema(
+const ContactSchema = new Schema(
   {
     message: { type: String, required: true },
     email: { type: String, required: true },
@@ -10,6 +10,6 @@ const MessageSchema = new Schema(
   { timestamps: true },
 );
 
-const messageModel = mongoose.model("Message", MessageSchema);
+const contactModel = mongoose.model("Contact", ContactSchema);
 
-export default messageModel;
+export default contactModel;

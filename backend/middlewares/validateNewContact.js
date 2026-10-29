@@ -2,7 +2,7 @@ import bundle from "shared/index.js";
 import handleErrorResponse from "../helpers/handleErrorResponse.js";
 const { messageValidator } = bundle.validators;
 
-const validateMessage = (req, res, next) => {
+const validateNewContact = (req, res, next) => {
   const log = true;
   const userBan = false;
   const data = req.body;
@@ -16,4 +16,4 @@ const validateMessage = (req, res, next) => {
   next();
 };
 
-export default validateMessage;
+export default validateNewContact;
