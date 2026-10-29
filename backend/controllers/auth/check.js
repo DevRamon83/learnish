@@ -22,6 +22,8 @@ const check = async (req, res) => {
       plan: payload.plan,
       type: payload.type,
       pic: user?.profilePic,
+      teacherData: user.teacher ?? null,
+      studentsList: user.students ?? null,
     };
 
     return res.status(200).json(response);

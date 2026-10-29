@@ -36,6 +36,8 @@ const login = async (req, res) => {
       plan: user.plan,
       type: user.userType,
       pic: user.profilePic,
+      teacherData: user.teacher ?? null,
+      studentsList: user.students ?? null,
     };
 
     const { accessConfig, refreshConfig } = createTokenConfigs(configData);
