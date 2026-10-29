@@ -8,7 +8,9 @@ const banUser = async (req, data) => {
       { returnDocument: "after" },
     );
 
-    req.context.usersBanned.add(user.username);
+    if (req) {
+      req.context.usersBanned.add(user.username);
+    }
   } catch (err) {
     console.error(err);
   }
