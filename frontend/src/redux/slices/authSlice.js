@@ -2,10 +2,16 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   authState: "pending",
-  user: null,
-  type: null,
-  plan: null,
-  error: null,
+  user: {
+    error: false,
+    username: null,
+    id: null,
+    plan: null,
+    type: null,
+    pic: { bucketImg: null, fileName: null, storage: null },
+    teacherData: { id: null, username: null },
+    studentsList: null,
+  },
 };
 
 const authSlice = createSlice({
@@ -19,9 +25,7 @@ const authSlice = createSlice({
       state.user = action.payload;
     },
     updateStudentTeacher: (state, action) => {
-      if (state.user) {
-        state.user.teacherData = action.payload;
-      }
+      state.user.teacherData = action.payload;
     },
     logout: (state) => {
       state.authState = "unauthenticated";
