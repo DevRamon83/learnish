@@ -20,7 +20,7 @@ const createMessage = async (message) => {
   }
 };
 
-const workOnDb = async (data, key) => {
+export const workOnDb = async (data, key) => {
   switch (key) {
     case "userExist":
       return await idChecker(data);
@@ -31,4 +31,13 @@ const workOnDb = async (data, key) => {
   }
 };
 
-export default workOnDb;
+export const notifyMessage = (io, connectedUsers, data, notifyTo) => {
+  const { receiverID, senderID } = data;
+  const id = notifyTo === "sender" ? senderID : receiverID;
+
+  const recipient = connectedUsers.get(id);
+
+  if (recipient) {
+    io.to(recipient.socketId).emit("received_msg", data);
+  }
+};
