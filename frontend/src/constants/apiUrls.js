@@ -42,4 +42,8 @@ export const API_URLS = {
     deactivate: "/deactivate",
     teacherAction: "/teacherAction",
   },
+  messages: {
+    base: "/messages",
+    allMessages: "/allMessages",
+  },
 };
