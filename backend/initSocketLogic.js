@@ -2,6 +2,7 @@ import newMessageSocket from "./socketHandlers/newMessageSocket.js";
 import register from "./socketHandlers/register.js";
 
 const initSocketLogic = (io, contextMaps) => {
+  const { connectedUsers } = contextMaps;
   io.on("connection", (socket) => {
     socket.on("register_user", (data) => {
       register(socket, contextMaps.connectedUsers, data);
