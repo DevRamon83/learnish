@@ -20,9 +20,13 @@ import useScrollToTop from "./hooks/useScrollToTop";
 import Lesson from "./pages/Lesson";
 import RecoverPsw from "./pages/RecoverPsw";
 import TeachersDashboard from "./pages/TeachersDashboard";
+import { useLang } from "./hooks/useLang";
+import { i18nAddresses } from "./constants/i18nAddresses";
 
 function App() {
   const authState = useAuth();
+  const { strings, lang } = useLang(i18nAddresses.auth);
+
   useScrollToTop();
   const PrivateRoutes = () => {
     if (authState === "pending") return <p>Caricamento...</p>;
@@ -41,7 +45,10 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/verify/:token" element={<VerifyUser />} />
-        <Route path="/recover/:token" element={<RecoverPsw />} />
+        <Route
+          path="/recover/:token"
+          element={<RecoverPsw strings={strings} key={lang} />}
+        />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/faq" element={<Faq />} />

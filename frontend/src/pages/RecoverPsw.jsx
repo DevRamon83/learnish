@@ -11,13 +11,12 @@ import bundle from "shared";
 import fetchNewPsw from "../api/handlers/fetchNewPsw";
 const { passwordValidator } = bundle;
 
-export default function RecoverPsw() {
+export default function RecoverPsw({ strings }) {
   const { token } = useParams();
   const formRef = useRef(null);
   const [error, setError] = useState(null);
   const [okRes, setOkRes] = useState(null);
 
-  const { strings, lang } = useLang(i18nAddresses.auth);
   const errorStrings = useLang(i18nAddresses.errors);
   const objConfig = authConfigBuilder(strings, "login");
 
@@ -47,7 +46,7 @@ export default function RecoverPsw() {
     <>
       <div className="recover">
         <form className={classes.login} ref={formRef} onSubmit={submitHandler}>
-          <FormInput Element={PasswordInput} data={password} lang={lang} />
+          <FormInput Element={PasswordInput} data={password} />
           <ErrorOnSubmit error={error} />
           <button className={classes.btn.login}>{strings.send}</button>
         </form>

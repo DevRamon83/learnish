@@ -15,7 +15,7 @@ import ErrorOnSubmit from "../ErrorOnSubmit";
 import { classes } from "../../constants/components/forms";
 const { authValidator } = bundle.validators;
 
-export default function SignupForm({ strings, lang }) {
+export default function SignupForm({ strings }) {
   const formRef = useRef();
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
@@ -67,23 +67,15 @@ export default function SignupForm({ strings, lang }) {
         <div>{strings.confirmMsg}</div>
       ) : (
         <form className={classes.signup} ref={formRef} onSubmit={submitHandler}>
-          <FormInput Element={TextInput} data={username} lang={lang} />
-          <FormInput Element={EmailInput} data={email} lang={lang} />
-          <FormInput Element={EmailInput} data={confirmEmail} lang={lang} />
-          <FormInput
-            Element={SelectInput}
-            data={selects.userType}
-            lang={lang}
-          />
-          <FormInput Element={SelectInput} data={selects.plan} lang={lang} />
-          <FormInput Element={PasswordInput} data={password} lang={lang} />
-          <FormInput
-            Element={PasswordInput}
-            data={confirmPassword}
-            lang={lang}
-          />
-          <FormInput Element={RadioInput} data={privacy} lang={lang} />
-          <FormInput Element={RadioInput} data={tos} lang={lang} />
+          <FormInput Element={TextInput} data={username} />
+          <FormInput Element={EmailInput} data={email} />
+          <FormInput Element={EmailInput} data={confirmEmail} />
+          <FormInput Element={SelectInput} data={selects.userType} />
+          <FormInput Element={SelectInput} data={selects.plan} />
+          <FormInput Element={PasswordInput} data={password} />
+          <FormInput Element={PasswordInput} data={confirmPassword} />
+          <FormInput Element={RadioInput} data={privacy} />
+          <FormInput Element={RadioInput} data={tos} />
           <ErrorOnSubmit error={error} />
           <button className={classes.btn.send}>{strings.signup}</button>
         </form>

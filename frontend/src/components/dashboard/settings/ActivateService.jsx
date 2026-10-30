@@ -52,9 +52,8 @@ export default function ActivateService({ props, contractProps }) {
         </div>
       ) : (
         <PriceDefiner
-          key={service}
+          key={`${service}_${lang}`}
           strings={strings}
-          lang={lang}
           setStatus={panelHandler}
           status={service}
           title={strings[service]}

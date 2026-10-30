@@ -1,7 +1,7 @@
 import { NumberInput, useRamonForm } from "ramon-form-sdude";
 import { classes } from "../../constants/components/forms";
 import FormInput from "./FormInput";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import fetchUpdateContract from "../../api/handlers/fetchUpdateContract";
 import contractConfigBuilder from "../../forms/configs/teacherContract";
 
@@ -9,7 +9,6 @@ export default function PriceDefiner({
   status,
   title,
   strings,
-  lang,
   setStatus,
   next,
   packs,
@@ -56,7 +55,6 @@ export default function PriceDefiner({
                 key={`key_${element}`}
                 Element={NumberInput}
                 data={fields[element]}
-                lang={lang}
               />
             ))}
             <div className="settings__price-buttons">

@@ -81,9 +81,9 @@ export default function NewSummary({
               classes={classes}
               closeHandler={closeHandler}
             />
-            <FormInput Element={UrlInput} data={fields.title} lang={lang} />
-            <FormInput Element={UrlInput} data={fields.youtube} lang={lang} />
-            <FormInput Element={TextareaInput} data={summary} lang={lang} />
+            <FormInput Element={UrlInput} data={fields.title} />
+            <FormInput Element={UrlInput} data={fields.youtube} />
+            <FormInput Element={TextareaInput} data={summary} />
             <ErrorOnSubmit error={error} />
             {/* Renders the multi-step upload interface once the initial draft 
             state is triggered */}

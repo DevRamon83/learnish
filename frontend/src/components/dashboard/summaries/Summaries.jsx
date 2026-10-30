@@ -58,6 +58,7 @@ export default function Summaries() {
         strings={strings}
         lang={lang}
         setRetry={setRetry}
+        key={lang}
       />
     </>
   );

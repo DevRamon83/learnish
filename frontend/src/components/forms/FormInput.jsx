@@ -11,7 +11,7 @@ import { classes } from "../../constants/components/forms";
 import { useLang } from "../../hooks/useLang";
 import { i18nAddresses } from "../../constants/i18nAddresses";
 
-export default function FormInput({ Element, data, lang }) {
+export default function FormInput({ Element, data }) {
   const [uiStates, setUiStates] = useState(INITIAL_UI_STATE);
   const { strings } = useLang(i18nAddresses.errors);
   const { formContainer, inputContainer } = idDefiner(data);
@@ -52,12 +52,7 @@ export default function FormInput({ Element, data, lang }) {
   return (
     <>
       <div className={classes.errorContainer}>{uiStates.error}</div>
-      <InputContainer
-        classes={classes}
-        data={data}
-        lang={lang}
-        configObj={configObj}
-      />
+      <InputContainer classes={classes} data={data} configObj={configObj} />
     </>
   );
 }

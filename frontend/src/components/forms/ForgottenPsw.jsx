@@ -4,7 +4,6 @@ import fetchForgottenPsw from "../../api/handlers/fetchForgottenPsw";
 import ErrorOnSubmit from "../ErrorOnSubmit";
 
 export default function ForgottenPsw({
-  lang,
   strings,
   classes,
   username,
@@ -38,7 +37,7 @@ export default function ForgottenPsw({
   return (
     <>
       <form className={classes.login} ref={formRef} onSubmit={submitHandler}>
-        <FormInput Element={TextInput} data={username} lang={lang} />
+        <FormInput Element={TextInput} data={username} />
         <button className={classes.btn.login}>{strings.recover}</button>
       </form>
       {error && <ErrorOnSubmit error={error} />}

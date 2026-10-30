@@ -15,7 +15,7 @@ import { classes } from "../../constants/components/forms";
 import ForgottenPsw from "./ForgottenPsw";
 const { authValidator } = bundle.validators;
 
-export default function LoginForm() {
+export default function LoginForm({ strings, lang }) {
   const formRef = useRef();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -23,7 +23,6 @@ export default function LoginForm() {
   const [newPsw, setNewPsw] = useState(false);
   const standardError = "invalid credentials";
 
-  const { strings, lang } = useLang(i18nAddresses.auth);
   const errorStrings = useLang(i18nAddresses.errors);
   const objConfig = authConfigBuilder(strings, "login");
 
@@ -71,6 +70,7 @@ export default function LoginForm() {
     <>
       {newPsw ? (
         <ForgottenPsw
+          key={lang}
           classes={classes}
           lang={lang}
           strings={strings}
@@ -87,8 +87,8 @@ export default function LoginForm() {
             ref={formRef}
             onSubmit={submitHandler}
           >
-            <FormInput Element={TextInput} data={username} lang={lang} />
-            <FormInput Element={PasswordInput} data={password} lang={lang} />
+            <FormInput Element={TextInput} data={username} />
+            <FormInput Element={PasswordInput} data={password} />
             <ErrorOnSubmit error={error} />
             <button className={classes.btn.login}>{strings.login}</button>
           </form>

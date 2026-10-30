@@ -10,7 +10,7 @@ import SettingsCommonTitle from "../../../ui/settings/SettingsCommonTitle";
 export default function Password({ props }) {
   const { classes, toggle, setToggle, card } = props;
 
-  const { strings, lang } = useLang(i18nAddresses.settings);
+  const { strings } = useLang(i18nAddresses.settings);
   const objConfig = newPswConfigBuilder(strings, "signup");
   const { fields } = useRamonForm(objConfig);
   const { password, newPassword, confirmNewPassword } = fields;
@@ -55,13 +55,9 @@ export default function Password({ props }) {
             onSubmit={submitHandler}
             className={toggle ? form : ""}
           >
-            <FormInput Element={PasswordInput} data={password} lang={lang} />
-            <FormInput Element={PasswordInput} data={newPassword} lang={lang} />
-            <FormInput
-              Element={PasswordInput}
-              data={confirmNewPassword}
-              lang={lang}
-            />
+            <FormInput Element={PasswordInput} data={password} />
+            <FormInput Element={PasswordInput} data={newPassword} />
+            <FormInput Element={PasswordInput} data={confirmNewPassword} />
           </form>
         </>
       )}

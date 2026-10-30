@@ -54,9 +54,8 @@ export default function DispatchContractForm({
     <>
       <div className={classes.settings.contractForm}>
         <PriceDefiner
-          key={status}
+          key={`${status}${lang}`}
           strings={strings}
-          lang={lang}
           setStatus={setStatus}
           status={status}
           title={title}

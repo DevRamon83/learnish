@@ -1,6 +1,4 @@
 import { useRef, useState } from "react";
-import { useLang } from "../../hooks/useLang";
-import { i18nAddresses } from "../../constants/i18nAddresses";
 import { useRamonForm, EmailInput, TextareaInput } from "ramon-form-sdude";
 import contactConfigBuilder from "../../forms/configs/contact";
 import FormInput from "./FormInput";
@@ -11,12 +9,11 @@ import fetchNewContactRequest from "../../api/handlers/fetchNewContactRequest";
 import MessageSent from "../MessageSent";
 const { messageValidator } = bundle.validators;
 
-export default function ContactForm() {
+export default function ContactForm({ strings }) {
   const formRef = useRef();
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
   const standardError = "invalid credentials";
-  const { strings, lang } = useLang(i18nAddresses.contact);
   const date = Date.now();
 
   const objConfig = contactConfigBuilder(strings, "login");
@@ -63,12 +60,8 @@ export default function ContactForm() {
         ref={formRef}
         onSubmit={submitHandler}
       >
-        <FormInput Element={EmailInput} data={fields.email} lang={lang} />
-        <FormInput
-          Element={TextareaInput}
-          data={textareas.message}
-          lang={lang}
-        />
+        <FormInput Element={EmailInput} data={fields.email} />
+        <FormInput Element={TextareaInput} data={textareas.message} />
         <ErrorOnSubmit error={error} />
         <button className={classes.btn.message}>{strings.send}</button>
       </form>
