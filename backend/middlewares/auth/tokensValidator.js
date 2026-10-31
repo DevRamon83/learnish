@@ -13,6 +13,7 @@ const rtErrorHandler = (data) => {
   handleErrorResponse(res, req, errorType, 401, false, userBan);
 };
 
+// Also used for WebSockets
 const tokensValidator = async (req, res, next) => {
   let log = true;
   const userBan = false;
@@ -22,7 +23,9 @@ const tokensValidator = async (req, res, next) => {
 
   if (accessToken.error && accessToken.errorType === "invalidToken") {
     const errorType = accessToken.errorType;
-    return handleErrorResponse(res, req, errorType, 403, log, userBan);
+    return next
+      ? handleErrorResponse(res, req, errorType, 403, log, userBan)
+      : { error: "invalidToken" };
   }
 
   const tokensRevoked = req.context.tokensRevoked;
@@ -33,7 +36,9 @@ const tokensValidator = async (req, res, next) => {
     const errorType = accessPayload.errorType;
     const status = accessPayload.status;
     log = status === 401 ? false : log;
-    return handleErrorResponse(res, req, errorType, status, log, userBan);
+    return next
+      ? handleErrorResponse(res, req, errorType, status, log, userBan)
+      : { error: "invalidToken" };
   }
 
   // If accessToken is not invalid, then it is expired
@@ -50,8 +55,8 @@ const tokensValidator = async (req, res, next) => {
   if (refreshToken && refreshToken.error) {
     const errorType = refreshToken.errorType;
     const data = { res, req, errorType, log, userBan, refreshToken };
-    rtErrorHandler(data);
-    return;
+    next && rtErrorHandler(data);
+    return { error: "invalidToken" };
   }
 
   // Errors already handled; populate user context if accessToken has expired
@@ -63,7 +68,11 @@ const tokensValidator = async (req, res, next) => {
   req.context.tokens.rotate = rotateToken;
   req.context.tokens.payload = payload;
 
-  next();
+  if (next) {
+    next();
+  } else {
+    return { error: false, payload };
+  }
 };
 
 export default tokensValidator;
