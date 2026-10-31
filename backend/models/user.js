@@ -33,6 +33,9 @@ const UserSchema = new Schema(
     tosAccepted: { type: Date, required: true, default: Date.now },
     isRevoked: { type: Boolean, required: true, default: false },
     isBanned: { type: Boolean, required: true, default: false },
+    unreadMessages: {
+      type: [{ type: String }],
+    },
   },
   {
     discriminatorKey: "userType",

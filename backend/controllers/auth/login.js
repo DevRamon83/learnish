@@ -38,6 +38,7 @@ const login = async (req, res) => {
       pic: user.profilePic,
       teacherData: user.teacher ?? null,
       studentsList: user.students ?? null,
+      unreadMessages: user.unreadMessages,
     };
 
     const { accessConfig, refreshConfig } = createTokenConfigs(configData);

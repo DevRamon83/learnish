@@ -24,6 +24,7 @@ const check = async (req, res) => {
       pic: user?.profilePic,
       teacherData: user.teacher ?? null,
       studentsList: user.students ?? null,
+      unreadMessages: user.unreadMessages,
     };
 
     return res.status(200).json(response);
