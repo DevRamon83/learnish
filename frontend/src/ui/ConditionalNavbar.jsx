@@ -5,7 +5,7 @@ import PublicNavbar from "./PublicNavbar";
 
 export default function ConditionalNavbar({
   navbarState,
-  user,
+  auth,
   toggleNavbar,
   logoutHandler,
   strings,
@@ -13,9 +13,9 @@ export default function ConditionalNavbar({
   return (
     <div className={navbarState}>
       <Langs />
-      {user ? (
+      {auth.authState === "authenticated" ? (
         <PrivateNavbar
-          user={user}
+          user={auth.user}
           toggleNavbar={toggleNavbar}
           logoutHandler={logoutHandler}
           strings={strings}
