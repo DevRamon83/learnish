@@ -1,9 +1,9 @@
 import { API_URLS } from "../../constants/apiUrls";
 import { fetchData } from "../fetchData";
 
-const fetchAllMessages = async (signal) => {
+const unreadMessages = async (signal) => {
   const { base, messages } = API_URLS;
-  const apiUrl = base + messages.base + messages.allMessages;
+  const apiUrl = base + messages.base + messages.unreadMessages;
 
   const method = "GET";
   const credentials = "include";
@@ -15,4 +15,4 @@ const fetchAllMessages = async (signal) => {
   return response;
 };
 
-export default fetchAllMessages;
+export default unreadMessages;
