@@ -4,12 +4,12 @@ import register from "./socketHandlers/register.js";
 const initSocketLogic = (io, contextMaps) => {
   const { connectedUsers } = contextMaps;
   io.on("connection", (socket) => {
-    socket.on("register_user", (data) => {
-      register(socket, contextMaps.connectedUsers, data);
+    socket.on("register_user", () => {
+      register(socket, contextMaps);
     });
 
     socket.on("send_msg", (message) => {
-      newMessageSocket(io, contextMaps, message);
+      newMessageSocket(io, contextMaps, message, socket);
     });
 
     socket.on("disconnect", () => {
