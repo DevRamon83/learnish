@@ -26,6 +26,8 @@ export const isBanned = (securityCache, senderID) => {
 };
 
 export const passForwardOrBan = (securityCache, messages, senderID) => {
+  const banned = isBanned(securityCache, senderID);
+  if (banned) return true;
   const timestamps = Date.now();
 
   const userTraffic = messages.get(senderID);
