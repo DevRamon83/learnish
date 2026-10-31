@@ -44,6 +44,6 @@ export const API_URLS = {
   },
   messages: {
     base: "/messages",
-    allMessages: "/allMessages",
+    unreadMessages: "/unreadMessages",
   },
 };
