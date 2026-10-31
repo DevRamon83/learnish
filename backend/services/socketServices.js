@@ -4,8 +4,8 @@ import { userModel } from "../models/user.js";
 const idChecker = async (data) => {
   const { userID } = data;
   try {
-    await userModel.findById(userID).lean();
-    return true;
+    const user = await userModel.findById(userID);
+    return user;
   } catch (err) {
     return false;
   }
@@ -13,10 +13,22 @@ const idChecker = async (data) => {
 
 const createMessage = async (message) => {
   try {
-    const newMessage = await messageModel.create(message);
+    const newMessage = await messageModel.create(message).lean();
     return newMessage;
   } catch (err) {
     return null;
+  }
+};
+
+const receiverOffline = async (data) => {
+  const { receiver, senderName } = data;
+  try {
+    if (!receiver.unreadMessages.includes(senderName)) {
+      receiver.unreadMessages.push(senderName);
+      await receiver.save();
+    }
+  } catch (err) {
+    console.error("Errore notifica offline:", err);
   }
 };
 
@@ -26,18 +38,21 @@ export const workOnDb = async (data, key) => {
       return await idChecker(data);
     case "newMessage":
       return await createMessage(data);
+    case "receiverOffline":
+      return await receiverOffline(data);
     default:
       return false;
   }
 };
 
-export const notifyMessage = (io, connectedUsers, data, notifyTo) => {
-  const { receiverID, senderID } = data;
-  const id = notifyTo === "sender" ? senderID : receiverID;
+export const sendMessage = (io, connectedUsers, data) => {
+  const { receiverID } = data;
 
-  const recipient = connectedUsers.get(id);
+  const recipient = connectedUsers.get(receiverID);
 
   if (recipient) {
     io.to(recipient.socketId).emit("received_msg", data);
   }
+
+  return recipient;
 };
