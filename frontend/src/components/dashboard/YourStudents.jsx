@@ -3,21 +3,23 @@ import fetchStudents from "../../api/handlers/fetchStudents";
 import getPicUrl from "../../helpers/getPicUrl";
 import { useLang } from "../../hooks/useLang";
 import { i18nAddresses } from "../../constants/i18nAddresses";
+import { useDispatch, useSelector } from "react-redux";
+import { updateTeacherStudent } from "../../redux/slices/authSlice";
 
 export default function YourStudents() {
-  const [students, setStudents] = useState([]);
   const { strings } = useLang(i18nAddresses.dashboard);
+  const students = useSelector((state) => state.auth.user).studentsList;
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const controller = new AbortController();
 
     const loadStudents = async () => {
       const res = await fetchStudents(controller.signal);
-
       if (res.error) {
         // error handler
       } else {
-        setStudents(res);
+        dispatch(updateTeacherStudent(res));
       }
     };
 
