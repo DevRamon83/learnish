@@ -11,6 +11,7 @@ const initialState = {
     pic: { bucketImg: null, fileName: null, storage: null },
     teacherData: { id: null, username: null },
     studentsList: null,
+    unreadMessages: [],
   },
 };
 
@@ -27,6 +28,12 @@ const authSlice = createSlice({
     updateStudentTeacher: (state, action) => {
       state.user.teacherData = action.payload;
     },
+    updateTeacherStudent: (state, action) => {
+      state.user.studentsList = action.payload;
+    },
+    updateUnreadMessages: (state, action) => {
+      state.user.studentsList = action.payload;
+    },
     logout: (state) => {
       state.authState = "unauthenticated";
       state.user = null;
@@ -34,7 +41,12 @@ const authSlice = createSlice({
   },
 });
 
-export const { setAuth, setUser, logout, updateStudentTeacher } =
-  authSlice.actions;
+export const {
+  setAuth,
+  setUser,
+  logout,
+  updateStudentTeacher,
+  updateTeacherStudent,
+} = authSlice.actions;
 
 export default authSlice.reducer;
