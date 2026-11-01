@@ -21,7 +21,6 @@ export const API_URLS = {
     allStats: "/getStats",
     flashcards: "/flashcards",
     teachers: "/teachers",
-    students: "/students",
     newExercise: "/newExercise",
   },
   messages: {

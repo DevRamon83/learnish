@@ -1,7 +1,7 @@
 import createTokenConfigs from "../../helpers/token/createTokenConfigs.js";
 import setTokenAndCookie from "../../helpers/token/setTokenAndCookie.js";
 import handleErrorResponse from "../../helpers/handleErrorResponse.js";
-import { userModel } from "../../models/user.js";
+import { Student, userModel } from "../../models/user.js";
 
 const check = async (req, res) => {
   try {
@@ -23,9 +23,17 @@ const check = async (req, res) => {
       type: payload.type,
       pic: user?.profilePic,
       teacherData: user.teacher ?? null,
-      studentsList: user.students ?? null,
       unreadMessages: user.unreadMessages,
+      studentsList: null,
     };
+
+    if (user.userType === "teacher") {
+      const students = await Student.find({ _id: { $in: user.students } })
+        .select("username _id profilePic -userType")
+        .lean();
+
+      response.studentsList = students;
+    }
 
     return res.status(200).json(response);
   } catch (err) {

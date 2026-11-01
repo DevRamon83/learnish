@@ -10,7 +10,7 @@ const initialState = {
     type: null,
     pic: { bucketImg: null, fileName: null, storage: null },
     teacherData: { id: null, username: null },
-    studentsList: null,
+    studentsList: [],
     unreadMessages: [],
   },
 };
