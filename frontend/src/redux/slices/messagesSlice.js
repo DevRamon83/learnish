@@ -10,6 +10,7 @@ const initialState = {
 
 const addMessage = (data, payload) => {
   const { senderID, receiverID, whoAmI } = payload;
+  delete payload.error;
 
   const peerID = whoAmI === "receiver" ? senderID : receiverID;
 
