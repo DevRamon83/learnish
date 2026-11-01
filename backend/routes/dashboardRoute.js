@@ -8,7 +8,6 @@ import getStats from "../controllers/dashboard/getStats.js";
 import protectedRoutes from "../middlewares/protectedRoutes.js";
 import flashcards from "../controllers/dashboard/flashcards.js";
 import teachersList from "../controllers/dashboard/teachersList.js";
-import studentsList from "../controllers/dashboard/studentsList.js";
 import validateExercise from "../middlewares/dashboard/validateExercise.js";
 import newExercise from "../controllers/dashboard/newExercise.js";
 
@@ -26,10 +25,8 @@ dashboardRoute.post("/aiCorrection", ...protectedRoutes, aiCorrection);
 dashboardRoute.post("/newStat", ...protectedRoutes, newStats);
 dashboardRoute.get("/getStats", ...protectedRoutes, getStats);
 dashboardRoute.get("/flashcards", ...protectedRoutes, flashcards);
-
 dashboardRoute.get("/summariesList", ...protectedRoutes, summariesList);
 dashboardRoute.get("/teachers", ...protectedRoutes, teachersList);
-dashboardRoute.get("/students", ...protectedRoutes, studentsList);
 dashboardRoute.post(
   "/newExercise",
   ...protectedRoutes,
