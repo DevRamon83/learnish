@@ -1,57 +1,35 @@
-import Logo from "./Logo";
+import LogoPanel from "./LogoPanel";
 import { classes } from "../../constants/layout/navbar";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { usePersonalSettings } from "../../hooks/usePersonalSettings";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Hamburger from "../../ui/Hamburger";
 import { useEffect, useState } from "react";
 import { useLang } from "../../hooks/useLang";
 import { i18nAddresses } from "../../constants/i18nAddresses";
 import ConditionalNavbar from "../../ui/ConditionalNavbar";
 import useLogout from "../../hooks/useLogout";
-import { initializeSocket } from "../../socket/socketClient";
-import { API_URLS } from "../../constants/apiUrls";
-import socketActions from "../../socket/socketActions";
-import fetchAllMessages from "../../api/handlers/fetchAllMessages";
-import { organizeMessages } from "../../helpers/organizeMessages";
-import { setChatData } from "../../redux/slices/messagesSlice";
+import NavbarNotify from "../../ui/NavbarNotify";
 
 export default function Navbar() {
   const { navbarContainer, nav, navOpen } = classes;
   const [isOpen, setIsOpen] = useState(false);
+  const [notify, setNotify] = useState(false);
+  const [isNotificationOpen, setIsNotificationOpen] = useState(false);
   const [navbarState, setNavbarState] = useState(navbarContainer);
   const [logoState, setLogoState] = useState("");
-  const user = useSelector((state) => state.auth.user);
-  console.log(user);
-  const dispatch = useDispatch();
-  const { strings, lang } = useLang(i18nAddresses.layout);
+  const auth = useSelector((state) => state.auth);
+  const navigate = useNavigate();
+  const { strings } = useLang(i18nAddresses.layout);
+  const unreadMessages = auth.user?.unreadMessages;
 
   useEffect(() => {
-    if (!user) return;
-    const controller = new AbortController();
+    const { user } = auth;
+    if (!user || !unreadMessages.length) return;
 
-    const backendOrigin = API_URLS.base.replace("/api", "");
-
-    initializeSocket(backendOrigin);
-    const data = { userId: user.id, username: user.username };
-
-    socketActions("register_user", data);
-
-    const fetchMessages = async () => {
-      const messages = await fetchAllMessages(controller.signal);
-      if (messages.error) {
-        // error handler
-        return;
-      }
-
-      if (messages.data.length === 0) return;
-      const organizedData = organizeMessages(messages);
-      dispatch(setChatData(organizedData));
-    };
-
-    fetchMessages();
-    return () => controller.abort();
-  }, [user]);
+    setLogoState("-open");
+    setNotify(true);
+  }, [auth.user?.unreadMessages.length]);
 
   usePersonalSettings();
 
@@ -67,29 +45,58 @@ export default function Navbar() {
   };
 
   const { logoutHandler } = useLogout("navbar");
+  const closeNotify = () => {
+    setLogoState("-close");
+    setNotify(false);
+    setIsNotificationOpen(false);
+  };
+
+  const goToMessages = () => {
+    const { user } = auth;
+    navigate(`/user/${user.type}/${user.id}?tab=messages`);
+    closeNotify();
+  };
+
+  const notifyFromWho = () => {
+    setIsNotificationOpen(!isNotificationOpen);
+  };
 
   return (
     <>
-      <nav className={isOpen ? navOpen : nav}>
+      <nav className={isOpen || notify ? navOpen : nav}>
         <NavLink to="/" end>
-          <Logo
+          <LogoPanel
             toggleNavbar={toggleNavbar}
             isOpen={isOpen}
+            isNotificationOpen={isNotificationOpen}
             logoState={logoState}
+            user={auth.user}
+            setIsNotificationOpen={setIsNotificationOpen}
+            notifyClass={classes.notifyContainer}
           />
         </NavLink>
+        {notify && (
+          <NavbarNotify
+            notifyFromWho={notifyFromWho}
+            goToMessages={goToMessages}
+            closeNotify={closeNotify}
+            classes={classes}
+          />
+        )}
         <ConditionalNavbar
           navbarState={navbarState}
-          user={user}
+          auth={auth}
           toggleNavbar={toggleNavbar}
           logoutHandler={logoutHandler}
           strings={strings}
         />
-        <Hamburger
-          toggleNavbar={toggleNavbar}
-          isOpen={isOpen}
-          classes={classes}
-        />
+        {!notify && (
+          <Hamburger
+            toggleNavbar={toggleNavbar}
+            isOpen={isOpen}
+            classes={classes}
+          />
+        )}
       </nav>
     </>
   );

@@ -15,4 +15,9 @@ export const classes = {
   langActive: "navbar__lang-active",
   lang: "navbar__lang",
   langIcon: "navbar__langImg",
+  notifyContainer: "navbar__notifyContainer",
+  notificationIcon: "navbar__notifyIcon",
+  navbarNotify: "navbar__notify",
+  notifyAction: "navbar__notifyIcon-action",
+  notifyClose: "navbar__notifyIcon-close",
 };

@@ -13,4 +13,6 @@ export const ids = {
 
 export const classes = {
   logo: "navbar__logo",
+  avatarContainer: "logo__senderAvatar-container",
+  avatar: "logo__senderAvatar",
 };
