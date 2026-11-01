@@ -1,8 +1,8 @@
 import banUser from "../../services/banUser.js";
 
-export const banFromSocket = async (securityCache, senderID) => {
-  securityCache.tokensRevoked.set(senderID);
-  securityCache.usersBanned.set(senderID);
+export const banFromSocket = async (securityCache, senderID, senderName) => {
+  securityCache.tokensRevoked.add(senderName);
+  securityCache.usersBanned.add(senderName);
   const data = { userID: senderID };
 
   try {
@@ -14,10 +14,10 @@ export const banFromSocket = async (securityCache, senderID) => {
   }
 };
 
-export const isBanned = (securityCache, senderID) => {
+export const isBanned = (securityCache, senderName) => {
   if (
-    securityCache.tokensRevoked.has(senderID) ||
-    securityCache.usersBanned.has(senderID)
+    securityCache.tokensRevoked.has(senderName) ||
+    securityCache.usersBanned.has(senderName)
   ) {
     return true;
   }
@@ -25,8 +25,13 @@ export const isBanned = (securityCache, senderID) => {
   return false;
 };
 
-export const passForwardOrBan = (securityCache, messages, senderID) => {
-  const banned = isBanned(securityCache, senderID);
+export const passForwardOrBan = (
+  securityCache,
+  messages,
+  senderID,
+  senderName,
+) => {
+  const banned = isBanned(securityCache, senderName);
   if (banned) return true;
   const timestamps = Date.now();
 
@@ -40,7 +45,7 @@ export const passForwardOrBan = (securityCache, messages, senderID) => {
 
   if (messages.get(senderID).length > 5) {
     messages.delete(senderID);
-    banFromSocket(securityCache, senderID);
+    banFromSocket(securityCache, senderID, senderName);
     return true;
   }
 

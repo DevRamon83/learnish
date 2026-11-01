@@ -4,7 +4,11 @@ import {
   isBanned,
   passForwardOrBan,
 } from "../helpers/socket/banFromSocket.js";
-import { sendMessage, workOnDb } from "../services/socketServices.js";
+import {
+  sendMessage,
+  validReceiver,
+  workOnDb,
+} from "../services/socketServices.js";
 const { validateChatMessage } = bundle.validators;
 
 const getDataMessage = (senderData, message, error) => {
@@ -22,38 +26,53 @@ const getDataMessage = (senderData, message, error) => {
     messageID: null,
     createdAt: null,
     receiverIsOnline: null,
+    chatID: [senderID, receiverID],
     error,
   };
 };
 
 const newMessageSocket = async (io, contextMaps, message, socket) => {
+  const { securityCache, connectedUsers, messages } = contextMaps;
   const senderID = socket.owner;
+  const senderSession = connectedUsers.get(senderID);
+  const senderName = senderSession.username;
 
   const isValidMessage = validateChatMessage(message.content);
   if (!isValidMessage) {
-    banFromSocket(securityCache, senderID);
+    banFromSocket(securityCache, senderID, senderName);
     return socket.emit("received_msg", { banned: true });
   }
 
-  const { securityCache, connectedUsers, messages } = contextMaps;
   const { receiverID } = message;
-
-  const senderSession = connectedUsers.get(senderID);
 
   if (!senderSession) return;
 
-  const senderName = senderSession.username;
-
-  const wantBan = passForwardOrBan(securityCache, messages, senderID);
+  const wantBan = passForwardOrBan(
+    securityCache,
+    messages,
+    senderID,
+    senderName,
+  );
   if (wantBan) return socket.emit("received_msg", { banned: wantBan });
 
   const banned = isBanned(securityCache, receiverID);
-  const error = banned ? "bannedReceiver" : "receiver404";
+  let error = banned ? "bannedReceiver" : "receiver404";
 
   let receiver = null;
+  let isReceiverValid = null;
 
   if (!banned) {
     receiver = await workOnDb({ userID: receiverID }, "userExist");
+    isReceiverValid = await validReceiver(receiver, senderID, securityCache);
+  }
+
+  if (isReceiverValid && isReceiverValid.error === "banIt") {
+    return socket.emit("received_msg", { banned: true });
+  }
+
+  if (isReceiverValid && isReceiverValid.error) {
+    error = receiver.isBanned ? error : "notYourStudent";
+    receiver = null;
   }
 
   const senderData = { senderName, senderID };
@@ -61,9 +80,7 @@ const newMessageSocket = async (io, contextMaps, message, socket) => {
 
   if (!receiver || banned) return socket.emit("received_msg", data);
 
-  // validazione (da scrivere)
-  const newMessage = await workOnDb(message, "newMessage");
-
+  const newMessage = await workOnDb(data, "newMessage");
   if (!newMessage) {
     data.error = "CannotSaveMessage";
     return socket.emit("received_msg", data);
@@ -79,7 +96,7 @@ const newMessageSocket = async (io, contextMaps, message, socket) => {
 
   data.whoAmI = receiverID;
   const isOnline = sendMessage(io, connectedUsers, data);
-  data.receiverIsOnline = isOnline;
+  data.receiverIsOnline = isOnline || false;
   data.whoAmI = senderID;
   socket.emit("received_msg", data);
 
