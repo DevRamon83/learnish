@@ -4,9 +4,9 @@ const validateChatMessage = (content) => {
     content.trim().length === 0 ||
     content.length > 3000
   ) {
-    return true;
+    return false;
   }
-  return false;
+  return true;
 };
 
 export default validateChatMessage;
