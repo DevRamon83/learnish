@@ -13,7 +13,7 @@ const idChecker = async (data) => {
 
 const createMessage = async (message) => {
   try {
-    const newMessage = await messageModel.create(message).lean();
+    const newMessage = await messageModel.create(message);
     return newMessage;
   } catch (err) {
     return null;
@@ -55,4 +55,30 @@ export const sendMessage = (io, connectedUsers, data) => {
   }
 
   return recipient;
+};
+
+const invalidTeacher = (receiver, senderID) => {
+  if (!receiver.students) return true;
+
+  return !receiver.students.includes(senderID);
+};
+
+const invalidStudent = (receiver, senderID) => {
+  if (!receiver.teacher || !receiver.teacher.id) return true;
+  return receiver.teacher.id !== senderID;
+};
+
+export const validReceiver = async (receiver, senderID, securityCache) => {
+  let error = false;
+  if (receiver.userType === "student" && invalidStudent(receiver, senderID)) {
+    error = "notYourStudent";
+  }
+
+  if (receiver.userType === "teacher" && invalidTeacher(receiver, senderID)) {
+    const banUser = { securityCache, senderID };
+    await banFromSocket(null, banUser);
+    error = "banIt";
+  }
+
+  return { error };
 };
