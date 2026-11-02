@@ -5,10 +5,13 @@ const initialState = {
     allMessages: {},
     newSenders: [],
     newMessage: false,
+    isChatting: false,
   },
 };
 
 const addMessage = (data, payload) => {
+  const isChatting = data.isChatting;
+  if (isChatting) return;
   const { senderID, receiverID, whoAmI } = payload;
   delete payload.error;
 
@@ -37,9 +40,13 @@ const messagesSlice = createSlice({
     addLiveMessage: (state, action) => {
       addMessage(state.data, action.payload);
     },
+    setIsChatting: (state, action) => {
+      state.data.dashboardPath = action.payload;
+    },
   },
 });
 
-export const { setChatData, addLiveMessage } = messagesSlice.actions;
+export const { setChatData, addLiveMessage, setIsChatting } =
+  messagesSlice.actions;
 
 export default messagesSlice.reducer;
