@@ -53,7 +53,7 @@ export default function Settings({ userType }) {
   const userCards = getCardSettings(userType);
 
   const [userPic, setUserPic] = useState({
-    url: getPicUrl(user),
+    url: getPicUrl(user, true),
   });
 
   // if user is a teacher this allow navigation between contracts
