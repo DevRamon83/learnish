@@ -1,5 +1,3 @@
-import { socketConnection } from "../socket/socketClient";
-
 const successHandler = (resp, data, setError) => {
   const { dispatch, navigate, setUser, setAuth } = data;
 
@@ -7,7 +5,6 @@ const successHandler = (resp, data, setError) => {
   dispatch(setUser(resp));
   dispatch(setAuth("authenticated"));
   navigate(`/user/${resp.type}/${resp.id}`);
-  socketConnection();
 };
 
 const finalizeAuth = (resp, data, setError) => {
