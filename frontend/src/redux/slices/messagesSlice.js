@@ -10,8 +10,6 @@ const initialState = {
 };
 
 const addMessage = (data, payload) => {
-  const isChatting = data.isChatting;
-  if (isChatting) return;
   const { senderID, receiverID, whoAmI } = payload;
   delete payload.error;
 
