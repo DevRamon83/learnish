@@ -22,6 +22,7 @@ import RecoverPsw from "./pages/RecoverPsw";
 import TeachersDashboard from "./pages/TeachersDashboard";
 import { useLang } from "./hooks/useLang";
 import { i18nAddresses } from "./constants/i18nAddresses";
+import SocketListener from "./components/layout/SocketListener";
 
 function App() {
   const authState = useAuth();
@@ -39,6 +40,7 @@ function App() {
   return (
     <>
       <Navbar />
+      <SocketListener />
       <Metadata />
       <Routes>
         <Route path="/" element={<Home />} />
