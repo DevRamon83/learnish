@@ -1,8 +1,8 @@
 import LogoPanel from "./LogoPanel";
 import { classes } from "../../constants/layout/navbar";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { usePersonalSettings } from "../../hooks/usePersonalSettings";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Hamburger from "../../ui/Hamburger";
 import { useEffect, useState } from "react";
 import { useLang } from "../../hooks/useLang";
@@ -10,18 +10,29 @@ import { i18nAddresses } from "../../constants/i18nAddresses";
 import ConditionalNavbar from "../../ui/ConditionalNavbar";
 import useLogout from "../../hooks/useLogout";
 import NavbarNotify from "../../ui/NavbarNotify";
+import { setIsChatting } from "../../redux/slices/messagesSlice";
 
 export default function Navbar() {
   const { navbarContainer, nav, navOpen } = classes;
+  const location = useLocation();
+  const path = location.pathname.substring(1, 5);
+  const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
   const [notify, setNotify] = useState(false);
   const [isNotificationOpen, setIsNotificationOpen] = useState(false);
   const [navbarState, setNavbarState] = useState(navbarContainer);
   const [logoState, setLogoState] = useState("");
   const auth = useSelector((state) => state.auth);
+  const isChatting = useSelector((state) => state.messages.data.isChatting);
   const navigate = useNavigate();
   const { strings } = useLang(i18nAddresses.layout);
   const unreadMessages = auth.user?.unreadMessages;
+
+  useEffect(() => {
+    if (path !== "user" && isChatting) {
+      dispatch(setIsChatting(false));
+    }
+  }, [path]);
 
   useEffect(() => {
     const { user } = auth;
