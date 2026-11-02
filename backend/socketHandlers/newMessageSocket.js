@@ -94,10 +94,10 @@ const newMessageSocket = async (io, contextMaps, message, socket) => {
     ? messages.delete(senderID)
     : messages.get(senderID).shift();
 
-  data.whoAmI = receiverID;
+  data.whoAmI = "receiver";
   const isOnline = sendMessage(io, connectedUsers, data);
   data.receiverIsOnline = isOnline || false;
-  data.whoAmI = senderID;
+  data.whoAmI = "sender";
   socket.emit("received_msg", data);
 
   if (!isOnline) {
