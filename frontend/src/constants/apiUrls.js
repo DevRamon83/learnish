@@ -26,6 +26,7 @@ export const API_URLS = {
   messages: {
     base: "/messages",
     new: "/newContact",
+    retrieveMessages: "/retrieveMessages",
   },
   trackers: {
     base: "/trackers",
@@ -40,9 +41,5 @@ export const API_URLS = {
     contract: "/dataContract",
     deactivate: "/deactivate",
     teacherAction: "/teacherAction",
-  },
-  messages: {
-    base: "/messages",
-    unreadMessages: "/unreadMessages",
   },
 };
