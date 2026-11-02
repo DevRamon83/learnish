@@ -36,11 +36,12 @@ export default function Navbar() {
 
   useEffect(() => {
     const { user } = auth;
-    if (!user || !unreadMessages.length) return;
-
-    setLogoState("-open");
-    setNotify(true);
-  }, [auth.user?.unreadMessages.length]);
+    if (isChatting || !user) return;
+    if (unreadMessages.length > 0) {
+      setLogoState("-open");
+      setNotify(true);
+    }
+  }, [auth.user?.unreadMessages.length, isChatting]);
 
   usePersonalSettings();
 
