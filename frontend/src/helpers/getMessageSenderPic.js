@@ -1,9 +1,11 @@
 const getMessageSenderPic = (user) => {
-  if (!user) return;
+  if (!user || user.unreadMessages.length === 0) return;
+
   if (user.type === "teacher") {
     const studentData = user.studentsList.filter(
       (student) => student.username === user.unreadMessages[0],
     );
+
     return studentData[0].profilePic;
   }
 
