@@ -1,0 +1,126 @@
+.messages__studentsList {
+  height: 100px;
+  width: 100%;
+  overflow: scroll;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: white;
+  margin-bottom: 10px;
+}
+
+.messages__student {
+  width: 75px;
+  height: 75px;
+  position: relative;
+  overflow: hidden;
+  margin-left: 15px;
+  border: 1px solid black;
+  border-radius: 5px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.messages__imgContainer {
+  height: inherit;
+  width: inherit;
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.messages__imgContainer-active {
+  @extend .messages__imgContainer;
+  filter: grayscale(100%);
+  background-color: gray;
+}
+
+.messages__imgContainer img {
+  height: inherit;
+  width: auto;
+}
+
+.messages__usernameContainer {
+  position: absolute;
+  width: inherit;
+  bottom: 0;
+  height: 15px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.messages__usernameContainer-active {
+  @extend .messages__usernameContainer;
+  color: cyan;
+}
+
+.messages__chat {
+  border: 1px solid black;
+  border-radius: 10px;
+  overflow-y: auto;
+  background-color: white;
+  padding: 15px 0;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+}
+
+%messages__row {
+  width: 70%;
+  border: 1px solid black;
+  margin-bottom: 40px;
+  font-size: 1.2em;
+  line-height: 1.8em;
+  border-radius: 25px;
+}
+
+.messages__yourRow {
+  @extend %messages__row;
+  align-self: flex-end;
+  background-color: #f7f8fa;
+  color: #002147;
+  margin-right: 50px;
+}
+
+.messages__myRow {
+  @extend %messages__row;
+  align-self: flex-start;
+  background-color: #002147;
+  color: white;
+  margin-left: 50px;
+}
+
+.messages__contentContainer {
+  font-weight: bold;
+  display: flex;
+  white-space: pre-line;
+}
+
+.messages__avatar {
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  margin: 20px;
+  border: 1px solid black;
+}
+
+.messages__textContainer {
+  padding: 10px 25px 10px 0;
+}
+
+.messages__dateContainer {
+  font-size: 12px;
+  font-weight: unset;
+  padding-bottom: 5px;
+  text-decoration: underline;
+  padding-left: 20px;
+}
