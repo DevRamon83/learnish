@@ -29,7 +29,7 @@ export default function ChatPanel({
   // Check if this is the first render for the selected receiver.
   // if so, populate the cache map with the last 10 messages fetched from the DB
   // and update the local messages state.
-  useChatRetriever(messagesCachet, receiverID, user, setMessages);
+  useChatRetriever(messagesCachet, receiverID, setMessages);
 
   // Update the cache, local state, and trigger a notification if necessary.
   useChatSocket(setMessages, setNotification, messagesCachet, receiverID);
