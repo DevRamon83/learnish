@@ -4,7 +4,6 @@ const initialState = {
   data: {
     allMessages: {},
     newSenders: [],
-    newMessage: false,
     isChatting: false,
   },
 };
@@ -12,12 +11,15 @@ const initialState = {
 const addMessage = (data, payload) => {
   const { senderID, receiverID, whoAmI } = payload;
   delete payload.error;
+  const isChatting = data.isChatting;
 
   const peerID = whoAmI === "receiver" ? senderID : receiverID;
 
-  data.newMessage = whoAmI === "receiver" ? true : data.newMessage;
-
-  if (whoAmI === "receiver" && !data.newSenders.includes(senderID)) {
+  if (
+    whoAmI === "receiver" &&
+    !data.newSenders.includes(senderID) &&
+    !isChatting
+  ) {
     data.newSenders.push(senderID);
   }
 
@@ -39,12 +41,15 @@ const messagesSlice = createSlice({
       addMessage(state.data, action.payload);
     },
     setIsChatting: (state, action) => {
-      state.data.dashboardPath = action.payload;
+      state.data.isChatting = action.payload;
+    },
+    resetDataMessages: () => {
+      return initialState;
     },
   },
 });
 
-export const { setChatData, addLiveMessage, setIsChatting } =
+export const { setChatData, addLiveMessage, setIsChatting, resetDataMessages } =
   messagesSlice.actions;
 
 export default messagesSlice.reducer;
