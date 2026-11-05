@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { classes } from "../../constants/layout/logo";
 import getMessageSenderPic from "../../helpers/getMessageSenderPic";
 import getPicUrl from "../../helpers/getPicUrl";
@@ -12,6 +13,7 @@ export default function LogoPanel({
   user,
   notifyClass,
 }) {
+  const [senderData, setSenderData] = useState(null);
   const handler = () => {
     if (isOpen) toggleNavbar();
   };
@@ -20,10 +22,12 @@ export default function LogoPanel({
     setIsNotificationOpen(false);
   };
 
-  const senderData = {
-    username: user?.unreadMessages[0],
-    profilePic: getMessageSenderPic(user),
-  };
+  useEffect(() => {
+    setSenderData({
+      username: user?.unreadMessages[0],
+      profilePic: getMessageSenderPic(user),
+    });
+  }, [user?.unreadMessages?.length]);
 
   return (
     <>
