@@ -1,8 +1,17 @@
 import { useEffect } from "react";
 import fetchRetrieveMessages from "../api/handlers/fetchRetrieveMessages";
 
-const retrieveMessages = async (receiverID, messagesMap, setMessages) => {
-  const res = await fetchRetrieveMessages(receiverID, [0, 9]);
+const retrieveMessages = async (
+  receiverID,
+  messagesMap,
+  setMessages,
+  controller,
+) => {
+  const res = await fetchRetrieveMessages(
+    receiverID,
+    [0, 9],
+    controller.signal,
+  );
 
   if (res.error) {
     // error handler
@@ -29,7 +38,7 @@ const useChatRetriever = (messagesCachet, receiverID, setMessages) => {
 
     const controller = new AbortController();
 
-    retrieveMessages(receiverID, messagesMap, setMessages);
+    retrieveMessages(receiverID, messagesMap, setMessages, controller);
 
     return () => controller.abort();
   }, [messagesCachet, receiverID]);
