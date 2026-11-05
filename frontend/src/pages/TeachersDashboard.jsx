@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import bundle from "shared";
 import { classes } from "../constants/components/dashboard";
 import YourStudents from "../components/dashboard/YourStudents";
@@ -8,16 +8,22 @@ import NewExercise from "../components/dashboard/exercises/create/NewExercise";
 import Messages from "../components/dashboard/messages/Messages";
 import useTabRouting from "../hooks/useTabRouting";
 import useChatSignal from "../hooks/useChatSignal";
+import useMessageSync from "../hooks/useMessageSync";
 const { dashboardTeachersTabs } = bundle.constants;
 
 export default function TeachersDashboard() {
   const [currentTab, setCurrentTab] = useState("students");
 
-  // If the user lands on the dashboard by clicking the notification button
-  // in the navbar, this hook reads the parameter from the URL to set the current tab
-  // and then clears the parameter from the URL itself.
+  // Sets the active tab from URL params (e.g., via navbar notifications)
+  // and cleans up the URL afterward.
   useTabRouting(setCurrentTab);
+  // Determines if the user is chatting
   useChatSignal(currentTab);
+
+  // Initializes the local chat cache and keeps it synchronized with Redux live updates.
+  // CRITICAL: This hook also acts as a cleanup mechanism, resetting the global
+  // messages store once incoming notifications are processed to avoid memory leaks.
+  const messagesCache = useMessageSync();
 
   return (
     <>
@@ -44,7 +50,7 @@ export default function TeachersDashboard() {
         )}
         {currentTab === "messages" && (
           <div className={classes.core}>
-            <Messages />
+            <Messages cache={messagesCache} />
           </div>
         )}
       </main>

@@ -9,6 +9,7 @@ import Statistics from "../components/dashboard/stats/Statistics";
 import Messages from "../components/dashboard/messages/Messages";
 import useTabRouting from "../hooks/useTabRouting";
 import useChatSignal from "../hooks/useChatSignal";
+import useMessageSync from "../hooks/useMessageSync";
 const { dashboardStudentsTabs } = bundle.constants;
 
 export default function StudentsDashboard() {
@@ -22,6 +23,11 @@ export default function StudentsDashboard() {
   useTabRouting(setCurrentTab);
   useChatSignal(currentTab);
 
+  // Initializes the local chat cache and keeps it synchronized with Redux live updates.
+  // CRITICAL: This hook also acts as a cleanup mechanism, resetting the global
+  // messages store once incoming notifications are processed to avoid memory leaks.
+  const messagesCache = useMessageSync();
+
   return (
     <main className={classes.main}>
       <DashboardMenu
@@ -33,7 +39,7 @@ export default function StudentsDashboard() {
         {currentTab === "study" && <Study />}
         {currentTab === "stats" && <Statistics />}
         {currentTab === "settings" && <Settings userType="student" />}
-        {currentTab === "messages" && <Messages />}
+        {currentTab === "messages" && <Messages cache={messagesCache} />}
       </div>
     </main>
   );
