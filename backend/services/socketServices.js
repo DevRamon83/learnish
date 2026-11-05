@@ -65,7 +65,7 @@ const invalidTeacher = (receiver, senderID) => {
 
 const invalidStudent = (receiver, senderID) => {
   if (!receiver.teacher || !receiver.teacher.id) return true;
-  return receiver.teacher.id !== senderID;
+  return receiver.teacher.id.toString() !== senderID;
 };
 
 export const validReceiver = async (receiver, senderID, securityCache) => {

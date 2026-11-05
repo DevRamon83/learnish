@@ -13,7 +13,7 @@ const initSocketLogic = (io, contextMaps) => {
     });
 
     socket.on("disconnect", () => {
-      const userId = socket.customUserId;
+      const userId = socket.owner;
 
       if (userId) {
         connectedUsers.delete(userId);

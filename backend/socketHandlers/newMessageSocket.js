@@ -81,6 +81,7 @@ const newMessageSocket = async (io, contextMaps, message, socket) => {
   if (!receiver || banned) return socket.emit("received_msg", data);
 
   const newMessage = await workOnDb(data, "newMessage");
+
   if (!newMessage) {
     data.error = "CannotSaveMessage";
     return socket.emit("received_msg", data);
@@ -96,7 +97,8 @@ const newMessageSocket = async (io, contextMaps, message, socket) => {
 
   data.whoAmI = "receiver";
   const isOnline = sendMessage(io, connectedUsers, data);
-  data.receiverIsOnline = isOnline || false;
+
+  data.receiverIsOnline = isOnline ? true : false;
   data.whoAmI = "sender";
   socket.emit("received_msg", data);
 
