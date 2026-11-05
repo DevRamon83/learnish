@@ -2,6 +2,7 @@ import fetchLogout from "../api/handlers/fetchLogout";
 import { useDispatch } from "react-redux";
 import { setAuth, setUser } from "../redux/slices/authSlice";
 import { useEffect } from "react";
+import { getSocket } from "../socket/socketClient";
 
 export default function useLogout(currentTab) {
   const dispatch = useDispatch();
@@ -13,6 +14,8 @@ export default function useLogout(currentTab) {
     } else {
       dispatch(setUser(null));
       dispatch(setAuth("unauthenticated"));
+      const socket = getSocket();
+      socket && socket.disconnect();
     }
   };
 
