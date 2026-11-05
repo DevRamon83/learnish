@@ -1,7 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import LarRow from "../../../ui/exercises/LarRow";
 import { classes } from "../../../constants/components/exercises";
 import getDurations from "../../../helpers/getLarDurations";
+import useAutoScroll from "../../../hooks/useAutoScroll";
 
 export default function LarScript({
   card,
@@ -13,7 +14,8 @@ export default function LarScript({
   const [rows, setRows] = useState([]);
   const [index, setIndex] = useState(0);
   const [durations, setDurations] = useState([]);
-  const dialogueContainerRef = useRef(null);
+  const containerRef = useAutoScroll(rows);
+
   const close = () => {
     setCard({
       dialogues: null,
@@ -42,17 +44,8 @@ export default function LarScript({
     return () => clearTimeout(timer);
   }, [durations, index]);
 
-  useEffect(() => {
-    if (dialogueContainerRef.current) {
-      dialogueContainerRef.current.scrollTo({
-        top: dialogueContainerRef.current.scrollHeight,
-        behavior: "smooth",
-      });
-    }
-  }, [rows]);
-
   return (
-    <div className={classes.scriptContainer} ref={dialogueContainerRef}>
+    <div className={classes.scriptContainer} ref={containerRef}>
       <div className={classes.section}>
         {strings[card.dialogue]}
         <img title="close" alt="close" src="/close.svg" onClick={close} />
