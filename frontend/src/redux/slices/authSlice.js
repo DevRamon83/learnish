@@ -32,7 +32,10 @@ const authSlice = createSlice({
       state.user.studentsList = action.payload;
     },
     updateUnreadMessages: (state, action) => {
-      state.user.studentsList = action.payload;
+      state.user.unreadMessages = action.payload;
+    },
+    addNewUnreadMessage: (state, action) => {
+      state.user.unreadMessages.push(action.payload);
     },
     logout: (state) => {
       state.authState = "unauthenticated";
@@ -47,6 +50,8 @@ export const {
   logout,
   updateStudentTeacher,
   updateTeacherStudent,
+  updateUnreadMessages,
+  addNewUnreadMessage,
 } = authSlice.actions;
 
 export default authSlice.reducer;
