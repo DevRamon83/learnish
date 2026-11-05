@@ -1,5 +1,5 @@
-import handleErrorResponse from "../helpers/handleErrorResponse.js";
-import contactModel from "../models/contact.js";
+import handleErrorResponse from "../../helpers/handleErrorResponse.js";
+import contactModel from "../../models/contact.js";
 
 const newContactRequest = async (req, res) => {
   const log = true;
