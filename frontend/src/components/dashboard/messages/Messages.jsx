@@ -79,7 +79,7 @@ export default function Messages({ cache }) {
           )}
           <ChatPanel
             receiverID={receiverID}
-            messagesCachet={cache}
+            messagesCache={cache}
             receiverName={receiverUsername}
             user={user}
             setNotification={setNotification}

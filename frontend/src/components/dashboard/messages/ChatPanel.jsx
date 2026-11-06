@@ -11,7 +11,7 @@ const { validateChatMessage } = bundle.validators;
 
 export default function ChatPanel({
   receiverID,
-  messagesCachet,
+  messagesCache,
   receiverName,
   user,
   setNotification,
@@ -24,15 +24,15 @@ export default function ChatPanel({
   // If the receiver already has a map, update the local messages state.
   // Otherwise, create the map and let the next hook handle its management
   // and local state population.
-  useInitializeChatMap(receiverID, messagesCachet, setMessages);
+  useInitializeChatMap(receiverID, messagesCache, setMessages);
 
   // Check if this is the first render for the selected receiver.
   // if so, populate the cache map with the last 10 messages fetched from the DB
   // and update the local messages state.
-  useChatRetriever(messagesCachet, receiverID, setMessages);
+  useChatRetriever(messagesCache, receiverID, setMessages);
 
   // Update the cache, local state, and trigger a notification if necessary.
-  useChatSocket(setMessages, setNotification, messagesCachet, receiverID);
+  useChatSocket(setMessages, setNotification, messagesCache, receiverID);
 
   const sendHandler = () => {
     const text = myMessageRef.current.value;
@@ -65,7 +65,7 @@ export default function ChatPanel({
 
   const getOlderMessages = async () => {
     const mapStates = { messages, setMessages, olderBtn, setOlderBtn };
-    const data = { receiverID, messagesCachet, strings };
+    const data = { receiverID, messagesCache, strings };
 
     await olderHandler(data, mapStates);
   };

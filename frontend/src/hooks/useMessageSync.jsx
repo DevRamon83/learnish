@@ -5,9 +5,9 @@ import { useEffect, useRef } from "react";
 
 const useMessageSync = () => {
   const reduxStoreMessages = useSelector((state) => state.messages.data);
-  const messagesCachet = useRef(null);
-  if (!messagesCachet.current) {
-    messagesCachet.current = new Map();
+  const messagesCache = useRef(null);
+  if (!messagesCache.current) {
+    messagesCache.current = new Map();
   }
   const dispatch = useDispatch();
 
@@ -16,18 +16,18 @@ const useMessageSync = () => {
     // avoid any risk of race condition
     if (reduxStoreMessages.newSenders.length > 1) {
       const allSenders = reduxStoreMessages.newSenders;
-      resetCache(allSenders, messagesCachet);
+      resetCache(allSenders, messagesCache);
     } else {
       const sender = reduxStoreMessages.newSenders[0];
       const allSenderMessages = reduxStoreMessages.allMessages[sender];
-      const myCache = messagesCachet.current.get(sender);
+      const myCache = messagesCache.current.get(sender);
       myCache && updateCache(allSenderMessages, myCache);
     }
 
     dispatch(resetDataMessages());
   }, [reduxStoreMessages.newSenders]);
 
-  return messagesCachet;
+  return messagesCache;
 };
 
 export default useMessageSync;

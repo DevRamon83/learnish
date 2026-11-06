@@ -9,7 +9,7 @@ import { getSocket } from "../socket/socketClient";
 const useChatSocket = (
   setMessages,
   setNotification,
-  messagesCachet,
+  messagesCache,
   receiverID,
 ) => {
   useEffect(() => {
@@ -30,7 +30,7 @@ const useChatSocket = (
         setMessages((prev) => [...prev, newMessage]);
       }
 
-      const cache = messagesCachet.current.get(cacheName);
+      const cache = messagesCache.current.get(cacheName);
       if (!cache) {
         return setNotification(data.senderName);
       }

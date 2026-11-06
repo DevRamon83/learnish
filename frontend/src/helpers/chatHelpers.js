@@ -46,9 +46,9 @@ export const updateCache = async (allMessages, myCache) => {
   });
 };
 
-export const resetCache = (allSenders, messagesCachet) => {
+export const resetCache = (allSenders, messagesCache) => {
   allSenders.forEach((sender) => {
-    const myCache = messagesCachet.current.get(sender);
+    const myCache = messagesCache.current.get(sender);
     if (!myCache) return;
     myCache.clear();
     myCache.set("messages", []);
@@ -70,10 +70,10 @@ const handleMessageShift = (retrieved, messagesMap, indexes, setMessages) => {
 
 export const olderHandler = async (data, mapStates) => {
   const { messages, setMessages, olderBtn, setOlderBtn } = mapStates;
-  const { receiverID, messagesCachet, strings } = data;
+  const { receiverID, messagesCache, strings } = data;
   if (olderBtn !== strings.olderText) return;
   setOlderBtn(strings.pending);
-  const chat = messagesCachet.current.get(receiverID);
+  const chat = messagesCache.current.get(receiverID);
   const indexes = chat.get("indexes");
   const messagesMap = chat.get("messages");
   const retrieveIndexes = [indexes[1] + 1, indexes[1] + 10];

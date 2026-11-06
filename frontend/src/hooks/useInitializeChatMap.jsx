@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 
-const useInitializeChatMap = (receiverID, messagesCachet, setMessages) => {
+const useInitializeChatMap = (receiverID, messagesCache, setMessages) => {
   useEffect(() => {
     if (!receiverID) return;
-    const map = messagesCachet.current;
+    const map = messagesCache.current;
     const receiverMap = map.get(receiverID);
     if (receiverMap) {
       const messagesMap = receiverMap.get("messages");

@@ -24,9 +24,9 @@ const retrieveMessages = async (
   }
 };
 
-const useChatRetriever = (messagesCachet, receiverID, setMessages) => {
+const useChatRetriever = (messagesCache, receiverID, setMessages) => {
   useEffect(() => {
-    const senderCache = messagesCachet.current.get(receiverID);
+    const senderCache = messagesCache.current.get(receiverID);
     if (!senderCache) return;
     const indexes = senderCache.get("indexes");
 
@@ -41,7 +41,7 @@ const useChatRetriever = (messagesCachet, receiverID, setMessages) => {
     retrieveMessages(receiverID, messagesMap, setMessages, controller);
 
     return () => controller.abort();
-  }, [messagesCachet, receiverID]);
+  }, [messagesCache, receiverID]);
 };
 
 export default useChatRetriever;
