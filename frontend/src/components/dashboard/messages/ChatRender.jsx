@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import fetchUpdateMessages from "../../../api/handlers/fetchUpdateMessages";
 import { useDispatch } from "react-redux";
 import { updateUnreadMessages } from "../../../redux/slices/authSlice";
@@ -11,11 +11,23 @@ export default function ChatRender({
   messages,
   receiverName,
   classes,
+  handleKeyDown,
+  sendHandler,
+  myMessageRef,
+  invertScroll,
+  strings,
+  getOlderMessages,
+  olderBtn,
+  setInvertScroll,
 }) {
+  const length = messages.length;
   const dispatch = useDispatch();
-  const containerRef = useAutoScroll(messages.length);
+  const [straightDown, setStraightDown] = useState(length === 10);
+  const containerRef = useAutoScroll(length, invertScroll, straightDown);
 
   useEffect(() => {
+    setStraightDown(true);
+    setInvertScroll(false);
     const controller = new AbortController();
 
     const update = async () => {
@@ -37,9 +49,15 @@ export default function ChatRender({
   }, [receiverID]);
 
   return (
-    <div className={classes.chat} ref={containerRef}>
-      {messages.length > 0 &&
-        messages.map((message) => (
+    <div className={classes.chat}>
+      {length > 9 && (
+        <div className={classes.older} onClick={getOlderMessages}>
+          {olderBtn}
+        </div>
+      )}
+
+      <div className={classes.allMessages} ref={containerRef}>
+        {messages.map((message) => (
           <MessageRow
             key={message._id}
             receiverID={receiverID}
@@ -48,6 +66,16 @@ export default function ChatRender({
             classes={classes}
           />
         ))}
+      </div>
+      <div className={classes.textareaContainer}>
+        <textarea
+          onKeyDown={handleKeyDown}
+          ref={myMessageRef}
+          className={classes.textarea}
+          placeholder={strings.textareaPlaceholder}
+        />
+        <img src="/send.svg" onClick={sendHandler} />
+      </div>
     </div>
   );
 }

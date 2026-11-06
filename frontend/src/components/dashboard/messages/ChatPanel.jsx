@@ -19,6 +19,7 @@ export default function ChatPanel({
 }) {
   const [messages, setMessages] = useState([]);
   const [olderBtn, setOlderBtn] = useState(strings.olderText);
+  const [invertScroll, setInvertScroll] = useState(false);
   const myMessageRef = useRef(null);
 
   // If the receiver already has a map, update the local messages state.
@@ -66,40 +67,31 @@ export default function ChatPanel({
   const getOlderMessages = async () => {
     const mapStates = { messages, setMessages, olderBtn, setOlderBtn };
     const data = { receiverID, messagesCache, strings };
-
+    setInvertScroll(true);
     await olderHandler(data, mapStates);
   };
 
   return (
     <>
-      {messages && messages.length > 0 && (
-        <>
-          {messages.length === 10 && (
-            <div onClick={getOlderMessages}>{olderBtn}</div>
-          )}
-          <ChatRender
-            key={receiverID}
-            messages={messages}
-            user={user}
-            receiverName={receiverName}
-            receiverID={receiverID}
-            classes={classes}
-          />
-        </>
-      )}
       {receiverID ? (
-        <>
-          <textarea
-            onKeyDown={handleKeyDown}
-            ref={myMessageRef}
-            maxLength={250}
-            rows="5"
-            className={classes.textarea}
-          />
-          <div onClick={sendHandler}>invia</div>
-        </>
+        <ChatRender
+          key={receiverID}
+          messages={messages}
+          user={user}
+          receiverName={receiverName}
+          receiverID={receiverID}
+          classes={classes}
+          sendHandler={sendHandler}
+          handleKeyDown={handleKeyDown}
+          myMessageRef={myMessageRef}
+          invertScroll={invertScroll}
+          setInvertScroll={setInvertScroll}
+          olderBtn={olderBtn}
+          strings={strings}
+          getOlderMessages={getOlderMessages}
+        />
       ) : (
-        <div>{strings.selectOne}</div>
+        <div className={classes.selectOne}>{strings.selectOne}</div>
       )}
     </>
   );
