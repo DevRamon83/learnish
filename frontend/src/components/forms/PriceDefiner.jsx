@@ -57,7 +57,7 @@ export default function PriceDefiner({
                 data={fields[element]}
               />
             ))}
-            <div className="settings__price-buttons">
+            <div className={classes.priceBtns}>
               <button className={classes.btn.send}>{strings.send}</button>
               {status !== "subscription" && (
                 <button className={classes.btn.send} onClick={jump}>

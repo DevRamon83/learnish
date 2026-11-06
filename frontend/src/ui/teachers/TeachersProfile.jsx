@@ -8,10 +8,14 @@ export default function TeachersProfile({ teacher, strings, classes }) {
 
   return (
     <div className={classes.teacherProfile}>
-      <TeacherPic teacher={teacher} />
+      <TeacherPic teacher={teacher} classes={classes} />
       <div className={classes.teacherData}>
         <h3>{teacher.username}</h3>
-        <TeacherSubscription teacher={teacher} strings={strings} />
+        <TeacherSubscription
+          teacher={teacher}
+          strings={strings}
+          classes={classes}
+        />
         {contractKeys.map((value) => (
           <div key={`${teacher.username}_${value}`}>
             {contract[value].available && (

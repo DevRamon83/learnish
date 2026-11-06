@@ -62,20 +62,22 @@ export default function LessonDefiner({
         ))}
       </div>
 
-      <h2>{strings.defineLesson}</h2>
       {level && levelsMap && (
-        <select
-          name="selectLesson"
-          onChange={(e) => setSelectedKey(e.target.value)}
-          defaultValue={""}
-        >
-          <option value="">{strings.labelSelect}</option>
-          {Object.keys(levelsMap[level]).map((key) => (
-            <option key={`lessonIndex_${key}`} value={key}>
-              {lessonMap.get(key).title}
-            </option>
-          ))}
-        </select>
+        <>
+          <h2>{strings.defineLesson}</h2>
+          <select
+            name="selectLesson"
+            onChange={(e) => setSelectedKey(e.target.value)}
+            defaultValue={""}
+          >
+            <option value="">{strings.labelSelect}</option>
+            {Object.keys(levelsMap[level]).map((key) => (
+              <option key={`lessonIndex_${key}`} value={key}>
+                {lessonMap.get(key).title}
+              </option>
+            ))}
+          </select>
+        </>
       )}
     </>
   );

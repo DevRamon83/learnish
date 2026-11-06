@@ -13,7 +13,7 @@ export default function FlashcardMenu({
   const { setStart } = setters;
   return (
     <div className={classes.menu}>
-      <div className="flashcard__menu-topRow">
+      <div className={classes.menuTopRow}>
         <FlashcardHelpBtn
           classes={classes}
           setters={setters}
@@ -30,7 +30,7 @@ export default function FlashcardMenu({
       <div className={classes.finish} onClick={() => setStart(false)}>
         <img src="/finish.svg" />
       </div>
-      <div className="flashcard__menu-bottomRow">
+      <div className={classes.menuBottomRow}>
         <ScoreAndPoints
           strings={strings}
           stringKey="points"

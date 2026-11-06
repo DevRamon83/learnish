@@ -20,4 +20,7 @@ export const classes = {
   login: "form__login",
   errorContainer: "form__errorContainer",
   priceDefiner: "form__priceDefiner",
+  priceBtns: "settings__price-buttons",
+  recover: "recover",
+  okRecover: "recover__ok",
 };

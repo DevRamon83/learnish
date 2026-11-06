@@ -1,3 +1,4 @@
+import { classes } from "../../constants/components/stats";
 import useViewportObserver from "../../hooks/useViewportObserver";
 
 export default function StackedBar({ totalMistakes, rawData }) {
@@ -14,6 +15,7 @@ export default function StackedBar({ totalMistakes, rawData }) {
     return { ...item, barWidth: normalize, x };
   });
 
+  const { stackedBarBase } = classes;
   return (
     <div>
       <svg
@@ -21,13 +23,13 @@ export default function StackedBar({ totalMistakes, rawData }) {
         preserveAspectRatio="none"
         width="100%"
         height="40"
-        className="chart__stackedBar-border"
+        className={`${stackedBarBase}border`}
       >
         <g id="reveal-wrapper">
           {chartData.map((datum) => (
             <rect
               key={datum.id}
-              id={"chart__stackedBar-" + datum.id}
+              id={`${stackedBarBase}${datum.id}`}
               x={datum.x}
               width={datum.barWidth}
               y="0"

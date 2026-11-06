@@ -3,6 +3,7 @@ export default function SuccessfullyUpload({
   setSuccess,
   lang,
   strings,
+  classes,
 }) {
   const handler = () => {
     setExercise({
@@ -21,10 +22,10 @@ export default function SuccessfullyUpload({
     setSuccess(false);
   };
   return (
-    <div className="exercise__successAlert">
+    <div className={classes.alert}>
       <p>
         {strings.success}
-        <button className="exercise__successBtn" onClick={handler}>
+        <button className={classes.successBtn} onClick={handler}>
           {strings.close}
         </button>
       </p>

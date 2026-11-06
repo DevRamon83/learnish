@@ -44,14 +44,14 @@ export default function RecoverPsw({ strings }) {
 
   return (
     <>
-      <div className="recover">
+      <div className={classes.recover}>
         <form className={classes.login} ref={formRef} onSubmit={submitHandler}>
           <FormInput Element={PasswordInput} data={password} />
           <ErrorOnSubmit error={error} />
           <button className={classes.btn.login}>{strings.send}</button>
         </form>
       </div>
-      {okRes && <div className="recover__ok">{okRes}</div>}
+      {okRes && <div className={classes.okRecover}>{okRes}</div>}
     </>
   );
 }

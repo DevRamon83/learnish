@@ -13,6 +13,7 @@ export const classes = {
   base: "exercise__",
   repeatBtn: "exercise__repeatLarBtn",
   create: {
+    type: "exercise__typeDefiner",
     btnBase: "exercise__btn",
     levelContainer: "exercise__level",
     yourQuestion: "exercise__questionText",
@@ -21,5 +22,8 @@ export const classes = {
     inputMultipleChoice: "exercise__multipleInput",
     submitExercise: "exercise__submitBtn-exercise",
     answer: "exercise__answer",
+    container: "exercises__createContainer",
+    alert: "exercise__successAlert",
+    successBtn: "exercise__successBtn",
   },
 };

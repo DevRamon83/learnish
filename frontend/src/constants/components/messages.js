@@ -12,4 +12,15 @@ export const classes = {
   img: "messages__imgContainer",
   activeUser: "messages__usernameContainer-active",
   user: "messages__usernameContainer",
+  selectOne: "messages__selectOne",
+  older: "messages__older",
+  allMessages: "messages__container",
+  textareaContainer: "messages__textareaContainer",
+  scrollWrapper: "messages__scrollWrapper",
+  leftScroll: "messages__scroller-left",
+  rightScroll: "messages__scroller-right",
+};
+
+export const ids = {
+  idMessage: "messages",
 };

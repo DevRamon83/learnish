@@ -9,6 +9,7 @@ export const classes = {
   labelX: "chart__labels-x",
   labels: "chart__labels",
   statsContainer: "stats__container",
+  stackedBarBase: "chart__stackedBar-",
 };
 
 export const ids = {

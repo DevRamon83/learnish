@@ -16,7 +16,7 @@ export default function TypeDefiner({
   return (
     <>
       <h2>{strings.type}</h2>
-      <div className="exercise__typeDefiner">
+      <div className={classes.type}>
         <div
           className={`${btnBase}${exercise.type === "multipleChoice" ? "-selected" : ""}`}
           onClick={() => handler("multipleChoice")}

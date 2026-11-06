@@ -84,7 +84,7 @@ export default function NewExercise() {
   }, [submit]);
 
   return (
-    <div className="exercises__createContainer">
+    <div className={create.container}>
       <h1>{texts.strings.newExerciseHeader}</h1>
       <TypeDefiner
         setExercise={setExercise}
@@ -151,6 +151,7 @@ export default function NewExercise() {
           setSuccess={setSuccess}
           setExercise={setExercise}
           strings={texts.strings}
+          classes={create}
         />
       )}
     </div>
