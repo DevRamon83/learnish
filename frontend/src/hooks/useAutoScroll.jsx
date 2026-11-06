@@ -1,19 +1,15 @@
 import { useEffect, useRef } from "react";
 
-const useAutoScroll = (trigger) => {
-  const firstRender = useRef(true);
+const useAutoScroll = (trigger, invert, straightDown) => {
   const containerRef = useRef(null);
-
   useEffect(() => {
     if (containerRef.current) {
       containerRef.current.scrollTo({
-        top: containerRef.current.scrollHeight,
-        behavior: firstRender.current ? "auto" : "smooth",
+        top: invert ? 0 : containerRef.current.scrollHeight,
+        behavior: straightDown ? "auto" : "smooth",
       });
     }
-
-    firstRender.current = false;
-  }, [trigger]);
+  }, [trigger, invert, straightDown]);
 
   return containerRef;
 };
