@@ -72,7 +72,8 @@ export const olderHandler = async (data, mapStates) => {
   const { messages, setMessages, olderBtn, setOlderBtn } = mapStates;
   const { receiverID, messagesCache, strings } = data;
   if (olderBtn !== strings.olderText) return;
-  setOlderBtn(strings.pending);
+  const pending = ` ${strings.olderText} `;
+  setOlderBtn(pending);
   const chat = messagesCache.current.get(receiverID);
   const indexes = chat.get("indexes");
   const messagesMap = chat.get("messages");
