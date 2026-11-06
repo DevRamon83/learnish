@@ -5,6 +5,7 @@ import ChatPanel from "./ChatPanel";
 import { useChatInitialization } from "../../../hooks/useChatInitialization";
 import { useLang } from "../../../hooks/useLang";
 import { i18nAddresses } from "../../../constants/i18nAddresses";
+import { ids } from "../../../constants/components/messages";
 
 /**
  * ARCHITECTURAL NOTE: Real-Time Chat & State Synchronization Strategy
@@ -62,7 +63,7 @@ export default function Messages({ cache }) {
   }, [receiverID]);
 
   return (
-    <>
+    <div id={ids.idMessage}>
       {notification && (
         <div>
           {strings.messages.notification} {notification}
@@ -87,6 +88,6 @@ export default function Messages({ cache }) {
           />
         </>
       )}
-    </>
+    </div>
   );
 }
