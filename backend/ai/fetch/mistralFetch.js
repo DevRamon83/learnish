@@ -6,7 +6,7 @@ const client = new Mistral({
 
 const mistralFetch = async (prompt, content) => {
   const completionArgs = {
-    temperature: 0.2,
+    temperature: 0,
     maxTokens: 2048,
     topP: 1,
     responseFormat: {
