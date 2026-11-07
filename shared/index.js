@@ -3,6 +3,7 @@ import langs from "./languages/index.js";
 import dialogues from "./dialogues/index.js";
 import {
   acceptOnly,
+  typeChecker,
   usernameValidator,
   matcher,
   passwordValidator,
@@ -14,6 +15,7 @@ import helpers from "./helpers/index.js";
 const bundle = {
   langs,
   constants,
+  typeChecker,
   acceptOnly,
   matcher,
   usernameValidator,
