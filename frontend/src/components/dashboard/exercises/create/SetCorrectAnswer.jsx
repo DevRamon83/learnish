@@ -15,7 +15,7 @@ export default function SetCorrectAnswer({
     const cloneArray = [...chooseAnswer];
     const prefix = firstChar ? firstChar : "";
     const suffix = lastChar ? lastChar : "";
-    cloneArray[index] = `${prefix}...${suffix}`;
+    cloneArray[index] = `${prefix}______${suffix}`;
     const cloze = cloneArray.join(" ");
 
     setExercise((prev) => ({
