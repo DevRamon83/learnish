@@ -8,31 +8,6 @@ import {
   newSummaryInitialStep,
 } from "../constants/components/dashboard";
 
-/**
- * ARCHITECTURE NOTE: Asynchronous State Machine via Render Cascades
- *
- * This hook manages a multi-step asynchronous workflow distributed across
- * sequential renders.
- *
- * 1. Step Triggering: The main useEffect relies exclusively on `uploadStep`
- *    in its dependency array. Each successful step updates the state via `respHandler`,
- *    changing `uploadStep` and intentionally triggering a re-evaluation
- *    of the effect on the next render.
- *
- * 2. Guard Clauses: The linear `if` conditions do not execute synchronously in a
- *    single run. Instead, they act as guard clauses that evaluate the state snapshot
- *    captured at the beginning of the current render, ensuring steps execute
- *    in the correct order without overlapping.
- *
- * 3. Dependency Constraints: Do NOT add `uploadStatus` to the main useEffect dependencies.
- *    Doing so will introduce race conditions and redundant execution triggers,
- *    disrupting the cascade.
- *
- * 4. Error Isolation: Failures and edge cases (e.g., "failed", "unavailable")
- *    are decoupled and handled independently by the secondary useEffect watching
- *    `uploadStatus`.
- */
-
 const errorHandler = (errorMsg, setUploadStatus, caller) => {
   let value = "failed";
   if (errorMsg === "unavailable") {
@@ -83,6 +58,11 @@ const useUploadSummary = (dataObj, lang, setIsUiBlocked) => {
     summaryID,
   };
 
+  // Once each call completes, respHandler updates uploadStep and re-triggers
+  // the effect. The if blocks ensure that calls are executed one at a time
+  // in the intended order, preventing duplicate calls and ensuring the code
+  // doesn't trigger an infinite loop."
+
   useEffect(() => {
     const controller = new AbortController();
 
@@ -98,8 +78,6 @@ const useUploadSummary = (dataObj, lang, setIsUiBlocked) => {
         await fetchAiCorrection(controller, setters, lang, summaryID);
       }
 
-      if (uploadStatus.correction === "failed") return setIsUiBlocked(false);
-
       if (!uploadStep.stats && uploadStatus.correction === "success") {
         await runStats(controller, setters, summaryID);
       }
@@ -111,6 +89,12 @@ const useUploadSummary = (dataObj, lang, setIsUiBlocked) => {
   }, [uploadStep, retry]);
 
   const errorValues = ["failed", "unavailable"];
+
+  // Handles unlocking the UI upon operation completion (both on success and failure),
+  // allowing the user to resume the cycle only from the interruption point in case of
+  // failure. Note: Do not attempt to merge both effects into one,
+  // otherwise you will trigger an infinite loop.
+
   useEffect(() => {
     if (
       errorValues.includes(uploadStatus.draft) ||
