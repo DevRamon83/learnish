@@ -1,91 +1,123 @@
 import bundle from "shared";
-import Groq from "groq-sdk";
 import exerciseModel from "../models/exercises.js";
-import exerciseSchema from "../ai/schema/exerciseSchema.js";
 import mistralFetch from "../ai/fetch/mistralFetch.js";
 const { englishLessons } = bundle.langs.italian.lessons;
 
-const exercisesPipeline = async (currentPosition) => {
-  const titles = [];
-  const indexes = [];
-  const position = currentPosition || 0;
+const respHandler = (resp, key) => {
+  const { text, answer } = resp;
+  if ((!text, !answer)) {
+    console.log("missing error ", key);
+    return { error: true };
+  }
 
-  englishLessons.forEach((lesson) => {
-    titles.push(lesson.title);
-    indexes.push(lesson.index);
+  const array = text.split(" ");
+  let answerPosition;
+  const cleanArray = [];
+
+  array.forEach((value, index) => {
+    if (value.at(1) === "_") {
+      answerPosition = index;
+      cleanArray.push(answer);
+    } else {
+      cleanArray.push(value);
+    }
   });
 
-  const mistralPrompt = "Translate from italian to english";
-  const content = titles[position];
-  const mistralResponse = await mistralFetch(mistralPrompt, content);
+  return { error: false, answerPosition, question: cleanArray.join(" ") };
+};
 
-  if (mistralResponse.error) {
-    console.log("error in translation");
+const exercisesPipeline = async (currentPosition) => {
+  const titles = [];
+  const keys = [];
+  const position = currentPosition || 1;
+
+  for (const lesson of englishLessons) {
+    const title = lesson[0].replaceAll("_", " ");
+    titles.push(title);
+    keys.push(lesson[0]);
+  }
+
+  const reply = `Reply to me with the following object: {
+fill_in_the_blanks: {
+text: the exercise text containing '____', as a string
+answer: the missing word to fill the blank, as a string
+},
+multiple_choice: {
+text: a different exercise text containing '____', as a string
+answer: the missing word to fill the blank, as a string
+incorrect_answers: an array of strings with 4 incorrect answers
+}
+}`;
+
+  const mistralPrompt = `You are an English teacher who has just finished the lesson on ${titles[position]}; you have to prepare two exercises on the lesson just finished of type: "fill in the blanks" and "multiple choice".
+CRITICAL: Both exercises must be a sentence containing '____' where a word is missing. Do not use open questions for the multiple choice.
+${reply}. IMPORTANT: you cannot use the same text for the two exercises`;
+
+  const mistralResp = await mistralFetch(mistralPrompt);
+
+  if (mistralResp.error) {
+    console.log("error ", keys[currentPosition]);
     return;
   }
 
-  const mistralJSON = JSON.parse(mistralResponse.response.content);
-  const title = mistralJSON.translation;
-  console.log(title);
+  const mistralJSON = JSON.parse(mistralResp.response.content);
+  const { fill_in_the_blanks, multiple_choice } = mistralJSON;
 
-  const type = "multiple choice";
-  const targetLang = "english";
-  const prompt = `You are an English teacher who just finished a lesson on the following topic: "${title}".
-  Generate a multiple-choice exercise to test the student's understanding.`;
-
-  const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
-
-  const schemaStr = JSON.stringify(exerciseSchema());
-  try {
-    const response = await groq.chat.completions.create({
-      model: "llama-3.3-70b-versatile",
-      messages: [
-        {
-          role: "system",
-          content: `${prompt}. 
-                    Respond ONLY in JSON format, following this pattern: ${schemaStr}`,
-        },
-        {
-          role: "user",
-          content: "generate five exercises",
-        },
-      ],
-      response_format: { type: "json_object" },
-      temperature: 0,
-    });
-
-    if (response.error) {
-      console.error("error in position ", position);
-      return;
-    }
-
-    const aiResp = response.choices[0].message.content;
-    const dataObject = JSON.parse(aiResp);
-    const data = dataObject.exercise.questions;
-
-    for (const datum of data) {
-      await exerciseModel.create({
-        instructions: dataObject.exercise.instructions,
-        index: indexes[position],
-        type: "multipleChoice",
-        targetLang: "english",
-        question: datum.question,
-        options: datum.options,
-        answer: datum.correct_answer,
-      });
-    }
-
-    console.log("position completed ", position);
-    setTimeout(() => {
-      if (position === titles.length - 1) {
-        console.log("finish");
-      } else {
-        exercisesPipeline(position + 1);
-      }
-    }, 60000);
-  } catch (err) {
-    console.error("exercises pipeline ", err);
+  if (!fill_in_the_blanks || !multiple_choice) {
+    console.log("error ", keys[currentPosition]);
+    return;
   }
+
+  const freeText = respHandler(fill_in_the_blanks);
+  const multiple = respHandler(multiple_choice);
+
+  if (freeText.error || multiple.error) {
+    console.log("handler fail ", keys[currentPosition]);
+    return;
+  }
+
+  const lessonKey = keys[position];
+
+  const freeTextData = {
+    type: "freeText",
+    question: freeText.question,
+    clozeQuestion: fill_in_the_blanks.text,
+    answerText: fill_in_the_blanks.answer,
+    answerPosition: freeText.answerPosition,
+    targetLang: "english",
+    lessonKey,
+    aiGenerated: true,
+  };
+
+  const multipleData = {
+    type: "multipleChoice",
+    question: multiple.question,
+    clozeQuestion: multiple_choice.text,
+    answerText: multiple_choice.answer,
+    answerPosition: multiple.answerPosition,
+    targetLang: "english",
+    lessonKey,
+    multipleWrongs: multiple_choice.incorrect_answers,
+    aiGenerated: true,
+  };
+
+  try {
+    await exerciseModel.create(freeTextData);
+    await exerciseModel.create(multipleData);
+  } catch (err) {
+    console.log("error in db ", keys[position]);
+    console.log(err);
+  }
+
+  const newPosition = position + 1;
+  setTimeout(() => {
+    if (position === titles.length - 1) {
+      console.log("finish");
+    } else {
+      console.log("COMPLETE ", position);
+      exercisesPipeline(newPosition);
+    }
+  }, 60000);
 };
 
 export default exercisesPipeline;
