@@ -47,5 +47,20 @@
   "connection": "Erreur de connexion",
   "tryAgain": "Réessayer",
   "notFound": "Introuvable",
-  "goodJob": "Beau travail !"
+  "goodJob": "Excellent travail !",
+  "invalidQuestion": "250 caractères maximum",
+  "missingWrongAnswer": "Veuillez saisir les mauvaises réponses",
+  "wrongAnswerInvalidLength": "Vous avez saisi trop de mauvaises réponses",
+  "max9Answer": "Vous pouvez saisir un maximum de 9 mauvaises réponses",
+  "min3Answer": "Vous devez saisir au moins trois mauvaises réponses",
+  "answerToLong": "Chaque réponse (y compris les mauvaises dans un exercice à choix multiples) peut contenir 20 caractères maximum",
+  "invalidAnswer": "Quelque chose s'est mal passé, veuillez essayer un nouvel exercice",
+  "invalidTypeExercise": "Cet exercice n'existe pas",
+  "lessonDataMissing": "Données de la leçon manquantes",
+  "invalidLessonKey": "Identifiant de la leçon manquant",
+  "invalidLessonIndex": "Index de la leçon manquant",
+  "invalidLessonLevel": "Niveau de la leçon manquant",
+  "malformedAnswer": "La réponse correcte que vous avez saisie est invalide",
+  "questionTooShort": "Le texte d'un exercice doit contenir au moins trois mots",
+  "invalidLastChar": "Le dernier caractère doit être une lettre (n'insérez pas de points ou de virgules à la fin)"
 }

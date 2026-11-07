@@ -47,5 +47,20 @@
   "connection": "Connection error",
   "tryAgain": "Try again",
   "notFound": "Not found",
-  "goodJob": "Good job!"
+  "goodJob": "Great job!",
+  "invalidQuestion": "Maximum 250 characters",
+  "missingWrongAnswer": "Please enter the incorrect answers",
+  "wrongAnswerInvalidLength": "You have entered too many incorrect answers",
+  "max9Answer": "You can enter a maximum of 9 incorrect answers",
+  "min3Answer": "You must enter at least three incorrect answers",
+  "answerToLong": "Each answer (including incorrect ones in a multiple-choice exercise) can contain a maximum of 20 characters",
+  "invalidAnswer": "Something went wrong, please try a new exercise",
+  "invalidTypeExercise": "This exercise does not exist",
+  "lessonDataMissing": "Missing lesson data",
+  "invalidLessonKey": "Missing lesson identifier",
+  "invalidLessonIndex": "Missing lesson index",
+  "invalidLessonLevel": "Missing lesson level",
+  "malformedAnswer": "The correct answer you entered is invalid",
+  "questionTooShort": "The text of an exercise must contain at least three words",
+  "invalidLastChar": "The last character must be a letter (do not include periods or commas at the end)"
 }

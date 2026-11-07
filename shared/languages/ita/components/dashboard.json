@@ -8,5 +8,14 @@
   "lockedText": "Puoi sbloccare l lezione dalla tua area riservata se il tuo attuale piano lo consente; in caso contrario valuta un upgrade o aspetta domani",
   "yourStudents": "I tuoi studenti",
   "zeroStudents": "Non hai studenti iscritti ai tuoi corsi",
-  "checkSettings": "Verifica che il tuo profilo sia completo"
+  "checkSettings": "Verifica che il tuo profilo sia completo",
+  "messages": {
+    "notification": "nuovo messaggio da:",
+    "olderText": "mostra messaggi più vecchi",
+    "pending": "attendere",
+    "finish": "sei arrivato alla fine",
+    "error": "qualcosa è andato storto",
+    "selectOne": "Seleziona un account con cui conversare",
+    "textareaPlaceholder": "... il tuo messaggio"
+  }
 }

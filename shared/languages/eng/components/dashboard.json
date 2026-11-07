@@ -8,5 +8,14 @@
   "lockedText": "You can unlock the lesson from your private area if your current plan allows it; otherwise, consider an upgrade or wait until tomorrow",
   "yourStudents": "Your students",
   "zeroStudents": "You have no students enrolled in your courses",
-  "checkSettings": "Verify that your profile is complete"
+  "checkSettings": "Verify that your profile is complete",
+  "messages": {
+    "notification": "new message from:",
+    "olderText": "show older messages",
+    "pending": "please wait",
+    "finish": "you have reached the end",
+    "error": "something went wrong",
+    "selectOne": "Select an account to chat with",
+    "textareaPlaceholder": "... your message"
+  }
 }

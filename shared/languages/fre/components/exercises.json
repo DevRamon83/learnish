@@ -1,6 +1,21 @@
 {
-  "lar": "Écoute et répète",
+  "lar": "Écoutez et répétez",
   "atRestaurant": "Au restaurant",
   "level": "niveau",
-  "repeatDialogue": "Relance le dialogue"
+  "repeatDialogue": "Redémarrer le dialogue",
+  "multipleChoiceHeader": "Saisissez entre trois et neuf mauvaises réponses maximum",
+  "multipleChoiceExample": "Exemple : réponse un, réponse deux, réponse trois",
+  "multipleChoice": "Choix multiple",
+  "freeText": "Texte libre",
+  "questionLevel": "Niveau de la question",
+  "labelSelect": "Choisissez une leçon ...",
+  "questionText": "Saisissez le texte de l'exercice",
+  "newExerciseHeader": "Créer un nouvel exercice",
+  "type": "Choisissez le type d'exercice",
+  "defineLesson": "Leçon concernée",
+  "yourQuestion": "Texte de l'exercice",
+  "correctAnswer": "Sélectionnez la bonne réponse parmi les mots",
+  "submitExercise": "envoyer l'exercice",
+  "success": "Félicitations ! Votre exercice a été mis en ligne avec succès.",
+  "close": "Fermer"
 }

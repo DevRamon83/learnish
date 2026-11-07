@@ -2,5 +2,20 @@
   "lar": "Listen and repeat",
   "atRestaurant": "At the restaurant",
   "level": "level",
-  "repeatDialogue": "Restart the dialogue"
+  "repeatDialogue": "Restart the dialogue",
+  "multipleChoiceHeader": "Enter a minimum of three and a maximum of nine incorrect answers",
+  "multipleChoiceExample": "Example: answer one, answer two, answer three",
+  "multipleChoice": "Multiple choice",
+  "freeText": "Free text",
+  "questionLevel": "Question level",
+  "labelSelect": "Choose a lesson ...",
+  "questionText": "Enter the exercise text",
+  "newExerciseHeader": "Create a new exercise",
+  "type": "Choose the exercise type",
+  "defineLesson": "Relevant lesson",
+  "yourQuestion": "Exercise text",
+  "correctAnswer": "Select the correct answer from the words",
+  "submitExercise": "submit the exercise",
+  "success": "Congratulations! Your exercise has been successfully uploaded.",
+  "close": "Close"
 }

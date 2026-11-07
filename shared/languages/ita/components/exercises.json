@@ -2,5 +2,20 @@
   "lar": "Ascolta e ripeti",
   "atRestaurant": "Al ristorante",
   "level": "livello",
-  "repeatDialogue": "Riavvia il dialogo"
+  "repeatDialogue": "Riavvia il dialogo",
+  "multipleChoiceHeader": "Inserisci da un minimo di tre a un massimo di nove risposte sbagliate",
+  "multipleChoiceExample": "Esempio: risposta uno, risposta due, risposta tre",
+  "multipleChoice": "Scelta multipla",
+  "freeText": "Testo libero",
+  "questionLevel": "Livello della domanda",
+  "labelSelect": "Scegli una lezione ...",
+  "questionText": "Inserisci il testo dell'esercizio",
+  "newExerciseHeader": "Crea un nuovo esercizio",
+  "type": "Scegli il tipo di esercizio",
+  "defineLesson": "Lezione di pertinenza",
+  "yourQuestion": "Testo dell'esercizio",
+  "correctAnswer": "Seleziona tra le varie parole la risposta corretta",
+  "submitExercise": "invia l'esercizio",
+  "success": "Complimenti! il tuo esercizio è stato caricato con successo.",
+  "close": "Chiudi"
 }

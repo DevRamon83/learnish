@@ -8,5 +8,14 @@
   "lockedText": "Puedes desbloquear la lección desde tu área privada si tu plan actual lo permite; de lo contrario, considera una mejora o espera a mañana",
   "yourStudents": "Tus estudiantes",
   "zeroStudents": "No tienes estudiantes inscritos en tus cursos",
-  "checkSettings": "Verifica que tu perfil esté completo"
+  "checkSettings": "Verifica que tu perfil esté completo",
+  "messages": {
+    "notification": "nuevo mensaje de:",
+    "olderText": "mostrar mensajes más antiguos",
+    "pending": "espera un momento",
+    "finish": "has llegado al final",
+    "error": "algo salió mal",
+    "selectOne": "Selecciona una cuenta para conversar",
+    "textareaPlaceholder": "... tu mensaje"
+  }
 }

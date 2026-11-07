@@ -2,5 +2,20 @@
   "lar": "Escucha y repite",
   "atRestaurant": "En el restaurante",
   "level": "nivel",
-  "repeatDialogue": "Reinicia el diálogo"
+  "repeatDialogue": "Reiniciar el diálogo",
+  "multipleChoiceHeader": "Introduce un mínimo de tres y un máximo de nueve respuestas incorrectas",
+  "multipleChoiceExample": "Ejemplo: respuesta uno, respuesta dos, respuesta tres",
+  "multipleChoice": "Opción múltiple",
+  "freeText": "Texto libre",
+  "questionLevel": "Nivel de la pregunta",
+  "labelSelect": "Elige una lección ...",
+  "questionText": "Introduce el texto del ejercicio",
+  "newExerciseHeader": "Crear un nuevo ejercicio",
+  "type": "Elige el tipo de ejercicio",
+  "defineLesson": "Lección correspondiente",
+  "yourQuestion": "Texto del ejercicio",
+  "correctAnswer": "Selecciona la respuesta correcta de entre las palabras",
+  "submitExercise": "enviar el ejercicio",
+  "success": "¡Felicidades! Tu ejercicio se ha cargado con éxito.",
+  "close": "Cerrar"
 }

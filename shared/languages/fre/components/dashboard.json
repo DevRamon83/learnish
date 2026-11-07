@@ -8,5 +8,14 @@
   "lockedText": "Vous pouvez débloquer le cours depuis votre espace privé si votre forfait actuel le permet ; sinon, envisagez une mise à niveau ou attendez demain",
   "yourStudents": "Vos étudiants",
   "zeroStudents": "Vous n'avez aucun étudiant inscrit à vos cours",
-  "checkSettings": "Vérifiez que votre profil est complet"
+  "checkSettings": "Vérifiez que votre profil est complet",
+  "messages": {
+    "notification": "nouveau message de :",
+    "olderText": "afficher les messages plus anciens",
+    "pending": "veuillez patienter",
+    "finish": "vous êtes arrivé à la fin",
+    "error": "quelque chose s'est mal passé",
+    "selectOne": "Sélectionnez un compte avec lequel discuter",
+    "textareaPlaceholder": "... votre message"
+  }
 }

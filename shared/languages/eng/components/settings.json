@@ -83,5 +83,10 @@
     "perSession": "cost for one session",
     "fiveSessions": "cost for five sessions",
     "tenSessions": "cost for ten sessions"
+  },
+  "costs": {
+    "monthly": "Monthly Cost",
+    "semiannually": "Semi-annual Cost",
+    "annually": "Annual Cost"
   }
 }
