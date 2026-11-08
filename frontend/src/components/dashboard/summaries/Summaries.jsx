@@ -48,6 +48,7 @@ export default function Summaries() {
               open={open}
               setter={setOpen}
               classes={classes}
+              caller="student"
             />
           ))}
       </div>

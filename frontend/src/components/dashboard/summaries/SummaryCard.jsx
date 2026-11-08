@@ -8,7 +8,13 @@ import ReadSummary from "./ReadSummary";
 import SummaryErrorTab from "../../../ui/summary/SummaryErrorTab";
 import SummaryCardErrors from "../../../ui/summary/SummaryCardErrors";
 
-export default function SummaryCard({ summary, setter, open, classes }) {
+export default function SummaryCard({
+  summary,
+  setter,
+  open,
+  classes,
+  caller,
+}) {
   const [mySummary, setMySummary] = useState(summary);
   const title = getSummaryTitle(mySummary.title);
   const date = getSummaryDate(mySummary.createdAt);
@@ -41,7 +47,7 @@ export default function SummaryCard({ summary, setter, open, classes }) {
             summary={mySummary}
           />
           <div>{date}</div>
-          {open === mySummary._id && (
+          {open === mySummary._id && caller === "student" && (
             <Summary data={mySummary} setter={setter} />
           )}
         </div>
