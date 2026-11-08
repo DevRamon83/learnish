@@ -3,7 +3,7 @@ import { classes } from "../constants/components/messages";
 import getPicUrl from "../helpers/getPicUrl";
 import useHorizontalScroll from "../hooks/useHorizontalScroll";
 
-export default function ChatList({ chatList, receiverID, currentChatHandler }) {
+export default function StudentsList({ list, current, studentHandler }) {
   const refContainer = useRef(null);
 
   const scrollToRight = useHorizontalScroll(refContainer, "left");
@@ -13,11 +13,11 @@ export default function ChatList({ chatList, receiverID, currentChatHandler }) {
     <div className={classes.scrollWrapper}>
       <div className={classes.leftScroll} onClick={scrollToLeft} />
       <div ref={refContainer} className={classes.studentsList}>
-        {chatList.map((student) => {
-          const currentUser = student._id === receiverID;
+        {list.map((student) => {
+          const currentUser = student._id === current;
           return (
             <div
-              onClick={() => currentChatHandler(student)}
+              onClick={() => studentHandler(student)}
               className={classes.student}
               key={student._id}
             >

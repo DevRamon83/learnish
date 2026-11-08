@@ -1,11 +1,11 @@
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import ChatList from "../../../ui/ChatList";
 import ChatPanel from "./ChatPanel";
 import { useChatInitialization } from "../../../hooks/useChatInitialization";
 import { useLang } from "../../../hooks/useLang";
 import { i18nAddresses } from "../../../constants/i18nAddresses";
 import { ids } from "../../../constants/components/messages";
+import StudentsList from "../../../ui/StudentsList";
 
 /**
  * ARCHITECTURAL NOTE: Real-Time Chat & State Synchronization Strategy
@@ -72,10 +72,10 @@ export default function Messages({ cache }) {
       {user && (
         <>
           {chatList.length > 0 && (
-            <ChatList
-              chatList={chatList}
-              receiverID={receiverID}
-              currentChatHandler={currentChatHandler}
+            <StudentsList
+              list={chatList}
+              current={receiverID}
+              studentHandler={currentChatHandler}
             />
           )}
           <ChatPanel
