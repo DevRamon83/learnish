@@ -19,7 +19,6 @@ const server = createServer(app);
 
 const env = process.env.NODE_ENV;
 const ORIGIN = env === "DEV" ? process.env.ORIGIN_DEV : process.env.ORIGIN_PROD;
-const MONGO_URI = process.env[`MONGO_URI_${env}`];
 const PORT = process.env.PORT || 4000;
 
 const tokensRevoked = new Set();
@@ -76,9 +75,11 @@ const io = new Server(server, {
 
 initSocketLogic(io, contextMaps);
 
-mongoose
-  .connect(MONGO_URI)
+const connectionPromise = mongoose.connect(process.env[`MONGO_URI_${env}`]);
 
+delete process.env[`MONGO_URI_${env}`];
+
+connectionPromise
   .then(async () => {
     const unauthorizedUsers = await userModel.find(
       { $or: [{ isRevoked: true }, { isBanned: true }] },
