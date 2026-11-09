@@ -17,6 +17,7 @@ import {
   contracts,
   packs,
 } from "./atomicConstants.js";
+import { animals, colors } from "./badges.js";
 
 const constants = {
   currentPrivacy,
@@ -36,6 +37,8 @@ const constants = {
   passwordKeys,
   contracts,
   packs,
+  animals,
+  colors,
 };
 
 export default constants;
