@@ -51,10 +51,13 @@ const login = async (req, res) => {
 
     if (user.userType === "teacher") {
       const students = await Student.find({ _id: { $in: user.students } })
-        .select("username _id profilePic -userType")
+        .select("username _id profilePic -userType classroom")
         .lean();
 
       configData.studentsList = students;
+      configData.classrooms = user.classrooms;
+    } else {
+      configData.classroom = user.classroom;
     }
 
     return res.status(200).json({ response: configData });
