@@ -31,7 +31,7 @@ const SummarySchema = new Schema(
     misalignment: { type: Boolean, required: true, default: true },
     owner: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "user",
+      ref: "User",
       required: true,
     },
   },
