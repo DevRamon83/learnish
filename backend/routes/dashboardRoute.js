@@ -10,6 +10,10 @@ import flashcards from "../controllers/dashboard/flashcards.js";
 import teachersList from "../controllers/dashboard/teachersList.js";
 import validateExercise from "../middlewares/dashboard/validateExercise.js";
 import newExercise from "../controllers/dashboard/newExercise.js";
+import studentData from "../controllers/dashboard/studentData.js";
+import createClassroom from "../controllers/dashboard/createClassroom.js";
+import validateClassroom from "../middlewares/dashboard/validateClassroom.js";
+import changeClassroom from "../controllers/dashboard/changeClassroom.js";
 
 const dashboardRoute = express.Router();
 
@@ -27,6 +31,16 @@ dashboardRoute.get("/getStats", ...protectedRoutes, getStats);
 dashboardRoute.get("/flashcards", ...protectedRoutes, flashcards);
 dashboardRoute.get("/summariesList", ...protectedRoutes, summariesList);
 dashboardRoute.get("/teachers", ...protectedRoutes, teachersList);
+dashboardRoute.get("/studentData", ...protectedRoutes, studentData);
+dashboardRoute.post(
+  "/newClassroom",
+  ...protectedRoutes,
+  validateClassroom,
+  createClassroom,
+);
+
+dashboardRoute.post("/changeClassroom", ...protectedRoutes, changeClassroom);
+
 dashboardRoute.post(
   "/newExercise",
   ...protectedRoutes,
