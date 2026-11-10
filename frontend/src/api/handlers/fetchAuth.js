@@ -5,7 +5,7 @@ const fetchAuth = async () => {
   const { base, auth } = API_URLS;
   const apiUrl = base + auth.base + auth.check;
 
-  const method = "POST";
+  const method = "GET";
   const credentials = "include";
   const response = await fetchData(apiUrl, method, credentials);
 
