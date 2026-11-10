@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema(
@@ -67,6 +68,7 @@ const Student = userModel.discriminator(
         qNa: { type: Number },
       },
     },
+    classroom: { type: [String] },
   }),
 );
 
@@ -85,6 +87,13 @@ const Teacher = userModel.discriminator(
   new Schema({
     taughtLang: { type: String, enum: ["us", "en"] },
     students: [{ type: Schema.Types.ObjectId }],
+
+    // Structure: { [animalKey]: [colorValues, ...] }
+    // Enums and keys constraints are validated via middleware.
+    classrooms: {
+      type: Object,
+      default: {},
+    },
     currency: {
       type: String,
       enum: ["dollar", "euro"],
