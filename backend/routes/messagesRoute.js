@@ -10,7 +10,6 @@ const messagesRoute = express.Router();
 
 messagesRoute.post("/newContact", validateNewContact, newContactRequest);
 
-// validation is need?
 messagesRoute.get(
   "/retrieveMessages",
   ...protectedRoutes,
