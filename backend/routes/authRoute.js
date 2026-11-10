@@ -19,7 +19,7 @@ const authRoute = express.Router();
 
 authRoute.post("/signup", dataStandard, signupValidator, createUser);
 authRoute.post("/login", dataStandard, signupValidator, bannedCheck, login);
-authRoute.post("/check", dataStandard, tokensValidator, bannedCheck, check);
+authRoute.get("/check", dataStandard, tokensValidator, bannedCheck, check);
 authRoute.post("/logout", dataStandard, tokensValidator, logout);
 authRoute.post("/unique", dataStandard, uniqueValidator, unique);
 authRoute.get("/verify/:token", verifyUser);
