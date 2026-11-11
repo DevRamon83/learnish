@@ -4,6 +4,7 @@ export default function ClassroomSelection({
   icon,
   studentHandler,
   classes,
+  strings,
 }) {
   return (
     <div className={classes.multipleChoice}>
@@ -17,6 +18,9 @@ export default function ClassroomSelection({
           <img src={`/${icon}.svg`} />
         </div>
       ))}
+      {action === "add" && array.length === 0 && (
+        <div className={classes.row}>{strings.zeroAvailable}</div>
+      )}
     </div>
   );
 }
