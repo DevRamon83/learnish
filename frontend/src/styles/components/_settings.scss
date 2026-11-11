@@ -675,15 +675,6 @@
   }
 }
 
-.settings__myStudents {
-  min-height: 50vh;
-  margin: 0;
-
-  @include breakpoints.medium {
-    margin: 50px 25px;
-  }
-}
-
 .settings__student {
   width: 100%;
   background-color: white;
@@ -702,14 +693,6 @@
     width: 80%;
     border-width: 1px;
     border-radius: 15px;
-  }
-}
-
-.settings__myStudents {
-  > h1,
-  > h4,
-  > h5 {
-    margin-left: 25px;
   }
 }
 
