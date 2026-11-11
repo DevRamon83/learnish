@@ -12,6 +12,7 @@ const initialState = {
     teacherData: { id: null, username: null },
     studentsList: [],
     unreadMessages: [],
+    classrooms: {},
   },
 };
 
@@ -37,6 +38,30 @@ const authSlice = createSlice({
     addNewUnreadMessage: (state, action) => {
       state.user.unreadMessages.push(action.payload);
     },
+    updateStudentsList: (state, action) => {
+      const { data, currentBadge } = action.payload;
+      const ids = Object.keys(data);
+
+      ids.forEach((id) => {
+        const student = state.user.studentsList.find(
+          (student) => student._id === id,
+        );
+
+        if (data[id]) {
+          student.classroom = currentBadge;
+        } else {
+          delete student.classroom;
+        }
+      });
+    },
+    updateTeacherBadge: (state, action) => {
+      const { color, animal } = action.payload;
+      if (state.user.classrooms[animal]) {
+        state.user.classrooms[animal].push(color);
+      } else {
+        state.user.classrooms[animal] = [color];
+      }
+    },
     logout: (state) => {
       state.authState = "unauthenticated";
       state.user = null;
@@ -52,6 +77,8 @@ export const {
   updateTeacherStudent,
   updateUnreadMessages,
   addNewUnreadMessage,
+  updateStudentsList,
+  updateTeacherBadge,
 } = authSlice.actions;
 
 export default authSlice.reducer;
