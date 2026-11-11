@@ -1,0 +1,18 @@
+export const classes = {
+  container: "classrooms__container",
+  panelBtn: "classrooms__panelBtn",
+  badgeContainer: "classrooms__badgeContainer",
+  badge: "classrooms__badge",
+  listContainer: "classrooms__listContainer",
+  multipleChoice: "classrooms__multipleChoice",
+  row: "classrooms__row",
+  newClassroom: "classrooms__new",
+  selectionContainer: "classrooms__selectionsContainer",
+  inputContainer: "classrooms__inputContainer",
+  create: "classrooms__sendBtn",
+  pointerClass: "classrooms__pointerBadge",
+  closeManager: "classrooms__closeManagerBtn",
+  save: "classrooms__saveManagerBtn",
+  myStudents: "classrooms__myStudents",
+  notification: "classrooms__notification",
+};
