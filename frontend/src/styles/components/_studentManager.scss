@@ -1,0 +1,48 @@
+@use "../breakpoints";
+
+.studentManager__tabsContainer {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border: 1px solid black;
+  width: 90%;
+  height: 40px;
+  background-color: #002147;
+}
+
+.studentManager__tabs {
+  text-transform: uppercase;
+  font-weight: bold;
+  border: 1px solid black;
+  background-color: white;
+  padding: 5px 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.8em;
+  color: #002147;
+
+  @include breakpoints.medium {
+    font-size: unset;
+    padding: 5px 15px;
+  }
+}
+
+.studentManager__tabs-active {
+  @extend .studentManager__tabs;
+  background-color: greenyellow;
+}
+
+.studentManager__container {
+  width: 90%;
+  background-color: ghostwhite;
+  border: 1px solid black;
+  border-left: 0;
+  border-radius: 0 0 10px 0;
+  padding: 25px 15px;
+  margin-bottom: 25px;
+
+  @include breakpoints.medium {
+    border-left: 1px solid black;
+    border-radius: 0 0 10px 10px;
+  }
+}
