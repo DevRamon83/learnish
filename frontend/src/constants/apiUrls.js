@@ -22,6 +22,9 @@ export const API_URLS = {
     flashcards: "/flashcards",
     teachers: "/teachers",
     newExercise: "/newExercise",
+    studentData: "/studentData",
+    newClassroom: "/newClassroom",
+    changeClassroom: "/changeClassroom",
   },
   messages: {
     base: "/messages",
