@@ -1,0 +1,23 @@
+export default function StudentManagerTabMenu({
+  classes,
+  teacherTabs,
+  setTab,
+  tab,
+  strings,
+}) {
+  const { tabsContainer, tabBase } = classes.studentManager;
+
+  return (
+    <div className={tabsContainer}>
+      {teacherTabs.map((currentTab) => (
+        <div
+          className={`${tabBase}${currentTab === tab ? "-active" : ""}`}
+          onClick={() => setTab(currentTab)}
+          key={currentTab}
+        >
+          {strings[currentTab]}
+        </div>
+      ))}
+    </div>
+  );
+}
