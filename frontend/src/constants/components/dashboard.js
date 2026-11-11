@@ -5,6 +5,11 @@ export const classes = {
   menu: "dashboard__menu",
   main: "dashboard__main",
   core: "dashboard",
+  studentManager: {
+    tabsContainer: "studentManager__tabsContainer",
+    tabBase: "studentManager__tabs",
+    container: "studentManager__container",
+  },
   summary: {
     panel: "summary__panel",
     summaryContainer: "summary__container",
@@ -145,7 +150,6 @@ export const classes = {
     deactivateBtnNo: "settings__deactivateBtn-negative",
     deactivateBtnYes: "settings__deactivateBtn-affermative",
     deactivateBtnContainer: "settings__deactivateBtnContainer",
-    myStudents: "settings__myStudents",
     student: "settings__student",
   },
   study: {
@@ -155,6 +159,8 @@ export const classes = {
   },
   error: "dashboard__error",
 };
+
+export const teacherTabs = ["summaries", "stats", "enrolled", "homework"];
 
 export const ids = {
   flashcardGuess: "flashcardGuess",
