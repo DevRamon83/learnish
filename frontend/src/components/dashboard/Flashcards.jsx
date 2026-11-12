@@ -49,12 +49,12 @@ export default function Flashcards() {
             <li>{strings.esc}</li>
           </ol>
 
-          <div
+          <button
             className={classes.flashcards.start}
             onClick={() => (cards ? setStart(true) : null)}
           >
             {cards ? strings.start : strings.wait}
-          </div>
+          </button>
         </div>
       )}
       {start && cards && <FlashcardGame setStart={setStart} cards={cards} />}

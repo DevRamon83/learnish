@@ -51,9 +51,9 @@ export default function ChatRender({
   return (
     <div className={classes.chat}>
       {length > 9 && (
-        <div className={classes.older} onClick={getOlderMessages}>
+        <button className={classes.older} onClick={getOlderMessages}>
           {olderBtn}
-        </div>
+        </button>
       )}
 
       <div className={classes.allMessages} ref={containerRef}>
@@ -74,7 +74,9 @@ export default function ChatRender({
           className={classes.textarea}
           placeholder={strings.textareaPlaceholder}
         />
-        <img src="/send.svg" onClick={sendHandler} />
+        <button className={classes.sendBtn} onClick={sendHandler}>
+          <img src="/send.svg" />
+        </button>
       </div>
     </div>
   );

@@ -10,13 +10,13 @@ export default function StudentManagerTabMenu({
   return (
     <div className={tabsContainer}>
       {teacherTabs.map((currentTab) => (
-        <div
+        <button
           className={`${tabBase}${currentTab === tab ? "-active" : ""}`}
           onClick={() => setTab(currentTab)}
           key={currentTab}
         >
           {strings[currentTab]}
-        </div>
+        </button>
       ))}
     </div>
   );

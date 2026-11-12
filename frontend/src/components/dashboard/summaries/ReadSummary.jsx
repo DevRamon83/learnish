@@ -60,9 +60,9 @@ export default function ReadSummary({
   return (
     <div className={classes.summary.iconContainer}>
       {alert && (
-        <div onClick={openAlert} className={classes.summary.iconAlert}>
+        <button onClick={openAlert} className={classes.summary.iconAlert}>
           <img className={classes.summary.alertImg} src="/alert.svg" />
-        </div>
+        </button>
       )}
       <SummaryAction
         actionHandler={actionHandler}

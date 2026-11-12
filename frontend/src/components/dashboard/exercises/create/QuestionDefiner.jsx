@@ -54,20 +54,16 @@ export default function QuestionDefiner({
             rows="5"
           />
 
-          <img
-            src="/upload.svg"
-            className={classes.submit}
-            onClick={questionHandler}
-          />
+          <button onClick={questionHandler}>
+            <img src="/upload.svg" className={classes.submit} />
+          </button>
         </div>
       ) : (
         <div className={classes.yourQuestion}>
           {changeQuestion}
-          <img
-            src="/change.svg"
-            className={classes.sendBtn}
-            onClick={changeQuestionHandler}
-          />
+          <button onClick={changeQuestionHandler}>
+            <img src="/change.svg" className={classes.sendBtn} />
+          </button>
         </div>
       )}
     </>

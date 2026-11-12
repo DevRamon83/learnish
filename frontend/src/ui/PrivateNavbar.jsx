@@ -7,7 +7,7 @@ export default function PrivateNavbar({
   logoutHandler,
 }) {
   const dashboardLink = `/user/${user?.type}/${user?.id}`;
-  const handler = () => {
+  const handleLogoutAndClose = () => {
     toggleNavbar();
     logoutHandler();
   };
@@ -15,14 +15,13 @@ export default function PrivateNavbar({
   return (
     <>
       <NavbarBtn
-        toggleNavbar={toggleNavbar}
+        onAction={toggleNavbar}
         link={dashboardLink}
         img={"/dashboard.svg"}
         text={strings.dashboard}
       />
       <NavbarBtn
-        toggleNavbar={handler}
-        link={"/"}
+        onAction={handleLogoutAndClose}
         img={"/logout.svg"}
         text={strings.logout}
       />

@@ -77,9 +77,9 @@ export default function TeachersList({ studentProps, props }) {
         />
       )}
       <div className={classes.teacherMenu}>
-        <div onClick={() => navigationHandler("back")}>{previous}</div>
-        <div onClick={chooseTeacher}>{chooseBtnText}</div>
-        <div onClick={() => navigationHandler("next")}>{next}</div>
+        <button onClick={() => navigationHandler("back")}>{previous}</button>
+        <button onClick={chooseTeacher}>{chooseBtnText}</button>
+        <button onClick={() => navigationHandler("next")}>{next}</button>
       </div>
       <TeacherDeactivateAlert
         deactivatePanel={deactivatePanel}

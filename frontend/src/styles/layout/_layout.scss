@@ -59,3 +59,14 @@ main {
   font-weight: bold;
   padding-top: 3px;
 }
+
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+  color: inherit;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+}

@@ -24,13 +24,14 @@ export default function Langs() {
           key={`newLang_${lang}`}
           className={currentLang === lang ? classes.langActive : classes.lang}
         >
-          <img
-            alt={lang}
-            title={lang}
-            src={`/langs/${lang}.svg`}
-            onClick={() => changeLang(lang)}
-            className={classes.langIcon}
-          />
+          <button onClick={() => changeLang(lang)}>
+            <img
+              alt={lang}
+              title={lang}
+              src={`/langs/${lang}.svg`}
+              className={classes.langIcon}
+            />
+          </button>
         </div>
       ))}
     </div>

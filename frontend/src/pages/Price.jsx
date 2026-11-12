@@ -12,22 +12,22 @@ export default function Price() {
   return (
     <div className={classes.main}>
       <div className={classes.tabMenu}>
-        <div
+        <button
           className={
             account === "students" ? classes.tabActive : classes.tabBtn
           }
           onClick={() => setAccount("students")}
         >
-          Studenti
-        </div>
-        <div
+          {strings.students}
+        </button>
+        <button
           className={
             account === "teachers" ? classes.tabActive : classes.tabBtn
           }
           onClick={() => setAccount("teachers")}
         >
-          Insegnanti
-        </div>
+          {strings.teachers}
+        </button>
       </div>
       {account === "students" ? (
         <StudentsPrice strings={strings} classes={classes} />

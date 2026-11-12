@@ -244,12 +244,11 @@
 .navbar__langImg {
   height: 25px;
   width: auto;
+  cursor: pointer;
 }
 
 .navbar__notify {
   background-color: white;
-  position: relative;
-  top: -10vh;
   animation: showNotify 0.5s forwards;
   width: fit-content;
   display: flex;
@@ -259,6 +258,7 @@
   overflow: hidden;
   z-index: 100;
   margin-right: 15px;
+  height: 32px;
 }
 
 @keyframes showNotify {

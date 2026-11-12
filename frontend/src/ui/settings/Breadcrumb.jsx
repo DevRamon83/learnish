@@ -5,7 +5,7 @@ export default function Breadcrumb({ props }) {
     <div className={classes.settings.breadcrumbContainer}>
       {!toggle &&
         userCards.map((value) => (
-          <div
+          <button
             className={
               card === value
                 ? classes.settings.breadcrumbActiveBtn
@@ -19,7 +19,7 @@ export default function Breadcrumb({ props }) {
             <div className={classes.settings.breadcrumbText}>
               {strings.settingsCard[value]}
             </div>
-          </div>
+          </button>
         ))}
     </div>
   );

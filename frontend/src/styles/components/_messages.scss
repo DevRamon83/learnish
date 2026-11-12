@@ -133,6 +133,7 @@
   text-transform: uppercase;
   font-weight: bold;
   height: 8%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -235,10 +236,16 @@
   padding: 10px;
   resize: none;
 }
-.messages__textareaContainer img {
+
+.messages__sendBtn {
   border-left: 1px solid black;
   background-color: #002147;
   width: 8%;
+  cursor: pointer;
+}
+
+.messages__sendBtn img {
+  height: 80%;
 }
 
 %messages__scroller {

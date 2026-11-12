@@ -52,13 +52,13 @@ export default function LessonDefiner({
       <h2>{strings.questionLevel}</h2>
       <div className={classes.levelContainer}>
         {[...levels].map((levelKey) => (
-          <div
+          <button
             className={`${btnBase}${level === levelKey ? "-selected" : ""}`}
             onClick={() => setLevel(levelKey)}
             key={`level_${levelKey}`}
           >
             {levelKey}
-          </div>
+          </button>
         ))}
       </div>
 

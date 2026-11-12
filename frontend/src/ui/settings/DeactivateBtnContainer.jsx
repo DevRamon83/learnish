@@ -6,15 +6,15 @@ export default function DeactivateBtnContainer({
 }) {
   return (
     <div className={classes.deactivateBtnContainer}>
-      <div
+      <button
         className={classes.deactivateBtnNo}
         onClick={() => setDeactivatePanel("close")}
       >
         {strings.change.no}
-      </div>
-      <div className={classes.deactivateBtnYes} onClick={handler}>
+      </button>
+      <button className={classes.deactivateBtnYes} onClick={handler}>
         {strings.change.yes}
-      </div>
+      </button>
     </div>
   );
 }

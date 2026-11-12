@@ -21,8 +21,8 @@ export default function UnlockLesson({
   };
 
   return (
-    <div className={classes.lessons.unlock} onClick={unlock}>
+    <button className={classes.lessons.unlock} onClick={unlock}>
       {strings.unlock}
-    </div>
+    </button>
   );
 }

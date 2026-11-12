@@ -11,12 +11,12 @@ export default function StudentsList({ list, current, studentHandler }) {
 
   return (
     <div className={classes.scrollWrapper}>
-      <div className={classes.leftScroll} onClick={scrollToLeft} />
+      <button className={classes.leftScroll} onClick={scrollToLeft} />
       <div ref={refContainer} className={classes.studentsList}>
         {list.map((student) => {
           const currentUser = student._id === current;
           return (
-            <div
+            <button
               onClick={() => studentHandler(student)}
               className={classes.student}
               key={student._id}
@@ -27,11 +27,11 @@ export default function StudentsList({ list, current, studentHandler }) {
               <div className={currentUser ? classes.activeUser : classes.user}>
                 {student.username.slice(0, 8)}
               </div>
-            </div>
+            </button>
           );
         })}
       </div>
-      <div className={classes.rightScroll} onClick={scrollToRight} />
+      <button className={classes.rightScroll} onClick={scrollToRight} />
     </div>
   );
 }

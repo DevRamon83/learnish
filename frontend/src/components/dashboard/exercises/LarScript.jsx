@@ -46,10 +46,10 @@ export default function LarScript({
 
   return (
     <div className={classes.scriptContainer} ref={containerRef}>
-      <div className={classes.section}>
+      <button className={classes.section}>
         {strings[card.dialogue]}
         <img title="close" alt="close" src="/close.svg" onClick={close} />
-      </div>
+      </button>
       <div className={classes.dialogueContainer}>
         {rows.length !== 0 &&
           rows.map((row, rowIndex) => (
@@ -63,12 +63,12 @@ export default function LarScript({
           ))}
       </div>
       {Object.keys(currentDialogue).length === index && (
-        <div
+        <button
           className={classes.repeatBtn}
           onClick={() => setRepeat(Date.now())}
         >
           {strings.repeatDialogue}
-        </div>
+        </button>
       )}
     </div>
   );

@@ -6,21 +6,15 @@ export default function NavbarNotify({
 }) {
   return (
     <div className={classes.navbarNotify}>
-      <img
-        className={classes.notificationIcon}
-        src="/notification.svg"
-        onClick={notifyFromWho}
-      />
-      <img
-        className={classes.notifyAction}
-        src="/messages.svg"
-        onClick={goToMessages}
-      />
-      <img
-        className={classes.notifyClose}
-        src="/close.svg"
-        onClick={closeNotify}
-      />
+      <button onClick={notifyFromWho}>
+        <img className={classes.notificationIcon} src="/notification.svg" />
+      </button>
+      <button onClick={goToMessages}>
+        <img className={classes.notifyAction} src="/messages.svg" />
+      </button>
+      <button onClick={closeNotify}>
+        <img className={classes.notifyClose} src="/close.svg" />
+      </button>
     </div>
   );
 }

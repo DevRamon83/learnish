@@ -26,9 +26,9 @@ export default function SubmitExercise({
   };
   return (
     <>
-      <div className={classes.submitExercise} onClick={handler}>
+      <button className={classes.submitExercise} onClick={handler}>
         {strings.submitExercise}
-      </div>
+      </button>
     </>
   );
 }

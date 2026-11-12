@@ -44,12 +44,12 @@ export default function ActivateService({ props, contractProps }) {
   return (
     <>
       {!isOpen ? (
-        <div
+        <button
           className={classes.settings.activate}
           onClick={() => setIsOpen(true)}
         >
           {strings.activate}
-        </div>
+        </button>
       ) : (
         <PriceDefiner
           key={`${service}_${lang}`}

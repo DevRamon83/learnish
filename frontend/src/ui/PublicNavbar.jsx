@@ -4,13 +4,13 @@ export default function PublicNavbar({ strings, toggleNavbar }) {
   return (
     <>
       <NavbarBtn
-        toggleNavbar={toggleNavbar}
+        onAction={toggleNavbar}
         link={"/login"}
         img={"/login.svg"}
         text={strings.login}
       />
       <NavbarBtn
-        toggleNavbar={toggleNavbar}
+        onAction={toggleNavbar}
         link={"/signup"}
         img={"/signup.svg"}
         text={strings.signup}

@@ -7,11 +7,11 @@ export default function QuestionBtn({
 }) {
   const { questionButton, textActive, text, arrow } = classes;
   return (
-    <div className={questionButton} onClick={() => setAnswer(index)}>
+    <button className={questionButton} onClick={() => setAnswer(index)}>
       <div className={answer === index ? textActive : text}>{question}</div>
       <div className={arrow}>
         <img src="/arrow.svg" />
       </div>
-    </div>
+    </button>
   );
 }

@@ -17,18 +17,18 @@ export default function TypeDefiner({
     <>
       <h2>{strings.type}</h2>
       <div className={classes.type}>
-        <div
+        <button
           className={`${btnBase}${exercise.type === "multipleChoice" ? "-selected" : ""}`}
           onClick={() => handler("multipleChoice")}
         >
           {strings.multipleChoice}
-        </div>
-        <div
+        </button>
+        <button
           className={`${btnBase}${exercise.type === "freeText" ? "-selected" : ""}`}
           onClick={() => handler("freeText")}
         >
           {strings.freeText}
-        </div>
+        </button>
       </div>
     </>
   );

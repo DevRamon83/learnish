@@ -4,7 +4,7 @@
   border: 1px solid #000;
   height: 1em;
   width: 1em;
-  padding: 1em;
+  padding: 1.5em;
   background-color: white;
   border-radius: 50%;
   display: flex;
@@ -16,7 +16,7 @@
   @include breakpoints.medium {
     height: 1.5em;
     width: 1.5em;
-    padding: 1.5em;
+    padding: 1.8em;
   }
 }
 
@@ -25,14 +25,14 @@
 }
 
 .btn__dash > img {
-  width: 1em;
+  width: 1.8em;
 
   @include breakpoints.medium {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 1.3em;
-    width: 1.3em;
+    height: 1.5em;
+    width: 1.5em;
   }
 }
 

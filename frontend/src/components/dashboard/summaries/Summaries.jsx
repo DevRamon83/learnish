@@ -30,8 +30,15 @@ export default function Summaries() {
 
   return (
     <>
-      <h1>{strings.yourSummaries}</h1>
-      <button onClick={() => setPanel(true)}>{strings.newSummaryBtn}</button>
+      <div className={classes.summary.h1Container}>
+        <h1>{strings.yourSummaries}</h1>
+        <button
+          className={classes.summary.newSummaryBtn}
+          onClick={() => setPanel(true)}
+        >
+          {strings.newSummaryBtn}
+        </button>
+      </div>
 
       <FetchObserver
         fetchStatus={fetchStatus}

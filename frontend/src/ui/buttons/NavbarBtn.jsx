@@ -1,10 +1,10 @@
 import { NavLink } from "react-router-dom";
 import { classes } from "../../constants/layout/navbar";
 
-export default function NavbarBtn({ link, img, text, toggleNavbar }) {
+export default function NavbarBtn({ link, img, text, onAction }) {
   return (
     <>
-      <NavLink onClick={toggleNavbar} to={link} className={classes.tab}>
+      <NavLink onClick={onAction} to={link} className={classes.tab}>
         <div className={classes.tabImg}>
           <img src={img} />
         </div>

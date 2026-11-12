@@ -40,16 +40,16 @@ export default function DeactivatePanel({ props, contractProps }) {
       <div className={classes.settings.confirmTxt}>
         {strings.confirmDeactivate}
       </div>
-      <div
+      <button
         className={classes.settings.closeDeactivation}
         onClick={() => setDeactivate(false)}
       >
         {strings.close}
-      </div>
+      </button>
 
-      <div className={classes.settings.confirmBtn} onClick={confirmHandler}>
+      <button className={classes.settings.confirmBtn} onClick={confirmHandler}>
         {strings.deactivateOk}
-      </div>
+      </button>
     </div>
   );
 }

@@ -27,9 +27,9 @@ export default function FlashcardMenu({
           scoreClass={classes.score}
         />
       </div>
-      <div className={classes.finish} onClick={() => setStart(false)}>
+      <button className={classes.finish} onClick={() => setStart(false)}>
         <img src="/finish.svg" />
-      </div>
+      </button>
       <div className={classes.menuBottomRow}>
         <ScoreAndPoints
           strings={strings}

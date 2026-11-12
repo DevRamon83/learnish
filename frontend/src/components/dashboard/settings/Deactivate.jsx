@@ -9,7 +9,10 @@ export default function Deactivate({ contractProps, props }) {
   return (
     <>
       {!deactivate && (
-        <div className={classes.settings.trash} onClick={deactivateHandler} />
+        <button
+          className={classes.settings.trash}
+          onClick={deactivateHandler}
+        />
       )}
     </>
   );

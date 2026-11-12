@@ -16,7 +16,7 @@ export default function CommonNavbar({ strings, toggleNavbar }) {
       {links.map((tag) => (
         <NavbarBtn
           key={`navBtn_${tag}`}
-          toggleNavbar={toggleNavbar}
+          onAction={toggleNavbar}
           link={`/${tag}`}
           img={`/${tag}.svg`}
           text={strings[tag]}

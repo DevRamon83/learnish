@@ -37,9 +37,12 @@ export default function Summary({ data, setter }) {
         />
         <ExplainMistake mistake={mistake} classMistake={classMistake} />
       </div>
-      <div className={classes.summary.closePanel} onClick={() => setter(false)}>
+      <button
+        className={classes.summary.closePanel}
+        onClick={() => setter(false)}
+      >
         Chiudi
-      </div>
+      </button>
       <ShowSummaryDetails data={data} stats={stats} />
     </div>
   );

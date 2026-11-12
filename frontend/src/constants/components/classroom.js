@@ -15,4 +15,5 @@ export const classes = {
   save: "classrooms__saveManagerBtn",
   myStudents: "classrooms__myStudents",
   notification: "classrooms__notification",
+  btnsContainer: "classrooms__mangerBtnsContainer",
 };

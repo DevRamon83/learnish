@@ -33,13 +33,13 @@ export default function SetCorrectAnswer({
 
       <div className={classes.answer}>
         {chooseAnswer.map((btn, index) => (
-          <div
+          <button
             className={`${btnBase}${btn === selected.btn && index === selected.index ? "-selected" : ""}`}
             key={`key${btn}${index}`}
             onClick={() => handler(btn, index)}
           >
             {btn}
-          </div>
+          </button>
         ))}
       </div>
     </>

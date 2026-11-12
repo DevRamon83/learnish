@@ -19,6 +19,7 @@ export const classes = {
   scrollWrapper: "messages__scrollWrapper",
   leftScroll: "messages__scroller-left",
   rightScroll: "messages__scroller-right",
+  sendBtn: "messages__sendBtn",
 };
 
 export const ids = {

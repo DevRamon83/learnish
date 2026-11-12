@@ -43,12 +43,12 @@ export default function Lessons() {
           <div className={classes.lessons.errorMsg}>
             {errorsStrings.strings[error]}
           </div>
-          <div
+          <button
             onClick={() => setError(null)}
             className={classes.lessons.errorClose}
           >
             {errorsStrings.strings.close}
-          </div>
+          </button>
         </div>
       )}
     </div>

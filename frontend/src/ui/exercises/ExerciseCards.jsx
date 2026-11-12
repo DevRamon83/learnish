@@ -7,7 +7,7 @@ export default function ExerciseCards({
   return (
     <>
       {exercises.map((exercise) => (
-        <div
+        <button
           className={classes.exerciseCard}
           key={`exerciseTab_${exercise}`}
           onClick={() => handler(exercise)}
@@ -22,7 +22,7 @@ export default function ExerciseCards({
             <div> {strings[exercise]}</div>
             <img src={`/arrow.svg`} alt="arrow" title="arrow" />
           </div>
-        </div>
+        </button>
       ))}
     </>
   );

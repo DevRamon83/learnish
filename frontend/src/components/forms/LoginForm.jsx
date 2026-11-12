@@ -95,9 +95,9 @@ export default function LoginForm({ strings, lang }) {
         </>
       )}
       <div>
-        <div onClick={newPasswordHandler}>
+        <button onClick={newPasswordHandler}>
           {newPsw ? strings.backToLogin : strings.forgottenPsw}
-        </div>
+        </button>
       </div>
     </>
   );

@@ -17,7 +17,9 @@ export default function SummaryFailed({
         <img src={`/${status || "pending"}.svg`} />
       </div>
       {status === "failed" && (
-        <button onClick={retryHandler}>{strings.retry}</button>
+        <button className={classes.summary.retryBtn} onClick={retryHandler}>
+          {strings.retry}
+        </button>
       )}
     </>
   );

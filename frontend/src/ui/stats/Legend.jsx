@@ -13,7 +13,7 @@ export default function Legend({
       <h1>{texts.legend}</h1>
       <div className={classes.legendContainer}>
         {errorKeys.map((error) => (
-          <div
+          <button
             onClick={() => setCurrentStat(error)}
             className={
               currentStat === error ? classes.legendActive : `stats__${error}`
@@ -23,7 +23,7 @@ export default function Legend({
             <div
               className={classes.legendContent}
             >{`${errorCodes[error]}: ${rawData[error]}%`}</div>
-          </div>
+          </button>
         ))}
       </div>
     </>

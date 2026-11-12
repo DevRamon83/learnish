@@ -11,13 +11,12 @@ export default function SummaryErrorTab({
   return (
     <div className={errorTab}>
       {errors.map((error) => (
-        <div
+        <button
           key={`${id}${error}}`}
           onClick={() => setCurrentError(error)}
           className={`${errorBase}${error} ${currentError === error ? errorOpen : errorClose}`}
-        ></div>
+        />
       ))}
-      <div></div>
     </div>
   );
 }

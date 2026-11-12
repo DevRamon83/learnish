@@ -26,12 +26,12 @@ export default function Team() {
         <div className={classes.carousel}>
           <img className={classes.img} src={people[current].img} />
 
-          <div onClick={() => handler(-1)} className={classes.back}>
+          <button onClick={() => handler(-1)} className={classes.back}>
             {strings.back}
-          </div>
-          <div onClick={() => handler(+1)} className={classes.forward}>
+          </button>
+          <button onClick={() => handler(+1)} className={classes.forward}>
             {strings.forward}
-          </div>
+          </button>
         </div>
         <div className={classes.info}>
           <h4 className={classes.nameDesk}>{people[current].name}</h4>

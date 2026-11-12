@@ -46,6 +46,7 @@ export default function Navbar() {
   usePersonalSettings();
 
   const toggleNavbar = () => {
+    console.log("scattato ", isOpen);
     if (isOpen) {
       setNavbarState(classes.navbarContainerClose);
       setLogoState("-close");
@@ -56,7 +57,7 @@ export default function Navbar() {
     setIsOpen((prev) => !prev);
   };
 
-  const { logoutHandler } = useLogout("navbar");
+  const { logoutHandler } = useLogout(setNotify);
   const closeNotify = () => {
     setLogoState("-close");
     setNotify(false);
