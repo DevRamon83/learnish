@@ -1,29 +1,24 @@
 import fetchLogout from "../api/handlers/fetchLogout";
 import { useDispatch } from "react-redux";
-import { setAuth, setUser } from "../redux/slices/authSlice";
-import { useEffect } from "react";
+import { logout } from "../redux/slices/authSlice";
 import { getSocket } from "../socket/socketClient";
+import { useNavigate } from "react-router-dom";
 
-export default function useLogout(currentTab) {
+export default function useLogout(setNotify) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const logoutHandler = async () => {
     const response = await fetchLogout();
     if (response.error) {
-      console.error(response.errorMsg);
+      setNotify(response.errorMsg);
     } else {
-      dispatch(setUser(null));
-      dispatch(setAuth("unauthenticated"));
       const socket = getSocket();
       socket && socket.disconnect();
+      dispatch(logout());
+      navigate("/");
     }
   };
-
-  useEffect(() => {
-    if (currentTab === "logout") {
-      logoutHandler();
-    }
-  }, [currentTab]);
 
   return { logoutHandler };
 }

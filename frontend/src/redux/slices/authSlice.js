@@ -63,8 +63,8 @@ const authSlice = createSlice({
       }
     },
     logout: (state) => {
-      state.authState = "unauthenticated";
-      state.user = null;
+      state.authState = "logged_out";
+      state.user = initialState.user;
     },
   },
 });
