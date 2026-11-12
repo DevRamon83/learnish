@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import bundle from "shared";
 import { classes } from "../constants/components/dashboard";
 import YourStudents from "../components/dashboard/YourStudents";
@@ -9,9 +9,12 @@ import Messages from "../components/dashboard/messages/Messages";
 import useTabRouting from "../hooks/useTabRouting";
 import useChatSignal from "../hooks/useChatSignal";
 import useMessageSync from "../hooks/useMessageSync";
+import { useSelector } from "react-redux";
 const { dashboardTeachersTabs } = bundle.constants;
 
 export default function TeachersDashboard() {
+  const user = useSelector((state) => state.auth.user);
+  const students = user.studentsList;
   const [currentTab, setCurrentTab] = useState("students");
 
   // Sets the active tab from URL params (e.g., via navbar notifications)
@@ -19,6 +22,20 @@ export default function TeachersDashboard() {
   useTabRouting(setCurrentTab);
   // Determines if the user is chatting
   useChatSignal(currentTab);
+  const studentsMapRef = useRef(new Map());
+  const studentsMap = studentsMapRef.current;
+
+  useEffect(() => {
+    if (!students) return;
+    students.forEach((student) => {
+      if (!studentsMap.has(student._id)) {
+        studentsMap.set(student._id, {
+          summaries: [],
+          stats: [],
+        });
+      }
+    });
+  }, [students]);
 
   // Initializes the local chat cache and keeps it synchronized with Redux live updates.
   // CRITICAL: This hook also acts as a cleanup mechanism, resetting the global
@@ -35,7 +52,11 @@ export default function TeachersDashboard() {
         />
         {currentTab === "students" && (
           <div className={classes.core}>
-            <YourStudents />
+            <YourStudents
+              studentsMap={studentsMap}
+              students={students}
+              classrooms={user.classrooms}
+            />
           </div>
         )}
         {currentTab === "classrooms" && (
