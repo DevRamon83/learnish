@@ -26,7 +26,7 @@ export default function Navbar() {
   const isChatting = useSelector((state) => state.messages.data.isChatting);
   const navigate = useNavigate();
   const { strings } = useLang(i18nAddresses.layout);
-  const unreadMessages = auth.user?.unreadMessages;
+  const unreadMessages = auth.user?.unreadMessages || [];
 
   useEffect(() => {
     if (path !== "user" && isChatting) {
@@ -41,12 +41,11 @@ export default function Navbar() {
       setLogoState("-open");
       setNotify(true);
     }
-  }, [auth.user?.unreadMessages.length, isChatting]);
+  }, [auth.user?.unreadMessages?.length, isChatting]);
 
   usePersonalSettings();
 
   const toggleNavbar = () => {
-    console.log("scattato ", isOpen);
     if (isOpen) {
       setNavbarState(classes.navbarContainerClose);
       setLogoState("-close");

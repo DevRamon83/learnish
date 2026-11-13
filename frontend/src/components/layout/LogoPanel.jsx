@@ -23,6 +23,7 @@ export default function LogoPanel({
   };
 
   useEffect(() => {
+    if (!user.unreadMessages) return;
     setSenderData({
       username: user?.unreadMessages[0],
       profilePic: getMessageSenderPic(user),
