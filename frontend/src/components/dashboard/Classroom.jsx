@@ -45,46 +45,39 @@ export default function Classroom({
 
   return (
     <div className={classes.container}>
-      {classrooms.length === 0 ? (
-        badgePanelIsClose && (
-          <>
-            <h4>{strings.createFirst}</h4>
-            <img src="/add.svg" />
-          </>
-        )
-      ) : (
-        <>
-          <ClassroomBadgeContainer
-            classes={classes}
-            animals={animals}
-            enrollmentHandler={enrollmentHandler}
-            currentClassroom={currentClassroom}
-            classrooms={classrooms}
-            badgeBtn={badgeBtn}
-            toggleBadgePanel={toggleBadgePanel}
-          />
-
-          <NewClassroom
-            classes={classes}
-            strings={strings}
-            badgePanel={badgePanel}
-            setBadgePanel={setBadgePanel}
-            setNotify={setNotify}
-          />
-
-          <ClassroomManager
-            currentBadge={currentBadge}
-            enrollmentHandler={enrollmentHandler}
-            students={students}
-            currentClassroom={currentClassroom}
-            resetAll={resetAll}
-            classes={classes}
-            strings={strings}
-            enrollmentPanel={enrollmentPanel}
-            setNotify={setNotify}
-          />
-        </>
+      {classrooms.length === 0 && badgePanelIsClose && (
+        <h4>{strings.createFirst}</h4>
       )}
+
+      <ClassroomBadgeContainer
+        classes={classes}
+        animals={animals}
+        enrollmentHandler={enrollmentHandler}
+        currentClassroom={currentClassroom}
+        classrooms={classrooms}
+        badgeBtn={badgeBtn}
+        toggleBadgePanel={toggleBadgePanel}
+      />
+
+      <NewClassroom
+        classes={classes}
+        strings={strings}
+        badgePanel={badgePanel}
+        setBadgePanel={setBadgePanel}
+        setNotify={setNotify}
+      />
+
+      <ClassroomManager
+        currentBadge={currentBadge}
+        enrollmentHandler={enrollmentHandler}
+        students={students}
+        currentClassroom={currentClassroom}
+        resetAll={resetAll}
+        classes={classes}
+        strings={strings}
+        enrollmentPanel={enrollmentPanel}
+        setNotify={setNotify}
+      />
     </div>
   );
 }
