@@ -1,16 +1,17 @@
 import fetchDeactivateContract from "../../../api/handlers/fetchDeactivateContract";
 import { i18nAddresses } from "../../../constants/i18nAddresses";
 import { useLang } from "../../../hooks/useLang";
+import bundle from "shared";
+const { contracts } = bundle.constants;
 
-export default function DeactivatePanel({ props, contractProps }) {
-  const { classes, strings, setError } = props;
-  const {
-    setExist,
-    setDataContracts,
-    contracts,
-    currentContract,
-    setDeactivate,
-  } = contractProps;
+export default function DeactivatePanel({
+  sharedProps,
+  setDeactivate,
+  setExist,
+  contractProps,
+}) {
+  const { classes, strings, setError } = sharedProps;
+  const { currentContract, setDataContracts } = contractProps;
   const contract = contracts[currentContract];
   const errorStrings = useLang(i18nAddresses.errors);
 
@@ -19,10 +20,7 @@ export default function DeactivatePanel({ props, contractProps }) {
     setError(null);
     const updated = await fetchDeactivateContract(data);
 
-    if (updated.error) {
-      setError(errorStrings.strings.generic);
-      return;
-    }
+    if (updated.error) return setError(errorStrings.strings.generic);
 
     setExist(false);
     setDataContracts((prev) => ({

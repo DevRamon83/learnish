@@ -1,12 +1,13 @@
 import fetchUpdateSettings from "../../../api/handlers/fetchUpdateSettings";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../../../redux/slices/authSlice";
 import { validatePlan } from "./validators";
 import SettingsCommonTitle from "../../../ui/settings/SettingsCommonTitle";
 
-export default function Plan({ planProps, props }) {
-  const { user } = planProps;
-  const { strings, classes, card, toggle, setToggle } = props;
+export default function Plan({ sharedProps }) {
+  const user = useSelector((state) => state.auth.user);
+
+  const { card, toggle, setToggle, strings, classes, setError } = sharedProps;
 
   const dispatch = useDispatch();
 
@@ -25,9 +26,7 @@ export default function Plan({ planProps, props }) {
     }
 
     const update = await fetchUpdateSettings(data);
-    if (update.error) {
-      return;
-    }
+    if (update.error) return setError(update.errorMessage);
 
     setToggle(!toggle);
     const newUser = { ...user };

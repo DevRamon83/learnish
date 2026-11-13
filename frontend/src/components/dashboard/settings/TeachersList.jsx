@@ -10,12 +10,12 @@ import TeacherDeactivateAlert from "../../../ui/settings/TeacherDeactivateAlert"
 import { updateStudentTeacher } from "../../../redux/slices/authSlice";
 import { useDispatch } from "react-redux";
 
-export default function TeachersList({ studentProps, props }) {
+export default function TeachersList({ sharedProps, myTeacher, setMyTeacher }) {
+  const [teachersList, setTeachersList] = useState([]);
+
   // 1. Destructuring & Layout Config
-  const { strings, setToggle, setError } = props;
-  const classes = props.classes.settings;
-  const { myTeacher, setMyTeacher, teachersList, setTeachersList } =
-    studentProps;
+  const { strings, setToggle, setError } = sharedProps;
+  const classes = sharedProps.classes.settings;
 
   const dispatch = useDispatch();
 

@@ -1,18 +1,27 @@
 import fetchPic from "../../../api/handlers/fetchPic";
 import { validatePic } from "./validators";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../../../redux/slices/authSlice";
 import SettingsCommonTitle from "../../../ui/settings/SettingsCommonTitle";
+import { useEffect, useState } from "react";
+import getPicUrl from "../../../helpers/getPicUrl";
+import Spinner from "../../../ui/Spinner";
 
-export default function Pic({ props, picProps }) {
-  const { strings, classes, toggle, setToggle, card } = props;
+export default function Pic({ sharedProps }) {
+  const { strings, classes, toggle, setToggle, card, setError } = sharedProps;
 
-  const { user, userPic, setUserPic } = picProps;
+  const user = useSelector((state) => state.auth.user);
+  const [fetchStatus, setFetchStatus] = useState(null);
+  const [userPic, setUserPic] = useState({
+    url: getPicUrl(user, true),
+  });
 
   const dispatch = useDispatch();
 
   const submitHandler = async (e) => {
     e.preventDefault();
+    if (fetchStatus) return;
+    setFetchStatus("pending");
 
     const formData = new FormData(e.currentTarget);
 
@@ -22,34 +31,49 @@ export default function Pic({ props, picProps }) {
 
     if (isValid.error) {
       setToggle(!toggle);
+      setError(isValid.errorMsg);
+      setFetchStatus(null);
       return;
     }
 
     const update = await fetchPic(formData, "profilePic");
     if (update.error) {
+      setFetchStatus(null);
+      setError(update.errorMessage);
       return;
     }
 
-    setToggle(!toggle);
+    if (userPic.url?.startsWith("blob:")) {
+      URL.revokeObjectURL(userPic.url);
+    }
+
     const newUser = { ...user };
     newUser.pic = update.pic;
     dispatch(setUser(newUser));
+    setFetchStatus(null);
+    setToggle(!toggle);
   };
 
   const changeUrl = (e) => {
     const file = e.target.files[0];
-    if (!file) return;
+    if (!file) return setError("choseAPic");
 
-    const isValid = validatePic(file);
-    if (isValid.error) {
-      return;
+    if (userPic.url && userPic.url.startsWith("blob:")) {
+      URL.revokeObjectURL(userPic.url);
     }
 
     const localUrl = URL.createObjectURL(file);
     setUserPic({ url: localUrl });
   };
 
-  const { container, form } = classes.settings;
+  useEffect(() => {
+    if (!toggle && userPic.url?.startsWith("blob:")) {
+      URL.revokeObjectURL(userPic.url);
+      setUserPic({ url: getPicUrl(user, true) });
+    }
+  }, [toggle]);
+
+  const { form } = classes.settings;
 
   return (
     <>
@@ -58,6 +82,7 @@ export default function Pic({ props, picProps }) {
         string={strings.profilePic}
         src={userPic.url}
       />
+
       {toggle && (
         <form
           id={`settings__${card}`}
@@ -71,6 +96,7 @@ export default function Pic({ props, picProps }) {
             accept="image/png, image/jpeg"
             onChange={changeUrl}
           />
+          {fetchStatus === "pending" && <Spinner />}
         </form>
       )}
     </>

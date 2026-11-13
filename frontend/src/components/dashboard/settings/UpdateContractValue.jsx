@@ -4,18 +4,18 @@ import useRetrievePersonalSettings from "../../../hooks/useRetrievePersonalSetti
 import { useState } from "react";
 import ActivateService from "./ActivateService";
 import ContractInputField from "../../../ui/forms/ContractInputField";
-const { currencyMap } = bundle.constants;
+const { currencyMap, contracts } = bundle.constants;
 
-export default function UpdateContractValue({ keys, props, contractProps }) {
-  const { classes, strings, card, setError } = props;
-  const {
-    currentContract,
-    contracts,
-    dataContracts,
-    setDataContracts,
-    exist,
-    nextHandler,
-  } = contractProps;
+export default function UpdateContractValue({
+  keys,
+  sharedProps,
+  exist,
+  setExist,
+  nextHandler,
+  contractProps,
+}) {
+  const { classes, strings, card, setError } = sharedProps;
+  const { currentContract, dataContracts, setDataContracts } = contractProps;
   const contract = contracts[currentContract];
   const [currency, setCurrency] = useState(null);
 
@@ -44,17 +44,11 @@ export default function UpdateContractValue({ keys, props, contractProps }) {
       isZero = !isZero ? data[datum] === 0 : isZero;
     }
 
-    if (isZero) {
-      setError(`zero_${contract}`);
-      return;
-    }
+    if (isZero) return setError(`zero_${contract}`);
 
     const update = await fetchUpdateSettings({ [contract]: data });
 
-    if (update.error) {
-      return;
-    }
-
+    if (update.error) return setError(update.errorMessage);
     setDataContracts((prev) => ({
       ...prev,
       [contract]: { ...data },
@@ -88,7 +82,11 @@ export default function UpdateContractValue({ keys, props, contractProps }) {
       )}
 
       {contract !== "subscription" && !exist && (
-        <ActivateService props={props} contractProps={contractProps} />
+        <ActivateService
+          sharedProps={sharedProps}
+          setExist={setExist}
+          contractProps={contractProps}
+        />
       )}
     </>
   );

@@ -5,9 +5,9 @@ import useRetrievePersonalSettings from "../../../hooks/useRetrievePersonalSetti
 import SettingsCommonTitle from "../../../ui/settings/SettingsCommonTitle";
 const { currencies } = bundle.constants;
 
-export default function Currency({ props }) {
+export default function Currency({ sharedProps }) {
   const [currency, setCurrency] = useState(null);
-  const { strings, card, toggle, setToggle, classes } = props;
+  const { strings, card, toggle, setToggle, classes, setError } = sharedProps;
 
   const retrieveConfig = {
     data: { retrieve: "currency" },
@@ -35,9 +35,7 @@ export default function Currency({ props }) {
 
     const update = await fetchUpdateSettings(data);
 
-    if (update.error) {
-      return;
-    }
+    if (update.error) return setError(update.errorMessage);
 
     setToggle(!toggle);
     setCurrency(data.currency);

@@ -1,11 +1,22 @@
 import { useEffect, useState } from "react";
 import useRetrievePersonalSettings from "../../../hooks/useRetrievePersonalSettings";
-import ContractSwitch from "./ContractSwitch";
 import SettingsCommonTitle from "../../../ui/settings/SettingsCommonTitle";
+import DispatchContractForm from "./DispatchContractForm";
+import ContractPanel from "./ContractPanel";
 
-export default function TeacherContract({ props, contractProps }) {
-  const { strings, classes, toggle } = props;
+export default function TeacherContract({
+  sharedProps,
+  exist,
+  setExist,
+  nextHandler,
+  contractProps,
+}) {
+  const { strings, classes, toggle, lang, setError } = sharedProps;
   const { dataContracts, setDataContracts } = contractProps;
+
+  // A database-level flag (default: false at signup), it determines whether
+  // the teacher's profile is operational. Registration is considered complete ONLY
+  // after the user has configured and submitted pricing for their services.
   const [isComplete, setIsComplete] = useState(false);
 
   // This configuration object is passed down to the wizard form (DispatchContractForm).
@@ -33,15 +44,26 @@ export default function TeacherContract({ props, contractProps }) {
         src="/prices.jpeg"
       />
 
-      {toggle && (
-        <ContractSwitch
-          props={props}
-          contractProps={contractProps}
-          isComplete={isComplete}
-          setIsComplete={setIsComplete}
-          contractRetrieve={retrieveConfig}
-        />
-      )}
+      {toggle &&
+        (!isComplete ? (
+          <>
+            <DispatchContractForm
+              strings={strings}
+              lang={lang}
+              setIsComplete={setIsComplete}
+              retrieveConfig={retrieveConfig}
+              setError={setError}
+            />
+          </>
+        ) : (
+          <ContractPanel
+            sharedProps={sharedProps}
+            exist={exist}
+            setExist={setExist}
+            nextHandler={nextHandler}
+            contractProps={contractProps}
+          />
+        ))}
     </>
   );
 }

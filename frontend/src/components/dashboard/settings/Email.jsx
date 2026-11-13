@@ -5,8 +5,8 @@ import fetchUpdateSettings from "../../../api/handlers/fetchUpdateSettings";
 import SettingsCommonTitle from "../../../ui/settings/SettingsCommonTitle";
 const { emailValidator } = bundle;
 
-export default function Email({ props }) {
-  const { strings, classes, card, toggle, setToggle } = props;
+export default function Email({ sharedProps }) {
+  const { strings, classes, card, toggle, setToggle, setError } = sharedProps;
 
   const [userEmail, setUserEmail] = useState("");
   const retrieveConfig = {
@@ -29,13 +29,13 @@ export default function Email({ props }) {
 
     if (isValid.error) {
       setToggle(!toggle);
+      setError(isValid.errorArray[0]);
       return;
     }
 
     const update = await fetchUpdateSettings(data);
-    if (update.error) {
-      return;
-    }
+    if (update.error) return setError(update.errorMessage);
+
     setToggle(!toggle);
     setUserEmail(data.email);
   };

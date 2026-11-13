@@ -3,17 +3,29 @@ import PriceDefiner from "../../forms/PriceDefiner";
 import bundle from "shared";
 import { classes } from "../../../constants/components/dashboard";
 import fetchSettings from "../../../api/handlers/fetchSettings";
+import useRetrievePersonalSettings from "../../../hooks/useRetrievePersonalSettings";
 const { contracts, subscription, packs, qNa } = bundle.constants;
 
 export default function DispatchContractForm({
   strings,
   lang,
   setIsComplete,
-  contractRetrieve,
+  retrieveConfig,
+  setError,
 }) {
   const [status, setStatus] = useState("subscription");
   const [title, setTitle] = useState(null);
   const services = [...contracts, "finish"];
+
+  const [currency, setCurrency] = useState(null);
+
+  const retrieveCurrency = {
+    data: { retrieve: "currency" },
+    setter: setCurrency,
+    key: "currency",
+    strings,
+  };
+  useRetrievePersonalSettings(retrieveCurrency);
 
   const defineNext = () => {
     const index = services.indexOf(status);
@@ -27,7 +39,7 @@ export default function DispatchContractForm({
   };
 
   useEffect(() => {
-    setTitle(strings[status]);
+    setTitle(`${strings[status]} (${strings.yourCurrency} ${currency})`);
 
     if (status === "finish") {
       const controller = new AbortController();
@@ -35,11 +47,11 @@ export default function DispatchContractForm({
       // NOTE: Uses the parent's config to refresh the data from the DB
       // and unlock the main active contract panel instantly.
       const retrieve = async () => {
-        const { data, setter, key, strings } = contractRetrieve;
+        const { data, setter, key, strings } = retrieveConfig;
 
         const res = await fetchSettings(data, controller.signal);
         if (res.error) {
-          // error handler
+          setError(res.errorMessage);
         } else {
           const value = res[key] ? res[key] : strings.change[key];
           setter(value);
@@ -47,8 +59,9 @@ export default function DispatchContractForm({
         setIsComplete(true);
       };
       retrieve();
+      return () => controller.abort();
     }
-  }, [status]);
+  }, [status, currency]);
 
   return (
     <>

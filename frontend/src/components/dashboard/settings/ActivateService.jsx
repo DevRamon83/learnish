@@ -4,14 +4,17 @@ import fetchSettings from "../../../api/handlers/fetchSettings";
 import bundle from "shared";
 import { useLang } from "../../../hooks/useLang";
 import { i18nAddresses } from "../../../constants/i18nAddresses";
-const { packs, qNa } = bundle.constants;
+const { packs, qNa, contracts } = bundle.constants;
 
-export default function ActivateService({ props, contractProps }) {
+export default function ActivateService({
+  sharedProps,
+  setExist,
+  contractProps,
+}) {
   const [isOpen, setIsOpen] = useState(false);
   const errorStrings = useLang(i18nAddresses.errors);
-  const { strings, lang, classes, setError } = props;
-  const { setDataContracts, setExist, contracts, currentContract } =
-    contractProps;
+  const { strings, lang, classes, setError } = sharedProps;
+  const { currentContract, setDataContracts } = contractProps;
 
   const service = contracts[currentContract];
   const pack = service === "qNa" ? qNa : packs;

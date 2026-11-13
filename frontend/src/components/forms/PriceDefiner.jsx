@@ -16,7 +16,6 @@ export default function PriceDefiner({
 }) {
   const formRef = useRef(null);
   const objConfig = contractConfigBuilder(strings, packs);
-
   const { fields } = useRamonForm(objConfig);
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -58,9 +57,15 @@ export default function PriceDefiner({
               />
             ))}
             <div className={classes.priceBtns}>
-              <button className={classes.btn.send}>{strings.send}</button>
+              <button type="submit" className={classes.btn.send}>
+                {strings.send}
+              </button>
               {status !== "subscription" && (
-                <button className={classes.btn.send} onClick={jump}>
+                <button
+                  type="button"
+                  className={classes.btn.send}
+                  onClick={jump}
+                >
                   {caller ? strings.close : strings.jump}
                 </button>
               )}

@@ -1,5 +1,5 @@
-export default function Breadcrumb({ props }) {
-  const { userCards, strings, setCard, toggle, card, classes } = props;
+export default function Breadcrumb({ sharedProps }) {
+  const { userCards, setCard, toggle, card, strings, classes } = sharedProps;
 
   return (
     <div className={classes.settings.breadcrumbContainer}>

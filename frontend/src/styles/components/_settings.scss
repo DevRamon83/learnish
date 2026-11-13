@@ -266,15 +266,40 @@
   bottom: -10vh;
   left: 0;
   width: 100%;
-  height: 6vh;
+  height: 10vh;
   background-color: crimson;
   color: white;
   border-top: 1px solid #000;
   animation: showError 0.25s forwards;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   font-weight: bold;
+  z-index: 100;
+  padding-left: 15px;
+
+  @include breakpoints.medium {
+    height: 6vh;
+    justify-content: center;
+    padding-left: unset;
+  }
+}
+
+.settings__error button {
+  margin-left: 20px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  border-left: 1px solid black;
+  width: 35px;
+  cursor: pointer;
+
+  @include breakpoints.medium {
+    border-right: 1px solid black;
+    height: 100%;
+  }
 }
 
 @keyframes showError {
@@ -487,7 +512,7 @@
   }
 }
 
-.settings__teachersMenu div {
+.settings__teachersMenu button {
   background-color: white;
   color: colors.$primaryColor;
   font-weight: bold;

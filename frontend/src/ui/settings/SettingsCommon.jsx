@@ -11,15 +11,15 @@ import Plan from "../../components/dashboard/settings/Plan";
 // Premature abstraction here would lead to an unmaintainable,
 // tightly-coupled component hell.
 
-export default function SettingsCommon({ props, picProps, planProps }) {
-  const { card } = props;
+export default function SettingsCommon({ sharedProps }) {
+  const { card } = sharedProps;
 
   return (
     <>
-      {card === "Pic" && <Pic props={props} picProps={picProps} />}
-      {card === "Email" && <Email props={props} />}
-      {card === "Password" && <Password props={props} />}
-      {card === "Plan" && <Plan props={props} planProps={planProps} />}
+      {card === "Pic" && <Pic sharedProps={sharedProps} />}
+      {card === "Email" && <Email sharedProps={sharedProps} />}
+      {card === "Password" && <Password sharedProps={sharedProps} />}
+      {card === "Plan" && <Plan sharedProps={sharedProps} />}
     </>
   );
 }

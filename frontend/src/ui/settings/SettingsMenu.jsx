@@ -1,4 +1,5 @@
-import Deactivate from "../../components/dashboard/settings/Deactivate";
+import bundle from "shared";
+const { contracts } = bundle.constants;
 
 const showHandler = (card, dataContracts, contract) => {
   if (card !== "Contracts") return true;
@@ -7,11 +8,17 @@ const showHandler = (card, dataContracts, contract) => {
   return dataContracts ? dataContracts[contract].available : false;
 };
 
-export default function SettingsMenu({ props, contractProps }) {
-  const { toggle, setToggle, classes, card, setError } = props;
+export default function SettingsMenu({
+  sharedProps,
+  exist,
+  nextHandler,
+  contractProps,
+  deactivate,
+  setDeactivate,
+}) {
+  const { toggle, setToggle, classes, card } = sharedProps;
+  const { currentContract, dataContracts } = contractProps;
 
-  const { nextHandler, currentContract, contracts, exist, dataContracts } =
-    contractProps;
   const formId = `settings__${card}${card === "Contracts" ? `__${contracts[currentContract]}` : ""}`;
   const contract = contracts[currentContract];
   const toggleClass = toggle
@@ -19,10 +26,12 @@ export default function SettingsMenu({ props, contractProps }) {
     : classes.settings.btnChange;
 
   const show = showHandler(card, dataContracts, contract);
+  const canDeactivate = contract !== "subscription" && exist && !deactivate;
+  const isContractTabOpen = card === "Contracts" && toggle && dataContracts;
 
   return (
     <div className={classes.settings.menu}>
-      <div onClick={() => setToggle(!toggle)} className={toggleClass}></div>
+      <button onClick={() => setToggle(!toggle)} className={toggleClass} />
       {toggle && show && (
         <button
           className={classes.settings.btnFetch}
@@ -31,12 +40,15 @@ export default function SettingsMenu({ props, contractProps }) {
         />
       )}
 
-      {card === "Contracts" && toggle && dataContracts && (
+      {isContractTabOpen && (
         <>
-          {contract !== "subscription" && exist && (
-            <Deactivate props={props} contractProps={contractProps} />
+          {canDeactivate && (
+            <button
+              className={classes.settings.trash}
+              onClick={() => setDeactivate(true)}
+            />
           )}
-          <div className={classes.settings.next} onClick={nextHandler} />
+          <button className={classes.settings.next} onClick={nextHandler} />
         </>
       )}
     </div>

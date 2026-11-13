@@ -703,3 +703,29 @@
   background-color: gainsboro;
   border-radius: 5px;
 }
+
+.summary__newSummaryBtn {
+  @extend .summary__retryBtn;
+  margin-bottom: 25px;
+  background-color: #002147;
+  color: white;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+
+  @include breakpoints.medium {
+    border-radius: 5px 0 0 5px;
+  }
+}
+
+.summary__h1Container {
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+
+  @include breakpoints.medium {
+    flex-direction: row;
+  }
+}

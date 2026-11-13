@@ -1,10 +1,18 @@
 import { useEffect, useState } from "react";
 import UpdateContractValue from "./UpdateContractValue";
+import bundle from "shared";
+const { contracts } = bundle.constants;
 
-export default function ContractPanel({ props, contractProps }) {
-  const { classes, strings } = props;
-  const { contracts, currentContract, dataContracts, exist, setExist } =
-    contractProps;
+export default function ContractPanel({
+  sharedProps,
+  exist,
+  setExist,
+  contractProps,
+  nextHandler,
+}) {
+  const { classes, strings } = sharedProps;
+  const { currentContract, dataContracts } = contractProps;
+
   const [keys, setKeys] = useState([]);
   const contract = contracts[currentContract];
 
@@ -22,7 +30,7 @@ export default function ContractPanel({ props, contractProps }) {
       setKeys(myKeys);
       availableHandler();
     }
-  }, [dataContracts, exist, currentContract]);
+  }, [dataContracts, currentContract]);
 
   return (
     <div className={classes.settings.contractContainer}>
@@ -32,7 +40,10 @@ export default function ContractPanel({ props, contractProps }) {
       <UpdateContractValue
         key={`contract${currentContract}`}
         keys={keys}
-        props={props}
+        sharedProps={sharedProps}
+        exist={exist}
+        setExist={setExist}
+        nextHandler={nextHandler}
         contractProps={contractProps}
       />
     </div>

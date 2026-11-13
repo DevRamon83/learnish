@@ -15,7 +15,7 @@ export const validatePic = (file) => {
   }
 
   if (file.size > 2 * 1024 * 1024) {
-    return { error: true, errorMsg: "tooBig" };
+    return { error: true, errorMsg: "tooBigPic" };
   }
 
   return { error: false };
@@ -34,7 +34,7 @@ export const validatePsw = (data) => {
     const isValid = passwordValidator(data[key]);
     if (isValid.error) {
       error = true;
-      errorMsg = isValid.errorMsg[0];
+      errorMsg = isValid.errorArray[0];
     }
   });
 

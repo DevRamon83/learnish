@@ -1,16 +1,13 @@
 import { PasswordInput, useRamonForm } from "ramon-form-sdude";
-import { useLang } from "../../../hooks/useLang";
-import { i18nAddresses } from "../../../constants/i18nAddresses";
 import newPswConfigBuilder from "../../../forms/configs/changePsw";
 import FormInput from "../../forms/FormInput";
 import { validatePsw } from "./validators";
 import fetchUpdatePassword from "../../../api/handlers/fetchUpdatePassword";
 import SettingsCommonTitle from "../../../ui/settings/SettingsCommonTitle";
 
-export default function Password({ props }) {
-  const { classes, toggle, setToggle, card } = props;
+export default function Password({ sharedProps }) {
+  const { classes, toggle, setToggle, card, strings, setError } = sharedProps;
 
-  const { strings } = useLang(i18nAddresses.settings);
   const objConfig = newPswConfigBuilder(strings, "signup");
   const { fields } = useRamonForm(objConfig);
   const { password, newPassword, confirmNewPassword } = fields;
@@ -27,13 +24,12 @@ export default function Password({ props }) {
 
     if (isValidData.error) {
       setToggle(!toggle);
+      setError(`password_${isValidData.errorMsg}`);
       return;
     }
 
     const update = await fetchUpdatePassword(data);
-    if (update.error) {
-      return;
-    }
+    if (update.error) return setError(update.errorMessage);
 
     setToggle(!toggle);
   };

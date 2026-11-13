@@ -2,9 +2,8 @@ import SettingsCommonTitle from "../../../ui/settings/SettingsCommonTitle";
 import useRetrievePersonalSettings from "../../../hooks/useRetrievePersonalSettings";
 import useTeacherPic from "../../../hooks/useTeacherPic";
 
-export default function MyTeacher({ props, studentProps }) {
-  const { strings, classes } = props;
-  const { myTeacher, setMyTeacher } = studentProps;
+export default function MyTeacher({ sharedProps, myTeacher, setMyTeacher }) {
+  const { strings, classes } = sharedProps;
 
   const retrieveConfig = {
     data: { retrieve: "teacher" },
