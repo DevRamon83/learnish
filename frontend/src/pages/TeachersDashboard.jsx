@@ -14,7 +14,8 @@ const { dashboardTeachersTabs } = bundle.constants;
 
 export default function TeachersDashboard() {
   const user = useSelector((state) => state.auth.user);
-  const students = user.studentsList;
+  const students = user.studentsList ?? [];
+  const classrooms = user.classrooms ?? [];
   const [currentTab, setCurrentTab] = useState("students");
 
   // Sets the active tab from URL params (e.g., via navbar notifications)
@@ -55,7 +56,7 @@ export default function TeachersDashboard() {
             <YourStudents
               studentsMap={studentsMap}
               students={students}
-              classrooms={user.classrooms}
+              classrooms={classrooms}
             />
           </div>
         )}
